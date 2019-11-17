@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python学习笔记(函数) | Stay hungry, Stay foolish.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="None作为布尔值和False是一样的，如何区分None和False?1234567891011121314151617181920212223242526272829303132333435thing = Noneif thing:    print(&quot;It&apos;s some thing.&quot;)else:    print(&quot;It&apos;s no thing.&quot;)if thing is None:    p">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python学习笔记(函数)">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/2019/03/28/Python学习笔记-函数/index.html">
+<meta property="og:site_name" content="Stay hungry, Stay foolish.">
+<meta property="og:description" content="None作为布尔值和False是一样的，如何区分None和False?1234567891011121314151617181920212223242526272829303132333435thing = Noneif thing:    print(&quot;It&apos;s some thing.&quot;)else:    print(&quot;It&apos;s no thing.&quot;)if thing is None:    p">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-24T08:19:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python学习笔记(函数)">
+<meta name="twitter:description" content="None作为布尔值和False是一样的，如何区分None和False?1234567891011121314151617181920212223242526272829303132333435thing = Noneif thing:    print(&quot;It&apos;s some thing.&quot;)else:    print(&quot;It&apos;s no thing.&quot;)if thing is None:    p">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Stay hungry, Stay foolish." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Stay hungry, Stay foolish.</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/DavidWanderer/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python学习笔记-函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2019/03/28/Python学习笔记-函数/" class="article-date">
+  <time datetime="2019-03-28T14:40:13.000Z" itemprop="datePublished">2019-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python学习笔记(函数)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="None作为布尔值和False是一样的，如何区分None和False"><a href="#None作为布尔值和False是一样的，如何区分None和False" class="headerlink" title="None作为布尔值和False是一样的，如何区分None和False?"></a>None作为布尔值和False是一样的，如何区分None和False?</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">thing = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> thing:</span><br><span class="line">    print(<span class="string">"It's some thing."</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"It's no thing."</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> thing <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    print(<span class="string">"It's nothing"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"It's something"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 你需要把None和不含任何值的空数据结构区分开来。0值的整型/浮点型、</span></span><br><span class="line"><span class="comment"># 空字符串('')、空列表([])、空元组((,))、空字典(&#123;&#125;)、</span></span><br><span class="line"><span class="comment"># 空集合(set())都等价于False，但是不等于None。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_none</span><span class="params">(thing)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> thing <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        print(<span class="string">"It's None"</span>)</span><br><span class="line">    <span class="keyword">elif</span> thing:</span><br><span class="line">        print(<span class="string">"It's True"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"It's False"</span>)</span><br><span class="line"></span><br><span class="line">is_none(<span class="literal">None</span>)</span><br><span class="line">is_none(<span class="literal">True</span>)</span><br><span class="line">is_none(<span class="literal">False</span>)</span><br><span class="line">is_none(<span class="number">0</span>)</span><br><span class="line">is_none(<span class="number">0.0</span>)</span><br><span class="line">is_none(())</span><br><span class="line">is_none([])</span><br><span class="line">is_none(&#123;&#125;)</span><br><span class="line">is_none(set())</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">It<span class="string">'s no thing.</span></span><br><span class="line"><span class="string">It'</span>s nothing</span><br><span class="line">It<span class="string">'s None</span></span><br><span class="line"><span class="string">It'</span>s <span class="literal">True</span></span><br><span class="line">It<span class="string">'s False</span></span><br><span class="line"><span class="string">It'</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">'s False</span></span><br><span class="line"><span class="string">It'</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">'s False</span></span><br><span class="line"><span class="string">It'</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">'s False</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/28/Python学习笔记-函数/" data-id="ck2o7irky0005bi3mr8v3oijg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Blog/2019/03/31/KVO本质分析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          KVO本质分析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/2019/03/26/Python学习笔记-使用for迭代/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python学习笔记(使用for迭代)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 20px;">Python</a> <a href="/Blog/tags/iOS/" style="font-size: 15px;">iOS</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/2019/11/07/iOS使用SVG和PDF图片/">iOS使用SVG和PDF图片</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/08/24/Linux下安装FTP/">Linux下安装FTP</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/08/24/Git服务器搭建/">Git服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/07/07/MySQL基本命令/">MySQL基本命令</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/06/15/有趣的网址/">有趣的网址</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 WandererPoet<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+  <script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

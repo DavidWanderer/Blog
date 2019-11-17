@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Stay hungry, Stay foolish.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Stay hungry, Stay foolish.">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/page/2/index.html">
+<meta property="og:site_name" content="Stay hungry, Stay foolish.">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Stay hungry, Stay foolish.">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Stay hungry, Stay foolish." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Stay hungry, Stay foolish.</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/DavidWanderer/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-如何在Github上搭建博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2019/03/16/如何在Github上搭建博客/" class="article-date">
+  <time datetime="2019-03-16T08:28:52.000Z" itemprop="datePublished">2019-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog/2019/03/16/如何在Github上搭建博客/">如何在Github上搭建博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><ul>
+<li>安装Hexo之前，电脑上需要安装Git和Node.js</li>
+<li><ol>
+<li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137396287703354d8c6c01c904c7d9ff056ae23da865a000" target="_blank" rel="noopener">安装Git</a></li>
+</ol>
+</li>
+<li><ol start="2">
+<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">安装Node.js</a></li>
+</ol>
+</li>
+</ul>
+<p>安装完Git和Node.js，开始安装Hexo，安装Hexo需要翻墙，打开终端，输入以下命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
+<p>新建目录存放博客的网站文件，例如新建一个空文件夹Blog，然后执行以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init Blog</span><br><span class="line">$ <span class="built_in">cd</span> Blog</span><br><span class="line">$ npm Blog</span><br></pre></td></tr></table></figure></p>
+<h2 id="发布新的文章"><a href="#发布新的文章" class="headerlink" title="发布新的文章"></a>发布新的文章</h2><p>创建完网站目录后，开始写作，创建一篇新的文章，执行以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"HelloWord"</span></span><br></pre></td></tr></table></figure></p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_1.png" title="创建文章的截图"> </div>
+
+<p>执行完上述命令，会在网站的～/Blog/source/_posts目录下出现HelloWord.md文件，这个文件就是我们新建的文章，使用Markdown语法编写我们的文章。</p>
+<h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><p>文章写好之后，执行以下命令，开始生成静态文件:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure></p>
+<h2 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h2><p>静态文件生成之后，启动本地服务器，预览文章的总体页面，需要执行以下命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure></p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_2.png" title="启动服务器的命令截图"> </div>
+
+<p>本地浏览器预览效果：<br><img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_4.png" title="本地浏览器预览文章的截图"></p>
+<h2 id="发布到Github"><a href="#发布到Github" class="headerlink" title="发布到Github"></a>发布到Github</h2><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>在配置文件中配置发布到git，然后填写具体的仓库地址:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/DavidWanderer/Blog.git</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装Hexo发布到git的插件"><a href="#安装Hexo发布到git的插件" class="headerlink" title="安装Hexo发布到git的插件:"></a>安装Hexo发布到git的插件:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>检查插件是否安装完成:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm list hexo-deployer-git</span><br></pre></td></tr></table></figure></p>
+<h3 id="将本地的静态文件部署到github的仓库"><a href="#将本地的静态文件部署到github的仓库" class="headerlink" title="将本地的静态文件部署到github的仓库"></a>将本地的静态文件部署到github的仓库</h3><p>执行命令，首次执行命令的时候会让你输入github的用户名和密码:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_3.png" title="将本地的静态文件部署到github"> </div>
+
+<p>最后访问giuhub的地址效果：<br><img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_5.png" title="Github效果预览图"></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo官网</a><br><a href="https://juejin.im/post/5b8e43a951882542e821b5cc" target="_blank" rel="noopener">Hexo + Github 搭建个人博客</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/16/如何在Github上搭建博客/" data-id="ck2o7irlh000dbi3mrlkua7si" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/Blog/">&laquo; Prev</a><a class="page-number" href="/Blog/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 20px;">Python</a> <a href="/Blog/tags/iOS/" style="font-size: 15px;">iOS</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/2019/11/07/iOS使用SVG和PDF图片/">iOS使用SVG和PDF图片</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/08/24/Linux下安装FTP/">Linux下安装FTP</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/08/24/Git服务器搭建/">Git服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/07/07/MySQL基本命令/">MySQL基本命令</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/06/15/有趣的网址/">有趣的网址</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 WandererPoet<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+  <script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

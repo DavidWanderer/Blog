@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python学习笔记(使用for迭代) | Stay hungry, Stay foolish.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="列表迭代123rabbits = [&apos;Flopsy&apos;, &apos;Mopsy&apos;, &apos;Cottontail&apos;, &apos;Peter&apos;]for rabbit in rabbits:    print(rabbit) 运行结果:1234FlopsyMopsyCottontailPeter 字符串迭代123word = &apos;cat&apos;for letter in word:	print(letter) 运行结果:123cat">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python学习笔记(使用for迭代)">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/2019/03/26/Python学习笔记-使用for迭代/index.html">
+<meta property="og:site_name" content="Stay hungry, Stay foolish.">
+<meta property="og:description" content="列表迭代123rabbits = [&apos;Flopsy&apos;, &apos;Mopsy&apos;, &apos;Cottontail&apos;, &apos;Peter&apos;]for rabbit in rabbits:    print(rabbit) 运行结果:1234FlopsyMopsyCottontailPeter 字符串迭代123word = &apos;cat&apos;for letter in word:	print(letter) 运行结果:123cat">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-24T08:19:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python学习笔记(使用for迭代)">
+<meta name="twitter:description" content="列表迭代123rabbits = [&apos;Flopsy&apos;, &apos;Mopsy&apos;, &apos;Cottontail&apos;, &apos;Peter&apos;]for rabbit in rabbits:    print(rabbit) 运行结果:1234FlopsyMopsyCottontailPeter 字符串迭代123word = &apos;cat&apos;for letter in word:	print(letter) 运行结果:123cat">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Stay hungry, Stay foolish." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Stay hungry, Stay foolish.</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/DavidWanderer/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python学习笔记-使用for迭代" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2019/03/26/Python学习笔记-使用for迭代/" class="article-date">
+  <time datetime="2019-03-26T11:47:43.000Z" itemprop="datePublished">2019-03-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python学习笔记(使用for迭代)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="列表迭代"><a href="#列表迭代" class="headerlink" title="列表迭代"></a>列表迭代</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rabbits = [<span class="string">'Flopsy'</span>, <span class="string">'Mopsy'</span>, <span class="string">'Cottontail'</span>, <span class="string">'Peter'</span>]</span><br><span class="line"><span class="keyword">for</span> rabbit <span class="keyword">in</span> rabbits:</span><br><span class="line">    print(rabbit)</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Flopsy</span><br><span class="line">Mopsy</span><br><span class="line">Cottontail</span><br><span class="line">Peter</span><br></pre></td></tr></table></figure></p>
+<h2 id="字符串迭代"><a href="#字符串迭代" class="headerlink" title="字符串迭代"></a>字符串迭代</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">word = <span class="string">'cat'</span></span><br><span class="line"><span class="keyword">for</span> letter <span class="keyword">in</span> word:</span><br><span class="line">	print(letter)</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c</span><br><span class="line">a</span><br><span class="line">t</span><br></pre></td></tr></table></figure></p>
+<h2 id="字典的迭代"><a href="#字典的迭代" class="headerlink" title="字典的迭代"></a>字典的迭代</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">accusation = &#123;<span class="string">'room'</span>:<span class="string">'ballroom'</span>, <span class="string">'weapon'</span>:<span class="string">'lead pipe'</span>, <span class="string">'person'</span>:<span class="string">'Col. Mustard'</span>&#125;</span><br><span class="line"><span class="comment"># 对字典的Key进行迭代</span></span><br><span class="line"><span class="keyword">for</span> card <span class="keyword">in</span> accusation:</span><br><span class="line">	print(card)</span><br><span class="line"><span class="keyword">for</span> card <span class="keyword">in</span> accusation.keys():</span><br><span class="line">	print(card)</span><br><span class="line"><span class="comment"># 对字典的Value进行迭代</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> accusation.items():</span><br><span class="line">	print(item)</span><br><span class="line"><span class="keyword">for</span> card, contents <span class="keyword">in</span> accusation.items():</span><br><span class="line">	print(<span class="string">'Card'</span>, card, <span class="string">'has the contents'</span>, contents)</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">room</span><br><span class="line">weapon</span><br><span class="line">person</span><br><span class="line">room</span><br><span class="line">weapon</span><br><span class="line">person</span><br><span class="line">ballroom</span><br><span class="line">lead pipe</span><br><span class="line">Col. Mustard</span><br><span class="line">(<span class="string">'room'</span>, <span class="string">'ballroom'</span>)</span><br><span class="line">(<span class="string">'weapon'</span>, <span class="string">'lead pipe'</span>)</span><br><span class="line">(<span class="string">'person'</span>, <span class="string">'Col. Mustard'</span>)</span><br><span class="line">Card room has the contents ballroom</span><br><span class="line">Card weapon has the contents lead pipe</span><br><span class="line">Card person has the contents Col. Mustard</span><br></pre></td></tr></table></figure></p>
+<h2 id="for-…-else-…-判断迭代是否正常结束-如果正常结束-执行else代码块-如果是break非正常结束-不执行else代码块"><a href="#for-…-else-…-判断迭代是否正常结束-如果正常结束-执行else代码块-如果是break非正常结束-不执行else代码块" class="headerlink" title="for … else … 判断迭代是否正常结束,如果正常结束,执行else代码块,如果是break非正常结束,不执行else代码块"></a>for … else … 判断迭代是否正常结束,如果正常结束,执行else代码块,如果是break非正常结束,不执行else代码块</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cheeses = [<span class="string">'aaa'</span>, <span class="string">'bb'</span>, <span class="string">'cc'</span>]</span><br><span class="line"><span class="keyword">for</span> cheese <span class="keyword">in</span> cheeses:</span><br><span class="line">    <span class="keyword">if</span> cheese == <span class="string">'aa'</span>:</span><br><span class="line">        print(<span class="string">'找到目标break跳出循环'</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'没找到'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'没有找到目标,执行了else的模块'</span>)</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">没找到</span><br><span class="line">没找到</span><br><span class="line">没找到</span><br><span class="line">没有找到目标,执行了<span class="keyword">else</span>的模块</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用zip-进行并行迭代"><a href="#使用zip-进行并行迭代" class="headerlink" title="使用zip()进行并行迭代"></a>使用zip()进行并行迭代</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">days = [<span class="string">'Monday'</span>, <span class="string">'Tuesday'</span>, <span class="string">'Wednesday'</span>]</span><br><span class="line">fruits = [<span class="string">'banana'</span>, <span class="string">'orange'</span>, <span class="string">'peach'</span>]</span><br><span class="line">drinks = [<span class="string">'coffee'</span>, <span class="string">'tea'</span>, <span class="string">'beer'</span>]</span><br><span class="line">desserts = [<span class="string">'tiramiu'</span>, <span class="string">'ice cream'</span>, <span class="string">'pie'</span>, <span class="string">'pudding'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> day, fruit, drink, dessert <span class="keyword">in</span> zip(days, fruits, drinks, desserts):</span><br><span class="line">    print(day, <span class="string">": drink"</span>, drink, <span class="string">"- eat"</span>, fruit, <span class="string">"- enjoy"</span>, dessert)</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Card room has the contents ballroom</span><br><span class="line">Card weapon has the contents lead pipe</span><br><span class="line">Card person has the contents Col. Mustard</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用dict-和-zip-创建微型字典"><a href="#使用dict-和-zip-创建微型字典" class="headerlink" title="使用dict() 和 zip()创建微型字典"></a>使用dict() 和 zip()创建微型字典</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">english = <span class="string">'Monday'</span>, <span class="string">'Tuesday'</span>, <span class="string">'Wednesday'</span></span><br><span class="line">french = <span class="string">'Lundi'</span>, <span class="string">'Mardi'</span>, <span class="string">'Mercredi'</span></span><br><span class="line">print(list(zip(english, french)))</span><br><span class="line">print(dict(zip(english, french)))</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[(<span class="string">'Monday'</span>, <span class="string">'Lundi'</span>), (<span class="string">'Tuesday'</span>, <span class="string">'Mardi'</span>), (<span class="string">'Wednesday'</span>, <span class="string">'Mercredi'</span>)]</span><br><span class="line">&#123;<span class="string">'Monday'</span>: <span class="string">'Lundi'</span>, <span class="string">'Tuesday'</span>: <span class="string">'Mardi'</span>, <span class="string">'Wednesday'</span>: <span class="string">'Mercredi'</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用range-生成自然数序列"><a href="#使用range-生成自然数序列" class="headerlink" title="使用range()生成自然数序列"></a>使用range()生成自然数序列</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">3</span>):</span><br><span class="line">	print(x)</span><br><span class="line">print(list(range(<span class="number">0</span>, <span class="number">3</span>)))</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用range-反向创建序列"><a href="#使用range-反向创建序列" class="headerlink" title="使用range()反向创建序列"></a>使用range()反向创建序列</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">2</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">	print(x)</span><br><span class="line">print(list(range(<span class="number">2</span>, <span class="number">-1</span>, <span class="number">-1</span>)))</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line">[<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br></pre></td></tr></table></figure></p>
+<h2 id="获取从0到10的偶数"><a href="#获取从0到10的偶数" class="headerlink" title="获取从0到10的偶数"></a>获取从0到10的偶数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(list(range(<span class="number">0</span>, <span class="number">11</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>]</span><br></pre></td></tr></table></figure></p>
+<h2 id="列表推导式"><a href="#列表推导式" class="headerlink" title="列表推导式"></a>列表推导式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">number_list = [number <span class="keyword">for</span> number <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">6</span>)]</span><br><span class="line">print(number_list)</span><br><span class="line"></span><br><span class="line">number_list = [number<span class="number">-1</span> <span class="keyword">for</span> number <span class="keyword">in</span> range(<span class="number">11</span>, <span class="number">16</span>)]</span><br><span class="line">print(number_list)</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>]</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建1-5之间的奇数列表"><a href="#创建1-5之间的奇数列表" class="headerlink" title="创建1-5之间的奇数列表"></a>创建1-5之间的奇数列表</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a_list = [number <span class="keyword">for</span> number <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">6</span>) <span class="keyword">if</span> number % <span class="number">2</span> == <span class="number">1</span>]</span><br><span class="line">print(a_list)</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建1-5之间的偶数列表"><a href="#创建1-5之间的偶数列表" class="headerlink" title="创建1-5之间的偶数列表"></a>创建1-5之间的偶数列表</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a_list = [number <span class="keyword">for</span> number <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">6</span>) <span class="keyword">if</span> number % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line">print(a_list)</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">2</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure></p>
+<h2 id="多个for循环推导模拟嵌套循环"><a href="#多个for循环推导模拟嵌套循环" class="headerlink" title="多个for循环推导模拟嵌套循环"></a>多个for循环推导模拟嵌套循环</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rows = range(<span class="number">1</span>, <span class="number">4</span>)</span><br><span class="line">cols = range(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line">cells = [(row, col) <span class="keyword">for</span> row <span class="keyword">in</span> rows <span class="keyword">for</span> col <span class="keyword">in</span> cols]</span><br><span class="line"><span class="keyword">for</span> cell <span class="keyword">in</span> cells:</span><br><span class="line">	print(cell)</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">(<span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">(<span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line">(<span class="number">3</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="字典推导式"><a href="#字典推导式" class="headerlink" title="字典推导式"></a>字典推导式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">word = <span class="string">'letters'</span></span><br><span class="line"><span class="comment"># 迭代单词中包含的字母，并计算该字母在单词中出现的次数</span></span><br><span class="line">letter_counts = &#123;letter: word.count(letter) <span class="keyword">for</span> letter <span class="keyword">in</span> word&#125;</span><br><span class="line">print(letter_counts)</span><br><span class="line"></span><br><span class="line">letter_counts = &#123;letter: word.count(letter) <span class="keyword">for</span> letter <span class="keyword">in</span> word&#125;</span><br><span class="line">print(letter_counts)</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">'l'</span>: <span class="number">1</span>, <span class="string">'e'</span>: <span class="number">2</span>, <span class="string">'t'</span>: <span class="number">2</span>, <span class="string">'r'</span>: <span class="number">1</span>, <span class="string">'s'</span>: <span class="number">1</span>&#125;</span><br><span class="line">&#123;<span class="string">'s'</span>: <span class="number">1</span>, <span class="string">'l'</span>: <span class="number">1</span>, <span class="string">'t'</span>: <span class="number">2</span>, <span class="string">'e'</span>: <span class="number">2</span>, <span class="string">'r'</span>: <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="集合推导式"><a href="#集合推导式" class="headerlink" title="集合推导式"></a>集合推导式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a_set = &#123;number <span class="keyword">for</span> number <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">6</span>) <span class="keyword">if</span> number % <span class="number">3</span> == <span class="number">1</span>&#125;</span><br><span class="line">print(a_set)</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="number">1</span>, <span class="number">4</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="生成器推导式"><a href="#生成器推导式" class="headerlink" title="生成器推导式"></a>生成器推导式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">number_thing = (number <span class="keyword">for</span> number <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">6</span>))</span><br><span class="line"><span class="comment"># 返回的是一个生成器对象</span></span><br><span class="line">print(type(number_thing))</span><br><span class="line"><span class="comment"># 方式1：直接对生成器对象进行迭代，注意生成器对象只能被迭代一次，迭代完成之后被擦除</span></span><br><span class="line"><span class="keyword">for</span> number <span class="keyword">in</span> number_thing:</span><br><span class="line">    print(number)</span><br><span class="line"><span class="comment"># 方式2：将生成器对象转换成列表，然后再进行迭代</span></span><br><span class="line"><span class="comment"># number_list = list(number_thing)</span></span><br><span class="line"><span class="comment"># print(number_list)</span></span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">generator</span>'&gt;</span></span><br><span class="line"><span class="class">1</span></span><br><span class="line"><span class="class">2</span></span><br><span class="line"><span class="class">3</span></span><br><span class="line"><span class="class">4</span></span><br><span class="line"><span class="class">5</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/26/Python学习笔记-使用for迭代/" data-id="ck2o7irl50009bi3mipfvegks" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Blog/2019/03/28/Python学习笔记-函数/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python学习笔记(函数)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/2019/03/16/如何在Github上搭建博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何在Github上搭建博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 20px;">Python</a> <a href="/Blog/tags/iOS/" style="font-size: 15px;">iOS</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/2019/11/07/iOS使用SVG和PDF图片/">iOS使用SVG和PDF图片</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/08/24/Linux下安装FTP/">Linux下安装FTP</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/08/24/Git服务器搭建/">Git服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/07/07/MySQL基本命令/">MySQL基本命令</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/06/15/有趣的网址/">有趣的网址</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 WandererPoet<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+  <script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
