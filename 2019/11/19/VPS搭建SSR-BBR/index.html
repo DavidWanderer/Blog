@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>VPS搭建SSR+BBR | Stay hungry, Stay foolish.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="VPS相关环境信息Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1 安装ShadowsocksR的命令1wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;amp;&amp;amp; chmod +x ssrmu.sh">
+<meta name="keywords" content="VPS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VPS搭建SSR+BBR">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/2019/11/19/VPS搭建SSR-BBR/index.html">
+<meta property="og:site_name" content="Stay hungry, Stay foolish.">
+<meta property="og:description" content="VPS相关环境信息Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1 安装ShadowsocksR的命令1wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;amp;&amp;amp; chmod +x ssrmu.sh">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-20T04:46:31.308Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VPS搭建SSR+BBR">
+<meta name="twitter:description" content="VPS相关环境信息Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1 安装ShadowsocksR的命令1wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;amp;&amp;amp; chmod +x ssrmu.sh">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Stay hungry, Stay foolish." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Stay hungry, Stay foolish.</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/DavidWanderer/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-VPS搭建SSR-BBR" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2019/11/19/VPS搭建SSR-BBR/" class="article-date">
+  <time datetime="2019-11-19T14:36:59.000Z" itemprop="datePublished">2019-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      VPS搭建SSR+BBR
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="VPS相关环境信息"><a href="#VPS相关环境信息" class="headerlink" title="VPS相关环境信息"></a>VPS相关环境信息</h2><p>Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1</p>
+<h2 id="安装ShadowsocksR的命令"><a href="#安装ShadowsocksR的命令" class="headerlink" title="安装ShadowsocksR的命令"></a>安装ShadowsocksR的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;&amp; chmod +x ssrmu.sh &amp;&amp; bash ssrmu.sh</span><br></pre></td></tr></table></figure>
+<h2 id="安装BBR加速的命令"><a href="#安装BBR加速的命令" class="headerlink" title="安装BBR加速的命令"></a>安装BBR加速的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</span><br><span class="line">chmod +x bbr.sh</span><br><span class="line">./bbr.sh</span><br></pre></td></tr></table></figure>
+<h2 id="检测BBR是否已经安装好了"><a href="#检测BBR是否已经安装好了" class="headerlink" title="检测BBR是否已经安装好了"></a>检测BBR是否已经安装好了</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 在终端输入如下命令，如果返回的输出有bbr，则说明已经安装完成</span><br><span class="line"><span class="comment"># sysctl net.ipv4.tcp_available_congestion_control</span></span><br><span class="line">net.ipv4.tcp_available_congestion_control = reno cubic bbr</span><br><span class="line">// 在终端输入如下命令，如果返回的输出有bbr，则说明已经安装完成</span><br><span class="line"><span class="comment"># lsmod | grep bbr</span></span><br><span class="line">tcp_bbr                20480  7</span><br></pre></td></tr></table></figure>
+<h2 id="IP和端口是否畅通测试"><a href="#IP和端口是否畅通测试" class="headerlink" title="IP和端口是否畅通测试"></a>IP和端口是否畅通测试</h2><p>此工具可以检测全球范围内，到你的服务器的ping值大概是多少:<a href="http://ping.chinaz.com" target="_blank" rel="noopener">站长工具&gt;ping检测</a><br>通过站长工具检测国内到服务器的IP和端口是否畅通:<a href="http://tool.chinaz.com/port" target="_blank" rel="noopener">站长工具&gt;端口扫描</a><br>通过此网站可以检测在国外，你的服务器IP和端口是否畅通:<a href="https://www.yougetsignal.com/tools/open-ports/" target="_blank" rel="noopener">国外站长工具&gt;端口扫描</a></p>
+<p>也可以使用命令检测远程服务器端口是否开启:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nc -v host port</span></span><br></pre></td></tr></table></figure></p>
+<p>端口未打开返回状态为非0</p>
+<h2 id="ShadowsocksR客户端下载地址"><a href="#ShadowsocksR客户端下载地址" class="headerlink" title="ShadowsocksR客户端下载地址"></a>ShadowsocksR客户端下载地址</h2><p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss">https://github.com/shadowsocksr-backup/shadowsocks-rss</a></p>
+<h2 id="顺便附上Shadowsocks客户端的下载地址"><a href="#顺便附上Shadowsocks客户端的下载地址" class="headerlink" title="顺便附上Shadowsocks客户端的下载地址"></a>顺便附上Shadowsocks客户端的下载地址</h2><p>注意 ShadowsocksR 和 Shadowsocks 的客户端是不一样的，无法互相连通。<br><a href="https://lvii.gitbooks.io/outman/content/ss.mac.html" target="_blank" rel="noopener">https://lvii.gitbooks.io/outman/content/ss.mac.html</a></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="http://www.heiqw.com/post-66.html" target="_blank" rel="noopener">SSR科学上网搭建脚本+virmach主机购买地址分享</a><br><a href="https://www.5xiaobo.com/?id=693" target="_blank" rel="noopener">国外VPS搭建SSR多用户教程【中文一键安装版】</a><br><a href="https://www.cnblogs.com/73tong/p/8309597.html" target="_blank" rel="noopener">CentOS6开启BBR加速</a><br><a href="https://www.cnblogs.com/onmyway20xx/p/3626433.html" target="_blank" rel="noopener">linux 检测远程端口是否打开</a><br><a href="http://ping.chinaz.com" target="_blank" rel="noopener">站长工具&gt;ping检测</a><br><a href="http://tool.chinaz.com/port" target="_blank" rel="noopener">站长工具&gt;端口扫描</a><br><a href="https://www.yougetsignal.com/tools/open-ports/" target="_blank" rel="noopener">国外站长工具&gt;端口扫描</a><br><a href="https://lvii.gitbooks.io/outman/content/" target="_blank" rel="noopener">科学上网漫游指南(shadowsocks服务端和客户端搭建指南)</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss">shadowsocksr-backup/shadowsocks-rss</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/19/VPS搭建SSR-BBR/" data-id="ck36s644f000fiv3mfchoweo0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/VPS/">VPS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Blog/2019/11/17/VPS使用心得/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">VPS使用心得</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 20px;">Python</a> <a href="/Blog/tags/VPS/" style="font-size: 15px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 15px;">iOS</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/2019/11/19/VPS搭建SSR-BBR/">VPS搭建SSR+BBR</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/11/17/VPS使用心得/">VPS使用心得</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/11/07/iOS使用SVG和PDF图片/">iOS使用SVG和PDF图片</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/08/24/Linux下安装FTP/">Linux下安装FTP</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/08/24/Git服务器搭建/">Git服务器搭建</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 WandererPoet<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+  <script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
