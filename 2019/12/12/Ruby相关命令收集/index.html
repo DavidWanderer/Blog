@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Ruby相关命令收集 | Stay hungry, Stay foolish.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="RVM是一个命令行工具，它能帮你安装多个版本的Ruby，并切换不同的版本。 安装RVM步骤1.安装rvm1234$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3$ curl -sSL https://get.rvm.io | bash -s stable# 如果上面">
+<meta name="keywords" content="Ruby">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ruby相关命令收集">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/2019/12/12/Ruby相关命令收集/index.html">
+<meta property="og:site_name" content="Stay hungry, Stay foolish.">
+<meta property="og:description" content="RVM是一个命令行工具，它能帮你安装多个版本的Ruby，并切换不同的版本。 安装RVM步骤1.安装rvm1234$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3$ curl -sSL https://get.rvm.io | bash -s stable# 如果上面">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-12-12T11:49:41.623Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ruby相关命令收集">
+<meta name="twitter:description" content="RVM是一个命令行工具，它能帮你安装多个版本的Ruby，并切换不同的版本。 安装RVM步骤1.安装rvm1234$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3$ curl -sSL https://get.rvm.io | bash -s stable# 如果上面">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Stay hungry, Stay foolish." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Stay hungry, Stay foolish.</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/DavidWanderer/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Ruby相关命令收集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2019/12/12/Ruby相关命令收集/" class="article-date">
+  <time datetime="2019-12-12T10:59:40.000Z" itemprop="datePublished">2019-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ruby相关命令收集
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>RVM是一个命令行工具，它能帮你安装多个版本的Ruby，并切换不同的版本。</p>
+<h2 id="安装RVM步骤"><a href="#安装RVM步骤" class="headerlink" title="安装RVM步骤"></a>安装RVM步骤</h2><p>1.安装rvm<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3</span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable</span><br><span class="line"><span class="comment"># 如果上面的连接失败，可以尝试: </span></span><br><span class="line">$ curl -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable</span><br></pre></td></tr></table></figure></p>
+<p>2.载入rvm环境(新开Terminal,会自动重新载入)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm</span><br></pre></td></tr></table></figure></p>
+<p>3.修改rvm下载的Ruby源，到RubyChina的镜像:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"ruby_url=https://cache.ruby-china.com/pub/ruby"</span> &gt; ~/.rvm/user/db</span><br></pre></td></tr></table></figure></p>
+<p>4.检查rvm是否安装正确<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ rvm -v</span><br><span class="line">rvm 1.22.17 (stable) by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; [https://rvm.io/]</span><br></pre></td></tr></table></figure></p>
+<h3 id="RVM常用指令"><a href="#RVM常用指令" class="headerlink" title="RVM常用指令"></a>RVM常用指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v <span class="comment"># 查看ruby 版本</span></span><br><span class="line">$ rvm list known <span class="comment"># 列出已知的 ruby 版本</span></span><br><span class="line">$ rvm install 2.3.0 <span class="comment"># 选择指定 ruby 版本进行更新</span></span><br><span class="line">$ rvm get stable <span class="comment"># 更新 rvm</span></span><br><span class="line">$ rvm use 2.2.2 <span class="comment"># 切换到指定 ruby 版本</span></span><br><span class="line">$ rvm use 2.2.2 --default <span class="comment"># 设置指定 ruby 版本为默认版本</span></span><br><span class="line">$ rvm list <span class="comment"># 查询已安装的 ruby 版本</span></span><br><span class="line">$ rvm remove 1.9.2 <span class="comment"># 卸载移除 指定 ruby 版本</span></span><br><span class="line"></span><br><span class="line">$ curl -L https://get.rvm.io | bash -s stable <span class="comment"># 安装 rvm 环境</span></span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby <span class="comment"># 默认安装 rvm 最新版本</span></span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3.0 <span class="comment"># 安装 rvm 指定版本</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm <span class="comment"># 载入 rvm</span></span><br></pre></td></tr></table></figure>
+<h2 id="Gem常用指令"><a href="#Gem常用指令" class="headerlink" title="Gem常用指令"></a>Gem常用指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">$ gem -v <span class="comment"># 查看 gem 版本</span></span><br><span class="line">$ gem <span class="built_in">source</span> <span class="comment"># 查看 gem 配置源</span></span><br><span class="line">$ gem <span class="built_in">source</span> -l <span class="comment"># 查看 gem 配置源目录</span></span><br><span class="line">$ gem sources -a url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --add url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources -r url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --remove url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem update <span class="comment"># 更新 所有包</span></span><br><span class="line">$ gem update --system <span class="comment"># 更新 Ruby Gems 软件</span></span><br><span class="line"></span><br><span class="line">$ gem install rake <span class="comment"># 安装 rake，从本地或远程服务器</span></span><br><span class="line">$ gem install rake --remote <span class="comment"># 安装 rake，从远程服务器</span></span><br><span class="line">$ gem install watir -v 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem install watir --version 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem uninstall rake <span class="comment"># 卸载 rake 包</span></span><br><span class="line">$ gem list d <span class="comment"># 列出 本地以 d 打头的包</span></span><br><span class="line">$ gem query -n <span class="string">''</span>[0-9]<span class="string">''</span> --<span class="built_in">local</span> <span class="comment"># 查找 本地含有数字的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --both <span class="comment"># 查找 从本地和远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --remoter <span class="comment"># 查找 只从远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search -r <span class="built_in">log</span> <span class="comment"># 查找 只从远程服务器上查找含有log字符串的包</span></span><br><span class="line"></span><br><span class="line">$ gem <span class="built_in">help</span> <span class="comment"># 提醒式的帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> install <span class="comment"># 列出 install 命令 帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> examples <span class="comment"># 列出 gem 命令使用一些例子</span></span><br><span class="line">$ gem build rake.gemspec <span class="comment"># 把 rake.gemspec 编译成 rake.gem</span></span><br><span class="line">$ gem check -v pkg/rake-0.4.0.gem <span class="comment"># 检测 rake 是否有效</span></span><br><span class="line">$ gem cleanup <span class="comment"># 清除 所有包旧版本，保留最新版本</span></span><br><span class="line">$ gem contents rake <span class="comment"># 显示 rake 包中所包含的文件</span></span><br><span class="line">$ gem dependency rails -v 0.10.1 <span class="comment"># 列出 与 rails 相互依赖的包</span></span><br><span class="line">$ gem environment <span class="comment"># 查看 gem 的环境</span></span><br><span class="line"></span><br><span class="line">$ sudo gem -v <span class="comment"># 查看 gem 版本（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoa pods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods --pre <span class="comment"># 安装 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods -v 1.4.0 <span class="comment"># 安装 CocoaPods 指定版本（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods <span class="comment"># 更新 CocoaPods 至最新版（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods --pre <span class="comment"># 更新 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem uninstall cocoapods -v 1.4.0 <span class="comment"># 移除 CocoaPods 指定版本（以管理员权限）</span></span><br></pre></td></tr></table></figure>
+<p>如果命令无法修改Gem源，可以手动修改Gem源，Gem的配置文件位置在<code>~/.gemrc</code>，编辑<code>~/.gemrc</code>文件，在:sources:配置行下添加<code>https://gems.ruby-china.com/</code>，这样就配置了ruby-china的Gem源。最终的配置文件如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">:backtrace: <span class="literal">false</span></span><br><span class="line">:bulk_threshold: 1000</span><br><span class="line">:sources:</span><br><span class="line">- https://gems.ruby-china.com</span><br><span class="line">:update_sources: <span class="literal">true</span></span><br><span class="line">:verbose: <span class="literal">true</span></span><br><span class="line">:ssl_verify_mode: 0</span><br><span class="line">concurrent_downloads: 8</span><br></pre></td></tr></table></figure></p>
+<p>mac系统升级到Catalina时，使用cocoa pod时报错：-bash: /usr/local/bin/pod: /<br>System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/bin/ruby: bad interpreter: No such file or directory”. </p>
+<p>解决方案：<code>sudo gem install -n /usr/local/bin cocoapods -v 1.4.0</code></p>
+<h2 id="Fastlane安装步骤"><a href="#Fastlane安装步骤" class="headerlink" title="Fastlane安装步骤"></a>Fastlane安装步骤</h2><p>指定版本安装fastlane<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">set</span> -ex</span><br><span class="line">$ gem uninstall fastlane --all --executables</span><br><span class="line">$ gem install fastlane --version 2.28.3 --no-document</span><br></pre></td></tr></table></figure></p>
+<p>mac系统升级到Catalina时，安装Fastlane会报错，请尝试:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">set</span> -ex</span><br><span class="line">$ gem uninstall -n /usr/<span class="built_in">local</span>/bin fastlane --all --executables</span><br><span class="line">$ gem install -n /usr/<span class="built_in">local</span>/bin fastlane --version 2.28.3 --no-document</span><br></pre></td></tr></table></figure></p>
+<p>如果尝试多次仍然无法安装Fastlane，可以尝试:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#brew cask安装fastlane的执行命令:</span></span><br><span class="line">$ brew cask uninstall fastlane</span><br><span class="line">$ brew cask install fastlane</span><br></pre></td></tr></table></figure></p>
+<h2 id="将homebrew的源换成阿里云，提高下载速度"><a href="#将homebrew的源换成阿里云，提高下载速度" class="headerlink" title="将homebrew的源换成阿里云，提高下载速度"></a>将homebrew的源换成阿里云，提高下载速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.替换brew.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/brew.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.替换homebrew-core.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core"</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.替换homebrew-cask.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span>/Library/Taps/homebrew/homebrew-cask</span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.替换homebrew-bottles:</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles'</span> &gt;&gt; ~/.zshrc</span><br><span class="line">$ <span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+<h2 id="给Git添加代理访问，提高Git的访问速度"><a href="#给Git添加代理访问，提高Git的访问速度" class="headerlink" title="给Git添加代理访问，提高Git的访问速度"></a>给Git添加代理访问，提高Git的访问速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.编辑PAC用户自定义规则,添加以下地址:</span></span><br><span class="line">github.com</span><br><span class="line">githubusercontent.com</span><br><span class="line">githubassets.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.编辑~/.ssh/config文件，在文件中添加以下命令:</span></span><br><span class="line">Host github.com</span><br><span class="line">   HostName github.com</span><br><span class="line">   User git</span><br><span class="line">   ProxyCommand nc -v -x 127.0.0.1:1080 %h %p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.让配置立即生效:</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.ssh/config</span><br></pre></td></tr></table></figure>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://ruby-china.org/wiki/install_ruby_guide" target="_blank" rel="noopener">安装配置RVM环境</a><br><a href="https://stackoverflow.com/questions/20487849/how-to-downgrade-or-install-an-older-version-of-cocoapods" target="_blank" rel="noopener">安装指定版本的cocoapods</a><br><a href="https://gist.github.com/neekey/4601713" target="_blank" rel="noopener">手动安装RVM</a><br><a href="https://www.raydbg.com/2019/Homebrew-Update-Slow/" target="_blank" rel="noopener">解决Homebrew下载更新极慢的问题</a><br><a href="http://skx926.me/2019/01/23/mac-proxy/" target="_blank" rel="noopener">Mac上的各种代理设置</a><br><a href="https://www.jianshu.com/p/c44ef74d99f9" target="_blank" rel="noopener">Mac安装Ruby版本管理器RVM</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/12/12/Ruby相关命令收集/" data-id="ck42nldha000bdq3mhjjyiu5q" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Ruby/">Ruby</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Blog/2019/11/19/VPS搭建SSR-BBR/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">VPS搭建SSR+BBR</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Ruby/">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 20px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 15px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 15px;">iOS</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/2019/12/12/Ruby相关命令收集/">Ruby相关命令收集</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/11/19/VPS搭建SSR-BBR/">VPS搭建SSR+BBR</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/11/17/VPS使用心得/">VPS使用心得</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/11/07/iOS使用SVG和PDF图片/">iOS使用SVG和PDF图片</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/08/24/Linux下安装FTP/">Linux下安装FTP</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 WandererPoet<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+  <script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
