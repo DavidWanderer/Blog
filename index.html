@@ -104,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/12/12/Ruby相关命令收集/" data-id="ck42nldha000bdq3mhjjyiu5q" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/12/12/Ruby相关命令收集/" data-id="ck4igao9y000bh83m8p6rfs3k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Ruby/">Ruby</a></li></ul>
@@ -139,20 +139,21 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="VPS相关环境信息"><a href="#VPS相关环境信息" class="headerlink" title="VPS相关环境信息"></a>VPS相关环境信息</h2><p>Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1</p>
-<h2 id="安装ShadowsocksR的命令"><a href="#安装ShadowsocksR的命令" class="headerlink" title="安装ShadowsocksR的命令"></a>安装ShadowsocksR的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;&amp; chmod +x ssrmu.sh &amp;&amp; bash ssrmu.sh</span><br></pre></td></tr></table></figure>
-<h2 id="安装BBR加速的命令"><a href="#安装BBR加速的命令" class="headerlink" title="安装BBR加速的命令"></a>安装BBR加速的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</span><br><span class="line">chmod +x bbr.sh</span><br><span class="line">./bbr.sh</span><br></pre></td></tr></table></figure>
-<h2 id="检测BBR是否已经安装好了"><a href="#检测BBR是否已经安装好了" class="headerlink" title="检测BBR是否已经安装好了"></a>检测BBR是否已经安装好了</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 在终端输入如下命令，如果返回的输出有bbr，则说明已经安装完成</span><br><span class="line"><span class="comment"># sysctl net.ipv4.tcp_available_congestion_control</span></span><br><span class="line">net.ipv4.tcp_available_congestion_control = reno cubic bbr</span><br><span class="line">// 在终端输入如下命令，如果返回的输出有bbr，则说明已经安装完成</span><br><span class="line"><span class="comment"># lsmod | grep bbr</span></span><br><span class="line">tcp_bbr                20480  7</span><br></pre></td></tr></table></figure>
+<h2 id="安装ShadowsocksR的命令"><a href="#安装ShadowsocksR的命令" class="headerlink" title="安装ShadowsocksR的命令"></a>安装ShadowsocksR的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;&amp; chmod +x ssrmu.sh &amp;&amp; bash # ssrmu.sh</span></span><br></pre></td></tr></table></figure>
+<h2 id="安装BBR加速的命令"><a href="#安装BBR加速的命令" class="headerlink" title="安装BBR加速的命令"></a>安装BBR加速的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install wget</span></span><br><span class="line"><span class="comment"># wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</span></span><br><span class="line"><span class="comment"># chmod +x bbr.sh</span></span><br><span class="line"><span class="comment"># ./bbr.sh</span></span><br></pre></td></tr></table></figure>
+<h2 id="检测BBR是否已经安装好了"><a href="#检测BBR是否已经安装好了" class="headerlink" title="检测BBR是否已经安装好了"></a>检测BBR是否已经安装好了</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 在终端输入如下命令，如果返回的输出有bbr，则说明已经安装完成</span></span><br><span class="line"><span class="comment"># sysctl net.ipv4.tcp_available_congestion_control</span></span><br><span class="line">net.ipv4.tcp_available_congestion_control = reno cubic bbr</span><br><span class="line"></span><br><span class="line"><span class="comment">## 在终端输入如下命令，如果返回的输出有bbr，则说明已经安装完成</span></span><br><span class="line"><span class="comment"># lsmod | grep bbr</span></span><br><span class="line">tcp_bbr                20480  7</span><br></pre></td></tr></table></figure>
+<p>首次安装完成如果无法连接成功，请尝试检测服务器防火墙是否没有新增规则，导致端口在外网无法访问。检测方法请使用<a href="http://tool.chinaz.com/port" target="_blank" rel="noopener">站长工具&gt;端口扫描</a>。<br>如果查询出在外网无法访问当前的服务器端口，请在服务器的防火墙中添加规则，开启特殊端口访问。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 查看防火墙规则</span></span><br><span class="line"><span class="comment"># firewall-cmd --list-all</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 查询端口是否开放</span></span><br><span class="line"><span class="comment"># firewall-cmd --query-port=80/tcp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 开放80端口</span></span><br><span class="line"><span class="comment"># firewall-cmd --permanent --add-port=80/tcp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 移除端口</span></span><br><span class="line"><span class="comment"># firewall-cmd --permanent --remove-port=80/tcp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 重启防火墙(修改配置后要重启防火墙)</span></span><br><span class="line"><span class="comment"># firewall-cmd --reload</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="IP和端口是否畅通测试"><a href="#IP和端口是否畅通测试" class="headerlink" title="IP和端口是否畅通测试"></a>IP和端口是否畅通测试</h2><p>此工具可以检测全球范围内，到你的服务器的ping值大概是多少:<a href="http://ping.chinaz.com" target="_blank" rel="noopener">站长工具&gt;ping检测</a><br>通过站长工具检测国内到服务器的IP和端口是否畅通:<a href="http://tool.chinaz.com/port" target="_blank" rel="noopener">站长工具&gt;端口扫描</a><br>通过此网站可以检测在国外，你的服务器IP和端口是否畅通:<a href="https://www.yougetsignal.com/tools/open-ports/" target="_blank" rel="noopener">国外站长工具&gt;端口扫描</a></p>
 <p>也可以使用命令检测远程服务器端口是否开启:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nc -v host port</span></span><br></pre></td></tr></table></figure></p>
 <p>端口未打开返回状态为非0</p>
 <h2 id="ShadowsocksR客户端下载地址"><a href="#ShadowsocksR客户端下载地址" class="headerlink" title="ShadowsocksR客户端下载地址"></a>ShadowsocksR客户端下载地址</h2><p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss">https://github.com/shadowsocksr-backup/shadowsocks-rss</a></p>
 <h2 id="顺便附上Shadowsocks客户端的下载地址"><a href="#顺便附上Shadowsocks客户端的下载地址" class="headerlink" title="顺便附上Shadowsocks客户端的下载地址"></a>顺便附上Shadowsocks客户端的下载地址</h2><p>注意 ShadowsocksR 和 Shadowsocks 的客户端是不一样的，无法互相连通。<br><a href="https://lvii.gitbooks.io/outman/content/ss.mac.html" target="_blank" rel="noopener">https://lvii.gitbooks.io/outman/content/ss.mac.html</a></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="http://www.heiqw.com/post-66.html" target="_blank" rel="noopener">SSR科学上网搭建脚本+virmach主机购买地址分享</a><br><a href="https://www.5xiaobo.com/?id=693" target="_blank" rel="noopener">国外VPS搭建SSR多用户教程【中文一键安装版】</a><br><a href="https://www.cnblogs.com/73tong/p/8309597.html" target="_blank" rel="noopener">CentOS6开启BBR加速</a><br><a href="https://www.cnblogs.com/onmyway20xx/p/3626433.html" target="_blank" rel="noopener">linux 检测远程端口是否打开</a><br><a href="http://ping.chinaz.com" target="_blank" rel="noopener">站长工具&gt;ping检测</a><br><a href="http://tool.chinaz.com/port" target="_blank" rel="noopener">站长工具&gt;端口扫描</a><br><a href="https://www.yougetsignal.com/tools/open-ports/" target="_blank" rel="noopener">国外站长工具&gt;端口扫描</a><br><a href="https://lvii.gitbooks.io/outman/content/" target="_blank" rel="noopener">科学上网漫游指南(shadowsocks服务端和客户端搭建指南)</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss">shadowsocksr-backup/shadowsocks-rss</a></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="http://www.heiqw.com/post-66.html" target="_blank" rel="noopener">SSR科学上网搭建脚本+virmach主机购买地址分享</a><br><a href="https://www.5xiaobo.com/?id=693" target="_blank" rel="noopener">国外VPS搭建SSR多用户教程【中文一键安装版】</a><br><a href="https://www.cnblogs.com/73tong/p/8309597.html" target="_blank" rel="noopener">CentOS6开启BBR加速</a><br><a href="https://www.cnblogs.com/onmyway20xx/p/3626433.html" target="_blank" rel="noopener">linux 检测远程端口是否打开</a><br><a href="http://ping.chinaz.com" target="_blank" rel="noopener">站长工具&gt;ping检测</a><br><a href="http://tool.chinaz.com/port" target="_blank" rel="noopener">站长工具&gt;端口扫描</a><br><a href="https://www.yougetsignal.com/tools/open-ports/" target="_blank" rel="noopener">国外站长工具&gt;端口扫描</a><br><a href="https://lvii.gitbooks.io/outman/content/" target="_blank" rel="noopener">科学上网漫游指南(shadowsocks服务端和客户端搭建指南)</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss">shadowsocksr-backup/shadowsocks-rss</a><br><a href="https://www.cnblogs.com/xxoome/p/7115614.html" target="_blank" rel="noopener">Centos7.3防火墙配置</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/19/VPS搭建SSR-BBR/" data-id="ck42nldhb000ddq3mr0s47dxp" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/19/VPS搭建SSR-BBR/" data-id="ck4igaoa5000hh83ml7xwwn1l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/VPS/">VPS</a></li></ul>
@@ -207,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/17/VPS使用心得/" data-id="ck42nldhd000fdq3m3m7lor33" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/17/VPS使用心得/" data-id="ck4igao9z000dh83mdjoaxuxu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/VPS/">VPS</a></li></ul>
@@ -251,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/07/iOS使用SVG和PDF图片/" data-id="ck42nldhh000hdq3m40gaye02" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/07/iOS使用SVG和PDF图片/" data-id="ck4igaoa0000fh83m2xe8uka1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
@@ -328,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/08/24/Linux下安装FTP/" data-id="ck42nldh20003dq3mu2t5bnph" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/08/24/Linux下安装FTP/" data-id="ck4igao9n0001h83mydka4l9d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/FTP/">FTP</a></li></ul>
@@ -399,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/08/24/Git服务器搭建/" data-id="ck42nldh40004dq3mqp1ntb1y" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/08/24/Git服务器搭建/" data-id="ck4igao9h0000h83m6zna7t2s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Git/">Git</a></li></ul>
@@ -463,7 +464,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/07/07/MySQL基本命令/" data-id="ck42nldgz0001dq3m97dkhfce" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/07/07/MySQL基本命令/" data-id="ck4igao9t0005h83mswtgu8jr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li></ul>
@@ -549,7 +550,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/06/15/有趣的网址/" data-id="ck42nldi7000zdq3mb9orjs7e" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/06/15/有趣的网址/" data-id="ck4igaoaa000mh83mj6fdc9ry" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
@@ -616,7 +617,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/27/Python学习笔记-Python3编码/" data-id="ck42nldh70008dq3mpsrsxx0u" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/27/Python学习笔记-Python3编码/" data-id="ck4igao9s0004h83mnl3f0j88" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -739,7 +740,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/02/Python学习笔记-对象和类/" data-id="ck42nldi90010dq3mln5q4uxz" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/02/Python学习笔记-对象和类/" data-id="ck4igaoar0012h83mu99m18jy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
