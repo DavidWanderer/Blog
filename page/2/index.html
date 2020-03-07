@@ -62,70 +62,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-MySQL基本命令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2019/07/07/MySQL基本命令/" class="article-date">
-  <time datetime="2019-07-07T03:33:14.000Z" itemprop="datePublished">2019-07-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2019/07/07/MySQL基本命令/">MySQL基本命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>MAC OSX上安装MySQL有多种方法：</p>
-<ul>
-<li><ol>
-<li>使用DMG文件安装，安装完在系统偏好设置中有相应的管理面板可以控制MySQL服务器开启和关闭，详情可访问<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">官网下载地址</a></li>
-</ol>
-</li>
-<li><ol start="2">
-<li>使用Homebrew安装，打开终端，输入命令<code>brew install mysql</code> ,这个安装过程中可能需要升级Homebrew，Homebrew的升级需要翻墙</li>
-</ol>
-</li>
-</ul>
-<h2 id="安装完测试MySQL需要使用的基本命令如下："><a href="#安装完测试MySQL需要使用的基本命令如下：" class="headerlink" title="安装完测试MySQL需要使用的基本命令如下："></a>安装完测试MySQL需要使用的基本命令如下：</h2><p>1.使用brew安装完MySQL时,root密码默认为空，如果要设置MySQL的相关安全策略，使用命令: <code>mysql_secure_installation</code></p>
-<p>2.打开mysql,带后台线程（电脑重启后会自己开启）:<code>brew services start mysql</code></p>
-<p>3.打开mysql，不带后台线程:<code>mysql.server start</code></p>
-<p>4.退出mysql:<code>brew services stop mysql</code></p>
-<p>5.登录MySQL:<code>mysql -u root -p</code></p>
-<p>6.查看MySQL的版本号:mysql&gt; <code>select Version();</code></p>
-<p>7.查看当前登录的MySQL运行的端口号:mysql&gt; <code>show global variables like &#39;port&#39;;</code></p>
-<p>8.显示可用的数据库:<code>SHOW DATABASES;</code></p>
-<p>9.选择数据库:mysql&gt; <code>USE crashcourse;</code></p>
-<p>10.显示数据库中所有可用的表:mysql&gt; <code>SHOW TABLES;</code></p>
-<p>11.显示表列: <code>SHOW COLUMNS FROM customers;</code> 或 <code>DESCRIBE customers;</code></p>
-<p>12.显示服务器状态信息:<code>SHOW STATUS;</code></p>
-<p>13.显示用户的安全权限:<code>SHOW GRANTS;</code></p>
-<p>14.显示服务器错误信息:<code>SHOW ERRORS;</code></p>
-<p>15.显示服务器警告信息:<code>SHOW WARNINGS;</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/07/07/MySQL基本命令/" data-id="ck7h0wiky0004gu3m4bcjqczg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-有趣的网址" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/Blog/2019/06/15/有趣的网址/" class="article-date">
@@ -200,7 +136,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/06/15/有趣的网址/" data-id="ck7h0wilg000ngu3mlso5ssv9" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/06/15/有趣的网址/" data-id="ck7h15ruk000ljh3mn212hsuo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
@@ -267,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/27/Python学习笔记-Python3编码/" data-id="ck7h0wil10005gu3meaubt5u9" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/27/Python学习笔记-Python3编码/" data-id="ck7h15ru80005jh3mivnydwp0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -390,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/02/Python学习笔记-对象和类/" data-id="ck7h0wilv0016gu3muu09dh6i" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/02/Python学习笔记-对象和类/" data-id="ck7h15ruy0014jh3m4kumz9z6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -445,7 +381,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/31/KVO本质分析/" data-id="ck7h0wikt0001gu3m3ni06v1p" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/31/KVO本质分析/" data-id="ck7h15ru00001jh3mjibk5n1l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
@@ -485,7 +421,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/28/Python学习笔记-函数/" data-id="ck7h0wil90009gu3mqw0h9z8b" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/28/Python学习笔记-函数/" data-id="ck7h15rua0009jh3mbej5ew3i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -555,7 +491,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/26/Python学习笔记-使用for迭代/" data-id="ck7h0wil60008gu3m02xg2r0m" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/26/Python学习笔记-使用for迭代/" data-id="ck7h15ru90008jh3m4bgkgi9w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -623,7 +559,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/16/如何在Github上搭建博客/" data-id="ck7h0wilf000lgu3mnci8htmk" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/16/如何在Github上搭建博客/" data-id="ck7h15ruh000hjh3m4qune2hq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
@@ -672,7 +608,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -683,10 +619,6 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/Blog/2020/02/19/iOS创建Framwork工程步骤/">iOS创建Framwork工程步骤</a>
-          </li>
         
           <li>
             <a href="/Blog/2020/01/31/GCD概要/">GCD概要</a>
@@ -702,6 +634,10 @@
         
           <li>
             <a href="/Blog/2019/12/12/Ruby相关命令收集/">Ruby相关命令收集</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/11/19/VPS搭建SSR-BBR/">VPS搭建SSR+BBR</a>
           </li>
         
       </ul>
