@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>自动引用计数 | Stay hungry, Stay foolish.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是自动引用计数？自动引用计数（ARC，Automatic Reference Counting）是指内存管理中对引用采取自动计数的技术。 内存管理的思考方式 自己生成的对象，自己持有。 非自己生成的对象，自己也能持有。 不再需要自己持有的对象时释放。 非自己持有的对象无法释放。  自己生成的对象，自己持有使用以下名称开头的方法名意味着自己生成的对象自己持有：  alloc new copy m">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动引用计数">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/2019/12/30/自动引用计数/index.html">
+<meta property="og:site_name" content="Stay hungry, Stay foolish.">
+<meta property="og:description" content="什么是自动引用计数？自动引用计数（ARC，Automatic Reference Counting）是指内存管理中对引用采取自动计数的技术。 内存管理的思考方式 自己生成的对象，自己持有。 非自己生成的对象，自己也能持有。 不再需要自己持有的对象时释放。 非自己持有的对象无法释放。  自己生成的对象，自己持有使用以下名称开头的方法名意味着自己生成的对象自己持有：  alloc new copy m">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-01-27T03:31:11.869Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自动引用计数">
+<meta name="twitter:description" content="什么是自动引用计数？自动引用计数（ARC，Automatic Reference Counting）是指内存管理中对引用采取自动计数的技术。 内存管理的思考方式 自己生成的对象，自己持有。 非自己生成的对象，自己也能持有。 不再需要自己持有的对象时释放。 非自己持有的对象无法释放。  自己生成的对象，自己持有使用以下名称开头的方法名意味着自己生成的对象自己持有：  alloc new copy m">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Stay hungry, Stay foolish." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Stay hungry, Stay foolish.</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/DavidWanderer/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-自动引用计数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2019/12/30/自动引用计数/" class="article-date">
+  <time datetime="2019-12-30T15:24:29.000Z" itemprop="datePublished">2019-12-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      自动引用计数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是自动引用计数？"><a href="#什么是自动引用计数？" class="headerlink" title="什么是自动引用计数？"></a>什么是自动引用计数？</h2><p>自动引用计数（ARC，Automatic Reference Counting）是指内存管理中对引用采取自动计数的技术。</p>
+<h2 id="内存管理的思考方式"><a href="#内存管理的思考方式" class="headerlink" title="内存管理的思考方式"></a>内存管理的思考方式</h2><ul>
+<li>自己生成的对象，自己持有。</li>
+<li>非自己生成的对象，自己也能持有。</li>
+<li>不再需要自己持有的对象时释放。</li>
+<li>非自己持有的对象无法释放。</li>
+</ul>
+<h3 id="自己生成的对象，自己持有"><a href="#自己生成的对象，自己持有" class="headerlink" title="自己生成的对象，自己持有"></a>自己生成的对象，自己持有</h3><p>使用以下名称开头的方法名意味着自己生成的对象自己持有：</p>
+<ul>
+<li>alloc</li>
+<li>new</li>
+<li>copy</li>
+<li>mutableCopy</li>
+</ul>
+<p>另外，下列名称也意味着自己生成并持有对象。</p>
+<ul>
+<li>allocMyObject</li>
+<li>newThatObject</li>
+<li>copyThis</li>
+<li>mutableCopyYourObject</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/** 自己生成并持有对象 */</span><br><span class="line">id obj = [[NSObject alloc] init];</span><br><span class="line">/** 自己持有对象 */</span><br></pre></td></tr></table></figure>
+<p>使用<code>[NSObject new]</code>与<code>[[NSObject alloc] init]</code>是完全一致的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/** 自己生成并持有对象 */</span><br><span class="line">id obj = [NSObject new]</span><br><span class="line">/** 自己持有对象 */</span><br></pre></td></tr></table></figure>
+<h3 id="非自己生成的对象，自己也能持有"><a href="#非自己生成的对象，自己也能持有" class="headerlink" title="非自己生成的对象，自己也能持有"></a>非自己生成的对象，自己也能持有</h3><p>用alloc/new/copy/mutableCopy以外的方法取得的对象，因为非自己生成并持有，所以自己不是该对象的持有者。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/** 取得非自己生成并持有的对象 */</span><br><span class="line">id obj = [NSMutableArray array];</span><br><span class="line">/** 取得的对象存在，但自己不持有对象 */</span><br></pre></td></tr></table></figure>
+<p>源代码中，NSMutableArray类对象被赋值给变量obj，但变量obj自己并不持有该对象，使用retain方法可以持有对象。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 取得非自己生成并持有的对象 */</span></span><br><span class="line"><span class="keyword">id</span> obj = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line"><span class="comment">/** 取得的对象存在，但自己不持有对象 */</span></span><br><span class="line">[obj <span class="keyword">retain</span>];</span><br><span class="line"><span class="comment">/** 自己持有对象 */</span></span><br></pre></td></tr></table></figure>
+<p>通过retain方法，非自己生成的对象跟用 alloc/new/copy/mutableCopy 方法生成并持有的对象一样，成为了自己所持有的。</p>
+<h3 id="不再需要自己持有的对象时释放"><a href="#不再需要自己持有的对象时释放" class="headerlink" title="不再需要自己持有的对象时释放"></a>不再需要自己持有的对象时释放</h3><p>自己持有的对象，一旦不再需要，持有者有义务释放该对象，释放使用release方法。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 自己生成并持有对象 */</span></span><br><span class="line"><span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</span><br><span class="line"><span class="comment">/** 自己持有对象 */</span></span><br><span class="line">[obj release];</span><br><span class="line"><span class="comment">/** 释放对象，指向对象的指针仍然被保留在变量obj中，貌似能够访问，但对象一经释放绝不可访问 */</span></span><br></pre></td></tr></table></figure>
+<p>用alloc方法由自己生成并持有的对象就通过release方法释放了。自己生成而非自己所持有的对象，若用retain方法变为自己持有，也同样可以用release方法释放。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/** 取得非自己生成并持有的对象 */</span><br><span class="line">id obj = [NSMutableArray array];</span><br><span class="line">/** 取得的对象存在，但自己不持有对象 */</span><br><span class="line">[obj retain];</span><br><span class="line">/** 自己持有对象 */</span><br><span class="line">[obj release];</span><br><span class="line">/** 释放对象，对象不可再被访问 */</span><br></pre></td></tr></table></figure>
+<p>用 alloc/new/copy/mutableCopy 方法生成并持有的对象，或者用retain方法持有的对象，一旦不再需要，务必要用release方法进行释放。</p>
+<p>如果要用某个方法生成对象，并将其返回给该方法的调用方，那么它的源代码又是如何呢？</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">id</span>)allocObject &#123;</span><br><span class="line">  <span class="comment">/** 自己生成并持有对象 */</span></span><br><span class="line">  <span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</span><br><span class="line">  <span class="comment">/** 自己持有对象 */</span></span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上例所示，原封不动的返回alloc方法生成并持有的对象，就能让调用方也持有该对象。请注意allocObject这个名称是符合前文命名规则的。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 取得非自己生成并持有的对象 */</span></span><br><span class="line"><span class="keyword">id</span> obj1 = [obj0 allocObject];</span><br><span class="line"><span class="comment">/** 自己持有对象 */</span></span><br></pre></td></tr></table></figure>
+<p>allocObject名称符合前文的命名规则，因此它与用alloc方法生成并持有对象的情况完全相同，所以使用allocObject方法也意味着”自己生成并持有对象”。</p>
+<p>那么，调用[NSMutable array]方法使取得的对象存在，但自己不持有对象，又是如何实现的呢？根据上下文命名规则，不能使用alloc/new/copy/mutableCopy 开头的方法名，因此要使用object这个方法名。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>)object &#123;</span><br><span class="line">  <span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</span><br><span class="line">  <span class="comment">/** 自己持有对象 */</span></span><br><span class="line">  [obj autorelease];</span><br><span class="line">  <span class="comment">/** 取得的对象存在，但自己不持有对象 */</span></span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上例中，我们使用了autorelease方法。用该方法可以使取得的对象存在，但自己不持有对象。autorelease 提供这样的功能，使对象在超出指定的生存范围时，能够自动并正确地释放(调用release 方法)。</p>
+<p>使用NSMutableArray类的array类方法等可以取得谁都不持有的对象，这些方法都是通过 autorelease 而实现的。此外，根据上下文的命名规则，这些用来取得谁都不持有的对象的方法名不能以alloc/new/copy/mutableCopy 开头。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> obj1 = [obj0 object];</span><br><span class="line"><span class="comment">/** 取得的对象存在，但自己不持有对象 */</span></span><br></pre></td></tr></table></figure>
+<p>当然也可以通过 retain 方法将调用 autorelease 方法取得的对象变为自己持有。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> obj1 = [obj0 object];</span><br><span class="line"><span class="comment">/** 取得的对象存在，但自己不持有对象 */</span></span><br><span class="line">[obj1 <span class="keyword">retain</span>];</span><br><span class="line"><span class="comment">/** 自己持有对象 */</span></span><br></pre></td></tr></table></figure>
+<h3 id="非自己持有的对象无法释放"><a href="#非自己持有的对象无法释放" class="headerlink" title="非自己持有的对象无法释放"></a>非自己持有的对象无法释放</h3><p>对于用 alloc/new/copy/mutableCopy 方法生成并持有的对象，或是用 retain 方法持有的对象，由于持有者是自己，所以在不需要该对象时需要将其释放。<b><code>而由此外得到的对象绝对不能释放。倘若在应用程序中释放了非自己持有的对象就会造成崩溃。</code></b>例如自己生成并持有对象后，在释放完不再需要的对象之后再次释放。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 自己生成并持有对象 */</span></span><br><span class="line"><span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</span><br><span class="line"><span class="comment">/** 自己持有对象 */</span></span><br><span class="line">[obj release];</span><br><span class="line"><span class="comment">/** 对象已释放 */</span></span><br><span class="line">[obj release];</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">释放之后再次释放非自己持有的对象</span></span><br><span class="line"><span class="comment">应用程序崩溃</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">崩溃情况：</span></span><br><span class="line"><span class="comment">再度废弃已经废弃了的对象时崩溃</span></span><br><span class="line"><span class="comment">访问已经废弃的对象时崩溃</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>或者在”取得的对象存在，但自己不持有对象”时释放。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> obj1 = [obj0 object];</span><br><span class="line"><span class="comment">/** 取得的对象存在，但自己不持有对象 */</span></span><br><span class="line">[obj1 release];</span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment">释放了非自己持有的对象</span></span><br><span class="line"><span class="comment">这肯定会导致应用程序崩溃</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p>《iOS与OS X多线程和内存管理》</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/12/30/自动引用计数/" data-id="ck6sz3g4n000qdq3m5c9xzaow" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Blog/2020/01/27/查看autoreleasepool的状态/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          查看autoreleasepool的状态
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/2019/12/12/Ruby相关命令收集/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Ruby相关命令收集</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Ruby/">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 13.33px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/通用/" style="font-size: 13.33px;">通用</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/2020/02/19/iOS创建Framwork工程步骤/">iOS创建Framwork工程步骤</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/01/31/GCD概要/">GCD概要</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/01/27/查看autoreleasepool的状态/">查看autoreleasepool的状态</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/12/30/自动引用计数/">自动引用计数</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2019/12/12/Ruby相关命令收集/">Ruby相关命令收集</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 WandererPoet<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+  <script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
