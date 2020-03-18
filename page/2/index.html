@@ -62,6 +62,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-iOS使用SVG和PDF图片" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2019/11/07/iOS使用SVG和PDF图片/" class="article-date">
+  <time datetime="2019-11-07T04:19:50.000Z" itemprop="datePublished">2019-11-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog/2019/11/07/iOS使用SVG和PDF图片/">iOS使用SVG和PDF图片</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是SVG"><a href="#什么是SVG" class="headerlink" title="什么是SVG?"></a>什么是SVG?</h2><p>SVG是一种用XML定义的语言，用来描述二维矢量及矢量/栅格图形。</p>
+<h2 id="SVG有哪些优势？"><a href="#SVG有哪些优势？" class="headerlink" title="SVG有哪些优势？"></a>SVG有哪些优势？</h2><p>参与定义 SVG 的组织有：太阳微系统、Adobe、苹果公司、IBM 以及柯达。<br>与其他图像格式相比，使用 SVG 的优势在于：<br>●SVG 可被非常多的工具读取和修改（比如记事本）<br>●SVG 与 JPEG 和 GIF 图像比起来，尺寸更小，且可压缩性更强。<br>●SVG 是可伸缩的<br>●SVG 图像可在任何的分辨率下被高质量地打印<br>●SVG 可在图像质量不下降的情况下被放大<br>●SVG 图像中的文本是可选的，同时也是可搜索的（很适合制作地图）<br>●SVG 可以与 JavaScript 技术一起运行<br>●SVG 是开放的标准<br>●SVG 文件是纯粹的 XML<br>●SVG 的主要竞争者是 Flash。</p>
+<h2 id="SVG在iOS中有哪些劣势？"><a href="#SVG在iOS中有哪些劣势？" class="headerlink" title="SVG在iOS中有哪些劣势？"></a>SVG在iOS中有哪些劣势？</h2><p>●Xcode 6以后支持矢量图,原生支持pdf格式<br>●原生不支持SVG格式(因为svg本质是xml),如果要加载SVG格式,使用WebView或第三方框架<br>●原生中如果使用SVG格式的图片，不能放在Assets.xcassets中，要像本地文件或者网络文件一样给个地址，存放起来有点麻烦<br>●集成起来麻烦<br>●只支持放大缩小，颜色修改需要另外的分类来支持<br>●不支持带滤镜的SVG<br>●UIButton使用SVG时，需要设置Button的Type为Custom，否则改变颜色的时候，没有效果。</p>
+<h2 id="iOS使用第三方框架加载svg格式"><a href="#iOS使用第三方框架加载svg格式" class="headerlink" title="iOS使用第三方框架加载svg格式"></a>iOS使用第三方框架加载svg格式</h2><p>iOS中使用 SVGKit(Objective-C库)和 Macaw(Swift库)。</p>
+<h2 id="iOS中使用PDF格式的图片"><a href="#iOS中使用PDF格式的图片" class="headerlink" title="iOS中使用PDF格式的图片"></a>iOS中使用PDF格式的图片</h2><p>在Asset.xcassets中添加一张图片，选择Attributes inspector，scales设置成SingleScale，原来3个占位图的位置会变成1个占位图的位置。在这个占位图中拖入一个pdf格式的图片。iOS系统会根据PDF格式的图片自动生成@1x、@2x和@3x图，对应适配不同的屏幕。</p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a><a href="https://files-cdn.cnblogs.com/files/wobuyayi/SVG%E5%92%8CPDF%E9%A2%84%E6%BC%94.zip" target="_blank" rel="noopener">Demo</a></h2><h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h3><p><a href="https://baike.baidu.com/item/SVG%E6%A0%BC%E5%BC%8F/3463453?fr=aladdin" target="_blank" rel="noopener">百度百科SVG格式</a><br><a href="https://www.jianshu.com/p/e4fe82ca6fd0" target="_blank" rel="noopener">Xcode项目中使用矢量图(pdf,svg)</a><br><a href="http://blog.startry.com/2016/06/15/vector-apply-to-iOS-Project/" target="_blank" rel="noopener">矢量图在iOS中的应用细节</a><br><a href="https://www.jianshu.com/p/aca8f6976acf" target="_blank" rel="noopener">iOS开发APP瘦身之PDF图片资源加载框架</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/07/iOS使用SVG和PDF图片/" data-id="ck7xdenoq000me13mg0s9w7p9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Linux下安装FTP" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/Blog/2019/08/24/Linux下安装FTP/" class="article-date">
@@ -127,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/08/24/Linux下安装FTP/" data-id="ck7t2h38c0003wo3msd5xkdgb" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/08/24/Linux下安装FTP/" data-id="ck7xdenob0005e13m6njvhfbf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/FTP/">FTP</a></li></ul>
@@ -198,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/08/24/Git服务器搭建/" data-id="ck7t2h3830000wo3md92skrwo" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/08/24/Git服务器搭建/" data-id="ck7xdeno60003e13mb4eczgnw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Git/">Git</a></li></ul>
@@ -262,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/07/07/MySQL基本命令/" data-id="ck7t2h38h0005wo3mfto5dpvk" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/07/07/MySQL基本命令/" data-id="ck7xdeno20001e13mvfunjfwh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li></ul>
@@ -356,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/06/15/有趣的网址/" data-id="ck7t2h38z000rwo3mfk96tokr" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/06/15/有趣的网址/" data-id="ck7xdenou000ue13mqilfmvg2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
@@ -423,7 +467,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/27/Python学习笔记-Python3编码/" data-id="ck7t2h38m0008wo3mbe5luyvn" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/27/Python学习笔记-Python3编码/" data-id="ck7xdenoi0009e13mc5uqae75" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -546,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/02/Python学习笔记-对象和类/" data-id="ck7t2h39f001awo3m2e3x92pf" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/02/Python学习笔记-对象和类/" data-id="ck7xdenp8001de13mxoxqqnwt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -601,7 +645,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/31/KVO本质分析/" data-id="ck7t2h3880001wo3m3l56s8yk" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/31/KVO本质分析/" data-id="ck7xdeno80004e13mn4u1gzhm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
@@ -641,7 +685,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/28/Python学习笔记-函数/" data-id="ck7t2h38r000bwo3mnwliv7ed" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/28/Python学习笔记-函数/" data-id="ck7xdenog0008e13mospy6772" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -711,78 +755,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/26/Python学习笔记-使用for迭代/" data-id="ck7t2h38p0009wo3mr8otx3l1" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/26/Python学习笔记-使用for迭代/" data-id="ck7xdenok000be13mnp4a6ac8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-如何在Github上搭建博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2019/03/16/如何在Github上搭建博客/" class="article-date">
-  <time datetime="2019-03-16T08:28:52.000Z" itemprop="datePublished">2019-03-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2019/03/16/如何在Github上搭建博客/">如何在Github上搭建博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><ul>
-<li>安装Hexo之前，电脑上需要安装Git和Node.js</li>
-<li><ol>
-<li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137396287703354d8c6c01c904c7d9ff056ae23da865a000" target="_blank" rel="noopener">安装Git</a></li>
-</ol>
-</li>
-<li><ol start="2">
-<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">安装Node.js</a></li>
-</ol>
-</li>
-</ul>
-<p>安装完Git和Node.js，开始安装Hexo，安装Hexo需要翻墙，打开终端，输入以下命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
-<p>新建目录存放博客的网站文件，例如新建一个空文件夹Blog，然后执行以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init Blog</span><br><span class="line">$ <span class="built_in">cd</span> Blog</span><br><span class="line">$ npm Blog</span><br></pre></td></tr></table></figure></p>
-<h2 id="发布新的文章"><a href="#发布新的文章" class="headerlink" title="发布新的文章"></a>发布新的文章</h2><p>创建完网站目录后，开始写作，创建一篇新的文章，执行以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"HelloWord"</span></span><br></pre></td></tr></table></figure></p>
-<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_1.png" title="创建文章的截图"> </div>
-
-<p>执行完上述命令，会在网站的～/Blog/source/_posts目录下出现HelloWord.md文件，这个文件就是我们新建的文章，使用Markdown语法编写我们的文章。</p>
-<h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><p>文章写好之后，执行以下命令，开始生成静态文件:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure></p>
-<h2 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h2><p>静态文件生成之后，启动本地服务器，预览文章的总体页面，需要执行以下命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure></p>
-<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_2.png" title="启动服务器的命令截图"> </div>
-
-<p>本地浏览器预览效果：<br><img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_4.png" title="本地浏览器预览文章的截图"></p>
-<h2 id="发布到Github"><a href="#发布到Github" class="headerlink" title="发布到Github"></a>发布到Github</h2><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>在配置文件中配置发布到git，然后填写具体的仓库地址:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/DavidWanderer/Blog.git</span><br></pre></td></tr></table></figure></p>
-<h3 id="安装Hexo发布到git的插件"><a href="#安装Hexo发布到git的插件" class="headerlink" title="安装Hexo发布到git的插件:"></a>安装Hexo发布到git的插件:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>检查插件是否安装完成:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm list hexo-deployer-git</span><br></pre></td></tr></table></figure></p>
-<h3 id="将本地的静态文件部署到github的仓库"><a href="#将本地的静态文件部署到github的仓库" class="headerlink" title="将本地的静态文件部署到github的仓库"></a>将本地的静态文件部署到github的仓库</h3><p>执行命令，首次执行命令的时候会让你输入github的用户名和密码:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></p>
-<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_3.png" title="将本地的静态文件部署到github"> </div>
-
-<p>最后访问giuhub的地址效果：<br><img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_5.png" title="Github效果预览图"></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo官网</a><br><a href="https://juejin.im/post/5b8e43a951882542e821b5cc" target="_blank" rel="noopener">Hexo + Github 搭建个人博客</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/16/如何在Github上搭建博客/" data-id="ck7t2h38y000pwo3m7egw8z8b" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
 
     </footer>
   </div>
@@ -795,7 +771,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/Blog/">&laquo; Prev</a><a class="page-number" href="/Blog/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/Blog/">&laquo; Prev</a><a class="page-number" href="/Blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/Blog/page/3/">3</a><a class="extend next" rel="next" href="/Blog/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -819,7 +795,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 12.5px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 10px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 12.5px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
     </div>
   </div>
 
@@ -841,6 +817,10 @@
       <ul>
         
           <li>
+            <a href="/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/">Vue启动报错Error: Cannot find module &#39;webpack/bin/config-yargs&#39;</a>
+          </li>
+        
+          <li>
             <a href="/Blog/2020/03/15/MAC破解WiFi/">MAC破解WiFi</a>
           </li>
         
@@ -854,10 +834,6 @@
         
           <li>
             <a href="/Blog/2020/01/31/GCD概要/">GCD概要</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/2020/01/27/查看autoreleasepool的状态/">查看autoreleasepool的状态</a>
           </li>
         
       </ul>

@@ -62,6 +62,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/" class="article-date">
+  <time datetime="2020-03-18T13:27:49.000Z" itemprop="datePublished">2020-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/">Vue启动报错Error: Cannot find module &#39;webpack/bin/config-yargs&#39;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天执行<code>npm run dev</code>时出现报错，提示<code>Error: Cannot find module &#39;webpack/bin/config-yargs&#39;</code>，查资料发现问题出在，<code>webpack</code>、<code>webpack-cli</code>、<code>webpack-dev-server</code>的版本不匹配。</p>
+<p>打开项目根目录下的<code>package.json</code> 文件，发现我的项目里面的配置信息为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"webpack"</span>: <span class="string">"^4.42.0"</span>,</span><br><span class="line"><span class="string">"webpack-cli"</span>: <span class="string">"^3.3.11"</span>,</span><br><span class="line"><span class="string">"webpack-dev-server"</span>: <span class="string">"^2.11.5"</span></span><br></pre></td></tr></table></figure>
+<p>然后我修改了<code>package.json</code>文件，修改<code>webpack-dev-sever</code>的版本为<code>3.1.4</code>，然后在项目根目录执行<code>npm install</code>命令。此命令执行完毕后再执行<code>npm run dev</code>发现可以正常运行。</p>
+<p>最终<code>package.json</code>文件的配置如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;babel-core&quot;: &quot;^6.26.0&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^7.1.2&quot;,</span><br><span class="line">    &quot;babel-polyfill&quot;: &quot;^6.26.0&quot;,</span><br><span class="line">    &quot;babel-preset-env&quot;: &quot;^1.6.0&quot;,</span><br><span class="line">    &quot;babel-preset-stage-3&quot;: &quot;^6.24.1&quot;,</span><br><span class="line">    &quot;babel-preset-vue&quot;: &quot;^2.0.2&quot;,</span><br><span class="line">    &quot;cross-env&quot;: &quot;^5.0.5&quot;,</span><br><span class="line">    &quot;css-loader&quot;: &quot;^3.4.2&quot;,</span><br><span class="line">    &quot;file-loader&quot;: &quot;^1.1.4&quot;,</span><br><span class="line">    &quot;vue-loader&quot;: &quot;^13.0.5&quot;,</span><br><span class="line">    &quot;vue-template-compiler&quot;: &quot;^2.4.4&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^4.42.0&quot;,</span><br><span class="line">    &quot;webpack-cli&quot;: &quot;^3.3.11&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^3.1.4&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://blog.csdn.net/u013894429/article/details/94393342" target="_blank" rel="noopener">已解决 - 问题Cannot find module ‘webpack/bin/config-yargs’</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/" data-id="ck7xdenoq000le13mhulfpuhk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/前端/">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MAC破解WiFi" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/Blog/2020/03/15/MAC破解WiFi/" class="article-date">
@@ -111,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/15/MAC破解WiFi/" data-id="ck7t2h38e0004wo3mb6al88p7" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/15/MAC破解WiFi/" data-id="ck7xdennw0000e13mia1p6syj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
@@ -153,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/15/Vue-CLI安装报错/" data-id="ck7t2h38v000jwo3mmcsufymt" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/15/Vue-CLI安装报错/" data-id="ck7xdenop000je13msgqbqwf8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/前端/">前端</a></li></ul>
@@ -243,7 +288,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/02/19/iOS创建Framwork工程步骤/" data-id="ck7t2h38x000mwo3mdsa3adce" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/02/19/iOS创建Framwork工程步骤/" data-id="ck7xdenor000pe13mbsy4kthx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
@@ -372,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/01/31/GCD概要/" data-id="ck7t2h39z001cwo3m0u3pf4gr" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/01/31/GCD概要/" data-id="ck7xdenpw001fe13mrg520sen" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
@@ -426,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/01/27/查看autoreleasepool的状态/" data-id="ck7t2h3a1001dwo3m33oplkg1" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/01/27/查看autoreleasepool的状态/" data-id="ck7xdenpx001ge13mnr92k7n9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
@@ -515,7 +560,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/12/30/自动引用计数/" data-id="ck7t2h392000uwo3mimhcfoue" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/12/30/自动引用计数/" data-id="ck7xdenov000we13mutqus18f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
@@ -570,7 +615,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/12/12/Ruby相关命令收集/" data-id="ck7t2h38s000dwo3muileu5mo" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/12/12/Ruby相关命令收集/" data-id="ck7xdenol000de13muy2o9kdj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Ruby/">Ruby</a></li></ul>
@@ -619,7 +664,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/19/VPS搭建SSR-BBR/" data-id="ck7t2h38u000hwo3ms20657hc" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/19/VPS搭建SSR-BBR/" data-id="ck7xdenon000he13m3nufzaz3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/VPS/">VPS</a></li></ul>
@@ -674,54 +719,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/17/VPS使用心得/" data-id="ck7t2h38t000fwo3miouyronl" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/17/VPS使用心得/" data-id="ck7xdenom000fe13m7f4ahn5s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/VPS/">VPS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-iOS使用SVG和PDF图片" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2019/11/07/iOS使用SVG和PDF图片/" class="article-date">
-  <time datetime="2019-11-07T04:19:50.000Z" itemprop="datePublished">2019-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2019/11/07/iOS使用SVG和PDF图片/">iOS使用SVG和PDF图片</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是SVG"><a href="#什么是SVG" class="headerlink" title="什么是SVG?"></a>什么是SVG?</h2><p>SVG是一种用XML定义的语言，用来描述二维矢量及矢量/栅格图形。</p>
-<h2 id="SVG有哪些优势？"><a href="#SVG有哪些优势？" class="headerlink" title="SVG有哪些优势？"></a>SVG有哪些优势？</h2><p>参与定义 SVG 的组织有：太阳微系统、Adobe、苹果公司、IBM 以及柯达。<br>与其他图像格式相比，使用 SVG 的优势在于：<br>●SVG 可被非常多的工具读取和修改（比如记事本）<br>●SVG 与 JPEG 和 GIF 图像比起来，尺寸更小，且可压缩性更强。<br>●SVG 是可伸缩的<br>●SVG 图像可在任何的分辨率下被高质量地打印<br>●SVG 可在图像质量不下降的情况下被放大<br>●SVG 图像中的文本是可选的，同时也是可搜索的（很适合制作地图）<br>●SVG 可以与 JavaScript 技术一起运行<br>●SVG 是开放的标准<br>●SVG 文件是纯粹的 XML<br>●SVG 的主要竞争者是 Flash。</p>
-<h2 id="SVG在iOS中有哪些劣势？"><a href="#SVG在iOS中有哪些劣势？" class="headerlink" title="SVG在iOS中有哪些劣势？"></a>SVG在iOS中有哪些劣势？</h2><p>●Xcode 6以后支持矢量图,原生支持pdf格式<br>●原生不支持SVG格式(因为svg本质是xml),如果要加载SVG格式,使用WebView或第三方框架<br>●原生中如果使用SVG格式的图片，不能放在Assets.xcassets中，要像本地文件或者网络文件一样给个地址，存放起来有点麻烦<br>●集成起来麻烦<br>●只支持放大缩小，颜色修改需要另外的分类来支持<br>●不支持带滤镜的SVG<br>●UIButton使用SVG时，需要设置Button的Type为Custom，否则改变颜色的时候，没有效果。</p>
-<h2 id="iOS使用第三方框架加载svg格式"><a href="#iOS使用第三方框架加载svg格式" class="headerlink" title="iOS使用第三方框架加载svg格式"></a>iOS使用第三方框架加载svg格式</h2><p>iOS中使用 SVGKit(Objective-C库)和 Macaw(Swift库)。</p>
-<h2 id="iOS中使用PDF格式的图片"><a href="#iOS中使用PDF格式的图片" class="headerlink" title="iOS中使用PDF格式的图片"></a>iOS中使用PDF格式的图片</h2><p>在Asset.xcassets中添加一张图片，选择Attributes inspector，scales设置成SingleScale，原来3个占位图的位置会变成1个占位图的位置。在这个占位图中拖入一个pdf格式的图片。iOS系统会根据PDF格式的图片自动生成@1x、@2x和@3x图，对应适配不同的屏幕。</p>
-<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a><a href="https://files-cdn.cnblogs.com/files/wobuyayi/SVG%E5%92%8CPDF%E9%A2%84%E6%BC%94.zip" target="_blank" rel="noopener">Demo</a></h2><h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h3><p><a href="https://baike.baidu.com/item/SVG%E6%A0%BC%E5%BC%8F/3463453?fr=aladdin" target="_blank" rel="noopener">百度百科SVG格式</a><br><a href="https://www.jianshu.com/p/e4fe82ca6fd0" target="_blank" rel="noopener">Xcode项目中使用矢量图(pdf,svg)</a><br><a href="http://blog.startry.com/2016/06/15/vector-apply-to-iOS-Project/" target="_blank" rel="noopener">矢量图在iOS中的应用细节</a><br><a href="https://www.jianshu.com/p/aca8f6976acf" target="_blank" rel="noopener">iOS开发APP瘦身之PDF图片资源加载框架</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/07/iOS使用SVG和PDF图片/" data-id="ck7t2h38w000lwo3mm5vl6d5p" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
 
     </footer>
   </div>
@@ -734,7 +735,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/Blog/page/2/">2</a><a class="extend next" rel="next" href="/Blog/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/Blog/page/2/">2</a><a class="page-number" href="/Blog/page/3/">3</a><a class="extend next" rel="next" href="/Blog/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -758,7 +759,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 12.5px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 10px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 12.5px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
     </div>
   </div>
 
@@ -780,6 +781,10 @@
       <ul>
         
           <li>
+            <a href="/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/">Vue启动报错Error: Cannot find module &#39;webpack/bin/config-yargs&#39;</a>
+          </li>
+        
+          <li>
             <a href="/Blog/2020/03/15/MAC破解WiFi/">MAC破解WiFi</a>
           </li>
         
@@ -793,10 +798,6 @@
         
           <li>
             <a href="/Blog/2020/01/31/GCD概要/">GCD概要</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/2020/01/27/查看autoreleasepool的状态/">查看autoreleasepool的状态</a>
           </li>
         
       </ul>
