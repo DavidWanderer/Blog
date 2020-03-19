@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead. | Stay hungry, Stay foolish.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用命令npm run build进行生产构建时，报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.，详细的错误信息如下: 12345678910111213141516171819202122232425262728293031323">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/2020/03/19/Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/index.html">
+<meta property="og:site_name" content="Stay hungry, Stay foolish.">
+<meta property="og:description" content="使用命令npm run build进行生产构建时，报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.，详细的错误信息如下: 12345678910111213141516171819202122232425262728293031323">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-03-19T05:57:12.596Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.">
+<meta name="twitter:description" content="使用命令npm run build进行生产构建时，报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.，详细的错误信息如下: 12345678910111213141516171819202122232425262728293031323">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Stay hungry, Stay foolish." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Stay hungry, Stay foolish.</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/DavidWanderer/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2020/03/19/Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/" class="article-date">
+  <time datetime="2020-03-19T05:43:16.000Z" itemprop="datePublished">2020-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用命令<code>npm run build</code>进行生产构建时，报错<code>Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</code>，详细的错误信息如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">^CHu-YupingdeMacBook-Pro:demo2 kris$ npm run build</span><br><span class="line"></span><br><span class="line">&gt; demo2@1.0.0 build /Users/kris/Documents/VueDemo/chapter4/demo2</span><br><span class="line">&gt; cross-env NODE_ENV=production webpack --progress --hide-modules</span><br><span class="line"></span><br><span class="line">/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:93</span><br><span class="line">				throw err;</span><br><span class="line">				^</span><br><span class="line"></span><br><span class="line">Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</span><br><span class="line">    at Object.get [as UglifyJsPlugin] (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack/lib/webpack.js:189:10)</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter4/demo2/webpack.config.js:68:26)</span><br><span class="line">    at Module._compile (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)</span><br><span class="line">    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)</span><br><span class="line">    at Module.load (internal/modules/cjs/loader.js:600:32)</span><br><span class="line">    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)</span><br><span class="line">    at Function.Module._load (internal/modules/cjs/loader.js:531:3)</span><br><span class="line">    at Module.require (internal/modules/cjs/loader.js:637:17)</span><br><span class="line">    at require (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)</span><br><span class="line">    at WEBPACK_OPTIONS (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:114:13)</span><br><span class="line">    at requireConfig (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:116:6)</span><br><span class="line">    at /Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:123:17</span><br><span class="line">    at Array.forEach (&lt;anonymous&gt;)</span><br><span class="line">    at module.exports (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:121:15)</span><br><span class="line">    at yargs.parse (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:71:45)</span><br><span class="line">    at Object.parse (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/yargs/yargs.js:567:18)</span><br><span class="line">    at /Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:49:8</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:366:3)</span><br><span class="line">    at Module._compile (internal/modules/cjs/loader.js:701:30)</span><br><span class="line">    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)</span><br><span class="line">    at Module.load (internal/modules/cjs/loader.js:600:32)</span><br><span class="line">    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)</span><br><span class="line">    at Function.Module._load (internal/modules/cjs/loader.js:531:3)</span><br><span class="line">    at Module.require (internal/modules/cjs/loader.js:637:17)</span><br><span class="line">    at require (internal/modules/cjs/helpers.js:22:18)</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack/bin/webpack.js:156:2)</span><br><span class="line">    at Module._compile (internal/modules/cjs/loader.js:701:30)</span><br><span class="line">    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)</span><br><span class="line">    at Module.load (internal/modules/cjs/loader.js:600:32)</span><br><span class="line">    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)</span><br><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno 1</span><br><span class="line">npm ERR! demo2@1.0.0 build: `cross-env NODE_ENV=production webpack --progress --hide-modules`</span><br><span class="line">npm ERR! Exit status 1</span><br><span class="line">npm ERR! </span><br><span class="line">npm ERR! Failed at the demo2@1.0.0 build script.</span><br><span class="line">npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</span><br><span class="line"></span><br><span class="line">npm ERR! A complete <span class="built_in">log</span> of this run can be found <span class="keyword">in</span>:</span><br><span class="line">npm ERR!     /Users/kris/.npm/_logs/2020-03-19T04_56_08_555Z-debug.log</span><br></pre></td></tr></table></figure>
+<p>查资料发现webpack4已经不支持在plugins里面操作<code>UglifyJsPlugin</code>，需要将<code>UglifyJsPlugin</code>放到<code>optimization</code>里面进行配置。打开<code>webpack.config.js</code>文件，发现老的配置如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">var path = require(<span class="string">'path'</span>)</span><br><span class="line">var webpack = require(<span class="string">'webpack'</span>)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/main.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'./dist'</span>),</span><br><span class="line">    publicPath: <span class="string">'/dist/'</span>,</span><br><span class="line">    filename: <span class="string">'build.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.css$/,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">'vue-style-loader'</span>,</span><br><span class="line">          <span class="string">'css-loader'</span></span><br><span class="line">        ],</span><br><span class="line">      &#125;,      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.vue$/,</span><br><span class="line">        loader: <span class="string">'vue-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          loaders: &#123;</span><br><span class="line">          &#125;</span><br><span class="line">          // other vue-loader options go here</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.js$/,</span><br><span class="line">        loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.(png|jpg|gif|svg)$/,</span><br><span class="line">        loader: <span class="string">'file-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          name: <span class="string">'[name].[ext]?[hash]'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    <span class="built_in">alias</span>: &#123;</span><br><span class="line">      <span class="string">'vue$'</span>: <span class="string">'vue/dist/vue.esm.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    extensions: [<span class="string">'*'</span>, <span class="string">'.js'</span>, <span class="string">'.vue'</span>, <span class="string">'.json'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    noInfo: <span class="literal">true</span>,</span><br><span class="line">    overlay: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  performance: &#123;</span><br><span class="line">    hints: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">'#eval-source-map'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'production'</span>) &#123;</span><br><span class="line">  module.exports.devtool = <span class="string">'#source-map'</span></span><br><span class="line">  // http://vue-loader.vuejs.org/en/workflow/production.html</span><br><span class="line">  module.exports.plugins = (module.exports.plugins || []).concat([</span><br><span class="line">    new webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">'process.env'</span>: &#123;</span><br><span class="line">        NODE_ENV: <span class="string">'"production"'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">      sourceMap: <span class="literal">true</span>,</span><br><span class="line">      compress: &#123;</span><br><span class="line">        warnings: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.LoaderOptionsPlugin(&#123;</span><br><span class="line">      minimize: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改完的<code>webpack.config.js</code>文件内容如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">var path = require(<span class="string">'path'</span>)</span><br><span class="line">var webpack = require(<span class="string">'webpack'</span>)</span><br><span class="line"><span class="built_in">let</span> UglifyJsPlugin = require(<span class="string">'uglifyjs-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/main.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'./dist'</span>),</span><br><span class="line">    publicPath: <span class="string">'/dist/'</span>,</span><br><span class="line">    filename: <span class="string">'build.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.css$/,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">'vue-style-loader'</span>,</span><br><span class="line">          <span class="string">'css-loader'</span></span><br><span class="line">        ],</span><br><span class="line">      &#125;,      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.vue$/,</span><br><span class="line">        loader: <span class="string">'vue-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          loaders: &#123;</span><br><span class="line">          &#125;</span><br><span class="line">          // other vue-loader options go here</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.js$/,</span><br><span class="line">        loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.(png|jpg|gif|svg)$/,</span><br><span class="line">        loader: <span class="string">'file-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          name: <span class="string">'[name].[ext]?[hash]'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    <span class="built_in">alias</span>: &#123;</span><br><span class="line">      <span class="string">'vue$'</span>: <span class="string">'vue/dist/vue.esm.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    extensions: [<span class="string">'*'</span>, <span class="string">'.js'</span>, <span class="string">'.vue'</span>, <span class="string">'.json'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    noInfo: <span class="literal">true</span>,</span><br><span class="line">    overlay: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  performance: &#123;</span><br><span class="line">    hints: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimizer: [</span><br><span class="line">      new UglifyJsPlugin(&#123;</span><br><span class="line">        uglifyOptions: &#123;</span><br><span class="line">          compress: <span class="literal">false</span>,</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">'#eval-source-map'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'production'</span>) &#123;</span><br><span class="line">  module.exports.devtool = <span class="string">'#source-map'</span></span><br><span class="line">  // http://vue-loader.vuejs.org/en/workflow/production.html</span><br><span class="line">  module.exports.plugins = (module.exports.plugins || []).concat([</span><br><span class="line">    new webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">'process.env'</span>: &#123;</span><br><span class="line">        NODE_ENV: <span class="string">'"production"'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.LoaderOptionsPlugin(&#123;</span><br><span class="line">      minimize: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>改动之处有2处，第一处，把<code>UglifyJsPlugin</code>放到上面的exports的<code>optimization</code>中；第二处，在文件开头之处导入<code>UglifyJsPlugin</code>。</p>
+<p>改完之后执行<code>npm run dev</code>，效果如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:demo2 kris$ npm run dev</span><br><span class="line"></span><br><span class="line">&gt; demo2@1.0.0 dev /Users/kris/Documents/VueDemo/chapter4/demo2</span><br><span class="line">&gt; cross-env NODE_ENV=development webpack-dev-server --open --hot</span><br></pre></td></tr></table></figure>
+<p>改完之后执行<code>npm run build</code>，效果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">^CHu-YupingdeMacBook-Pro:demo2 kris$ npm run build</span><br><span class="line"></span><br><span class="line">&gt; demo2@1.0.0 build /Users/kris/Documents/VueDemo/chapter4/demo2</span><br><span class="line">&gt; cross-env NODE_ENV=production webpack --progress --hide-modules</span><br><span class="line"></span><br><span class="line">Hash: e1e94d754213e6db3b2c</span><br><span class="line">Version: webpack 4.42.0</span><br><span class="line">Time: 1996ms</span><br><span class="line">Built at: 2020-03-19 13:51:57</span><br><span class="line">   Asset     Size  Chunks             Chunk Names</span><br><span class="line">build.js  213 KiB       0  [emitted]  main</span><br><span class="line">Entrypoint main = build.js</span><br><span class="line"></span><br><span class="line">WARNING <span class="keyword">in</span> configuration</span><br><span class="line">The <span class="string">'mode'</span> option has not been <span class="built_in">set</span>, webpack will fallback to <span class="string">'production'</span> <span class="keyword">for</span> this value. Set <span class="string">'mode'</span> option to <span class="string">'development'</span> or <span class="string">'production'</span> to <span class="built_in">enable</span> defaults <span class="keyword">for</span> each environment.</span><br><span class="line">You can also <span class="built_in">set</span> it to <span class="string">'none'</span> to <span class="built_in">disable</span> any default behavior. Learn more: https://webpack.js.org/configuration/mode/</span><br></pre></td></tr></table></figure>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://www.jianshu.com/p/ceaf950a027b" target="_blank" rel="noopener">webpack踩坑之路</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/19/Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/" data-id="ck7yceiqg001ep23mzx78h995" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/前端/">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue启动报错Error: Cannot find module &#39;webpack/bin/config-yargs&#39;</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Ruby/">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 12.5px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 15px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/2020/03/19/Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/">Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/">Vue启动报错Error: Cannot find module &#39;webpack/bin/config-yargs&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/03/15/MAC破解WiFi/">MAC破解WiFi</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/03/15/Vue-CLI安装报错/">Vue CLI安装报错</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/02/19/iOS创建Framwork工程步骤/">iOS创建Framwork工程步骤</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 WandererPoet<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+  <script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
