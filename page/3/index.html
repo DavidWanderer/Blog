@@ -62,6 +62,46 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Python学习笔记-函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2019/03/28/Python学习笔记-函数/" class="article-date">
+  <time datetime="2019-03-28T14:40:13.000Z" itemprop="datePublished">2019-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog/2019/03/28/Python学习笔记-函数/">Python学习笔记(函数)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="None作为布尔值和False是一样的，如何区分None和False"><a href="#None作为布尔值和False是一样的，如何区分None和False" class="headerlink" title="None作为布尔值和False是一样的，如何区分None和False?"></a>None作为布尔值和False是一样的，如何区分None和False?</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">thing = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> thing:</span><br><span class="line">    print(<span class="string">"It's some thing."</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"It's no thing."</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> thing <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    print(<span class="string">"It's nothing"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"It's something"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 你需要把None和不含任何值的空数据结构区分开来。0值的整型/浮点型、</span></span><br><span class="line"><span class="comment"># 空字符串('')、空列表([])、空元组((,))、空字典(&#123;&#125;)、</span></span><br><span class="line"><span class="comment"># 空集合(set())都等价于False，但是不等于None。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_none</span><span class="params">(thing)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> thing <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        print(<span class="string">"It's None"</span>)</span><br><span class="line">    <span class="keyword">elif</span> thing:</span><br><span class="line">        print(<span class="string">"It's True"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"It's False"</span>)</span><br><span class="line"></span><br><span class="line">is_none(<span class="literal">None</span>)</span><br><span class="line">is_none(<span class="literal">True</span>)</span><br><span class="line">is_none(<span class="literal">False</span>)</span><br><span class="line">is_none(<span class="number">0</span>)</span><br><span class="line">is_none(<span class="number">0.0</span>)</span><br><span class="line">is_none(())</span><br><span class="line">is_none([])</span><br><span class="line">is_none(&#123;&#125;)</span><br><span class="line">is_none(set())</span><br></pre></td></tr></table></figure>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">It<span class="string">'s no thing.</span></span><br><span class="line"><span class="string">It'</span>s nothing</span><br><span class="line">It<span class="string">'s None</span></span><br><span class="line"><span class="string">It'</span>s <span class="literal">True</span></span><br><span class="line">It<span class="string">'s False</span></span><br><span class="line"><span class="string">It'</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">'s False</span></span><br><span class="line"><span class="string">It'</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">'s False</span></span><br><span class="line"><span class="string">It'</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">'s False</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/28/Python学习笔记-函数/" data-id="ck806j9mt000bys3m9k4a3wvo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Python学习笔记-使用for迭代" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/Blog/2019/03/26/Python学习笔记-使用for迭代/" class="article-date">
@@ -120,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/26/Python学习笔记-使用for迭代/" data-id="ck7yceioz0009p23mugizh2x6" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/26/Python学习笔记-使用for迭代/" data-id="ck806j9mr0009ys3m08yazrtj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -188,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/16/如何在Github上搭建博客/" data-id="ck7yceipd000pp23md0oso7sn" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/16/如何在Github上搭建博客/" data-id="ck806j9n4000uys3mdk063013" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
@@ -228,7 +268,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 12.5px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 15px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 13.33px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 13.33px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 13.33px;">通用</a>
     </div>
   </div>
 
@@ -250,6 +290,10 @@
       <ul>
         
           <li>
+            <a href="/Blog/2020/03/20/ssh命令无法连接主机/">ssh命令无法连接主机</a>
+          </li>
+        
+          <li>
             <a href="/Blog/2020/03/19/Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/">Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</a>
           </li>
         
@@ -263,10 +307,6 @@
         
           <li>
             <a href="/Blog/2020/03/15/Vue-CLI安装报错/">Vue CLI安装报错</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/2020/02/19/iOS创建Framwork工程步骤/">iOS创建Framwork工程步骤</a>
           </li>
         
       </ul>

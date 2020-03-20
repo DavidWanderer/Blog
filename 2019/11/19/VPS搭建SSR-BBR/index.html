@@ -7,18 +7,18 @@
   
   <title>VPS搭建SSR+BBR | Stay hungry, Stay foolish.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="VPS相关环境信息Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1 安装ShadowsocksR的命令1# wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;amp;&amp;amp; chmod +x ssrmu.">
+  <meta name="description" content="VPS相关环境信息Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1 安装ShadowsocksR的命令12# wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;amp;&amp;amp; chmod +x ssrmu">
 <meta name="keywords" content="VPS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VPS搭建SSR+BBR">
 <meta property="og:url" content="https://github.com/DavidWanderer/Blog/2019/11/19/VPS搭建SSR-BBR/index.html">
 <meta property="og:site_name" content="Stay hungry, Stay foolish.">
-<meta property="og:description" content="VPS相关环境信息Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1 安装ShadowsocksR的命令1# wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;amp;&amp;amp; chmod +x ssrmu.">
+<meta property="og:description" content="VPS相关环境信息Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1 安装ShadowsocksR的命令12# wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;amp;&amp;amp; chmod +x ssrmu">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-23T13:09:12.325Z">
+<meta property="og:updated_time" content="2020-03-20T12:16:46.919Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VPS搭建SSR+BBR">
-<meta name="twitter:description" content="VPS相关环境信息Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1 安装ShadowsocksR的命令1# wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;amp;&amp;amp; chmod +x ssrmu.">
+<meta name="twitter:description" content="VPS相关环境信息Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1 安装ShadowsocksR的命令12# wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;amp;&amp;amp; chmod +x ssrmu">
   
     <link rel="alternate" href="/Blog/atom.xml" title="Stay hungry, Stay foolish." type="application/atom+xml">
   
@@ -88,7 +88,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="VPS相关环境信息"><a href="#VPS相关环境信息" class="headerlink" title="VPS相关环境信息"></a>VPS相关环境信息</h2><p>Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1</p>
-<h2 id="安装ShadowsocksR的命令"><a href="#安装ShadowsocksR的命令" class="headerlink" title="安装ShadowsocksR的命令"></a>安装ShadowsocksR的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;&amp; chmod +x ssrmu.sh &amp;&amp; bash # ssrmu.sh</span></span><br></pre></td></tr></table></figure>
+<h2 id="安装ShadowsocksR的命令"><a href="#安装ShadowsocksR的命令" class="headerlink" title="安装ShadowsocksR的命令"></a>安装ShadowsocksR的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;&amp; chmod +x ssrmu.sh &amp;&amp; bash </span></span><br><span class="line"><span class="comment"># ./ssrmu.sh</span></span><br></pre></td></tr></table></figure>
 <h2 id="安装BBR加速的命令"><a href="#安装BBR加速的命令" class="headerlink" title="安装BBR加速的命令"></a>安装BBR加速的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install wget</span></span><br><span class="line"><span class="comment"># wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</span></span><br><span class="line"><span class="comment"># chmod +x bbr.sh</span></span><br><span class="line"><span class="comment"># ./bbr.sh</span></span><br></pre></td></tr></table></figure>
 <h2 id="检测BBR是否已经安装好了"><a href="#检测BBR是否已经安装好了" class="headerlink" title="检测BBR是否已经安装好了"></a>检测BBR是否已经安装好了</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 在终端输入如下命令，如果返回的输出有bbr，则说明已经安装完成</span></span><br><span class="line"><span class="comment"># sysctl net.ipv4.tcp_available_congestion_control</span></span><br><span class="line">net.ipv4.tcp_available_congestion_control = reno cubic bbr</span><br><span class="line"></span><br><span class="line"><span class="comment">## 在终端输入如下命令，如果返回的输出有bbr，则说明已经安装完成</span></span><br><span class="line"><span class="comment"># lsmod | grep bbr</span></span><br><span class="line">tcp_bbr                20480  7</span><br></pre></td></tr></table></figure>
 <p>首次安装完成如果无法连接成功，请尝试检测服务器防火墙是否没有新增规则，导致端口在外网无法访问。检测方法请使用<a href="http://tool.chinaz.com/port" target="_blank" rel="noopener">站长工具&gt;端口扫描</a>。<br>如果查询出在外网无法访问当前的服务器端口，请在服务器的防火墙中添加规则，开启特殊端口访问。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 查看防火墙规则</span></span><br><span class="line"><span class="comment"># firewall-cmd --list-all</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 查询端口是否开放</span></span><br><span class="line"><span class="comment"># firewall-cmd --query-port=80/tcp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 开放80端口</span></span><br><span class="line"><span class="comment"># firewall-cmd --permanent --add-port=80/tcp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 移除端口</span></span><br><span class="line"><span class="comment"># firewall-cmd --permanent --remove-port=80/tcp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 重启防火墙(修改配置后要重启防火墙)</span></span><br><span class="line"><span class="comment"># firewall-cmd --reload</span></span><br></pre></td></tr></table></figure></p>
@@ -102,7 +102,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/19/VPS搭建SSR-BBR/" data-id="ck7yceip8000jp23m94778sc8" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/19/VPS搭建SSR-BBR/" data-id="ck806j9mx000hys3m5n4rijas" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/VPS/">VPS</a></li></ul>
@@ -154,7 +154,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 12.5px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 15px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 15px;">通用</a>
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 13.33px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 13.33px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 13.33px;">通用</a>
     </div>
   </div>
 
@@ -176,6 +176,10 @@
       <ul>
         
           <li>
+            <a href="/Blog/2020/03/20/ssh命令无法连接主机/">ssh命令无法连接主机</a>
+          </li>
+        
+          <li>
             <a href="/Blog/2020/03/19/Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/">Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</a>
           </li>
         
@@ -189,10 +193,6 @@
         
           <li>
             <a href="/Blog/2020/03/15/Vue-CLI安装报错/">Vue CLI安装报错</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/2020/02/19/iOS创建Framwork工程步骤/">iOS创建Framwork工程步骤</a>
           </li>
         
       </ul>

@@ -5,15 +5,23 @@
   
 
   
-  <title>Tag: VPS | Stay hungry, Stay foolish.</title>
+  <title>ssh命令无法连接主机 | Stay hungry, Stay foolish.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Stay hungry, Stay foolish.">
-<meta property="og:url" content="https://github.com/DavidWanderer/Blog/tags/VPS/index.html">
+  <meta name="description" content="使用ssh命令远程连接主机出现问题，问题描述如下: 1234567891011121314Hu-YupingdeMacBook-Pro:~ kris$ ssh root@192.3.249.179@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    WARNING: REMOTE HOST IDENTIFICATION HA">
+<meta name="keywords" content="VPS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ssh命令无法连接主机">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/2020/03/20/ssh命令无法连接主机/index.html">
 <meta property="og:site_name" content="Stay hungry, Stay foolish.">
+<meta property="og:description" content="使用ssh命令远程连接主机出现问题，问题描述如下: 1234567891011121314Hu-YupingdeMacBook-Pro:~ kris$ ssh root@192.3.249.179@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    WARNING: REMOTE HOST IDENTIFICATION HA">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://github.com/Blog/2020/03/20/ssh命令无法连接主机/1.png">
+<meta property="og:image" content="https://github.com/Blog/2020/03/20/ssh命令无法连接主机/2.png">
+<meta property="og:updated_time" content="2020-03-20T12:43:46.055Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Stay hungry, Stay foolish.">
+<meta name="twitter:title" content="ssh命令无法连接主机">
+<meta name="twitter:description" content="使用ssh命令远程连接主机出现问题，问题描述如下: 1234567891011121314Hu-YupingdeMacBook-Pro:~ kris$ ssh root@192.3.249.179@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    WARNING: REMOTE HOST IDENTIFICATION HA">
+<meta name="twitter:image" content="https://github.com/Blog/2020/03/20/ssh命令无法连接主机/1.png">
   
     <link rel="alternate" href="/Blog/atom.xml" title="Stay hungry, Stay foolish." type="application/atom+xml">
   
@@ -60,88 +68,63 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Blog/2020/03/20/ssh命令无法连接主机/" class="archive-article-date">
-  <time datetime="2020-03-20T12:36:48.000Z" itemprop="datePublished">Mar 20</time>
+        <section id="main"><article id="post-ssh命令无法连接主机" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2020/03/20/ssh命令无法连接主机/" class="article-date">
+  <time datetime="2020-03-20T12:36:48.000Z" itemprop="datePublished">2020-03-20</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog/2020/03/20/ssh命令无法连接主机/">ssh命令无法连接主机</a>
+    <h1 class="article-title" itemprop="name">
+      ssh命令无法连接主机
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Blog/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Blog/2019/11/19/VPS搭建SSR-BBR/" class="archive-article-date">
-  <time datetime="2019-11-19T14:36:59.000Z" itemprop="datePublished">Nov 19</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog/2019/11/19/VPS搭建SSR-BBR/">VPS搭建SSR+BBR</a>
-    </h1>
-  
+        <p>使用ssh命令远程连接主机出现问题，问题描述如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:~ kris$ ssh root@192.3.249.179</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!</span><br><span class="line">Someone could be eavesdropping on you right now (man-in-the-middle attack)!</span><br><span class="line">It is also possible that a host key has just been changed.</span><br><span class="line">The fingerprint <span class="keyword">for</span> the ECDSA key sent by the remote host is</span><br><span class="line">SHA256:dVUw64aj0m2JBl62oUMeoJzpZMjCqtL24CQMjTDVvsc.</span><br><span class="line">Please contact your system administrator.</span><br><span class="line">Add correct host key <span class="keyword">in</span> /Users/kris/.ssh/known_hosts to get rid of this message.</span><br><span class="line">Offending ECDSA key <span class="keyword">in</span> /Users/kris/.ssh/known_hosts:13</span><br><span class="line">ECDSA host key <span class="keyword">for</span> 192.3.249.179 has changed and you have requested strict checking.</span><br><span class="line">Host key verification failed.</span><br></pre></td></tr></table></figure>
+<p>解决办法:</p>
+<p>1.编辑配置文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim ~/.ssh/known_hosts</span><br></pre></td></tr></table></figure>
+<p>2.删除对应的host key。</p>
+<img src="/Blog/2020/03/20/ssh命令无法连接主机/1.png" title="删除sshKey截图">
+<p>3.再次使用ssh命令连接远程主机，发现可以正常连接。</p>
+<img src="/Blog/2020/03/20/ssh命令无法连接主机/2.png" title="远程连接主机命令截图">
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://blog.csdn.net/wd2014610/article/details/79945424" target="_blank" rel="noopener">Mac和Linux远程连接服务器异常修复（WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!）</a></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Blog/2019/11/17/VPS使用心得/" class="archive-article-date">
-  <time datetime="2019-11-17T11:47:16.000Z" itemprop="datePublished">Nov 17</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog/2019/11/17/VPS使用心得/">VPS使用心得</a>
-    </h1>
-  
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/20/ssh命令无法连接主机/" data-id="ck806j9n2000rys3myrf095mo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/VPS/">VPS</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/Blog/2020/03/19/Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         
