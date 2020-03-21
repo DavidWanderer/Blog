@@ -62,6 +62,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Ruby相关命令收集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2019/12/12/Ruby相关命令收集/" class="article-date">
+  <time datetime="2019-12-12T10:59:40.000Z" itemprop="datePublished">2019-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog/2019/12/12/Ruby相关命令收集/">Ruby相关命令收集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>RVM是一个命令行工具，它能帮你安装多个版本的Ruby，并切换不同的版本。</p>
+<h2 id="安装RVM步骤"><a href="#安装RVM步骤" class="headerlink" title="安装RVM步骤"></a>安装RVM步骤</h2><p>1.安装rvm<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3</span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable</span><br><span class="line"><span class="comment"># 如果上面的连接失败，可以尝试: </span></span><br><span class="line">$ curl -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable</span><br></pre></td></tr></table></figure></p>
+<p>2.载入rvm环境(新开Terminal,会自动重新载入)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm</span><br></pre></td></tr></table></figure></p>
+<p>3.修改rvm下载的Ruby源，到RubyChina的镜像:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"ruby_url=https://cache.ruby-china.com/pub/ruby"</span> &gt; ~/.rvm/user/db</span><br></pre></td></tr></table></figure></p>
+<p>4.检查rvm是否安装正确<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ rvm -v</span><br><span class="line">rvm 1.22.17 (stable) by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; [https://rvm.io/]</span><br></pre></td></tr></table></figure></p>
+<h2 id="RVM常用指令"><a href="#RVM常用指令" class="headerlink" title="RVM常用指令"></a>RVM常用指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v <span class="comment"># 查看ruby 版本</span></span><br><span class="line">$ rvm list known <span class="comment"># 列出已知的 ruby 版本</span></span><br><span class="line">$ rvm install 2.3.0 <span class="comment"># 选择指定 ruby 版本进行更新</span></span><br><span class="line">$ rvm get stable <span class="comment"># 更新 rvm</span></span><br><span class="line">$ rvm use 2.2.2 <span class="comment"># 切换到指定 ruby 版本</span></span><br><span class="line">$ rvm use 2.2.2 --default <span class="comment"># 设置指定 ruby 版本为默认版本</span></span><br><span class="line">$ rvm list <span class="comment"># 查询已安装的 ruby 版本</span></span><br><span class="line">$ rvm remove 1.9.2 <span class="comment"># 卸载移除 指定 ruby 版本</span></span><br><span class="line"></span><br><span class="line">$ curl -L https://get.rvm.io | bash -s stable <span class="comment"># 安装 rvm 环境</span></span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby <span class="comment"># 默认安装 rvm 最新版本</span></span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3.0 <span class="comment"># 安装 rvm 指定版本</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm <span class="comment"># 载入 rvm</span></span><br></pre></td></tr></table></figure>
+<h2 id="Gem常用指令"><a href="#Gem常用指令" class="headerlink" title="Gem常用指令"></a>Gem常用指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">$ gem -v <span class="comment"># 查看 gem 版本</span></span><br><span class="line">$ gem <span class="built_in">source</span> <span class="comment"># 查看 gem 配置源</span></span><br><span class="line">$ gem <span class="built_in">source</span> -l <span class="comment"># 查看 gem 配置源目录</span></span><br><span class="line">$ gem sources -a url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --add url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources -r url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --remove url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem update <span class="comment"># 更新 所有包</span></span><br><span class="line">$ gem update --system <span class="comment"># 更新 Ruby Gems 软件</span></span><br><span class="line"></span><br><span class="line">$ gem install rake <span class="comment"># 安装 rake，从本地或远程服务器</span></span><br><span class="line">$ gem install rake --remote <span class="comment"># 安装 rake，从远程服务器</span></span><br><span class="line">$ gem install watir -v 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem install watir --version 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem uninstall rake <span class="comment"># 卸载 rake 包</span></span><br><span class="line">$ gem list d <span class="comment"># 列出 本地以 d 打头的包</span></span><br><span class="line">$ gem query -n <span class="string">''</span>[0-9]<span class="string">''</span> --<span class="built_in">local</span> <span class="comment"># 查找 本地含有数字的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --both <span class="comment"># 查找 从本地和远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --remoter <span class="comment"># 查找 只从远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search -r <span class="built_in">log</span> <span class="comment"># 查找 只从远程服务器上查找含有log字符串的包</span></span><br><span class="line"></span><br><span class="line">$ gem <span class="built_in">help</span> <span class="comment"># 提醒式的帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> install <span class="comment"># 列出 install 命令 帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> examples <span class="comment"># 列出 gem 命令使用一些例子</span></span><br><span class="line">$ gem build rake.gemspec <span class="comment"># 把 rake.gemspec 编译成 rake.gem</span></span><br><span class="line">$ gem check -v pkg/rake-0.4.0.gem <span class="comment"># 检测 rake 是否有效</span></span><br><span class="line">$ gem cleanup <span class="comment"># 清除 所有包旧版本，保留最新版本</span></span><br><span class="line">$ gem contents rake <span class="comment"># 显示 rake 包中所包含的文件</span></span><br><span class="line">$ gem dependency rails -v 0.10.1 <span class="comment"># 列出 与 rails 相互依赖的包</span></span><br><span class="line">$ gem environment <span class="comment"># 查看 gem 的环境</span></span><br><span class="line"></span><br><span class="line">$ sudo gem -v <span class="comment"># 查看 gem 版本（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoa pods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods --pre <span class="comment"># 安装 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods -v 1.4.0 <span class="comment"># 安装 CocoaPods 指定版本（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods <span class="comment"># 更新 CocoaPods 至最新版（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods --pre <span class="comment"># 更新 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem uninstall cocoapods -v 1.4.0 <span class="comment"># 移除 CocoaPods 指定版本（以管理员权限）</span></span><br></pre></td></tr></table></figure>
+<p>如果命令无法修改Gem源，可以手动修改Gem源，Gem的配置文件位置在<code>~/.gemrc</code>，编辑<code>~/.gemrc</code>文件，在:sources:配置行下添加<code>https://gems.ruby-china.com/</code>，这样就配置了ruby-china的Gem源。最终的配置文件如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">:backtrace: <span class="literal">false</span></span><br><span class="line">:bulk_threshold: 1000</span><br><span class="line">:sources:</span><br><span class="line">- https://gems.ruby-china.com</span><br><span class="line">:update_sources: <span class="literal">true</span></span><br><span class="line">:verbose: <span class="literal">true</span></span><br><span class="line">:ssl_verify_mode: 0</span><br><span class="line">concurrent_downloads: 8</span><br></pre></td></tr></table></figure></p>
+<p>mac系统升级到Catalina时，使用cocoa pod时报错：-bash: /usr/local/bin/pod: /<br>System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/bin/ruby: bad interpreter: No such file or directory”. </p>
+<p>解决方案：<code>sudo gem install -n /usr/local/bin cocoapods -v 1.4.0</code></p>
+<h2 id="Fastlane安装步骤"><a href="#Fastlane安装步骤" class="headerlink" title="Fastlane安装步骤"></a>Fastlane安装步骤</h2><p>指定版本安装fastlane<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">set</span> -ex</span><br><span class="line">$ gem uninstall fastlane --all --executables</span><br><span class="line">$ gem install fastlane --version 2.28.3 --no-document</span><br></pre></td></tr></table></figure></p>
+<p>mac系统升级到Catalina时，安装Fastlane会报错，请尝试:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">set</span> -ex</span><br><span class="line">$ gem uninstall -n /usr/<span class="built_in">local</span>/bin fastlane --all --executables</span><br><span class="line">$ gem install -n /usr/<span class="built_in">local</span>/bin fastlane --version 2.28.3 --no-document</span><br></pre></td></tr></table></figure></p>
+<p>如果尝试多次仍然无法安装Fastlane，可以尝试:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#brew cask安装fastlane的执行命令:</span></span><br><span class="line">$ brew cask uninstall fastlane</span><br><span class="line">$ brew cask install fastlane</span><br></pre></td></tr></table></figure></p>
+<h2 id="将homebrew的源换成阿里云，提高下载速度"><a href="#将homebrew的源换成阿里云，提高下载速度" class="headerlink" title="将homebrew的源换成阿里云，提高下载速度"></a>将homebrew的源换成阿里云，提高下载速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.替换brew.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/brew.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.替换homebrew-core.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core"</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.替换homebrew-cask.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span>/Library/Taps/homebrew/homebrew-cask</span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.替换homebrew-bottles:</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles'</span> &gt;&gt; ~/.zshrc</span><br><span class="line">$ <span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+<h2 id="给Git添加代理访问，提高Git的访问速度"><a href="#给Git添加代理访问，提高Git的访问速度" class="headerlink" title="给Git添加代理访问，提高Git的访问速度"></a>给Git添加代理访问，提高Git的访问速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.编辑PAC用户自定义规则,添加以下地址:</span></span><br><span class="line">github.com</span><br><span class="line">githubusercontent.com</span><br><span class="line">githubassets.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.编辑~/.ssh/config文件，在文件中添加以下命令:</span></span><br><span class="line">Host github.com</span><br><span class="line">   HostName github.com</span><br><span class="line">   User git</span><br><span class="line">   ProxyCommand nc -v -x 127.0.0.1:1086 %h %p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.让配置立即生效:</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.ssh/config</span><br></pre></td></tr></table></figure>
+<h2 id="给终端添加代理访问"><a href="#给终端添加代理访问" class="headerlink" title="给终端添加代理访问"></a>给终端添加代理访问</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.编辑～/.bash_profile文件</span></span><br><span class="line">$ vim ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.在配置文件中加入如下内容，并保存</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:1087</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:1087</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.让配置立即生效</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.测试代理是否成功</span></span><br><span class="line">$ curl cip.cc</span><br><span class="line">IP	: 192.3.249.219</span><br><span class="line">地址	: 美国  华盛顿州  西雅图</span><br><span class="line">运营商	: colocrossing.com</span><br><span class="line"></span><br><span class="line">数据二	: 美国</span><br><span class="line"></span><br><span class="line">数据三	: 美国华盛顿西雅图</span><br><span class="line"></span><br><span class="line">URL	: http://www.cip.cc/192.3.249.219</span><br></pre></td></tr></table></figure>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://ruby-china.org/wiki/install_ruby_guide" target="_blank" rel="noopener">安装配置RVM环境</a><br><a href="https://stackoverflow.com/questions/20487849/how-to-downgrade-or-install-an-older-version-of-cocoapods" target="_blank" rel="noopener">安装指定版本的cocoapods</a><br><a href="https://gist.github.com/neekey/4601713" target="_blank" rel="noopener">手动安装RVM</a><br><a href="https://www.raydbg.com/2019/Homebrew-Update-Slow/" target="_blank" rel="noopener">解决Homebrew下载更新极慢的问题</a><br><a href="http://skx926.me/2019/01/23/mac-proxy/" target="_blank" rel="noopener">Mac上的各种代理设置</a><br><a href="https://www.jianshu.com/p/c44ef74d99f9" target="_blank" rel="noopener">Mac安装Ruby版本管理器RVM</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/12/12/Ruby相关命令收集/" data-id="ck819ywht000dgu3mrr3z2lqb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Ruby/">Ruby</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-VPS搭建SSR-BBR" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/Blog/2019/11/19/VPS搭建SSR-BBR/" class="article-date">
@@ -99,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/19/VPS搭建SSR-BBR/" data-id="ck806j9mx000hys3m5n4rijas" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/19/VPS搭建SSR-BBR/" data-id="ck819ywhv000hgu3mfb5edr6c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/VPS/">VPS</a></li></ul>
@@ -154,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/17/VPS使用心得/" data-id="ck806j9mv000dys3mkpxj9z2j" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/17/VPS使用心得/" data-id="ck819ywhu000fgu3mx3jnvxj5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/VPS/">VPS</a></li></ul>
@@ -198,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/07/iOS使用SVG和PDF图片/" data-id="ck806j9n0000mys3mzv3oht43" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/11/07/iOS使用SVG和PDF图片/" data-id="ck819ywhy000mgu3myoucz7lj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
@@ -275,7 +330,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/08/24/Linux下安装FTP/" data-id="ck806j9m90001ys3m3rjk36ed" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/08/24/Linux下安装FTP/" data-id="ck819ywhk0005gu3m9qzf6f9r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/FTP/">FTP</a></li></ul>
@@ -346,7 +401,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/08/24/Git服务器搭建/" data-id="ck806j9m30000ys3m5z8zl2gb" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/08/24/Git服务器搭建/" data-id="ck819ywh60000gu3mfjby4itc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Git/">Git</a></li></ul>
@@ -410,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/07/07/MySQL基本命令/" data-id="ck806j9mj0005ys3m3uz1c5dx" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/07/07/MySQL基本命令/" data-id="ck819ywhe0003gu3mwbakqd7j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li></ul>
@@ -504,7 +559,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/06/15/有趣的网址/" data-id="ck806j9n5000wys3m79lke59d" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/06/15/有趣的网址/" data-id="ck819ywi5000ygu3m0i84rc6u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
@@ -571,7 +626,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/27/Python学习笔记-Python3编码/" data-id="ck806j9mo0008ys3mrsig91kb" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/27/Python学习笔记-Python3编码/" data-id="ck819ywhq0009gu3mm389uo2t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -694,65 +749,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/02/Python学习笔记-对象和类/" data-id="ck806j9nl001gys3mow8ql4h5" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/02/Python学习笔记-对象和类/" data-id="ck819ywip001jgu3mtnyj66n8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-KVO本质分析" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2019/03/31/KVO本质分析/" class="article-date">
-  <time datetime="2019-03-31T06:58:49.000Z" itemprop="datePublished">2019-03-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2019/03/31/KVO本质分析/">KVO本质分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
-<li>iOS中如何实现对一个对象的KVO？(KVO的本质是什么？)<br>答: 当给一个对象添加KVO监听之后，iOS系统会修改这个对象的isa指针，将这个指针指向Runtime动态创建的这个对象的子类。子类拥有自己的set方法的实现，set方法内部会顺序调用willChangeValueForKey方法、父类的set方法、didChangeValueForKey方法，这样会触发observeValueForKeyPath:ofObject:change:context:监听方法。</li>
-<li>如何手动触发KVO？<br>答: 被监听的属性值被修改时，就会触发KVO。如果想要手动触发KVO，则需要我们手动同时调用willChangeValueForKey方法和didChangeValueForKey方法，这两个方法缺一不可。</li>
-<li>KVO执行的条件？<br>答: 对象添加观察者(addObserver:forKeyPath:)、修改对象被监听的属性、对象在dealloc方法中移除观察者。</li>
-</ul>
-<p><a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/Articles/KVOImplementation.html#//apple_ref/doc/uid/20002307-BAJEAIEE" target="_blank" rel="noopener">官方文档</a>:</p>
-<h2 id="Key-Value-Observing-Implementation-Details"><a href="#Key-Value-Observing-Implementation-Details" class="headerlink" title="Key-Value Observing Implementation Details"></a>Key-Value Observing Implementation Details</h2><p>Automatic key-value observing is implemented using a technique called isa-swizzling.</p>
-<p>The isa pointer, as the name suggests, points to the object’s class which maintains a dispatch table. This dispatch table essentially contains pointers to the methods the class implements, among other data.</p>
-<p>When an observer is registered for an attribute of an object the isa pointer of the observed object is modified, pointing to an intermediate class rather than at the true class. As a result the value of the isa pointer does not necessarily reflect the actual class of the instance.</p>
-<p>You should never rely on the isa pointer to determine class membership. Instead, you should use the class method to determine the class of an object instance.<br>大致意思是：KVO使用isa-swizzling技术实现，对象添加观察者之后，isa指针会指向一个临时的类，不能依赖isa的值来判断类的关系，应该使用class方法来判断实例对象真实的类。<br>接下来使用代码来验证KVO的执行过程：<br>Person.h (Person.m中什么也没有)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line"></span><br><span class="line">NS_ASSUME_NONNULL_BEGIN</span><br><span class="line"></span><br><span class="line">@interface Person : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, assign) int age;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">NS_ASSUME_NONNULL_END</span><br></pre></td></tr></table></figure></p>
-<p>ViewController.m (ViewController.h中什么也没有)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &lt;objc/runtime.h&gt;</span><br><span class="line">#import &quot;Person.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">@property (nonatomic, strong) Person *p1;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">    // 移除观察者</span><br><span class="line">    [self.p1 removeObserver:self forKeyPath:@&quot;age&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    // Do any additional setup after loading the view, typically from a nib.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    </span><br><span class="line">    Person *p1 = [[Person alloc] init];</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    self.p1 = p1;</span><br><span class="line">    // 打印p1对象所属类的内部方法列表</span><br><span class="line">    NSLog(@&quot;p1 class = %@&quot;, [p1 class]);</span><br><span class="line">    </span><br><span class="line">    // 添加观察者</span><br><span class="line">    [p1 addObserver:self forKeyPath:@&quot;age&quot; options:NSKeyValueObservingOptionNew context:nil];</span><br><span class="line">    </span><br><span class="line">    // 打印p1对象所属类的内部方法列表</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    NSLog(@&quot;p1 class = %@&quot;, [p1 class]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/** 打印类中所有的方法  */</span><br><span class="line">- (void) printMethods:(Class)cls</span><br><span class="line">&#123;</span><br><span class="line">    unsigned int count ;</span><br><span class="line">    Method *methods = class_copyMethodList(cls, &amp;count);</span><br><span class="line">    NSMutableString *methodNames = [NSMutableString string];</span><br><span class="line">    [methodNames appendFormat:@&quot;%@ - &quot;, cls];</span><br><span class="line">    </span><br><span class="line">    for (int i = 0 ; i &lt; count; i++) &#123;</span><br><span class="line">        Method method = methods[i];</span><br><span class="line">        NSString *methodName  = NSStringFromSelector(method_getName(method));</span><br><span class="line">        </span><br><span class="line">        [methodNames appendString: methodName];</span><br><span class="line">        [methodNames appendString:@&quot; &quot;];</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;%@&quot;,methodNames);</span><br><span class="line">    free(methods);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary&lt;NSKeyValueChangeKey,id&gt; *)change context:(void *)context &#123;</span><br><span class="line">    NSLog(@&quot;执行了监听方法:%@&quot;, change);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
-<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2019-03-31 19:06:48.896565+0800 KVO测试Demo[29498:3594134] Person - setAge: age</span><br><span class="line">2019-03-31 19:06:48.897033+0800 KVO测试Demo[29498:3594134] p1 class = Person</span><br><span class="line">2019-03-31 19:06:48.897503+0800 KVO测试Demo[29498:3594134] NSKVONotifying_Person - setAge: class dealloc _isKVOA</span><br><span class="line">2019-03-31 19:06:48.897638+0800 KVO测试Demo[29498:3594134] p1 class = Person</span><br></pre></td></tr></table></figure></p>
-<p>由此可见，对象p1添加观察者之后，p1的所属类由原来的Person类变成了NSKVONotifying_Person类，原来的Person类内部只实现了setAge:方法和age方法，新类NSKVONotifying_Person中有setAge:、class、dealloc、_isKVOA方法。经过分析判断，NSKVONotifying_Person是Person的子类，它重写了父类的setAge:和class方法，使NSKVONotifying_Person的class方法的返回值也是Person,隐藏了内部的实现。</p>
-<h2 id="如何手动触发KVO？"><a href="#如何手动触发KVO？" class="headerlink" title="如何手动触发KVO？"></a>如何手动触发KVO？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    </span><br><span class="line">    Person *p1 = [[Person alloc] init];</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    self.p1 = p1;</span><br><span class="line">    // 打印p1对象所属类的内部方法列表</span><br><span class="line">    NSLog(@&quot;p1 class = %@&quot;, [p1 class]);</span><br><span class="line">    </span><br><span class="line">    // 添加观察者</span><br><span class="line">    [p1 addObserver:self forKeyPath:@&quot;age&quot; options:NSKeyValueObservingOptionNew context:nil];</span><br><span class="line">    </span><br><span class="line">    // 打印p1对象所属类的内部方法列表</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    NSLog(@&quot;p1 class = %@&quot;, [p1 class]);</span><br><span class="line">    </span><br><span class="line">    // 手动触发KVO</span><br><span class="line">    [p1 willChangeValueForKey:@&quot;age&quot;];</span><br><span class="line">    [p1 didChangeValueForKey:@&quot;age&quot;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2019-03-31 19:37:41.217175+0800 KVO测试Demo[29990:3611620] Person - setAge: age</span><br><span class="line">2019-03-31 19:37:41.217409+0800 KVO测试Demo[29990:3611620] p1 class = Person</span><br><span class="line">2019-03-31 19:37:41.217999+0800 KVO测试Demo[29990:3611620] NSKVONotifying_Person - setAge: class dealloc _isKVOA</span><br><span class="line">2019-03-31 19:37:41.218145+0800 KVO测试Demo[29990:3611620] p1 class = Person</span><br><span class="line">2019-03-31 19:37:41.218488+0800 KVO测试Demo[29990:3611620] 执行了监听方法:&#123;</span><br><span class="line">    kind = 1;</span><br><span class="line">    new = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如何关闭自动KVO？<br>Person.m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Person.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation Person</span><br><span class="line"></span><br><span class="line">+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key &#123;</span><br><span class="line">    if ([key isEqualToString:@&quot;age&quot;]) &#123;</span><br><span class="line">        return NO;</span><br><span class="line">    &#125;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
-<p>当返回值为NO的时候，即使改变p1的值也无法触发KVO，此时要想触发KVO只有手动模式，手动调用willChangeValueForKey和didChangeValueForKey。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/31/KVO本质分析/" data-id="ck806j9md0003ys3m615o8ejn" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
 
     </footer>
   </div>
@@ -789,7 +789,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 13.33px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 13.33px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 13.33px;">通用</a>
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 13.33px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 16.67px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 13.33px;">通用</a>
     </div>
   </div>
 
@@ -811,6 +811,10 @@
       <ul>
         
           <li>
+            <a href="/Blog/2020/03/21/使用vue-cli创建项目/">使用vue-cli创建项目</a>
+          </li>
+        
+          <li>
             <a href="/Blog/2020/03/20/ssh命令无法连接主机/">ssh命令无法连接主机</a>
           </li>
         
@@ -824,10 +828,6 @@
         
           <li>
             <a href="/Blog/2020/03/15/MAC破解WiFi/">MAC破解WiFi</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/2020/03/15/Vue-CLI安装报错/">Vue CLI安装报错</a>
           </li>
         
       </ul>
