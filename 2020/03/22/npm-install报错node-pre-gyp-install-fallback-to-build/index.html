@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>npm install报错node-pre-gyp install --fallback-to-build | Stay hungry, Stay foolish.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="npm install安装报错，报错信息如下: 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768Hu-YupingdeMacBook-Pro:server kris$ npm installnp">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="npm install报错node-pre-gyp install --fallback-to-build">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/2020/03/22/npm-install报错node-pre-gyp-install-fallback-to-build/index.html">
+<meta property="og:site_name" content="Stay hungry, Stay foolish.">
+<meta property="og:description" content="npm install安装报错，报错信息如下: 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768Hu-YupingdeMacBook-Pro:server kris$ npm installnp">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-03-22T09:48:58.737Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="npm install报错node-pre-gyp install --fallback-to-build">
+<meta name="twitter:description" content="npm install安装报错，报错信息如下: 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768Hu-YupingdeMacBook-Pro:server kris$ npm installnp">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Stay hungry, Stay foolish." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Stay hungry, Stay foolish.</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/DavidWanderer/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-npm-install报错node-pre-gyp-install-fallback-to-build" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2020/03/22/npm-install报错node-pre-gyp-install-fallback-to-build/" class="article-date">
+  <time datetime="2020-03-22T09:38:36.000Z" itemprop="datePublished">2020-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      npm install报错node-pre-gyp install --fallback-to-build
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>npm install</code>安装报错，报错信息如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:server kris$ npm install</span><br><span class="line">npm WARN deprecated mkdirp@0.5.1: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises <span class="keyword">in</span> 1.x.)</span><br><span class="line">npm WARN deprecated bcrypt@1.0.3: bcrypt &lt; v2.0.0 is susceptible to bcrypt wrap-around bug. Upgrade to bcrypt &gt;= v2.0.0 <span class="keyword">for</span> improved support <span class="keyword">for</span> newer bcrypt hashes</span><br><span class="line">npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142</span><br><span class="line"></span><br><span class="line">&gt; bcrypt@1.0.3 install /Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt</span><br><span class="line">&gt; node-pre-gyp install --fallback-to-build</span><br><span class="line"></span><br><span class="line">node-pre-gyp ERR! Tried to download(404): https://github.com/kelektiv/node.bcrypt.js/releases/download/v1.0.3/bcrypt_lib-v1.0.3-node-v64-darwin-x64.tar.gz </span><br><span class="line">node-pre-gyp ERR! Pre-built binaries not found <span class="keyword">for</span> bcrypt@1.0.3 and node@10.15.3 (node-v64 ABI) (falling back to <span class="built_in">source</span> compile with node-gyp) </span><br><span class="line">node-pre-gyp ERR! Tried to download(undefined): https://github.com/kelektiv/node.bcrypt.js/releases/download/v1.0.3/bcrypt_lib-v1.0.3-node-v64-darwin-x64.tar.gz </span><br><span class="line">node-pre-gyp ERR! Pre-built binaries not found <span class="keyword">for</span> bcrypt@1.0.3 and node@10.15.3 (node-v64 ABI) (falling back to <span class="built_in">source</span> compile with node-gyp) </span><br><span class="line">  CXX(target) Release/obj.target/bcrypt_lib/src/blowfish.o</span><br><span class="line">  CXX(target) Release/obj.target/bcrypt_lib/src/blowfish.o</span><br><span class="line">sed: ./Release/.deps/Release/obj.target/bcrypt_lib/src/blowfish.o.d.raw: No such file or directory</span><br><span class="line">  CXX(target) Release/obj.target/bcrypt_lib/src/bcrypt.o</span><br><span class="line">rm: ./Release/.deps/Release/obj.target/bcrypt_lib/src/blowfish.o.d.raw: No such file or directory</span><br><span class="line">make: *** [Release/obj.target/bcrypt_lib/src/blowfish.o] Error 1</span><br><span class="line">gyp ERR! build error </span><br><span class="line">gyp ERR! stack Error: `make` failed with <span class="built_in">exit</span> code: 2</span><br><span class="line">gyp ERR! stack     at ChildProcess.onExit (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:262:23)</span><br><span class="line">gyp ERR! stack     at ChildProcess.emit (events.js:189:13)</span><br><span class="line">gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:248:12)</span><br><span class="line">gyp ERR! System Darwin 18.6.0</span><br><span class="line">gyp ERR! <span class="built_in">command</span> <span class="string">"/usr/local/bin/node"</span> <span class="string">"/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js"</span> <span class="string">"build"</span> <span class="string">"--fallback-to-build"</span> <span class="string">"--module=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding/bcrypt_lib.node"</span> <span class="string">"--module_name=bcrypt_lib"</span> <span class="string">"--module_path=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding"</span></span><br><span class="line">gyp ERR! cwd /Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt</span><br><span class="line">gyp ERR! node -v v10.15.3</span><br><span class="line">gyp ERR! node-gyp -v v3.8.0</span><br><span class="line">gyp ERR! not ok </span><br><span class="line">node-pre-gyp ERR! build error </span><br><span class="line">node-pre-gyp ERR! stack Error: Failed to execute <span class="string">'/usr/local/bin/node /usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build --fallback-to-build --module=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding/bcrypt_lib.node --module_name=bcrypt_lib --module_path=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding'</span> (1)</span><br><span class="line">node-pre-gyp ERR! stack     at ChildProcess.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter5/server/node_modules/node-pre-gyp/lib/util/compile.js:83:29)</span><br><span class="line">node-pre-gyp ERR! stack     at ChildProcess.emit (events.js:189:13)</span><br><span class="line">node-pre-gyp ERR! stack     at maybeClose (internal/child_process.js:970:16)</span><br><span class="line">node-pre-gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:259:5)</span><br><span class="line">node-pre-gyp ERR! System Darwin 18.6.0</span><br><span class="line">node-pre-gyp ERR! <span class="built_in">command</span> <span class="string">"/usr/local/bin/node"</span> <span class="string">"/Users/kris/Documents/VueDemo/chapter5/server/node_modules/.bin/node-pre-gyp"</span> <span class="string">"install"</span> <span class="string">"--fallback-to-build"</span></span><br><span class="line">node-pre-gyp ERR! cwd /Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt</span><br><span class="line">node-pre-gyp ERR! node -v v10.15.3</span><br><span class="line">node-pre-gyp ERR! node-pre-gyp -v v0.6.36</span><br><span class="line">node-pre-gyp ERR! not ok </span><br><span class="line">Failed to execute <span class="string">'/usr/local/bin/node /usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build --fallback-to-build --module=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding/bcrypt_lib.node --module_name=bcrypt_lib --module_path=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding'</span> (1)</span><br><span class="line">shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory</span><br><span class="line">/bin/sh: ./Release/.deps/Release/obj.target/bcrypt_lib/src/bcrypt.o.d: No such file or directory</span><br><span class="line">make: *** [Release/obj.target/bcrypt_lib/src/bcrypt.o] Error 1</span><br><span class="line">gyp ERR! build error </span><br><span class="line">gyp ERR! stack Error: `make` failed with <span class="built_in">exit</span> code: 2</span><br><span class="line">gyp ERR! stack     at ChildProcess.onExit (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:262:23)</span><br><span class="line">gyp ERR! stack     at ChildProcess.emit (events.js:189:13)</span><br><span class="line">gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:248:12)</span><br><span class="line">gyp ERR! System Darwin 18.6.0</span><br><span class="line">gyp ERR! <span class="built_in">command</span> <span class="string">"/usr/local/bin/node"</span> <span class="string">"/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js"</span> <span class="string">"build"</span> <span class="string">"--fallback-to-build"</span> <span class="string">"--module=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding/bcrypt_lib.node"</span> <span class="string">"--module_name=bcrypt_lib"</span> <span class="string">"--module_path=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding"</span></span><br><span class="line">gyp ERR! cwd /Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt</span><br><span class="line">gyp ERR! node -v v10.15.3</span><br><span class="line">gyp ERR! node-gyp -v v3.8.0</span><br><span class="line">gyp ERR! not ok </span><br><span class="line">npm WARN support-center-server@1.0.0 No repository field.</span><br><span class="line"></span><br><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno 1</span><br><span class="line">npm ERR! bcrypt@1.0.3 install: `node-pre-gyp install --fallback-to-build`</span><br><span class="line">npm ERR! Exit status 1</span><br><span class="line">npm ERR! </span><br><span class="line">npm ERR! Failed at the bcrypt@1.0.3 install script.</span><br><span class="line">npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</span><br><span class="line"></span><br><span class="line">npm ERR! A complete <span class="built_in">log</span> of this run can be found <span class="keyword">in</span>:</span><br><span class="line">npm ERR!     /Users/kris/.npm/_logs/2020-03-22T09_25_45_510Z-debug.log</span><br></pre></td></tr></table></figure>
+<p>打开项目的<code>package.json</code>，删除<code>bcrypt</code>的依赖项。</p>
+<p>删除前的<code>package.json</code>的依赖项如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"babel-cli"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-preset-es2015"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-preset-stage-0"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"bcrypt"</span>: <span class="string">"^1.0.2"</span>,  &lt;-----------------------删除这行</span><br><span class="line">    <span class="string">"body-parser"</span>: <span class="string">"^1.17.2"</span>,</span><br><span class="line">    <span class="string">"cookie-parser"</span>: <span class="string">"^1.4.3"</span>,</span><br><span class="line">    <span class="string">"cors"</span>: <span class="string">"^2.8.3"</span>,</span><br><span class="line">    <span class="string">"express"</span>: <span class="string">"^4.15.3"</span>,</span><br><span class="line">    <span class="string">"express-session"</span>: <span class="string">"^1.15.3"</span>,</span><br><span class="line">    <span class="string">"nedb"</span>: <span class="string">"^1.8.0"</span>,</span><br><span class="line">    <span class="string">"nodemon"</span>: <span class="string">"^1.11.0"</span>,</span><br><span class="line">    <span class="string">"passport"</span>: <span class="string">"^0.3.2"</span>,</span><br><span class="line">    <span class="string">"passport-local"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line">    <span class="string">"uuid"</span>: <span class="string">"^3.0.1"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>删除后的<code>package.json</code>的依赖项如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"babel-cli"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-preset-es2015"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-preset-stage-0"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"body-parser"</span>: <span class="string">"^1.17.2"</span>,</span><br><span class="line">    <span class="string">"cookie-parser"</span>: <span class="string">"^1.4.3"</span>,</span><br><span class="line">    <span class="string">"cors"</span>: <span class="string">"^2.8.3"</span>,</span><br><span class="line">    <span class="string">"express"</span>: <span class="string">"^4.15.3"</span>,</span><br><span class="line">    <span class="string">"express-session"</span>: <span class="string">"^1.15.3"</span>,</span><br><span class="line">    <span class="string">"nedb"</span>: <span class="string">"^1.8.0"</span>,</span><br><span class="line">    <span class="string">"nodemon"</span>: <span class="string">"^1.11.0"</span>,</span><br><span class="line">    <span class="string">"passport"</span>: <span class="string">"^0.3.2"</span>,</span><br><span class="line">    <span class="string">"passport-local"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line">    <span class="string">"uuid"</span>: <span class="string">"^3.0.1"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>然后执行命令<code>npm i bcrypt</code>，执行完命令，<code>package.json</code>的依赖项如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"babel-cli"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-preset-es2015"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-preset-stage-0"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"bcrypt"</span>: <span class="string">"^4.0.1"</span>, &lt;--------------------- 执行命令后，新增了一行</span><br><span class="line">    <span class="string">"body-parser"</span>: <span class="string">"^1.17.2"</span>,</span><br><span class="line">    <span class="string">"cookie-parser"</span>: <span class="string">"^1.4.3"</span>,</span><br><span class="line">    <span class="string">"cors"</span>: <span class="string">"^2.8.3"</span>,</span><br><span class="line">    <span class="string">"express"</span>: <span class="string">"^4.15.3"</span>,</span><br><span class="line">    <span class="string">"express-session"</span>: <span class="string">"^1.15.3"</span>,</span><br><span class="line">    <span class="string">"nedb"</span>: <span class="string">"^1.8.0"</span>,</span><br><span class="line">    <span class="string">"nodemon"</span>: <span class="string">"^1.11.0"</span>,</span><br><span class="line">    <span class="string">"passport"</span>: <span class="string">"^0.3.2"</span>,</span><br><span class="line">    <span class="string">"passport-local"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line">    <span class="string">"uuid"</span>: <span class="string">"^3.0.1"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://github.com/kelektiv/node.bcrypt.js/issues/572">node-pre-gyp ERR! Tried to download(404): https://github.com/kelektiv/node.bcrypt.js/releases/download/v1.0.3/bcrypt_lib-v1.0.3-node-v59-linux-x64.tar.gz</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/22/npm-install报错node-pre-gyp-install-fallback-to-build/" data-id="ck82v03i3000plq3mr3mn816t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/前端/">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Blog/2020/03/21/使用vue-cli创建项目/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用vue-cli创建项目</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Ruby/">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 15px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 12.5px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 17.5px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 12.5px;">通用</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/2020/03/22/npm-install报错node-pre-gyp-install-fallback-to-build/">npm install报错node-pre-gyp install --fallback-to-build</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/03/21/使用vue-cli创建项目/">使用vue-cli创建项目</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/03/20/ssh命令无法连接主机/">ssh命令无法连接主机</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/03/19/Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/">Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/">Vue启动报错Error: Cannot find module &#39;webpack/bin/config-yargs&#39;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 WandererPoet<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+  <script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -62,6 +62,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-npm-install报错node-pre-gyp-install-fallback-to-build" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2020/03/22/npm-install报错node-pre-gyp-install-fallback-to-build/" class="article-date">
+  <time datetime="2020-03-22T09:38:36.000Z" itemprop="datePublished">2020-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog/2020/03/22/npm-install报错node-pre-gyp-install-fallback-to-build/">npm install报错node-pre-gyp install --fallback-to-build</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>npm install</code>安装报错，报错信息如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:server kris$ npm install</span><br><span class="line">npm WARN deprecated mkdirp@0.5.1: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises <span class="keyword">in</span> 1.x.)</span><br><span class="line">npm WARN deprecated bcrypt@1.0.3: bcrypt &lt; v2.0.0 is susceptible to bcrypt wrap-around bug. Upgrade to bcrypt &gt;= v2.0.0 <span class="keyword">for</span> improved support <span class="keyword">for</span> newer bcrypt hashes</span><br><span class="line">npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142</span><br><span class="line"></span><br><span class="line">&gt; bcrypt@1.0.3 install /Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt</span><br><span class="line">&gt; node-pre-gyp install --fallback-to-build</span><br><span class="line"></span><br><span class="line">node-pre-gyp ERR! Tried to download(404): https://github.com/kelektiv/node.bcrypt.js/releases/download/v1.0.3/bcrypt_lib-v1.0.3-node-v64-darwin-x64.tar.gz </span><br><span class="line">node-pre-gyp ERR! Pre-built binaries not found <span class="keyword">for</span> bcrypt@1.0.3 and node@10.15.3 (node-v64 ABI) (falling back to <span class="built_in">source</span> compile with node-gyp) </span><br><span class="line">node-pre-gyp ERR! Tried to download(undefined): https://github.com/kelektiv/node.bcrypt.js/releases/download/v1.0.3/bcrypt_lib-v1.0.3-node-v64-darwin-x64.tar.gz </span><br><span class="line">node-pre-gyp ERR! Pre-built binaries not found <span class="keyword">for</span> bcrypt@1.0.3 and node@10.15.3 (node-v64 ABI) (falling back to <span class="built_in">source</span> compile with node-gyp) </span><br><span class="line">  CXX(target) Release/obj.target/bcrypt_lib/src/blowfish.o</span><br><span class="line">  CXX(target) Release/obj.target/bcrypt_lib/src/blowfish.o</span><br><span class="line">sed: ./Release/.deps/Release/obj.target/bcrypt_lib/src/blowfish.o.d.raw: No such file or directory</span><br><span class="line">  CXX(target) Release/obj.target/bcrypt_lib/src/bcrypt.o</span><br><span class="line">rm: ./Release/.deps/Release/obj.target/bcrypt_lib/src/blowfish.o.d.raw: No such file or directory</span><br><span class="line">make: *** [Release/obj.target/bcrypt_lib/src/blowfish.o] Error 1</span><br><span class="line">gyp ERR! build error </span><br><span class="line">gyp ERR! stack Error: `make` failed with <span class="built_in">exit</span> code: 2</span><br><span class="line">gyp ERR! stack     at ChildProcess.onExit (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:262:23)</span><br><span class="line">gyp ERR! stack     at ChildProcess.emit (events.js:189:13)</span><br><span class="line">gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:248:12)</span><br><span class="line">gyp ERR! System Darwin 18.6.0</span><br><span class="line">gyp ERR! <span class="built_in">command</span> <span class="string">"/usr/local/bin/node"</span> <span class="string">"/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js"</span> <span class="string">"build"</span> <span class="string">"--fallback-to-build"</span> <span class="string">"--module=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding/bcrypt_lib.node"</span> <span class="string">"--module_name=bcrypt_lib"</span> <span class="string">"--module_path=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding"</span></span><br><span class="line">gyp ERR! cwd /Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt</span><br><span class="line">gyp ERR! node -v v10.15.3</span><br><span class="line">gyp ERR! node-gyp -v v3.8.0</span><br><span class="line">gyp ERR! not ok </span><br><span class="line">node-pre-gyp ERR! build error </span><br><span class="line">node-pre-gyp ERR! stack Error: Failed to execute <span class="string">'/usr/local/bin/node /usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build --fallback-to-build --module=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding/bcrypt_lib.node --module_name=bcrypt_lib --module_path=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding'</span> (1)</span><br><span class="line">node-pre-gyp ERR! stack     at ChildProcess.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter5/server/node_modules/node-pre-gyp/lib/util/compile.js:83:29)</span><br><span class="line">node-pre-gyp ERR! stack     at ChildProcess.emit (events.js:189:13)</span><br><span class="line">node-pre-gyp ERR! stack     at maybeClose (internal/child_process.js:970:16)</span><br><span class="line">node-pre-gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:259:5)</span><br><span class="line">node-pre-gyp ERR! System Darwin 18.6.0</span><br><span class="line">node-pre-gyp ERR! <span class="built_in">command</span> <span class="string">"/usr/local/bin/node"</span> <span class="string">"/Users/kris/Documents/VueDemo/chapter5/server/node_modules/.bin/node-pre-gyp"</span> <span class="string">"install"</span> <span class="string">"--fallback-to-build"</span></span><br><span class="line">node-pre-gyp ERR! cwd /Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt</span><br><span class="line">node-pre-gyp ERR! node -v v10.15.3</span><br><span class="line">node-pre-gyp ERR! node-pre-gyp -v v0.6.36</span><br><span class="line">node-pre-gyp ERR! not ok </span><br><span class="line">Failed to execute <span class="string">'/usr/local/bin/node /usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build --fallback-to-build --module=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding/bcrypt_lib.node --module_name=bcrypt_lib --module_path=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding'</span> (1)</span><br><span class="line">shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory</span><br><span class="line">/bin/sh: ./Release/.deps/Release/obj.target/bcrypt_lib/src/bcrypt.o.d: No such file or directory</span><br><span class="line">make: *** [Release/obj.target/bcrypt_lib/src/bcrypt.o] Error 1</span><br><span class="line">gyp ERR! build error </span><br><span class="line">gyp ERR! stack Error: `make` failed with <span class="built_in">exit</span> code: 2</span><br><span class="line">gyp ERR! stack     at ChildProcess.onExit (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:262:23)</span><br><span class="line">gyp ERR! stack     at ChildProcess.emit (events.js:189:13)</span><br><span class="line">gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:248:12)</span><br><span class="line">gyp ERR! System Darwin 18.6.0</span><br><span class="line">gyp ERR! <span class="built_in">command</span> <span class="string">"/usr/local/bin/node"</span> <span class="string">"/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js"</span> <span class="string">"build"</span> <span class="string">"--fallback-to-build"</span> <span class="string">"--module=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding/bcrypt_lib.node"</span> <span class="string">"--module_name=bcrypt_lib"</span> <span class="string">"--module_path=/Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt/lib/binding"</span></span><br><span class="line">gyp ERR! cwd /Users/kris/Documents/VueDemo/chapter5/server/node_modules/bcrypt</span><br><span class="line">gyp ERR! node -v v10.15.3</span><br><span class="line">gyp ERR! node-gyp -v v3.8.0</span><br><span class="line">gyp ERR! not ok </span><br><span class="line">npm WARN support-center-server@1.0.0 No repository field.</span><br><span class="line"></span><br><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno 1</span><br><span class="line">npm ERR! bcrypt@1.0.3 install: `node-pre-gyp install --fallback-to-build`</span><br><span class="line">npm ERR! Exit status 1</span><br><span class="line">npm ERR! </span><br><span class="line">npm ERR! Failed at the bcrypt@1.0.3 install script.</span><br><span class="line">npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</span><br><span class="line"></span><br><span class="line">npm ERR! A complete <span class="built_in">log</span> of this run can be found <span class="keyword">in</span>:</span><br><span class="line">npm ERR!     /Users/kris/.npm/_logs/2020-03-22T09_25_45_510Z-debug.log</span><br></pre></td></tr></table></figure>
+<p>打开项目的<code>package.json</code>，删除<code>bcrypt</code>的依赖项。</p>
+<p>删除前的<code>package.json</code>的依赖项如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"babel-cli"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-preset-es2015"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-preset-stage-0"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"bcrypt"</span>: <span class="string">"^1.0.2"</span>,  &lt;-----------------------删除这行</span><br><span class="line">    <span class="string">"body-parser"</span>: <span class="string">"^1.17.2"</span>,</span><br><span class="line">    <span class="string">"cookie-parser"</span>: <span class="string">"^1.4.3"</span>,</span><br><span class="line">    <span class="string">"cors"</span>: <span class="string">"^2.8.3"</span>,</span><br><span class="line">    <span class="string">"express"</span>: <span class="string">"^4.15.3"</span>,</span><br><span class="line">    <span class="string">"express-session"</span>: <span class="string">"^1.15.3"</span>,</span><br><span class="line">    <span class="string">"nedb"</span>: <span class="string">"^1.8.0"</span>,</span><br><span class="line">    <span class="string">"nodemon"</span>: <span class="string">"^1.11.0"</span>,</span><br><span class="line">    <span class="string">"passport"</span>: <span class="string">"^0.3.2"</span>,</span><br><span class="line">    <span class="string">"passport-local"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line">    <span class="string">"uuid"</span>: <span class="string">"^3.0.1"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>删除后的<code>package.json</code>的依赖项如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"babel-cli"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-preset-es2015"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-preset-stage-0"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"body-parser"</span>: <span class="string">"^1.17.2"</span>,</span><br><span class="line">    <span class="string">"cookie-parser"</span>: <span class="string">"^1.4.3"</span>,</span><br><span class="line">    <span class="string">"cors"</span>: <span class="string">"^2.8.3"</span>,</span><br><span class="line">    <span class="string">"express"</span>: <span class="string">"^4.15.3"</span>,</span><br><span class="line">    <span class="string">"express-session"</span>: <span class="string">"^1.15.3"</span>,</span><br><span class="line">    <span class="string">"nedb"</span>: <span class="string">"^1.8.0"</span>,</span><br><span class="line">    <span class="string">"nodemon"</span>: <span class="string">"^1.11.0"</span>,</span><br><span class="line">    <span class="string">"passport"</span>: <span class="string">"^0.3.2"</span>,</span><br><span class="line">    <span class="string">"passport-local"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line">    <span class="string">"uuid"</span>: <span class="string">"^3.0.1"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>然后执行命令<code>npm i bcrypt</code>，执行完命令，<code>package.json</code>的依赖项如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"babel-cli"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-preset-es2015"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-preset-stage-0"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"bcrypt"</span>: <span class="string">"^4.0.1"</span>, &lt;--------------------- 执行命令后，新增了一行</span><br><span class="line">    <span class="string">"body-parser"</span>: <span class="string">"^1.17.2"</span>,</span><br><span class="line">    <span class="string">"cookie-parser"</span>: <span class="string">"^1.4.3"</span>,</span><br><span class="line">    <span class="string">"cors"</span>: <span class="string">"^2.8.3"</span>,</span><br><span class="line">    <span class="string">"express"</span>: <span class="string">"^4.15.3"</span>,</span><br><span class="line">    <span class="string">"express-session"</span>: <span class="string">"^1.15.3"</span>,</span><br><span class="line">    <span class="string">"nedb"</span>: <span class="string">"^1.8.0"</span>,</span><br><span class="line">    <span class="string">"nodemon"</span>: <span class="string">"^1.11.0"</span>,</span><br><span class="line">    <span class="string">"passport"</span>: <span class="string">"^0.3.2"</span>,</span><br><span class="line">    <span class="string">"passport-local"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line">    <span class="string">"uuid"</span>: <span class="string">"^3.0.1"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://github.com/kelektiv/node.bcrypt.js/issues/572">node-pre-gyp ERR! Tried to download(404): https://github.com/kelektiv/node.bcrypt.js/releases/download/v1.0.3/bcrypt_lib-v1.0.3-node-v59-linux-x64.tar.gz</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/22/npm-install报错node-pre-gyp-install-fallback-to-build/" data-id="ck82v03i3000plq3mr3mn816t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/前端/">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-使用vue-cli创建项目" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/Blog/2020/03/21/使用vue-cli创建项目/" class="article-date">
@@ -98,11 +146,10 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:demo4 kris$ npm run dev</span><br><span class="line"></span><br><span class="line">&gt; demo4@1.0.0 dev /Users/kris/Documents/VueDemo/chapter4/demo4</span><br><span class="line">&gt; cross-env NODE_ENV=development webpack-dev-server --open --hot</span><br><span class="line"></span><br><span class="line">Project is running at http://localhost:8081/</span><br><span class="line">webpack output is served from /dist/</span><br><span class="line">404s will fallback to /index.html</span><br><span class="line">&#123; parser: <span class="string">"babylon"</span> &#125; is deprecated; we now treat it as &#123; parser: <span class="string">"babel"</span> &#125;.</span><br></pre></td></tr></table></figure>
 <p>浏览器中的预览页面如下:</p>
 <img src="/Blog/2020/03/21/使用vue-cli创建项目/1.png" title="demo项目运行的截图">
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/21/使用vue-cli创建项目/" data-id="ck819ywi2000tgu3mdune9t8a" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/21/使用vue-cli创建项目/" data-id="ck82v03i6000tlq3mrq2qem1t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/前端/">前端</a></li></ul>
@@ -150,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/20/ssh命令无法连接主机/" data-id="ck819ywhz000pgu3mw1mf12h4" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/20/ssh命令无法连接主机/" data-id="ck82v03i4000rlq3msfxut8kv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/VPS/">VPS</a></li></ul>
@@ -200,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/19/Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/" data-id="ck819ywir001kgu3mv9udlxwn" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/19/Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/" data-id="ck82v03is001nlq3mgvbhci0i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/前端/">前端</a></li></ul>
@@ -245,7 +292,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/" data-id="ck819ywhx000lgu3mieei8rjm" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/" data-id="ck82v03i1000jlq3msrwfn3cs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/前端/">前端</a></li></ul>
@@ -306,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/15/MAC破解WiFi/" data-id="ck819ywhb0001gu3m7cnz9fv4" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/15/MAC破解WiFi/" data-id="ck82v03hg0004lq3mxugzdbpy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
@@ -348,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/15/Vue-CLI安装报错/" data-id="ck819ywhw000jgu3mal9msqus" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/03/15/Vue-CLI安装报错/" data-id="ck82v03i2000llq3mb0oul1ke" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/前端/">前端</a></li></ul>
@@ -438,7 +485,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/02/19/iOS创建Framwork工程步骤/" data-id="ck819ywi0000rgu3myc5j3ju8" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/02/19/iOS创建Framwork工程步骤/" data-id="ck82v03i6000vlq3mps0sy8a4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
@@ -567,7 +614,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/01/31/GCD概要/" data-id="ck819ywk1001ngu3mfc4r5lyk" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/01/31/GCD概要/" data-id="ck82v03jp001qlq3msq6wlkfd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
@@ -621,96 +668,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2020/01/27/查看autoreleasepool的状态/" data-id="ck819ywk3001ogu3mk37wrif9" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-自动引用计数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/2019/12/30/自动引用计数/" class="article-date">
-  <time datetime="2019-12-30T15:24:29.000Z" itemprop="datePublished">2019-12-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Blog/2019/12/30/自动引用计数/">自动引用计数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是自动引用计数？"><a href="#什么是自动引用计数？" class="headerlink" title="什么是自动引用计数？"></a>什么是自动引用计数？</h2><p>自动引用计数（ARC，Automatic Reference Counting）是指内存管理中对引用采取自动计数的技术。</p>
-<h2 id="内存管理的思考方式"><a href="#内存管理的思考方式" class="headerlink" title="内存管理的思考方式"></a>内存管理的思考方式</h2><ul>
-<li>自己生成的对象，自己持有。</li>
-<li>非自己生成的对象，自己也能持有。</li>
-<li>不再需要自己持有的对象时释放。</li>
-<li>非自己持有的对象无法释放。</li>
-</ul>
-<h3 id="自己生成的对象，自己持有"><a href="#自己生成的对象，自己持有" class="headerlink" title="自己生成的对象，自己持有"></a>自己生成的对象，自己持有</h3><p>使用以下名称开头的方法名意味着自己生成的对象自己持有：</p>
-<ul>
-<li>alloc</li>
-<li>new</li>
-<li>copy</li>
-<li>mutableCopy</li>
-</ul>
-<p>另外，下列名称也意味着自己生成并持有对象。</p>
-<ul>
-<li>allocMyObject</li>
-<li>newThatObject</li>
-<li>copyThis</li>
-<li>mutableCopyYourObject</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/** 自己生成并持有对象 */</span><br><span class="line">id obj = [[NSObject alloc] init];</span><br><span class="line">/** 自己持有对象 */</span><br></pre></td></tr></table></figure>
-<p>使用<code>[NSObject new]</code>与<code>[[NSObject alloc] init]</code>是完全一致的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/** 自己生成并持有对象 */</span><br><span class="line">id obj = [NSObject new]</span><br><span class="line">/** 自己持有对象 */</span><br></pre></td></tr></table></figure>
-<h3 id="非自己生成的对象，自己也能持有"><a href="#非自己生成的对象，自己也能持有" class="headerlink" title="非自己生成的对象，自己也能持有"></a>非自己生成的对象，自己也能持有</h3><p>用alloc/new/copy/mutableCopy以外的方法取得的对象，因为非自己生成并持有，所以自己不是该对象的持有者。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/** 取得非自己生成并持有的对象 */</span><br><span class="line">id obj = [NSMutableArray array];</span><br><span class="line">/** 取得的对象存在，但自己不持有对象 */</span><br></pre></td></tr></table></figure>
-<p>源代码中，NSMutableArray类对象被赋值给变量obj，但变量obj自己并不持有该对象，使用retain方法可以持有对象。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 取得非自己生成并持有的对象 */</span></span><br><span class="line"><span class="keyword">id</span> obj = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line"><span class="comment">/** 取得的对象存在，但自己不持有对象 */</span></span><br><span class="line">[obj <span class="keyword">retain</span>];</span><br><span class="line"><span class="comment">/** 自己持有对象 */</span></span><br></pre></td></tr></table></figure>
-<p>通过retain方法，非自己生成的对象跟用 alloc/new/copy/mutableCopy 方法生成并持有的对象一样，成为了自己所持有的。</p>
-<h3 id="不再需要自己持有的对象时释放"><a href="#不再需要自己持有的对象时释放" class="headerlink" title="不再需要自己持有的对象时释放"></a>不再需要自己持有的对象时释放</h3><p>自己持有的对象，一旦不再需要，持有者有义务释放该对象，释放使用release方法。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 自己生成并持有对象 */</span></span><br><span class="line"><span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</span><br><span class="line"><span class="comment">/** 自己持有对象 */</span></span><br><span class="line">[obj release];</span><br><span class="line"><span class="comment">/** 释放对象，指向对象的指针仍然被保留在变量obj中，貌似能够访问，但对象一经释放绝不可访问 */</span></span><br></pre></td></tr></table></figure>
-<p>用alloc方法由自己生成并持有的对象就通过release方法释放了。自己生成而非自己所持有的对象，若用retain方法变为自己持有，也同样可以用release方法释放。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/** 取得非自己生成并持有的对象 */</span><br><span class="line">id obj = [NSMutableArray array];</span><br><span class="line">/** 取得的对象存在，但自己不持有对象 */</span><br><span class="line">[obj retain];</span><br><span class="line">/** 自己持有对象 */</span><br><span class="line">[obj release];</span><br><span class="line">/** 释放对象，对象不可再被访问 */</span><br></pre></td></tr></table></figure>
-<p>用 alloc/new/copy/mutableCopy 方法生成并持有的对象，或者用retain方法持有的对象，一旦不再需要，务必要用release方法进行释放。</p>
-<p>如果要用某个方法生成对象，并将其返回给该方法的调用方，那么它的源代码又是如何呢？</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">id</span>)allocObject &#123;</span><br><span class="line">  <span class="comment">/** 自己生成并持有对象 */</span></span><br><span class="line">  <span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</span><br><span class="line">  <span class="comment">/** 自己持有对象 */</span></span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如上例所示，原封不动的返回alloc方法生成并持有的对象，就能让调用方也持有该对象。请注意allocObject这个名称是符合前文命名规则的。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 取得非自己生成并持有的对象 */</span></span><br><span class="line"><span class="keyword">id</span> obj1 = [obj0 allocObject];</span><br><span class="line"><span class="comment">/** 自己持有对象 */</span></span><br></pre></td></tr></table></figure>
-<p>allocObject名称符合前文的命名规则，因此它与用alloc方法生成并持有对象的情况完全相同，所以使用allocObject方法也意味着”自己生成并持有对象”。</p>
-<p>那么，调用[NSMutable array]方法使取得的对象存在，但自己不持有对象，又是如何实现的呢？根据上下文命名规则，不能使用alloc/new/copy/mutableCopy 开头的方法名，因此要使用object这个方法名。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>)object &#123;</span><br><span class="line">  <span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</span><br><span class="line">  <span class="comment">/** 自己持有对象 */</span></span><br><span class="line">  [obj autorelease];</span><br><span class="line">  <span class="comment">/** 取得的对象存在，但自己不持有对象 */</span></span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上例中，我们使用了autorelease方法。用该方法可以使取得的对象存在，但自己不持有对象。autorelease 提供这样的功能，使对象在超出指定的生存范围时，能够自动并正确地释放(调用release 方法)。</p>
-<p>使用NSMutableArray类的array类方法等可以取得谁都不持有的对象，这些方法都是通过 autorelease 而实现的。此外，根据上下文的命名规则，这些用来取得谁都不持有的对象的方法名不能以alloc/new/copy/mutableCopy 开头。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> obj1 = [obj0 object];</span><br><span class="line"><span class="comment">/** 取得的对象存在，但自己不持有对象 */</span></span><br></pre></td></tr></table></figure>
-<p>当然也可以通过 retain 方法将调用 autorelease 方法取得的对象变为自己持有。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> obj1 = [obj0 object];</span><br><span class="line"><span class="comment">/** 取得的对象存在，但自己不持有对象 */</span></span><br><span class="line">[obj1 <span class="keyword">retain</span>];</span><br><span class="line"><span class="comment">/** 自己持有对象 */</span></span><br></pre></td></tr></table></figure>
-<h3 id="非自己持有的对象无法释放"><a href="#非自己持有的对象无法释放" class="headerlink" title="非自己持有的对象无法释放"></a>非自己持有的对象无法释放</h3><p>对于用 alloc/new/copy/mutableCopy 方法生成并持有的对象，或是用 retain 方法持有的对象，由于持有者是自己，所以在不需要该对象时需要将其释放。<b><code>而由此外得到的对象绝对不能释放。倘若在应用程序中释放了非自己持有的对象就会造成崩溃。</code></b>例如自己生成并持有对象后，在释放完不再需要的对象之后再次释放。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 自己生成并持有对象 */</span></span><br><span class="line"><span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</span><br><span class="line"><span class="comment">/** 自己持有对象 */</span></span><br><span class="line">[obj release];</span><br><span class="line"><span class="comment">/** 对象已释放 */</span></span><br><span class="line">[obj release];</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">释放之后再次释放非自己持有的对象</span></span><br><span class="line"><span class="comment">应用程序崩溃</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">崩溃情况：</span></span><br><span class="line"><span class="comment">再度废弃已经废弃了的对象时崩溃</span></span><br><span class="line"><span class="comment">访问已经废弃的对象时崩溃</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<p>或者在”取得的对象存在，但自己不持有对象”时释放。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> obj1 = [obj0 object];</span><br><span class="line"><span class="comment">/** 取得的对象存在，但自己不持有对象 */</span></span><br><span class="line">[obj1 release];</span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment">释放了非自己持有的对象</span></span><br><span class="line"><span class="comment">这肯定会导致应用程序崩溃</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p>《iOS与OS X多线程和内存管理》</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/12/30/自动引用计数/" data-id="ck819ywi50010gu3mx6q9rny4" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2020/01/27/查看autoreleasepool的状态/" data-id="ck82v03jr001rlq3mip02gh9f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
@@ -750,7 +708,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 13.33px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 16.67px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 13.33px;">通用</a>
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 15px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 12.5px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 17.5px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 12.5px;">通用</a>
     </div>
   </div>
 
@@ -772,6 +730,10 @@
       <ul>
         
           <li>
+            <a href="/Blog/2020/03/22/npm-install报错node-pre-gyp-install-fallback-to-build/">npm install报错node-pre-gyp install --fallback-to-build</a>
+          </li>
+        
+          <li>
             <a href="/Blog/2020/03/21/使用vue-cli创建项目/">使用vue-cli创建项目</a>
           </li>
         
@@ -785,10 +747,6 @@
         
           <li>
             <a href="/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/">Vue启动报错Error: Cannot find module &#39;webpack/bin/config-yargs&#39;</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/2020/03/15/MAC破解WiFi/">MAC破解WiFi</a>
           </li>
         
       </ul>
