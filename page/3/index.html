@@ -62,6 +62,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Python学习笔记-Python3编码" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/2019/04/27/Python学习笔记-Python3编码/" class="article-date">
+  <time datetime="2019-04-27T02:14:35.000Z" itemprop="datePublished">2019-04-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Blog/2019/04/27/Python学习笔记-Python3编码/">Python学习笔记(Python3编码)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python3中的字符串是Unicode字符串而不是字节数组。这是与Python2相比最大的差别。在Python2中，我们需要区分普通的字节为单位的字符串以及Unicode字符串。</p>
+<h2 id="使用UTF-8编码和解码"><a href="#使用UTF-8编码和解码" class="headerlink" title="使用UTF-8编码和解码"></a>使用UTF-8编码和解码</h2><p>对字符串进行处理时，并不需要在意Python中Unicode字符的存储细节。当需要与外界进行数据交互时则需要完成两件事情:</p>
+<ul>
+<li>将字符串<strong>编码</strong>为字节</li>
+<li>将字节<strong>解码</strong>为字符串</li>
+</ul>
+<p>如果Unicode包含的字符种类不超过64000种，我们就可以将字符ID统一存储在2字节中。遗憾的是，Unicode所包含的字符种类远不只此。诚然，我们将字符ID统一编码在3或4字节中，但是这样会使空间开销(内存和硬盘)增加3到4倍。两位Unix开发大神设计出了UTF-8动态编码方案。这种方案会动态的为每个Unicode字符分配1到4字节不等:</p>
+<ul>
+<li>为ASCII字符分配1字节</li>
+<li>为拉丁语系(除西里尔语)的语言分配2字节</li>
+<li>为其他的位于基本多语言平面的字符分配3字节</li>
+<li>为剩下的字符集分配4字节，这包括一些亚洲语言及符号</li>
+</ul>
+<p>UTF-8是Python、Linux以及HTML的标准文本编码格式。</p>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p><strong>编码是将字符串转化为一系列字节的过程</strong>。字符串的<strong>encode()</strong>函数所接收的第一个参数是编码方式。可选的编码方式见下表。</p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/04/27/Python学习笔记-Python3编码/Snip20190427_1.png" title="编码方式的截图"> </div>
+
+<p>下面使用代码进行说明:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义一个Unicode字符串，它含有一个中文字符</span></span><br><span class="line">name = <span class="string">"中"</span></span><br><span class="line"><span class="comment"># 打印字符串的类型</span></span><br><span class="line">print(type(name))</span><br><span class="line"><span class="comment"># 打印字符串</span></span><br><span class="line">print(name)</span><br><span class="line"><span class="comment"># 打印字符串的长度，最后结果为1，说明len()获取的是字符串中字符的个数，不是字节长度</span></span><br><span class="line">print(len(name))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将字符串编码为UTF-8的字节序列</span></span><br><span class="line">ds = name.encode(<span class="string">'utf-8'</span>)</span><br><span class="line">print(<span class="string">"--------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印字节序列的类型</span></span><br><span class="line">print(type(ds))</span><br><span class="line"><span class="comment"># 打印字符串编码过后的字节序列</span></span><br><span class="line">print(ds)</span><br><span class="line"><span class="comment"># 打印字节序列的长度，发现一个中文字符在UTF-8编码中占3个字节</span></span><br><span class="line">print(len(ds))</span><br></pre></td></tr></table></figure>
+<p>程序的运行结果如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">str</span>'&gt;</span></span><br><span class="line"><span class="class">中</span></span><br><span class="line"><span class="class">1</span></span><br><span class="line"><span class="class">--------</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">bytes</span>'&gt;</span></span><br><span class="line"><span class="class"><span class="title">b</span>'\<span class="title">xe4</span>\<span class="title">xb8</span>\<span class="title">xad</span>'</span></span><br><span class="line"><span class="class">3</span></span><br></pre></td></tr></table></figure></p>
+<p>由上面的运行结果可以知道，单个的Unicode中文字符在UTF-8编码的格式下占用了3字节的空间。当然，你也可以使用UTF-8以外的编码方式，但该Unicode字符串可能无法被指定的编码方式处理，此时Python会抛出异常。例如将上面的Unicode中文字符编码为ascii字节，就会报错。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">'中'</span></span><br><span class="line">ds = name.encode(<span class="string">'ascii'</span>)</span><br><span class="line">print(ds)</span><br></pre></td></tr></table></figure></p>
+<p>运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/Users/kris/PycharmProjects/pythons_demo/Python语言及其应用/第七章/test.py"</span>, line <span class="number">26</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    ds = name.encode(<span class="string">'ascii'</span>)</span><br><span class="line">UnicodeEncodeError: <span class="string">'ascii'</span> codec can<span class="string">'t encode character '</span>\u4e2d<span class="string">' in position 0: ordinal not in range(128)</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>encode()</strong>函数可以接受额外的第二个参数来帮助你避免编码异常。它的默认值是’strict’,如上例所示,当函数检测到需要处理的字符串包含非ASCII字符时,会抛出UnicodeEncodeError异常。当然还有别的可选值,使用’ignore’会抛弃任何无法进行编码的字符;使用’replace’会将所有无法进行编码的字符替换为?;’backslashreplace’则会创建一个和Unicode-escape类似的Unicode字符串。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">'ab中cd'</span></span><br><span class="line">print(name)</span><br><span class="line">print(name.encode(<span class="string">'ascii'</span>, <span class="string">'ignore'</span>))</span><br><span class="line">print(name.encode(<span class="string">'ascii'</span>, <span class="string">'replace'</span>))</span><br><span class="line">print(name.encode(<span class="string">'ascii'</span>, <span class="string">'backslashreplace'</span>))</span><br></pre></td></tr></table></figure></p>
+<p>程序的运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ab中cd</span><br><span class="line"><span class="string">b'abcd'</span></span><br><span class="line"><span class="string">b'ab?cd'</span></span><br><span class="line"><span class="string">b'ab\\u4e2dcd'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="解码"><a href="#解码" class="headerlink" title="解码"></a>解码</h3><p><strong>解码</strong>是将字节序列转化为Unicode字符串的过程。我们从外界文本源(文件、数据库、网站、网络API等)获得的所有文本都是经过编码的字节序列。重要的是需要知道它是以何种方式编码的，这样才能逆转编码过程以获得Unicode字符串。</p>
+<p>问题是字节序列本身不带有任何指明编码方式的信息。之前我也提到过网站随意复制粘贴文本的风险,你也可能遇到过网页乱码的情况,本应是ASCII字符的位置却被奇怪的字符占据了,这些都是编码和解码的方式不一致导致的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">place = <span class="string">'caf\u00e9'</span></span><br><span class="line">print(place)</span><br><span class="line">print(type(place))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编码</span></span><br><span class="line">place_tytes = place.encode(<span class="string">'utf-8'</span>)</span><br><span class="line">print(place_tytes)</span><br><span class="line">print(type(place_tytes))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解码</span></span><br><span class="line">place2 = place_tytes.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">print(place2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用ASCII解码,会报错</span></span><br><span class="line"><span class="comment"># place3 = place_tytes.decode('ascii')</span></span><br><span class="line"><span class="comment"># print(place3)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用其他编码格式解码</span></span><br><span class="line">place4 = place_tytes.decode(<span class="string">'latin_1'</span>)</span><br><span class="line">print(place4)</span><br><span class="line"></span><br><span class="line">place5 = place_tytes.decode(<span class="string">'windows-1252'</span>)</span><br><span class="line">print(place5)</span><br></pre></td></tr></table></figure>
+<p>程序的运行结果:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">café</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">str</span>'&gt;</span></span><br><span class="line"><span class="class"><span class="title">b</span>'<span class="title">caf</span>\<span class="title">xc3</span>\<span class="title">xa9</span>'</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">bytes</span>'&gt;</span></span><br><span class="line"><span class="class"><span class="title">caf</span>é</span></span><br><span class="line"><span class="class"><span class="title">caf</span>Ã©</span></span><br><span class="line"><span class="class"><span class="title">caf</span>Ã©</span></span><br></pre></td></tr></table></figure></p>
+<p>上面的运行结果说明，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/27/Python学习笔记-Python3编码/" data-id="ck8l4s88r000bzr5sw30d7pgn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Python学习笔记-对象和类" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/Blog/2019/04/02/Python学习笔记-对象和类/" class="article-date">
@@ -173,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/02/Python学习笔记-对象和类/" data-id="ck82v03ir001mlq3mr6ldk0rs" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/04/02/Python学习笔记-对象和类/" data-id="ck8l4s89m001ozr5s4wqzh6nl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -228,7 +295,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/31/KVO本质分析/" data-id="ck82v03h90001lq3mqn42ykzi" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/31/KVO本质分析/" data-id="ck8l4s8880001zr5str2tjnjy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/iOS/">iOS</a></li></ul>
@@ -268,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/28/Python学习笔记-函数/" data-id="ck82v03hx000blq3mrbgs81pi" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/28/Python学习笔记-函数/" data-id="ck8l4s88o0009zr5sf6u9edak" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -338,7 +405,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/26/Python学习笔记-使用for迭代/" data-id="ck82v03ht0009lq3msgr8w19h" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/26/Python学习笔记-使用for迭代/" data-id="ck8l4s88m0008zr5syvc6e292" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Python/">Python</a></li></ul>
@@ -406,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/16/如何在Github上搭建博客/" data-id="ck82v03i8000zlq3ms40shlvf" class="article-share-link">Share</a>
+      <a data-url="https://github.com/DavidWanderer/Blog/2019/03/16/如何在Github上搭建博客/" data-id="ck8l4s8960011zr5s1a3sgyyv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/通用/">通用</a></li></ul>
@@ -446,7 +513,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 15px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 12.5px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 17.5px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 12.5px;">通用</a>
+      <a href="/Blog/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/Blog/tags/Git/" style="font-size: 12px;">Git</a> <a href="/Blog/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Blog/tags/Python/" style="font-size: 16px;">Python</a> <a href="/Blog/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/Blog/tags/VPS/" style="font-size: 14px;">VPS</a> <a href="/Blog/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/Blog/tags/前端/" style="font-size: 18px;">前端</a> <a href="/Blog/tags/通用/" style="font-size: 14px;">通用</a>
     </div>
   </div>
 
@@ -455,7 +522,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -466,6 +533,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/Blog/2020/04/04/SourceTree-commit数据后，想撤销刚刚的commit操作，并将修改的文件恢复到已暂存状态/">SourceTree commit数据后，想撤销刚刚的commit操作，并将修改的文件恢复到已暂存状态</a>
+          </li>
         
           <li>
             <a href="/Blog/2020/03/22/npm-install报错node-pre-gyp-install-fallback-to-build/">npm install报错node-pre-gyp install --fallback-to-build</a>
@@ -481,10 +552,6 @@
         
           <li>
             <a href="/Blog/2020/03/19/Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/">Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/">Vue启动报错Error: Cannot find module &#39;webpack/bin/config-yargs&#39;</a>
           </li>
         
       </ul>
