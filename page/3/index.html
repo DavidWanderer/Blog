@@ -356,6 +356,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/06/22/OC对象的分类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2019/06/22/OC对象的分类/" class="post-title-link" itemprop="url">OC对象的分类</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-22 19:27:03" itemprop="dateCreated datePublished" datetime="2019-06-22T19:27:03+08:00">2019-06-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="OC对象的分类"><a href="#OC对象的分类" class="headerlink" title="OC对象的分类"></a>OC对象的分类</h2><p> OC对象主要可以分为3种</p>
+<ul>
+<li>1、instance对象（实例对象）：instance实例对象就是通过alloc出来的对象，每次调用alloc都会产生新的instance对象</li>
+<li>2、class对象（类对象）：每个类的内存中有且只有一个类对象</li>
+<li>3、meta-class对象（元类对象）：每个类的内存中有且只有一个元类对象</li>
+</ul>
+<p>实例对象的存储信息</p>
+<ul>
+<li>isa指针</li>
+<li>其他成员变量</li>
+</ul>
+<p>类对象的存储信息</p>
+<ul>
+<li>isa指针</li>
+<li>superClass指针</li>
+<li>类的属性信息（@property），类的对象方法信息（method），类的协议信息（protocol），类的成员变量信息（ivar）</li>
+</ul>
+<p>元类的存储信息</p>
+<ul>
+<li>isa指针</li>
+<li>superClass指针</li>
+<li>类的属性信息（@property），类的对象方法信息（method），类的协议信息（protocol），类的成员变量信息（ivar）</li>
+</ul>
+<p><code>元类和类的存储结构是一样的，但是用途不一样</code></p>
+<img src="/Blog/2019/06/22/OC对象的分类/OC对象的分类1.png" title="OC对象的分类">
+<ul>
+<li>instance的isa指向class，当调用<code>对象方法</code>时，通过instance的isa找到class，最后找到对象方法的实现进行调用</li>
+<li>class的isa指向meta-class，当调用<code>类方法</code>时，通过class的isa找到meta-class，最后找到<code>类方法</code></li>
+</ul>
+<h3 id="总览图"><a href="#总览图" class="headerlink" title="总览图"></a>总览图</h3> <img src="/Blog/2019/06/22/OC对象的分类/OC对象类的继承图谱.png" title="OC对象类的继承图谱">
+<ul>
+<li>1、instance的<code>isa</code>指向class</li>
+<li>2、class的<code>isa</code>指向meta-class</li>
+<li>3、meta-class的<code>isa</code>指向基类的meta-class</li>
+<li>4、class的<code>superclass</code>指向<code>父类的class</code>，如果没有父类，superclass指向nil</li>
+<li>5、meta-class的<code>superclass</code>指向父类的meta-class，基类的meta-class的superclass指向基类的class</li>
+<li>6、instance的调用轨迹：isa找class，方法不存在，就通过superclass找父类</li>
+<li>7、class调用类方法的轨迹：isa找到meta-class，方法不存在，就通过superclass找父类</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/06/19/一个NSObject对象占用多少内存/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -403,18 +508,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="一个NSObject对象占用多少内存"><a href="#一个NSObject对象占用多少内存" class="headerlink" title="一个NSObject对象占用多少内存"></a>一个NSObject对象占用多少内存</h2><p>我们平时所编写的Object-C代码，底层实现都是C/C++代码，</p>
-<img src="/Blog/2019/06/19/一个NSObject对象占用多少内存/Object-C代码底层实现.png" title="Object-C代码底层实现">
+          <h2 id="一个NSObject对象占用多少内存"><a href="#一个NSObject对象占用多少内存" class="headerlink" title="一个NSObject对象占用多少内存"></a>一个NSObject对象占用多少内存</h2><p>我们平时所编写的Objective-C代码，底层实现都是C/C++代码，</p>
+<img src="/Blog/2019/06/19/一个NSObject对象占用多少内存/Object-C代码底层实现.png" title="Objective-C代码底层实现">
 <p>所以OC的面向对象都是基于C/C++的数据结构实现的</p>
 <p><code>思考:OC对象主要是基于C/C++的什么数据结构实现的呢？？？</code></p>
-<p>想要了解OC对象主要是基于C/C++的什么数据结构实现的，我们首先要做的就是将Object-C代码转化为C/C++代码，这样我们才能清楚的看清是怎么实现的</p>
+<p>想要了解OC对象主要是基于C/C++的什么数据结构实现的，我们首先要做的就是将Objective-C代码转化为C/C++代码，这样我们才能清楚的看清是怎么实现的</p>
 <p>然后我们打开终端，在命令行找到cd到文件目录，然后中输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clang -rewrite-objc main.m</span><br></pre></td></tr></table></figure></p>
 <p>命令可以将main.m编译成C++的代码，改成不同的文件名，就会生成不同的c++代码<br>这是就生成了main.cpp这个c++文件，打开文件代码<br>查看该main.cpp最底下的main函数， </p>
 <p>但是不同平台支持的代码肯定是不一样的，像平台有<code>Windows</code>、<code>mac</code>、<code>iOS</code>，架构有<code>模拟器(i386)、32bit(armv7)、64bit（arm64）</code>，我们使用<code>iOS</code>，他的架构现在基本上都是<code>64bit（arm64）</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xcrun  -sdk  iphoneos  clang  -arch  arm64  -rewrite-objc OC源文件  -o  输出的CPP文件</span><br><span class="line">如果需要链接其他框架，使用-framework参数。比如-framework UIKit</span><br></pre></td></tr></table></figure>
 <p>在终端输入命令以后，我们会生成一个<code>main.cpp</code>文件，打开<code>main.cpp</code>文件文件，我们把<code>main.cpp</code>文件拉到最下面，我们会看到这样一段代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">/* @autoreleasepool */ &#123; __AtAutoreleasePool __autoreleasepool; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这一段代码就是我们OC代码中的<code>mian</code>函数的实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">	@autoreleasepool &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这时我们在<code>mian</code>函数写入这一段代码，然后我们点击进入，查看代码实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSObject *obj = [[NSObject alloc] init];</span><br></pre></td></tr></table></figure></p>
+<p>这一段代码就是我们OC代码中的<code>main</code>函数的实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">	@autoreleasepool &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这时我们在<code>main</code>函数写入这一段代码，然后我们点击进入，查看代码实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSObject *obj = [[NSObject alloc] init];</span><br></pre></td></tr></table></figure></p>
 <p>点击<code>NSObject</code>进入内部，可以看到NSObject底层实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject &#123;</span><br><span class="line">	Class isa;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>我们用<code>NSObject_IMPL</code>查找在c++文件中具体的实现</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject_IMPL &#123;</span><br><span class="line">	Class isa;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -1095,106 +1200,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/03/16/如何在Github上搭建博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/03/16/如何在Github上搭建博客/" class="post-title-link" itemprop="url">如何在Github上搭建博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-03-16 16:28:52" itemprop="dateCreated datePublished" datetime="2019-03-16T16:28:52+08:00">2019-03-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/通用/" itemprop="url" rel="index"><span itemprop="name">通用</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><ul>
-<li>安装Hexo之前，电脑上需要安装Git和Node.js</li>
-<li><ol>
-<li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137396287703354d8c6c01c904c7d9ff056ae23da865a000" target="_blank" rel="noopener">安装Git</a></li>
-</ol>
-</li>
-<li><ol start="2">
-<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">安装Node.js</a></li>
-</ol>
-</li>
-</ul>
-<p>安装完Git和Node.js，开始安装Hexo，安装Hexo需要翻墙，打开终端，输入以下命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
-<p>新建目录存放博客的网站文件，例如新建一个空文件夹Blog，然后执行以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init Blog</span><br><span class="line">$ <span class="built_in">cd</span> Blog</span><br><span class="line">$ npm Blog</span><br></pre></td></tr></table></figure></p>
-<h2 id="发布新的文章"><a href="#发布新的文章" class="headerlink" title="发布新的文章"></a>发布新的文章</h2><p>创建完网站目录后，开始写作，创建一篇新的文章，执行以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"HelloWord"</span></span><br></pre></td></tr></table></figure></p>
-<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_1.png" title="创建文章的截图"> </div>
-
-<p>执行完上述命令，会在网站的～/Blog/source/_posts目录下出现HelloWord.md文件，这个文件就是我们新建的文章，使用Markdown语法编写我们的文章。</p>
-<h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><p>文章写好之后，执行以下命令，开始生成静态文件:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure></p>
-<h2 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h2><p>静态文件生成之后，启动本地服务器，预览文章的总体页面，需要执行以下命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure></p>
-<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_2.png" title="启动服务器的命令截图"> </div>
-
-<p>本地浏览器预览效果：<br><img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_4.png" title="本地浏览器预览文章的截图"></p>
-<h2 id="发布到Github"><a href="#发布到Github" class="headerlink" title="发布到Github"></a>发布到Github</h2><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>在配置文件中配置发布到git，然后填写具体的仓库地址:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/DavidWanderer/Blog.git</span><br></pre></td></tr></table></figure></p>
-<h3 id="安装Hexo发布到git的插件"><a href="#安装Hexo发布到git的插件" class="headerlink" title="安装Hexo发布到git的插件:"></a>安装Hexo发布到git的插件:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>检查插件是否安装完成:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm list hexo-deployer-git</span><br></pre></td></tr></table></figure></p>
-<h3 id="将本地的静态文件部署到github的仓库"><a href="#将本地的静态文件部署到github的仓库" class="headerlink" title="将本地的静态文件部署到github的仓库"></a>将本地的静态文件部署到github的仓库</h3><p>执行命令，首次执行命令的时候会让你输入github的用户名和密码:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></p>
-<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_3.png" title="将本地的静态文件部署到github"> </div>
-
-<p>最后访问giuhub的地址效果：<br><img src="/Blog/2019/03/16/如何在Github上搭建博客/Snip20190316_5.png" title="Github效果预览图"></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo官网</a><br><a href="https://juejin.im/post/5b8e43a951882542e821b5cc" target="_blank" rel="noopener">Hexo + Github 搭建个人博客</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/Blog/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/Blog/">1</a><a class="page-number" href="/Blog/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/Blog/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/Blog/">1</a><a class="page-number" href="/Blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/Blog/page/4/">4</a><a class="extend next" rel="next" href="/Blog/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1260,7 +1269,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
