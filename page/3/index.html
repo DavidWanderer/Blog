@@ -432,7 +432,7 @@
 <li>instance的isa指向class，当调用<code>对象方法</code>时，通过instance的isa找到class，最后找到对象方法的实现进行调用</li>
 <li>class的isa指向meta-class，当调用<code>类方法</code>时，通过class的isa找到meta-class，最后找到<code>类方法</code></li>
 </ul>
-<h3 id="总览图"><a href="#总览图" class="headerlink" title="总览图"></a>总览图</h3> <img src="/Blog/2019/06/22/OC对象的分类/OC对象类的继承图谱.png" title="OC对象类的继承图谱">
+<h2 id="总览图"><a href="#总览图" class="headerlink" title="总览图"></a>总览图</h2> <img src="/Blog/2019/06/22/OC对象的分类/OC对象类的继承图谱.png" title="OC对象类的继承图谱">
 <ul>
 <li>1、instance的<code>isa</code>指向class</li>
 <li>2、class的<code>isa</code>指向meta-class</li>
@@ -528,7 +528,7 @@
 <p>有两个方法可以打印内存大小<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 获得NSObject实例对象的成员变量所占用的大小  </span><br><span class="line">NSLog(@&quot;%zd&quot;, class_getInstanceSize([NSObject class]));</span><br><span class="line"></span><br><span class="line">// 获得obj指针所指向内存的大小  </span><br><span class="line">NSLog(@&quot;%zd&quot;, malloc_size((__bridge const void *)obj));</span><br></pre></td></tr></table></figure></p>
 <p>打印结果</p>
 <img src="/Blog/2019/06/19/一个NSObject对象占用多少内存/NSObject对象内存.png" title="NSObject对象内存">
-<h3 id="一个OC对象在内存中是怎么样布局的呢"><a href="#一个OC对象在内存中是怎么样布局的呢" class="headerlink" title="一个OC对象在内存中是怎么样布局的呢"></a>一个OC对象在内存中是怎么样布局的呢</h3><p>我们在C++文件中找到NSObject的实现<br>OC代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject &#123;</span><br><span class="line">	Class isa;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="一个OC对象在内存中是怎么样布局的呢"><a href="#一个OC对象在内存中是怎么样布局的呢" class="headerlink" title="一个OC对象在内存中是怎么样布局的呢"></a>一个OC对象在内存中是怎么样布局的呢</h2><p>我们在C++文件中找到NSObject的实现<br>OC代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject &#123;</span><br><span class="line">	Class isa;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>c++代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject_IMPL &#123;</span><br><span class="line">	Class isa;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>我们知道一个指针是<code>8个字节</code>，但是NSObject对象打印<code>16个字节</code>,他们是怎么样布局的呢</p>
 <img src="/Blog/2019/06/19/一个NSObject对象占用多少内存/NSObject对象内存地址.png" title="NSObject对象内存地址">

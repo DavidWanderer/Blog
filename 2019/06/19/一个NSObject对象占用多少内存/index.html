@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://github.com/Blog/2019/06/19/一个NSObject对象占用多少内存/Animal内存打印.png">
 <meta property="og:image" content="https://github.com/Blog/2019/06/19/一个NSObject对象占用多少内存/Cat内存打印.png">
 <meta property="og:image" content="https://github.com/Blog/2019/06/19/一个NSObject对象占用多少内存/Cat内存打印.png">
-<meta property="og:updated_time" content="2020-06-21T09:45:18.424Z">
+<meta property="og:updated_time" content="2020-06-22T11:50:17.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个NSObject对象占用多少内存">
 <meta name="twitter:description" content="一个NSObject对象占用多少内存我们平时所编写的Objective-C代码，底层实现都是C/C++代码，  所以OC的面向对象都是基于C/C++的数据结构实现的 思考:OC对象主要是基于C/C++的什么数据结构实现的呢？？？ 想要了解OC对象主要是基于C/C++的什么数据结构实现的，我们首先要做的就是将Objective-C代码转化为C/C++代码，这样我们才能清楚的看清是怎么实现的 然后我们">
@@ -239,7 +239,7 @@
 <p>有两个方法可以打印内存大小<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 获得NSObject实例对象的成员变量所占用的大小  </span><br><span class="line">NSLog(@&quot;%zd&quot;, class_getInstanceSize([NSObject class]));</span><br><span class="line"></span><br><span class="line">// 获得obj指针所指向内存的大小  </span><br><span class="line">NSLog(@&quot;%zd&quot;, malloc_size((__bridge const void *)obj));</span><br></pre></td></tr></table></figure></p>
 <p>打印结果</p>
 <img src="/Blog/2019/06/19/一个NSObject对象占用多少内存/NSObject对象内存.png" title="NSObject对象内存">
-<h3 id="一个OC对象在内存中是怎么样布局的呢"><a href="#一个OC对象在内存中是怎么样布局的呢" class="headerlink" title="一个OC对象在内存中是怎么样布局的呢"></a>一个OC对象在内存中是怎么样布局的呢</h3><p>我们在C++文件中找到NSObject的实现<br>OC代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject &#123;</span><br><span class="line">	Class isa;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="一个OC对象在内存中是怎么样布局的呢"><a href="#一个OC对象在内存中是怎么样布局的呢" class="headerlink" title="一个OC对象在内存中是怎么样布局的呢"></a>一个OC对象在内存中是怎么样布局的呢</h2><p>我们在C++文件中找到NSObject的实现<br>OC代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject &#123;</span><br><span class="line">	Class isa;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>c++代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject_IMPL &#123;</span><br><span class="line">	Class isa;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>我们知道一个指针是<code>8个字节</code>，但是NSObject对象打印<code>16个字节</code>,他们是怎么样布局的呢</p>
 <img src="/Blog/2019/06/19/一个NSObject对象占用多少内存/NSObject对象内存地址.png" title="NSObject对象内存地址">
@@ -363,7 +363,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个NSObject对象占用多少内存"><span class="nav-number">1.</span> <span class="nav-text">一个NSObject对象占用多少内存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个OC对象在内存中是怎么样布局的呢"><span class="nav-number">1.1.</span> <span class="nav-text">一个OC对象在内存中是怎么样布局的呢</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个NSObject对象占用多少内存"><span class="nav-number">1.</span> <span class="nav-text">一个NSObject对象占用多少内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个OC对象在内存中是怎么样布局的呢"><span class="nav-number">2.</span> <span class="nav-text">一个OC对象在内存中是怎么样布局的呢</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
