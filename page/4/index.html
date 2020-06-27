@@ -159,6 +159,89 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/03/31/KVO本质分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2019/03/31/KVO本质分析/" class="post-title-link" itemprop="url">KVO本质分析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-03-31 14:58:49" itemprop="dateCreated datePublished" datetime="2019-03-31T14:58:49+08:00">2019-03-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li>iOS中如何实现对一个对象的KVO？(KVO的本质是什么？)<br>答: 当给一个对象添加KVO监听之后，iOS系统会修改这个对象的isa指针，将这个指针指向Runtime动态创建的这个对象的子类。子类拥有自己的set方法的实现，set方法内部会顺序调用willChangeValueForKey方法、父类的set方法、didChangeValueForKey方法，这样会触发observeValueForKeyPath:ofObject:change:context:监听方法。</li>
+<li>如何手动触发KVO？<br>答: 被监听的属性值被修改时，就会触发KVO。如果想要手动触发KVO，则需要我们手动同时调用willChangeValueForKey方法和didChangeValueForKey方法，这两个方法缺一不可。</li>
+<li>KVO执行的条件？<br>答: 对象添加观察者(addObserver:forKeyPath:)、修改对象被监听的属性、对象在dealloc方法中移除观察者。</li>
+</ul>
+<p><a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/Articles/KVOImplementation.html#//apple_ref/doc/uid/20002307-BAJEAIEE" target="_blank" rel="noopener">官方文档</a>:</p>
+<h2 id="Key-Value-Observing-Implementation-Details"><a href="#Key-Value-Observing-Implementation-Details" class="headerlink" title="Key-Value Observing Implementation Details"></a>Key-Value Observing Implementation Details</h2><p>Automatic key-value observing is implemented using a technique called isa-swizzling.</p>
+<p>The isa pointer, as the name suggests, points to the object’s class which maintains a dispatch table. This dispatch table essentially contains pointers to the methods the class implements, among other data.</p>
+<p>When an observer is registered for an attribute of an object the isa pointer of the observed object is modified, pointing to an intermediate class rather than at the true class. As a result the value of the isa pointer does not necessarily reflect the actual class of the instance.</p>
+<p>You should never rely on the isa pointer to determine class membership. Instead, you should use the class method to determine the class of an object instance.<br>大致意思是：KVO使用isa-swizzling技术实现，对象添加观察者之后，isa指针会指向一个临时的类，不能依赖isa的值来判断类的关系，应该使用class方法来判断实例对象真实的类。<br>接下来使用代码来验证KVO的执行过程：<br>Person.h (Person.m中什么也没有)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line"></span><br><span class="line">NS_ASSUME_NONNULL_BEGIN</span><br><span class="line"></span><br><span class="line">@interface Person : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, assign) int age;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">NS_ASSUME_NONNULL_END</span><br></pre></td></tr></table></figure></p>
+<p>ViewController.m (ViewController.h中什么也没有)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &lt;objc/runtime.h&gt;</span><br><span class="line">#import &quot;Person.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">@property (nonatomic, strong) Person *p1;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">    // 移除观察者</span><br><span class="line">    [self.p1 removeObserver:self forKeyPath:@&quot;age&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    // Do any additional setup after loading the view, typically from a nib.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    </span><br><span class="line">    Person *p1 = [[Person alloc] init];</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    self.p1 = p1;</span><br><span class="line">    // 打印p1对象所属类的内部方法列表</span><br><span class="line">    NSLog(@&quot;p1 class = %@&quot;, [p1 class]);</span><br><span class="line">    </span><br><span class="line">    // 添加观察者</span><br><span class="line">    [p1 addObserver:self forKeyPath:@&quot;age&quot; options:NSKeyValueObservingOptionNew context:nil];</span><br><span class="line">    </span><br><span class="line">    // 打印p1对象所属类的内部方法列表</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    NSLog(@&quot;p1 class = %@&quot;, [p1 class]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/** 打印类中所有的方法  */</span><br><span class="line">- (void) printMethods:(Class)cls</span><br><span class="line">&#123;</span><br><span class="line">    unsigned int count ;</span><br><span class="line">    Method *methods = class_copyMethodList(cls, &amp;count);</span><br><span class="line">    NSMutableString *methodNames = [NSMutableString string];</span><br><span class="line">    [methodNames appendFormat:@&quot;%@ - &quot;, cls];</span><br><span class="line">    </span><br><span class="line">    for (int i = 0 ; i &lt; count; i++) &#123;</span><br><span class="line">        Method method = methods[i];</span><br><span class="line">        NSString *methodName  = NSStringFromSelector(method_getName(method));</span><br><span class="line">        </span><br><span class="line">        [methodNames appendString: methodName];</span><br><span class="line">        [methodNames appendString:@&quot; &quot;];</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;%@&quot;,methodNames);</span><br><span class="line">    free(methods);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary&lt;NSKeyValueChangeKey,id&gt; *)change context:(void *)context &#123;</span><br><span class="line">    NSLog(@&quot;执行了监听方法:%@&quot;, change);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
+<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2019-03-31 19:06:48.896565+0800 KVO测试Demo[29498:3594134] Person - setAge: age</span><br><span class="line">2019-03-31 19:06:48.897033+0800 KVO测试Demo[29498:3594134] p1 class = Person</span><br><span class="line">2019-03-31 19:06:48.897503+0800 KVO测试Demo[29498:3594134] NSKVONotifying_Person - setAge: class dealloc _isKVOA</span><br><span class="line">2019-03-31 19:06:48.897638+0800 KVO测试Demo[29498:3594134] p1 class = Person</span><br></pre></td></tr></table></figure></p>
+<p>由此可见，对象p1添加观察者之后，p1的所属类由原来的Person类变成了NSKVONotifying_Person类，原来的Person类内部只实现了setAge:方法和age方法，新类NSKVONotifying_Person中有setAge:、class、dealloc、_isKVOA方法。经过分析判断，NSKVONotifying_Person是Person的子类，它重写了父类的setAge:和class方法，使NSKVONotifying_Person的class方法的返回值也是Person,隐藏了内部的实现。</p>
+<h2 id="如何手动触发KVO？"><a href="#如何手动触发KVO？" class="headerlink" title="如何手动触发KVO？"></a>如何手动触发KVO？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    </span><br><span class="line">    Person *p1 = [[Person alloc] init];</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    self.p1 = p1;</span><br><span class="line">    // 打印p1对象所属类的内部方法列表</span><br><span class="line">    NSLog(@&quot;p1 class = %@&quot;, [p1 class]);</span><br><span class="line">    </span><br><span class="line">    // 添加观察者</span><br><span class="line">    [p1 addObserver:self forKeyPath:@&quot;age&quot; options:NSKeyValueObservingOptionNew context:nil];</span><br><span class="line">    </span><br><span class="line">    // 打印p1对象所属类的内部方法列表</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    NSLog(@&quot;p1 class = %@&quot;, [p1 class]);</span><br><span class="line">    </span><br><span class="line">    // 手动触发KVO</span><br><span class="line">    [p1 willChangeValueForKey:@&quot;age&quot;];</span><br><span class="line">    [p1 didChangeValueForKey:@&quot;age&quot;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2019-03-31 19:37:41.217175+0800 KVO测试Demo[29990:3611620] Person - setAge: age</span><br><span class="line">2019-03-31 19:37:41.217409+0800 KVO测试Demo[29990:3611620] p1 class = Person</span><br><span class="line">2019-03-31 19:37:41.217999+0800 KVO测试Demo[29990:3611620] NSKVONotifying_Person - setAge: class dealloc _isKVOA</span><br><span class="line">2019-03-31 19:37:41.218145+0800 KVO测试Demo[29990:3611620] p1 class = Person</span><br><span class="line">2019-03-31 19:37:41.218488+0800 KVO测试Demo[29990:3611620] 执行了监听方法:&#123;</span><br><span class="line">    kind = 1;</span><br><span class="line">    new = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如何关闭自动KVO？<br>Person.m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Person.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation Person</span><br><span class="line"></span><br><span class="line">+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key &#123;</span><br><span class="line">    if ([key isEqualToString:@&quot;age&quot;]) &#123;</span><br><span class="line">        return NO;</span><br><span class="line">    &#125;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
+<p>当返回值为NO的时候，即使改变p1的值也无法触发KVO，此时要想触发KVO只有手动模式，手动调用willChangeValueForKey和didChangeValueForKey。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/03/28/Python学习笔记-函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -486,7 +569,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
