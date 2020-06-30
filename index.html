@@ -159,6 +159,170 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/06/30/LLDB使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/06/30/LLDB使用/" class="post-title-link" itemprop="url">LLDB使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-30 20:12:03" itemprop="dateCreated datePublished" datetime="2020-06-30T20:12:03+08:00">2020-06-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="LLDB"><a href="#LLDB" class="headerlink" title="LLDB"></a>LLDB</h2><p>LLDB 是一个有着 REPL 的特性和 C++ ,Python 插件的开源调试器。LLDB 绑定在 Xcode 内部，存在于主窗口底部的控制台中。调试器允许你在程序运行的特定时暂停它，你可以查看变量的值，执行自定的指令，并且按照你所认为合适的步骤来操作程序的进展。</p>
+<h3 id="expression"><a href="#expression" class="headerlink" title="expression"></a>expression</h3><p>可简写为e，作用为执行一个表达式。</p>
+<ul>
+<li>1、查询当前堆栈变量的值</li>
+<li>2、动态修改当前线程堆栈变量的值</li>
+</ul>
+<img src="/Blog/2020/06/30/LLDB使用/LLDB1.png" title="LLDB">
+<p>我们在调试数据的时候，有的时候需要动态修改变量值，使用<code>expression</code>那是十分方便的调试。</p>
+<h4 id="po-amp-p"><a href="#po-amp-p" class="headerlink" title="po &amp; p"></a><code>po</code> &amp; <code>p</code></h4><p><code>po</code>的作用为打印对象，事实上，我们可以通过<code>help po</code>得知，<code>po</code>是<code>expression -O --</code>的简写，我们可以通过它打印出对象，而不是打印对象的指针。而值得一提的是，在 <code>help expression</code> 返回的帮助信息中，我们可以知道，<code>po</code>命令会尝试调用对象的 <code>description</code> 方法来取得对象信息，因此我们也可以重载某个对象的<code>description方法</code>，使我们调试的时候能获得可读性更强，更全面的信息。<br><img src="/Blog/2020/06/30/LLDB使用/LLDB2.png" title="LLDB"></p>
+<p><code>p</code>即是<code>print</code>，也是<code>expression --</code>的缩写，与<code>po</code>不同，它不会打出对象的详细信息，只会打印出一个$符号，数字，再加上一段地址信息。打印对象的时候我们也可以指定特定格式。</p>
+<ul>
+<li><code>x</code> ：十六进制打印</li>
+<li><code>d</code>:十进制打印</li>
+<li><code>u</code>:无符号十进制打印</li>
+<li><code>o</code>:八进制打印</li>
+<li><code>t</code>:二进制形式打印</li>
+<li><code>f</code>:浮点数</li>
+</ul>
+<img src="/Blog/2020/06/30/LLDB使用/LLDB3.png" title="LLDB">
+<h3 id="堆栈"><a href="#堆栈" class="headerlink" title="堆栈"></a>堆栈</h3><p><code>bt</code>即是<code>thread backtrace</code>，作用是打印出当前线程的堆栈信息。<br><img src="/Blog/2020/06/30/LLDB使用/LLDB4.png" title="LLDB"></p>
+<p>我们在打印断点的时候，我们可以在左侧看到一些堆栈信息，但是看不完全，这个时候使用<code>bt</code>指令可以打印出完整的堆栈信息。</p>
+<p>输入<code>frame select</code>指令我们可以任意的去选择一个作用域去查看。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame select <span class="number">2</span></span><br></pre></td></tr></table></figure></p>
+<p><code>thread</code>另一个比较常用的用法是 <code>thread return</code>，调试的时候，我们希望在当前执行的程序堆栈直接返回一个自己想要的值，可以执行该命令直接返回。<br><code>thread return &lt;expr&gt;</code><br>在这个断点中，我们可以执行 <code>thread return NO</code>让该函数调用直接返回<code>NO</code>，在调试中轻松覆盖任何函数的返回路径。</p>
+<img src="/Blog/2020/06/30/LLDB使用/LLDB5.png" title="LLDB">
+<p><code>frame</code>即是帧，其实就是当前的程序堆栈，我们输入<code>bt</code>命令，打印出来的其实是当前线程的<code>frame</code>。</p>
+<ul>
+<li>展示当前作用域下的参数和局部变量<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame variable</span><br><span class="line">(lldb)fr v</span><br><span class="line">frame variable --no-summary-depth</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>展示当前作用域下的局部变量</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame variable --no-args</span><br><span class="line">(lldb)fr v -a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>展示指定变量var的具体内容</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame variable var</span><br><span class="line">(lldb)fr v var</span><br><span class="line">(lldb)p var</span><br><span class="line">(lldb)po var</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>展示当前对象的全局变量</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb)target variable</span><br><span class="line">(lldb)ta v</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打印某一方法具体的信息</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frame select num（<span class="number">1</span>，<span class="number">2</span>，<span class="number">3.</span>）</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="/Blog/2020/06/30/LLDB使用/LLDB7.png" title="LLDB">
+<h3 id="设置断点"><a href="#设置断点" class="headerlink" title="设置断点"></a>设置断点</h3><h4 id="breakpoint"><a href="#breakpoint" class="headerlink" title="breakpoint"></a>breakpoint</h4><p>所有调试都是由断点开始的，我们接触的最多，就是以breakpoint命令为基础的断点。<br>一般我们对breakpoint命令使用得不多，而是在XCode的GUI界面中直接添加断点。除了直接触发程序暂停供调试外，我们可以进行进一步的配置。</p>
+<img src="/Blog/2020/06/30/LLDB使用/LLDB8.png" title="LLDB">
+<ul>
+<li>添加condition，一般用于多次调用的函数或者循坏的代码中，在作用域内达到某个条件，才会触发程序暂停</li>
+<li>忽略次数，这个很容易理解，在忽略触发几次后再触发暂停</li>
+<li>添加Action，为这个断点添加子命令、脚本、shell命令、声效（有个毛线用）等Action，我的理解是一个脚本化的功能，我们可以在断点的基础上添加一些方便调试的脚本，提高调试效率。</li>
+<li>自动继续，配合上面的添加Action，我们就可以不用一次又一次的暂停程序进行调试来查询某些值（大型程序中断一次还是会有卡顿），直接用Action将需要的信息打印在控制台，一次性查看即可。</li>
+</ul>
+<h4 id="watchpoint"><a href="#watchpoint" class="headerlink" title="watchpoint"></a>watchpoint</h4><p>有时候我们会关心类的某个属性什么时候被人修改了，最简单的方法当然就是在setter的方法打断点，或者在<code>@property</code>的属性生命行打上断点。这样当对象的setter方法被调用时，就会触发这个断点<br>当然这么做是有缺点的，对于直接访问内存地址的修改，setter方法的断点并没有办法监控得到，因此我们需要用到<code>watchpoint</code>命令。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">watchpoint set variable str</span><br><span class="line">watchpoint list <span class="comment">//列出所有watchpoint</span></span><br><span class="line">watchpoint delete <span class="comment">// 删除所有watchpoint</span></span><br></pre></td></tr></table></figure>
+<h2 id="Chisel"><a href="#Chisel" class="headerlink" title="Chisel"></a>Chisel</h2><p><a href="https://github.com/facebook/chisel">Chisel</a>是facebook开源的一个LLDB命令的集合，它里面简化和扩展了LLDB的命令。使用它会更方便的调试我们的程序。在它的GitHub上有详细的安装方式，这里就不赘述了。</p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p><strong>1. pviews</strong></p>
+<p>这个命令可以按层级递归打印指定view的所有subView，相当于 UIView 的私有辅助方法 [view recursiveDescription]。如果不指定view的话就是默认window：</p>
+<img src="/Blog/2020/06/30/LLDB使用/LLDB9.png" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB使用/LLDB10.png" title="LLDB">
+<p><strong>2. pvc</strong></p>
+<p>这个命令递归打印出viewController的层级，相当于 UIViewController 的一个私有辅助方法 [UIViewController _printHierarchy] ：</p>
+<img src="/Blog/2020/06/30/LLDB使用/LLDB11.png" title="LLDB">
+<p><strong>3. visualize</strong></p>
+<p>它可以使用Mac的预览打开一个 UIImage, CGImageRef, UIView, 或 CALayer。 我们其实可以用这个功能来截图或者查看一个view的具体内容：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb) visualize <span class="number">0x7feb5cf18210</span></span><br><span class="line">(lldb) visualize <span class="keyword">self</span>.view</span><br></pre></td></tr></table></figure>
+<p><strong>4. mask/unmask</strong></p>
+<p>mask用来在view或者layer上覆盖一个半透明的矩形， unmask解除。当我们想找一个view的时候可以使用。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb) mask <span class="keyword">self</span>.imageView</span><br><span class="line">(lldb) unmask <span class="number">0x7f8732e037b0</span></span><br></pre></td></tr></table></figure>
+<img src="/Blog/2020/06/30/LLDB使用/LLDB12.png" title="LLDB">
+<p><strong>5. border/unborder</strong></p>
+<p>border可以给view或者layer添加边框，unborder解除。当我们想找一个view的时候可以使用。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb) border <span class="keyword">self</span>.imageView</span><br><span class="line">(lldb) unborder <span class="number">0x7f8732e037b0</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>6. show/hide</strong></p>
+<p>显示隐藏一个view或者layer。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb) hide <span class="keyword">self</span>.imageView</span><br><span class="line">(lldb) show <span class="keyword">self</span>.imageView</span><br></pre></td></tr></table></figure>
+<p><strong>7. caflush</strong></p>
+<p>这个命令用来刷新UI，当我们改变了UI的时候，不用重新启动，使用caflush刷新UI就行。</p>
+<p><strong>8. presponder</strong></p>
+<p>打印响应者链：</p>
+<img src="/Blog/2020/06/30/LLDB使用/LLDB13.png" title="LLDB">
+<p><strong>9. pclass</strong></p>
+<p>打印指定对象的class的继承关系：</p>
+<img src="/Blog/2020/06/30/LLDB使用/LLDB14.png" title="LLDB">
+<p><strong>10. pjson</strong></p>
+<p>打印一个字典或者数组的json样式。<br><img src="/Blog/2020/06/30/LLDB使用/LLDB15.png" title="LLDB"></p>
+<p><strong>11. slowanim/unslowanim</strong></p>
+<p>减慢动画的效果，检查一个动画哪里有问题时可以使用。</p>
+<p><strong>12. pdocspath</strong></p>
+<p>打印App的Documents路径：</p>
+<img src="/Blog/2020/06/30/LLDB使用/LLDB16.png" title="LLDB">
+<p><strong>13. fv &amp; fvc</strong></p>
+<p>这两个命令是用来搜索当前内存中存在的view和viewController实例的命令，支持正则搜索。</p>
+<img src="/Blog/2020/06/30/LLDB使用/LLDB17.png" title="LLDB">
+<p><strong>14. vs</strong><br>这个命令可以移动正在调试的对象，让对象切换到其父视图之前，或切换到其兄弟视图之前。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(lldb) vs <span class="number">0x128430c50</span></span><br><span class="line"></span><br><span class="line">Use the following and (q) to quit.</span><br><span class="line">(w) move to superview</span><br><span class="line">(s) move to first subview</span><br><span class="line">(a) move to previous sibling</span><br><span class="line">(d) move to next sibling</span><br><span class="line">(p) print the hierarchy</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.jianshu.com/p/d6a0a5e39b0e" target="_blank" rel="noopener">iOS调试-LLDB学习总结</a></p>
+<p><a href="https://www.jianshu.com/p/67f08a4d8cf2" target="_blank" rel="noopener">iOS开发调试 - LLDB使用概览</a></p>
+<p><a href="https://blog.csdn.net/u011374318/article/details/79648178" target="_blank" rel="noopener">LLDB 常用命令</a></p>
+<p><a href="https://github.com/facebook/chisel/wiki">chisel命令列表</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/06/29/RunLoop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1141,79 +1305,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/03/18/Vue启动报错Error-Cannot-find-module-webpack-bin-config-yargs/" class="post-title-link" itemprop="url">Vue启动报错Error: Cannot find module 'webpack/bin/config-yargs'</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-03-18 21:27:49" itemprop="dateCreated datePublished" datetime="2020-03-18T21:27:49+08:00">2020-03-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天执行<code>npm run dev</code>时出现报错，提示<code>Error: Cannot find module &#39;webpack/bin/config-yargs&#39;</code>，查资料发现问题出在，<code>webpack</code>、<code>webpack-cli</code>、<code>webpack-dev-server</code>的版本不匹配。</p>
-<p>打开项目根目录下的<code>package.json</code> 文件，发现我的项目里面的配置信息为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"webpack"</span>: <span class="string">"^4.42.0"</span>,</span><br><span class="line"><span class="string">"webpack-cli"</span>: <span class="string">"^3.3.11"</span>,</span><br><span class="line"><span class="string">"webpack-dev-server"</span>: <span class="string">"^2.11.5"</span></span><br></pre></td></tr></table></figure>
-<p>然后我修改了<code>package.json</code>文件，修改<code>webpack-dev-sever</code>的版本为<code>3.1.4</code>，然后在项目根目录执行<code>npm install</code>命令。此命令执行完毕后再执行<code>npm run dev</code>发现可以正常运行。</p>
-<p>最终<code>package.json</code>文件的配置如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;babel-core&quot;: &quot;^6.26.0&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^7.1.2&quot;,</span><br><span class="line">    &quot;babel-polyfill&quot;: &quot;^6.26.0&quot;,</span><br><span class="line">    &quot;babel-preset-env&quot;: &quot;^1.6.0&quot;,</span><br><span class="line">    &quot;babel-preset-stage-3&quot;: &quot;^6.24.1&quot;,</span><br><span class="line">    &quot;babel-preset-vue&quot;: &quot;^2.0.2&quot;,</span><br><span class="line">    &quot;cross-env&quot;: &quot;^5.0.5&quot;,</span><br><span class="line">    &quot;css-loader&quot;: &quot;^3.4.2&quot;,</span><br><span class="line">    &quot;file-loader&quot;: &quot;^1.1.4&quot;,</span><br><span class="line">    &quot;vue-loader&quot;: &quot;^13.0.5&quot;,</span><br><span class="line">    &quot;vue-template-compiler&quot;: &quot;^2.4.4&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^4.42.0&quot;,</span><br><span class="line">    &quot;webpack-cli&quot;: &quot;^3.3.11&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^3.1.4&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://blog.csdn.net/u013894429/article/details/94393342" target="_blank" rel="noopener">已解决 - 问题Cannot find module ‘webpack/bin/config-yargs’</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1283,7 +1374,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
