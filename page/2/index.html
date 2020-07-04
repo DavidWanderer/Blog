@@ -159,6 +159,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/20/ssh命令无法连接主机/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/03/20/ssh命令无法连接主机/" class="post-title-link" itemprop="url">ssh命令无法连接主机</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-20 20:36:48" itemprop="dateCreated datePublished" datetime="2020-03-20T20:36:48+08:00">2020-03-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用ssh命令远程连接主机出现问题，问题描述如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:~ kris$ ssh root@192.3.249.179</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!</span><br><span class="line">Someone could be eavesdropping on you right now (man-in-the-middle attack)!</span><br><span class="line">It is also possible that a host key has just been changed.</span><br><span class="line">The fingerprint <span class="keyword">for</span> the ECDSA key sent by the remote host is</span><br><span class="line">SHA256:dVUw64aj0m2JBl62oUMeoJzpZMjCqtL24CQMjTDVvsc.</span><br><span class="line">Please contact your system administrator.</span><br><span class="line">Add correct host key <span class="keyword">in</span> /Users/kris/.ssh/known_hosts to get rid of this message.</span><br><span class="line">Offending ECDSA key <span class="keyword">in</span> /Users/kris/.ssh/known_hosts:13</span><br><span class="line">ECDSA host key <span class="keyword">for</span> 192.3.249.179 has changed and you have requested strict checking.</span><br><span class="line">Host key verification failed.</span><br></pre></td></tr></table></figure>
+<p>解决办法:</p>
+<p>1.编辑配置文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim ~/.ssh/known_hosts</span><br></pre></td></tr></table></figure>
+<p>2.删除对应的host key。</p>
+<img src="/Blog/2020/03/20/ssh命令无法连接主机/1.png" title="删除sshKey截图">
+<p>3.再次使用ssh命令连接远程主机，发现可以正常连接。</p>
+<img src="/Blog/2020/03/20/ssh命令无法连接主机/2.png" title="远程连接主机命令截图">
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://blog.csdn.net/wd2014610/article/details/79945424" target="_blank" rel="noopener">Mac和Linux远程连接服务器异常修复（WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!）</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/19/Vue打包报错Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1022,83 +1098,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/11/19/VPS搭建SSR-BBR/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/11/19/VPS搭建SSR-BBR/" class="post-title-link" itemprop="url">VPS搭建SSR+BBR</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-19 22:36:59" itemprop="dateCreated datePublished" datetime="2019-11-19T22:36:59+08:00">2019-11-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="VPS相关环境信息"><a href="#VPS相关环境信息" class="headerlink" title="VPS相关环境信息"></a>VPS相关环境信息</h2><p>Linux Centos 7.1503.01 X86 64 Minimal Gen2 V1</p>
-<h2 id="安装ShadowsocksR的命令"><a href="#安装ShadowsocksR的命令" class="headerlink" title="安装ShadowsocksR的命令"></a>安装ShadowsocksR的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;&amp; chmod +x ssrmu.sh &amp;&amp; bash </span></span><br><span class="line"><span class="comment"># ./ssrmu.sh</span></span><br></pre></td></tr></table></figure>
-<h2 id="安装BBR加速的命令"><a href="#安装BBR加速的命令" class="headerlink" title="安装BBR加速的命令"></a>安装BBR加速的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install wget</span></span><br><span class="line"><span class="comment"># wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</span></span><br><span class="line"><span class="comment"># chmod +x bbr.sh</span></span><br><span class="line"><span class="comment"># ./bbr.sh</span></span><br></pre></td></tr></table></figure>
-<h2 id="检测BBR是否已经安装好了"><a href="#检测BBR是否已经安装好了" class="headerlink" title="检测BBR是否已经安装好了"></a>检测BBR是否已经安装好了</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 在终端输入如下命令，如果返回的输出有bbr，则说明已经安装完成</span></span><br><span class="line"><span class="comment"># sysctl net.ipv4.tcp_available_congestion_control</span></span><br><span class="line">net.ipv4.tcp_available_congestion_control = reno cubic bbr</span><br><span class="line"></span><br><span class="line"><span class="comment">## 在终端输入如下命令，如果返回的输出有bbr，则说明已经安装完成</span></span><br><span class="line"><span class="comment"># lsmod | grep bbr</span></span><br><span class="line">tcp_bbr                20480  7</span><br></pre></td></tr></table></figure>
-<p>首次安装完成如果无法连接成功，请尝试检测服务器防火墙是否没有新增规则，导致端口在外网无法访问。检测方法请使用<a href="http://tool.chinaz.com/port" target="_blank" rel="noopener">站长工具&gt;端口扫描</a>。<br>如果查询出在外网无法访问当前的服务器端口，请在服务器的防火墙中添加规则，开启特殊端口访问。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 查看防火墙规则</span></span><br><span class="line"><span class="comment"># firewall-cmd --list-all</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 查询端口是否开放</span></span><br><span class="line"><span class="comment"># firewall-cmd --query-port=80/tcp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 开放80端口</span></span><br><span class="line"><span class="comment"># firewall-cmd --permanent --add-port=80/tcp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 移除端口</span></span><br><span class="line"><span class="comment"># firewall-cmd --permanent --remove-port=80/tcp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 重启防火墙(修改配置后要重启防火墙)</span></span><br><span class="line"><span class="comment"># firewall-cmd --reload</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="IP和端口是否畅通测试"><a href="#IP和端口是否畅通测试" class="headerlink" title="IP和端口是否畅通测试"></a>IP和端口是否畅通测试</h2><p>此工具可以检测全球范围内，到你的服务器的ping值大概是多少:<a href="http://ping.chinaz.com" target="_blank" rel="noopener">站长工具&gt;ping检测</a><br>通过站长工具检测国内到服务器的IP和端口是否畅通:<a href="http://tool.chinaz.com/port" target="_blank" rel="noopener">站长工具&gt;端口扫描</a><br>通过此网站可以检测在国外，你的服务器IP和端口是否畅通:<a href="https://www.yougetsignal.com/tools/open-ports/" target="_blank" rel="noopener">国外站长工具&gt;端口扫描</a></p>
-<p>也可以使用命令检测远程服务器端口是否开启:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nc -v host port</span></span><br></pre></td></tr></table></figure></p>
-<p>端口未打开返回状态为非0</p>
-<h2 id="ShadowsocksR客户端下载地址"><a href="#ShadowsocksR客户端下载地址" class="headerlink" title="ShadowsocksR客户端下载地址"></a>ShadowsocksR客户端下载地址</h2><p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss">https://github.com/shadowsocksr-backup/shadowsocks-rss</a></p>
-<h2 id="顺便附上Shadowsocks客户端的下载地址"><a href="#顺便附上Shadowsocks客户端的下载地址" class="headerlink" title="顺便附上Shadowsocks客户端的下载地址"></a>顺便附上Shadowsocks客户端的下载地址</h2><p>注意 ShadowsocksR 和 Shadowsocks 的客户端是不一样的，无法互相连通。<br><a href="https://lvii.gitbooks.io/outman/content/ss.mac.html" target="_blank" rel="noopener">https://lvii.gitbooks.io/outman/content/ss.mac.html</a></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="http://www.heiqw.com/post-66.html" target="_blank" rel="noopener">SSR科学上网搭建脚本+virmach主机购买地址分享</a><br><a href="https://www.5xiaobo.com/?id=693" target="_blank" rel="noopener">国外VPS搭建SSR多用户教程【中文一键安装版】</a><br><a href="https://www.cnblogs.com/73tong/p/8309597.html" target="_blank" rel="noopener">CentOS6开启BBR加速</a><br><a href="https://www.cnblogs.com/onmyway20xx/p/3626433.html" target="_blank" rel="noopener">linux 检测远程端口是否打开</a><br><a href="http://ping.chinaz.com" target="_blank" rel="noopener">站长工具&gt;ping检测</a><br><a href="http://tool.chinaz.com/port" target="_blank" rel="noopener">站长工具&gt;端口扫描</a><br><a href="https://www.yougetsignal.com/tools/open-ports/" target="_blank" rel="noopener">国外站长工具&gt;端口扫描</a><br><a href="https://lvii.gitbooks.io/outman/content/" target="_blank" rel="noopener">科学上网漫游指南(shadowsocks服务端和客户端搭建指南)</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss">shadowsocksr-backup/shadowsocks-rss</a><br><a href="https://www.cnblogs.com/xxoome/p/7115614.html" target="_blank" rel="noopener">Centos7.3防火墙配置</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1168,7 +1167,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
