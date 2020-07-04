@@ -159,6 +159,85 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/21/使用vue-cli创建项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/03/21/使用vue-cli创建项目/" class="post-title-link" itemprop="url">使用vue-cli创建项目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-21 14:32:04" itemprop="dateCreated datePublished" datetime="2020-03-21T14:32:04+08:00">2020-03-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1.执行命令创建项目。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack-simple demo4</span><br></pre></td></tr></table></figure>
+<p>2.回答vue-cli的问题。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">? Project name demo4</span><br><span class="line">? Project description A Vue.js project</span><br><span class="line">? Author Hu, Yuping &lt;huyp@yxt.com&gt;</span><br><span class="line">? License MIT</span><br><span class="line">? Use sass? No</span><br></pre></td></tr></table></figure>
+<p>3.vue-cli会创建文件夹，并打印提示命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vue-cli · Generated <span class="string">"demo4"</span>.</span><br><span class="line"></span><br><span class="line">   To get started:</span><br><span class="line">   </span><br><span class="line">     <span class="built_in">cd</span> demo4</span><br><span class="line">     npm install</span><br><span class="line">     npm run dev</span><br></pre></td></tr></table></figure>
+<p>其中第一条命令的可以提供不同的模版。命令全称如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init &lt;template-name&gt; &lt;project-name&gt;</span><br></pre></td></tr></table></figure>
+<p>具体解释如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">init：表示我要用vue-cli来初始化项目</span><br><span class="line"></span><br><span class="line">&lt;template-name&gt;：表示模板名称，vue-cli官方为我们提供了5种模板，</span><br><span class="line"></span><br><span class="line">webpack-一个全面的webpack+vue-loader的模板，功能包括热加载，linting,检测和CSS扩展。</span><br><span class="line"></span><br><span class="line">webpack-simple-一个简单webpack+vue-loader的模板，不包含其他功能，让你快速的搭建vue的开发环境。</span><br><span class="line"></span><br><span class="line">browserify-一个全面的Browserify+vueify 的模板，功能包括热加载，linting,单元检测。</span><br><span class="line"></span><br><span class="line">browserify-simple-一个简单Browserify+vueify的模板，不包含其他功能，让你快速的搭建vue的开发环境。</span><br><span class="line"></span><br><span class="line">simple-一个最简单的单页应用模板。</span><br><span class="line"></span><br><span class="line">&lt;project-name&gt;：标识项目名称，这个你可以根据自己的项目来起名字。</span><br></pre></td></tr></table></figure>
+<p>创建完项目，执行<code>npm run dev</code>，控制台会打印消息，可以预览当前的自动生成的页面。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:demo4 kris$ npm run dev</span><br><span class="line"></span><br><span class="line">&gt; demo4@1.0.0 dev /Users/kris/Documents/VueDemo/chapter4/demo4</span><br><span class="line">&gt; cross-env NODE_ENV=development webpack-dev-server --open --hot</span><br><span class="line"></span><br><span class="line">Project is running at http://localhost:8081/</span><br><span class="line">webpack output is served from /dist/</span><br><span class="line">404s will fallback to /index.html</span><br><span class="line">&#123; parser: <span class="string">"babylon"</span> &#125; is deprecated; we now treat it as &#123; parser: <span class="string">"babel"</span> &#125;.</span><br></pre></td></tr></table></figure>
+<p>浏览器中的预览页面如下:</p>
+<img src="/Blog/2020/03/21/使用vue-cli创建项目/1.png" title="demo项目运行的截图">
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/20/ssh命令无法连接主机/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1015,93 +1094,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/12/12/Ruby相关命令收集/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/12/12/Ruby相关命令收集/" class="post-title-link" itemprop="url">Ruby相关命令收集</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-12-12 18:59:40" itemprop="dateCreated datePublished" datetime="2019-12-12T18:59:40+08:00">2019-12-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/Ruby/" itemprop="url" rel="index"><span itemprop="name">Ruby</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>RVM是一个命令行工具，它能帮你安装多个版本的Ruby，并切换不同的版本。</p>
-<h2 id="安装RVM步骤"><a href="#安装RVM步骤" class="headerlink" title="安装RVM步骤"></a>安装RVM步骤</h2><p>1.安装rvm<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3</span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable</span><br><span class="line"><span class="comment"># 如果上面的连接失败，可以尝试: </span></span><br><span class="line">$ curl -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable</span><br></pre></td></tr></table></figure></p>
-<p>2.载入rvm环境(新开Terminal,会自动重新载入)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm</span><br></pre></td></tr></table></figure></p>
-<p>3.修改rvm下载的Ruby源，到RubyChina的镜像:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"ruby_url=https://cache.ruby-china.com/pub/ruby"</span> &gt; ~/.rvm/user/db</span><br></pre></td></tr></table></figure></p>
-<p>4.检查rvm是否安装正确<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ rvm -v</span><br><span class="line">rvm 1.22.17 (stable) by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; [https://rvm.io/]</span><br></pre></td></tr></table></figure></p>
-<h2 id="RVM常用指令"><a href="#RVM常用指令" class="headerlink" title="RVM常用指令"></a>RVM常用指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v <span class="comment"># 查看ruby 版本</span></span><br><span class="line">$ rvm list known <span class="comment"># 列出已知的 ruby 版本</span></span><br><span class="line">$ rvm install 2.3.0 <span class="comment"># 选择指定 ruby 版本进行更新</span></span><br><span class="line">$ rvm get stable <span class="comment"># 更新 rvm</span></span><br><span class="line">$ rvm use 2.2.2 <span class="comment"># 切换到指定 ruby 版本</span></span><br><span class="line">$ rvm use 2.2.2 --default <span class="comment"># 设置指定 ruby 版本为默认版本</span></span><br><span class="line">$ rvm list <span class="comment"># 查询已安装的 ruby 版本</span></span><br><span class="line">$ rvm remove 1.9.2 <span class="comment"># 卸载移除 指定 ruby 版本</span></span><br><span class="line"></span><br><span class="line">$ curl -L https://get.rvm.io | bash -s stable <span class="comment"># 安装 rvm 环境</span></span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby <span class="comment"># 默认安装 rvm 最新版本</span></span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3.0 <span class="comment"># 安装 rvm 指定版本</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm <span class="comment"># 载入 rvm</span></span><br></pre></td></tr></table></figure>
-<h2 id="Gem常用指令"><a href="#Gem常用指令" class="headerlink" title="Gem常用指令"></a>Gem常用指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">$ gem -v <span class="comment"># 查看 gem 版本</span></span><br><span class="line">$ gem <span class="built_in">source</span> <span class="comment"># 查看 gem 配置源</span></span><br><span class="line">$ gem <span class="built_in">source</span> -l <span class="comment"># 查看 gem 配置源目录</span></span><br><span class="line">$ gem sources -a url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --add url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources -r url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --remove url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem update <span class="comment"># 更新 所有包</span></span><br><span class="line">$ gem update --system <span class="comment"># 更新 Ruby Gems 软件</span></span><br><span class="line"></span><br><span class="line">$ gem install rake <span class="comment"># 安装 rake，从本地或远程服务器</span></span><br><span class="line">$ gem install rake --remote <span class="comment"># 安装 rake，从远程服务器</span></span><br><span class="line">$ gem install watir -v 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem install watir --version 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem uninstall rake <span class="comment"># 卸载 rake 包</span></span><br><span class="line">$ gem list d <span class="comment"># 列出 本地以 d 打头的包</span></span><br><span class="line">$ gem query -n <span class="string">''</span>[0-9]<span class="string">''</span> --<span class="built_in">local</span> <span class="comment"># 查找 本地含有数字的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --both <span class="comment"># 查找 从本地和远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --remoter <span class="comment"># 查找 只从远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search -r <span class="built_in">log</span> <span class="comment"># 查找 只从远程服务器上查找含有log字符串的包</span></span><br><span class="line"></span><br><span class="line">$ gem <span class="built_in">help</span> <span class="comment"># 提醒式的帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> install <span class="comment"># 列出 install 命令 帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> examples <span class="comment"># 列出 gem 命令使用一些例子</span></span><br><span class="line">$ gem build rake.gemspec <span class="comment"># 把 rake.gemspec 编译成 rake.gem</span></span><br><span class="line">$ gem check -v pkg/rake-0.4.0.gem <span class="comment"># 检测 rake 是否有效</span></span><br><span class="line">$ gem cleanup <span class="comment"># 清除 所有包旧版本，保留最新版本</span></span><br><span class="line">$ gem contents rake <span class="comment"># 显示 rake 包中所包含的文件</span></span><br><span class="line">$ gem dependency rails -v 0.10.1 <span class="comment"># 列出 与 rails 相互依赖的包</span></span><br><span class="line">$ gem environment <span class="comment"># 查看 gem 的环境</span></span><br><span class="line"></span><br><span class="line">$ sudo gem -v <span class="comment"># 查看 gem 版本（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoa pods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods --pre <span class="comment"># 安装 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods -v 1.4.0 <span class="comment"># 安装 CocoaPods 指定版本（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods <span class="comment"># 更新 CocoaPods 至最新版（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods --pre <span class="comment"># 更新 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem uninstall cocoapods -v 1.4.0 <span class="comment"># 移除 CocoaPods 指定版本（以管理员权限）</span></span><br></pre></td></tr></table></figure>
-<p>如果命令无法修改Gem源，可以手动修改Gem源，Gem的配置文件位置在<code>~/.gemrc</code>，编辑<code>~/.gemrc</code>文件，在:sources:配置行下添加<code>https://gems.ruby-china.com/</code>，这样就配置了ruby-china的Gem源。最终的配置文件如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">:backtrace: <span class="literal">false</span></span><br><span class="line">:bulk_threshold: 1000</span><br><span class="line">:sources:</span><br><span class="line">- https://gems.ruby-china.com</span><br><span class="line">:update_sources: <span class="literal">true</span></span><br><span class="line">:verbose: <span class="literal">true</span></span><br><span class="line">:ssl_verify_mode: 0</span><br><span class="line">concurrent_downloads: 8</span><br></pre></td></tr></table></figure></p>
-<p>mac系统升级到Catalina时，使用cocoa pod时报错：-bash: /usr/local/bin/pod: /<br>System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/bin/ruby: bad interpreter: No such file or directory”. </p>
-<p>解决方案：<code>sudo gem install -n /usr/local/bin cocoapods -v 1.4.0</code></p>
-<h2 id="Fastlane安装步骤"><a href="#Fastlane安装步骤" class="headerlink" title="Fastlane安装步骤"></a>Fastlane安装步骤</h2><p>指定版本安装fastlane<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">set</span> -ex</span><br><span class="line">$ gem uninstall fastlane --all --executables</span><br><span class="line">$ gem install fastlane --version 2.28.3 --no-document</span><br></pre></td></tr></table></figure></p>
-<p>mac系统升级到Catalina时，安装Fastlane会报错，请尝试:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">set</span> -ex</span><br><span class="line">$ gem uninstall -n /usr/<span class="built_in">local</span>/bin fastlane --all --executables</span><br><span class="line">$ gem install -n /usr/<span class="built_in">local</span>/bin fastlane --version 2.28.3 --no-document</span><br></pre></td></tr></table></figure></p>
-<p>如果尝试多次仍然无法安装Fastlane，可以尝试:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#brew cask安装fastlane的执行命令:</span></span><br><span class="line">$ brew cask uninstall fastlane</span><br><span class="line">$ brew cask install fastlane</span><br></pre></td></tr></table></figure></p>
-<h2 id="将homebrew的源换成阿里云，提高下载速度"><a href="#将homebrew的源换成阿里云，提高下载速度" class="headerlink" title="将homebrew的源换成阿里云，提高下载速度"></a>将homebrew的源换成阿里云，提高下载速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.替换brew.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/brew.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.替换homebrew-core.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core"</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.替换homebrew-cask.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span>/Library/Taps/homebrew/homebrew-cask</span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.替换homebrew-bottles:</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles'</span> &gt;&gt; ~/.zshrc</span><br><span class="line">$ <span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-<h2 id="给Git添加代理访问，提高Git的访问速度"><a href="#给Git添加代理访问，提高Git的访问速度" class="headerlink" title="给Git添加代理访问，提高Git的访问速度"></a>给Git添加代理访问，提高Git的访问速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.编辑PAC用户自定义规则,添加以下地址:</span></span><br><span class="line">github.com</span><br><span class="line">githubusercontent.com</span><br><span class="line">githubassets.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.编辑~/.ssh/config文件，在文件中添加以下命令:</span></span><br><span class="line">Host github.com</span><br><span class="line">   HostName github.com</span><br><span class="line">   User git</span><br><span class="line">   ProxyCommand nc -v -x 127.0.0.1:1086 %h %p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.让配置立即生效:</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.ssh/config</span><br></pre></td></tr></table></figure>
-<h2 id="给终端添加代理访问"><a href="#给终端添加代理访问" class="headerlink" title="给终端添加代理访问"></a>给终端添加代理访问</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.编辑～/.bash_profile文件</span></span><br><span class="line">$ vim ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.在配置文件中加入如下内容，并保存</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:1087</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:1087</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.让配置立即生效</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.测试代理是否成功</span></span><br><span class="line">$ curl cip.cc</span><br><span class="line">IP	: 192.3.249.219</span><br><span class="line">地址	: 美国  华盛顿州  西雅图</span><br><span class="line">运营商	: colocrossing.com</span><br><span class="line"></span><br><span class="line">数据二	: 美国</span><br><span class="line"></span><br><span class="line">数据三	: 美国华盛顿西雅图</span><br><span class="line"></span><br><span class="line">URL	: http://www.cip.cc/192.3.249.219</span><br></pre></td></tr></table></figure>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://ruby-china.org/wiki/install_ruby_guide" target="_blank" rel="noopener">安装配置RVM环境</a><br><a href="https://stackoverflow.com/questions/20487849/how-to-downgrade-or-install-an-older-version-of-cocoapods" target="_blank" rel="noopener">安装指定版本的cocoapods</a><br><a href="https://gist.github.com/neekey/4601713" target="_blank" rel="noopener">手动安装RVM</a><br><a href="https://www.raydbg.com/2019/Homebrew-Update-Slow/" target="_blank" rel="noopener">解决Homebrew下载更新极慢的问题</a><br><a href="http://skx926.me/2019/01/23/mac-proxy/" target="_blank" rel="noopener">Mac上的各种代理设置</a><br><a href="https://www.jianshu.com/p/c44ef74d99f9" target="_blank" rel="noopener">Mac安装Ruby版本管理器RVM</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/Blog/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/Blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/Blog/page/3/">3</a><a class="page-number" href="/Blog/page/4/">4</a><a class="extend next" rel="next" href="/Blog/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/Blog/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/Blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/Blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/Blog/page/5/">5</a><a class="extend next" rel="next" href="/Blog/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1167,7 +1163,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
