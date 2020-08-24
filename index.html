@@ -206,15 +206,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          有东西被加密了, 请输入密码查看.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Blog/2020/08/01/iOS安装包瘦身/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <img src="/Blog/2020/08/01/iOS安装包瘦身/iOS安装包瘦身.png" title="iOS安装包瘦身思维导图">
+<h2 id="iPA解压排查"><a href="#iPA解压排查" class="headerlink" title="iPA解压排查"></a>iPA解压排查</h2><p>iOS安装包瘦身时，最直接的办法就是，解压打包完的iPA，查找大文件，优化对应的大文件。<br><img src="/Blog/2020/08/01/iOS安装包瘦身/ipa.png" title="iPA解压后内部截图"></p>
+<ul>
+<li><p>_CodeSignature：文件hash列表。里面有一个属性列表文件CodeResources，包含.app中所有文件的列表，里面是一个字典，key是文件名，value通常是Base64格式的散列值。它的作用是用来判断应用程序是否完好无损，防止资源文件修改损坏。</p>
+</li>
+<li><p>Assets.car：由.xcassets统一打包生成。包含所有.xcassets下的资源文件.xcassets可以存放图片资源，组织清晰，便于管理，Xcode也会对一些资源做优化处理。如果直接放在Xcode工程目录下，打包后这些资源会在包的根目录下面展示。Assets.car可以通过Asset Catalog Tinkerer软件打开，并导出相关资源。</p>
+</li>
+<li><p>embedded.mobileprovision：描述文件</p>
+</li>
+<li><p>Info.plist：工程信息配置文件</p>
+</li>
+<li><p>YXTDemo：与工程同名的可执行文件。可以通过file命令查看类型。</p>
+</li>
+</ul>
+<h2 id="图片资源优化"><a href="#图片资源优化" class="headerlink" title="图片资源优化"></a>图片资源优化</h2><h3 id="删除未使用的图片资源"><a href="#删除未使用的图片资源" class="headerlink" title="删除未使用的图片资源"></a>删除未使用的图片资源</h3><p>可以使用工具LSUnusedResources工具查找未使用的图片资源，工具下载地址：<a href="https://github.com/tinymind/LSUnusedResources。">https://github.com/tinymind/LSUnusedResources。</a><br><img src="/Blog/2020/08/01/iOS安装包瘦身/lsunusedresources.png" title="查找未使用的图片的截图1"><br><img src="/Blog/2020/08/01/iOS安装包瘦身/lsunusedresources2.png" title="查找未使用的图片的截图2"></p>
+<h3 id="压缩图标和图片"><a href="#压缩图标和图片" class="headerlink" title="压缩图标和图片"></a>压缩图标和图片</h3><p>对于一些较大的图标和图片可以使用工具ImageOptim压缩一下。<br><img src="/Blog/2020/08/01/iOS安装包瘦身/imageoptim1.png" title="图片压缩工具截图"><br><img src="/Blog/2020/08/01/iOS安装包瘦身/imageoptim2.png" title="图片压缩工具截图"><br><img src="/Blog/2020/08/01/iOS安装包瘦身/imageoptim3.png" title="图片压缩工具截图"><br><img src="/Blog/2020/08/01/iOS安装包瘦身/imageoptim4.png" title="图片压缩工具截图"></p>
+<h3 id="特殊大图放工程目录下"><a href="#特殊大图放工程目录下" class="headerlink" title="特殊大图放工程目录下"></a>特殊大图放工程目录下</h3><p>大图(例如游戏界面背景图)若放在.xcassets文件夹中，工程打包后大图的尺寸会变大，因此建议特定大图不要放在.xcassets中，放在工程目录下即可。</p>
+<h2 id="删除冗余代码"><a href="#删除冗余代码" class="headerlink" title="删除冗余代码"></a>删除冗余代码</h2><h3 id="删除未使用的类文件"><a href="#删除未使用的类文件" class="headerlink" title="删除未使用的类文件"></a>删除未使用的类文件</h3><p>使用CATClearProjectTool工具查找未使用的类，删除即可。<br><img src="/Blog/2020/08/01/iOS安装包瘦身/catclearprojecttool1.png" title="查找未使用的类"><br><img src="/Blog/2020/08/01/iOS安装包瘦身/catclearprojecttool2.png" title="查找未使用的类"></p>
+<h3 id="使用LinkMap分析类文件和静态库的大小"><a href="#使用LinkMap分析类文件和静态库的大小" class="headerlink" title="使用LinkMap分析类文件和静态库的大小"></a>使用LinkMap分析类文件和静态库的大小</h3><p>使用LinkMap工具可以分析具体类文件和静态库大小，工具下载地址：<a href="https://github.com/huanxsd/LinkMap。">https://github.com/huanxsd/LinkMap。</a></p>
+
       
     </div>
 
