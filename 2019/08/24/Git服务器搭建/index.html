@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"github.com","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1.使用ssh命令登录Linux服务器1ssh root@104.224.156.100 -p 2022 2.安装Git12$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel$ yum install git 3.接下来我们 创建一个git用户组和用户，用来运行git服务：12">
-<meta name="keywords" content="Git">
+  <meta name="description" content="1.使用ssh命令登录Linux服务器1ssh root@104.224.156.100 -p 2022   2.安装Git12$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel$ yum install git   3.接下来我们 创建一个git用户组和用户，用来运行git服">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git服务器搭建">
-<meta property="og:url" content="https://github.com/DavidWanderer/Blog/2019/08/24/Git服务器搭建/index.html">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/2019/08/24/Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/index.html">
 <meta property="og:site_name" content="Stay hungry, Stay foolish.">
-<meta property="og:description" content="1.使用ssh命令登录Linux服务器1ssh root@104.224.156.100 -p 2022 2.安装Git12$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel$ yum install git 3.接下来我们 创建一个git用户组和用户，用来运行git服务：12">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-24T08:20:13.245Z">
+<meta property="og:description" content="1.使用ssh命令登录Linux服务器1ssh root@104.224.156.100 -p 2022   2.安装Git12$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel$ yum install git   3.接下来我们 创建一个git用户组和用户，用来运行git服">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-08-24T01:07:48.000Z">
+<meta property="article:modified_time" content="2020-05-24T08:20:13.245Z">
+<meta property="article:author" content="Wanderer">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git服务器搭建">
-<meta name="twitter:description" content="1.使用ssh命令登录Linux服务器1ssh root@104.224.156.100 -p 2022 2.安装Git12$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel$ yum install git 3.接下来我们 创建一个git用户组和用户，用来运行git服务：12">
 
-<link rel="canonical" href="https://github.com/DavidWanderer/Blog/2019/08/24/Git服务器搭建/">
+<link rel="canonical" href="https://github.com/DavidWanderer/Blog/2019/08/24/Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">
 
 
 <script id="page-configurations">
@@ -162,7 +162,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/08/24/Git服务器搭建/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/08/24/Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
@@ -197,7 +197,21 @@
                 </span>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>5 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -209,44 +223,95 @@
 
       
         <h2 id="1-使用ssh命令登录Linux服务器"><a href="#1-使用ssh命令登录Linux服务器" class="headerlink" title="1.使用ssh命令登录Linux服务器"></a>1.使用ssh命令登录Linux服务器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@104.224.156.100 -p 2022</span><br></pre></td></tr></table></figure>
+
+
 <h2 id="2-安装Git"><a href="#2-安装Git" class="headerlink" title="2.安装Git"></a>2.安装Git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel</span><br><span class="line">$ yum install git</span><br></pre></td></tr></table></figure>
+
+
 <h2 id="3-接下来我们-创建一个git用户组和用户，用来运行git服务："><a href="#3-接下来我们-创建一个git用户组和用户，用来运行git服务：" class="headerlink" title="3.接下来我们 创建一个git用户组和用户，用来运行git服务："></a>3.接下来我们 创建一个git用户组和用户，用来运行git服务：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ groupadd git</span><br><span class="line">$ useradd git -g git</span><br></pre></td></tr></table></figure>
-<h2 id="4-客户端生成ssh公钥"><a href="#4-客户端生成ssh公钥" class="headerlink" title="4.客户端生成ssh公钥"></a>4.客户端生成ssh公钥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">192:git poet$ ssh-keygen -t rsa</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/Users/poet/.ssh/id_rsa): </span><br><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase): </span><br><span class="line">Enter same passphrase again: </span><br><span class="line">Your identification has been saved <span class="keyword">in</span> /Users/poet/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved <span class="keyword">in</span> /Users/poet/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:Rky+UE83syyOMjaKYHeoGduGBaPqnU+rtrcyl7TMdL8 poet@192.168.0.101</span><br><span class="line">The key<span class="string">'s randomart image is:</span></span><br><span class="line"><span class="string">+---[RSA 2048]----+</span></span><br><span class="line"><span class="string">|        o . +    |</span></span><br><span class="line"><span class="string">|       = o o +   |</span></span><br><span class="line"><span class="string">| o    . + o o    |</span></span><br><span class="line"><span class="string">|. o .  o + .     |</span></span><br><span class="line"><span class="string">|oo + .= S .      |</span></span><br><span class="line"><span class="string">|o.X..= *         |</span></span><br><span class="line"><span class="string">|.=.o*.+ .        |</span></span><br><span class="line"><span class="string">|. o+oB.  .       |</span></span><br><span class="line"><span class="string">| ..=O+.  E.      |</span></span><br><span class="line"><span class="string">+----[SHA256]-----+</span></span><br><span class="line"><span class="string">192:git poet$ cat /Users/poet/.ssh/id_rsa.pub</span></span><br><span class="line"><span class="string">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQVX+tOytAUJq3pKNvIFX2HETKvalq4rlqIFJ04KtKIDykzbct5FxK1jR92oIP+ylEsQGz6dJ3FqIsXSn200UIbGvdCvSX5uSFFu8psV4eX1J7DsA6gcLMXElTEHDr82U6MwFmOR6Vb8RkSwsNzRqv8uDdxrmayvbUnQL3VK+/VNcfTdPl2O4YyrYp/DBtFe8b61QvlmU6x4UaX40Sg/r9/JyFMSEDduse9bvVkqg3xkTpaZqwquY7384Ou2iIr4bzlb5mAjW222foM6YBuBhxlovu5kVhLx4GpPsCcxPBJe8lgiGyAGG4yvJ1CH7Rv658eIFqVUyVeOJGP871pLkR poet@192.168.0.101</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="4-客户端生成ssh公钥"><a href="#4-客户端生成ssh公钥" class="headerlink" title="4.客户端生成ssh公钥"></a>4.客户端生成ssh公钥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">192:git poet$ ssh-keygen -t rsa</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/Users/poet/.ssh/id_rsa): </span><br><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase): </span><br><span class="line">Enter same passphrase again: </span><br><span class="line">Your identification has been saved <span class="keyword">in</span> /Users/poet/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved <span class="keyword">in</span> /Users/poet/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:Rky+UE83syyOMjaKYHeoGduGBaPqnU+rtrcyl7TMdL8 poet@192.168.0.101</span><br><span class="line">The key<span class="string">&#x27;s randomart image is:</span></span><br><span class="line"><span class="string">+---[RSA 2048]----+</span></span><br><span class="line"><span class="string">|        o . +    |</span></span><br><span class="line"><span class="string">|       = o o +   |</span></span><br><span class="line"><span class="string">| o    . + o o    |</span></span><br><span class="line"><span class="string">|. o .  o + .     |</span></span><br><span class="line"><span class="string">|oo + .= S .      |</span></span><br><span class="line"><span class="string">|o.X..= *         |</span></span><br><span class="line"><span class="string">|.=.o*.+ .        |</span></span><br><span class="line"><span class="string">|. o+oB.  .       |</span></span><br><span class="line"><span class="string">| ..=O+.  E.      |</span></span><br><span class="line"><span class="string">+----[SHA256]-----+</span></span><br><span class="line"><span class="string">192:git poet$ cat /Users/poet/.ssh/id_rsa.pub</span></span><br><span class="line"><span class="string">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQVX+tOytAUJq3pKNvIFX2HETKvalq4rlqIFJ04KtKIDykzbct5FxK1jR92oIP+ylEsQGz6dJ3FqIsXSn200UIbGvdCvSX5uSFFu8psV4eX1J7DsA6gcLMXElTEHDr82U6MwFmOR6Vb8RkSwsNzRqv8uDdxrmayvbUnQL3VK+/VNcfTdPl2O4YyrYp/DBtFe8b61QvlmU6x4UaX40Sg/r9/JyFMSEDduse9bvVkqg3xkTpaZqwquY7384Ou2iIr4bzlb5mAjW222foM6YBuBhxlovu5kVhLx4GpPsCcxPBJe8lgiGyAGG4yvJ1CH7Rv658eIFqVUyVeOJGP871pLkR poet@192.168.0.101</span></span><br></pre></td></tr></table></figure>
+
+
 <h2 id="5-创建证书登录，如果没有该文件就创建它："><a href="#5-创建证书登录，如果没有该文件就创建它：" class="headerlink" title="5.创建证书登录，如果没有该文件就创建它："></a>5.创建证书登录，如果没有该文件就创建它：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /home/git/</span><br><span class="line">$ mkdir .ssh</span><br><span class="line">$ chmod 755 .ssh</span><br><span class="line">$ touch .ssh/authorized_keys</span><br><span class="line">$ chmod 644 .ssh/authorized_keys</span><br></pre></td></tr></table></figure>
-<h2 id="6-将生成客户端公钥并复制到服务器上"><a href="#6-将生成客户端公钥并复制到服务器上" class="headerlink" title="6.将生成客户端公钥并复制到服务器上"></a>6.将生成客户端公钥并复制到服务器上</h2><p>收集所有需要登录的用户的公钥，公钥位于id_rsa.pub文件中，把我们的公钥导入到/home/git/.ssh/authorized_keys文件里，一行一个。<br>下面我们复制id_rsa.pub里的公钥到服务器的authorized_keys文件中。<br>首先使用ssh连接远程的服务器,然后进入目录/home/git，然后执行如下命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost git]<span class="comment"># vim .ssh/authorized_keys</span></span><br></pre></td></tr></table></figure></p>
-<p>然后将上面生成的公钥复制到服务器的公钥文件中。复制万保存，查看公钥文件中的内容:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost git]<span class="comment"># cat .ssh/authorized_keys</span></span><br><span class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQVX+tOytAUJq3pKNvIFX2HETKvalq4rlqIFJ04KtKIDykzbct5FxK1jR92oIP+ylEsQGz6dJ3FqIsXSn200UIbGvdCvSX5uSFFu8psV4eX1J7DsA6gcLMXElTEHDr82U6MwFmOR6Vb8RkSwsNzRqv8uDdxrmayvbUnQL3VK+/VNcfTdPl2O4YyrYp/DBtFe8b61QvlmU6x4UaX40Sg/r9/JyFMSEDduse9bvVkqg3xkTpaZqwquY7384Ou2iIr4bzlb5mAjW222foM6YBuBhxlovu5kVhLx4GpPsCcxPBJe8lgiGyAGG4yvJ1CH7Rv658eIFqVUyVeOJGP871pLkR poet@192.168.0.101</span><br></pre></td></tr></table></figure></p>
-<h2 id="7-初始化Git仓库"><a href="#7-初始化Git仓库" class="headerlink" title="7.初始化Git仓库"></a>7.初始化Git仓库</h2><p>首先我们选定一个目录作为Git仓库，假定是/home/gitrepo/helloword.git，在/home/gitrepo目录下输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /home</span><br><span class="line">$ mkdir gitrepo</span><br><span class="line">$ chown git:git gitrepo/</span><br><span class="line">$ <span class="built_in">cd</span> gitrepo</span><br><span class="line"></span><br><span class="line">$ git init --bare helloword.git</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /home/gitrepo/helloword.git/</span><br></pre></td></tr></table></figure></p>
+
+
+<h2 id="6-将生成客户端公钥并复制到服务器上"><a href="#6-将生成客户端公钥并复制到服务器上" class="headerlink" title="6.将生成客户端公钥并复制到服务器上"></a>6.将生成客户端公钥并复制到服务器上</h2><p>收集所有需要登录的用户的公钥，公钥位于id_rsa.pub文件中，把我们的公钥导入到/home/git/.ssh/authorized_keys文件里，一行一个。<br>下面我们复制id_rsa.pub里的公钥到服务器的authorized_keys文件中。<br>首先使用ssh连接远程的服务器,然后进入目录/home/git，然后执行如下命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost git]<span class="comment"># vim .ssh/authorized_keys</span></span><br></pre></td></tr></table></figure>
+<p>然后将上面生成的公钥复制到服务器的公钥文件中。复制万保存，查看公钥文件中的内容:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost git]<span class="comment"># cat .ssh/authorized_keys</span></span><br><span class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQVX+tOytAUJq3pKNvIFX2HETKvalq4rlqIFJ04KtKIDykzbct5FxK1jR92oIP+ylEsQGz6dJ3FqIsXSn200UIbGvdCvSX5uSFFu8psV4eX1J7DsA6gcLMXElTEHDr82U6MwFmOR6Vb8RkSwsNzRqv8uDdxrmayvbUnQL3VK+/VNcfTdPl2O4YyrYp/DBtFe8b61QvlmU6x4UaX40Sg/r9/JyFMSEDduse9bvVkqg3xkTpaZqwquY7384Ou2iIr4bzlb5mAjW222foM6YBuBhxlovu5kVhLx4GpPsCcxPBJe8lgiGyAGG4yvJ1CH7Rv658eIFqVUyVeOJGP871pLkR poet@192.168.0.101</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="7-初始化Git仓库"><a href="#7-初始化Git仓库" class="headerlink" title="7.初始化Git仓库"></a>7.初始化Git仓库</h2><p>首先我们选定一个目录作为Git仓库，假定是/home/gitrepo/helloword.git，在/home/gitrepo目录下输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /home</span><br><span class="line">$ mkdir gitrepo</span><br><span class="line">$ chown git:git gitrepo/</span><br><span class="line">$ <span class="built_in">cd</span> gitrepo</span><br><span class="line"></span><br><span class="line">$ git init --bare helloword.git</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /home/gitrepo/helloword.git/</span><br></pre></td></tr></table></figure>
+
+
 <h2 id="8-以上命令Git创建一个空仓库，服务器上的Git仓库通常都以-git结尾。然后，把仓库所属用户改为git："><a href="#8-以上命令Git创建一个空仓库，服务器上的Git仓库通常都以-git结尾。然后，把仓库所属用户改为git：" class="headerlink" title="8.以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git："></a>8.以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chown -R git:git helloword.git</span><br></pre></td></tr></table></figure>
-<h2 id="9-克隆仓库"><a href="#9-克隆仓库" class="headerlink" title="9.克隆仓库"></a>9.克隆仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@104.224.156.100:/home/gitrepo/helloword.git</span><br><span class="line">Cloning into <span class="string">'helloword'</span>...</span><br><span class="line">warning: You appear to have cloned an empty repository.</span><br><span class="line">Checking connectivity... <span class="keyword">done</span>.</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="9-克隆仓库"><a href="#9-克隆仓库" class="headerlink" title="9.克隆仓库"></a>9.克隆仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@104.224.156.100:/home/gitrepo/helloword.git</span><br><span class="line">Cloning into <span class="string">&#x27;helloword&#x27;</span>...</span><br><span class="line">warning: You appear to have cloned an empty repository.</span><br><span class="line">Checking connectivity... <span class="keyword">done</span>.</span><br></pre></td></tr></table></figure>
 <p>104.224.156.100 为 Git 所在服务器 ip ，你需要将其修改为你自己的 Git 服务 ip。</p>
-<p>但是我克隆的时候却报错了:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">192:git poet$ git <span class="built_in">clone</span> git@104.224.156.100:2022:/home/gitrepo/helloword.git</span><br><span class="line">Cloning into <span class="string">'helloword'</span>...</span><br><span class="line">ssh: connect to host 104.224.156.100 port 22: Connection refused</span><br><span class="line">fatal: Could not <span class="built_in">read</span> from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">192:git poet$</span><br></pre></td></tr></table></figure></p>
+<p>但是我克隆的时候却报错了:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">192:git poet$ git <span class="built_in">clone</span> git@104.224.156.100:2022:/home/gitrepo/helloword.git</span><br><span class="line">Cloning into <span class="string">&#x27;helloword&#x27;</span>...</span><br><span class="line">ssh: connect to host 104.224.156.100 port 22: Connection refused</span><br><span class="line">fatal: Could not <span class="built_in">read</span> from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">192:git poet$ </span><br></pre></td></tr></table></figure>
+
 <h2 id="10-克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下"><a href="#10-克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下" class="headerlink" title="10.克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下:"></a>10.克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> ssh://git@104.224.156.100:2022/home/gitrepo/helloword.git</span><br></pre></td></tr></table></figure>
 <p>如果你添加到服务器的公钥有效果，则上述命令会自动把项目克隆下来，但是如果公钥无效或者生成公钥的时候设置了密码，则克隆的步骤中会提示输入密码。</p>
 <p>这样我们的 Git 服务器安装就完成。</p>
 <h2 id="11-如果需要继续添加新的仓库，请到服务器的-home-gitrepo目录下输入命令："><a href="#11-如果需要继续添加新的仓库，请到服务器的-home-gitrepo目录下输入命令：" class="headerlink" title="11.如果需要继续添加新的仓库，请到服务器的/home/gitrepo目录下输入命令："></a>11.如果需要继续添加新的仓库，请到服务器的/home/gitrepo目录下输入命令：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git init --bare second.git</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /home/gitrepo/second.git/</span><br></pre></td></tr></table></figure>
-<p>以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chown -R git:git second.git</span><br></pre></td></tr></table></figure></p>
-<p>然后你就可以在客户端使用git clone正常的克隆项目了。具体操作命令如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> ssh://git@104.224.156.100:2022/home/gitrepo/second.git</span><br></pre></td></tr></table></figure></p>
-<h2 id="12-克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。"><a href="#12-克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。" class="headerlink" title="12.克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。"></a>12.克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。</h2><p>创建Readme.txt文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch Readme.txt</span><br></pre></td></tr></table></figure></p>
-<p>查看当前项目的Git仓库的状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status -s</span><br></pre></td></tr></table></figure></p>
-<p>将Readme.txt文件添加到本地的Git仓库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add Readme.txt</span><br></pre></td></tr></table></figure></p>
-<p>继续查看本地的Git仓库的状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status -s</span><br></pre></td></tr></table></figure></p>
-<p>将操作提交到本地的Git仓库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"add Readme.txt file"</span></span><br></pre></td></tr></table></figure></p>
-<p>如果你没有设置本地Git的全局用户名和邮箱，有时候会报错，设置方法如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config  --global user.name 你的目标用户名</span><br><span class="line">$ git config  --global user.email 你的目标邮箱名</span><br></pre></td></tr></table></figure></p>
-<p>将操作推送到远程的Git仓库的master分支<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure></p>
-<p>在另外一个客户端拉取Git远程仓库master分支的内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br></pre></td></tr></table></figure></p>
-<p>在本地按时间倒序查看提交的log记录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="13-禁用shell登录"><a href="#13-禁用shell登录" class="headerlink" title="13.禁用shell登录"></a>13.禁用shell登录</h2><p>网上流传在搭建服务器的过程中创建的git用户可以免密登录远程的ssh，试了一把，果不其然登录了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">192:~ poet$ ssh git@104.224.156.100 -p 2022</span><br><span class="line">[git@localhost ~]$ ls</span><br><span class="line">[git@localhost ~]$ ls -a</span><br><span class="line">.  ..  .bash_logout  .bash_profile  .bashrc  .ssh</span><br><span class="line">[git@localhost ~]$</span><br></pre></td></tr></table></figure></p>
-<p>出于安全考虑，第三步创建的git用户不允许登录shell，这可以通过编辑/etc/passwd文件完成。找到类似下面的一行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@git ~]<span class="comment"># cat /etc/passwd | grep git</span></span><br><span class="line"></span><br><span class="line">git:x:1001:1001:git version control:/home/git:/bin/bash</span><br></pre></td></tr></table></figure></p>
-<p>改为：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@git ~]<span class="comment"># vim /etc/passwd</span></span><br><span class="line"></span><br><span class="line">git:x:1001:1001:git version control:/home/git:/usr/bin/git-shell</span><br></pre></td></tr></table></figure></p>
+<p>以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chown -R git:git second.git</span><br></pre></td></tr></table></figure>
+<p>然后你就可以在客户端使用git clone正常的克隆项目了。具体操作命令如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> ssh://git@104.224.156.100:2022/home/gitrepo/second.git</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。"><a href="#12-克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。" class="headerlink" title="12.克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。"></a>12.克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。</h2><p>创建Readme.txt文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch Readme.txt</span><br></pre></td></tr></table></figure>
+
+<p>查看当前项目的Git仓库的状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status -s</span><br></pre></td></tr></table></figure>
+
+<p>将Readme.txt文件添加到本地的Git仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add Readme.txt</span><br></pre></td></tr></table></figure>
+
+<p>继续查看本地的Git仓库的状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status -s</span><br></pre></td></tr></table></figure>
+
+<p>将操作提交到本地的Git仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;add Readme.txt file&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你没有设置本地Git的全局用户名和邮箱，有时候会报错，设置方法如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config  --global user.name 你的目标用户名</span><br><span class="line">$ git config  --global user.email 你的目标邮箱名</span><br></pre></td></tr></table></figure>
+
+<p>将操作推送到远程的Git仓库的master分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+
+<p>在另外一个客户端拉取Git远程仓库master分支的内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
+
+<p>在本地按时间倒序查看提交的log记录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-禁用shell登录"><a href="#13-禁用shell登录" class="headerlink" title="13.禁用shell登录"></a>13.禁用shell登录</h2><p>网上流传在搭建服务器的过程中创建的git用户可以免密登录远程的ssh，试了一把，果不其然登录了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">192:~ poet$ ssh git@104.224.156.100 -p 2022</span><br><span class="line">[git@localhost ~]$ ls</span><br><span class="line">[git@localhost ~]$ ls -a</span><br><span class="line">.  ..  .bash_logout  .bash_profile  .bashrc  .ssh</span><br><span class="line">[git@localhost ~]$ </span><br></pre></td></tr></table></figure>
+
+<p>出于安全考虑，第三步创建的git用户不允许登录shell，这可以通过编辑/etc/passwd文件完成。找到类似下面的一行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@git ~]<span class="comment"># cat /etc/passwd | grep git</span></span><br><span class="line"></span><br><span class="line">git:x:1001:1001:git version control:/home/git:/bin/bash</span><br></pre></td></tr></table></figure>
+<p>改为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@git ~]<span class="comment"># vim /etc/passwd</span></span><br><span class="line"></span><br><span class="line">git:x:1001:1001:git version control:/home/git:/usr/bin/git-shell</span><br></pre></td></tr></table></figure>
 <p>这样，git用户可以正常通过ssh使用git，但无法登录shell，因为我们为git用户指定的git-shell每次一登录就自动退出。</p>
-<p>修改完再试一把，发现已经连接不了远程ssh了:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">192:~ poet$ ssh git@104.224.156.100 -p 2022</span><br><span class="line">Last login: Fri Aug 23 07:56:10 2019 from 222.93.190.219</span><br><span class="line">fatal: What <span class="keyword">do</span> you think I am? A shell?</span><br><span class="line">Connection to 104.224.156.100 closed.</span><br><span class="line">192:~ poet$ ssh git@104.224.156.100 -p 2022</span><br><span class="line">Last login: Fri Aug 23 07:56:39 2019 from 222.93.190.219</span><br><span class="line">fatal: What <span class="keyword">do</span> you think I am? A shell?</span><br><span class="line">Connection to 104.224.156.100 closed.</span><br><span class="line">192:~ poet$</span><br></pre></td></tr></table></figure></p>
+<p>修改完再试一把，发现已经连接不了远程ssh了:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">192:~ poet$ ssh git@104.224.156.100 -p 2022</span><br><span class="line">Last login: Fri Aug 23 07:56:10 2019 from 222.93.190.219</span><br><span class="line">fatal: What <span class="keyword">do</span> you think I am? A shell?</span><br><span class="line">Connection to 104.224.156.100 closed.</span><br><span class="line">192:~ poet$ ssh git@104.224.156.100 -p 2022</span><br><span class="line">Last login: Fri Aug 23 07:56:39 2019 from 222.93.190.219</span><br><span class="line">fatal: What <span class="keyword">do</span> you think I am? A shell?</span><br><span class="line">Connection to 104.224.156.100 closed.</span><br><span class="line">192:~ poet$ </span><br></pre></td></tr></table></figure>
+
 <h2 id="14-Git报错收集"><a href="#14-Git报错收集" class="headerlink" title="14.Git报错收集"></a>14.Git报错收集</h2><ul>
 <li><p>git clone does not appear to be a git repository<br>错误示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">poetmacbook-pro:git kris$ git <span class="built_in">clone</span> ssh://git@10.211.55.4:/home/gitrepo/IMBasic.git</span><br><span class="line">正克隆到 <span class="string">'IMBasic'</span>...</span><br><span class="line">fatal: <span class="string">'/home/gitrepo/IMBasic.git'</span> does not appear to be a git repository</span><br><span class="line">fatal: 无法读取远程仓库。</span><br><span class="line"></span><br><span class="line">请确认您有正确的访问权限并且仓库存在。</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">poetmacbook-pro:git kris$ git <span class="built_in">clone</span> ssh://git@10.211.55.4:/home/gitrepo/IMBasic.git</span><br><span class="line">正克隆到 <span class="string">&#x27;IMBasic&#x27;</span>...</span><br><span class="line">fatal: <span class="string">&#x27;/home/gitrepo/IMBasic.git&#x27;</span> does not appear to be a git repository</span><br><span class="line">fatal: 无法读取远程仓库。</span><br><span class="line"></span><br><span class="line">请确认您有正确的访问权限并且仓库存在。</span><br></pre></td></tr></table></figure>
+
 <p>问题产生的原因：git仓库的路径不对，请确认<code>/home/gitrepo/IMBasic.git</code>是否确实存在，还要注意此处应该使用服务器上的绝对路径，不能使用相对路径。</p>
 </li>
 </ul>
-<p>参考链接:<br><a href="https://www.runoob.com/git/git-server.html" target="_blank" rel="noopener">Git 服务器搭建</a><br><a href="https://www.linuxidc.com/Linux/2014-05/101830.htm" target="_blank" rel="noopener">Git 服务器搭建与客户端安装</a><br><a href="https://www.cnblogs.com/bass6/p/6382633.html" target="_blank" rel="noopener">git 从远程git服务上拉代码 git服务器非默认端口</a><br><a href="https://baijiahao.baidu.com/s?id=1621628813408131040&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">Git常用命令总结及其用法说明</a></p>
+<p>参考链接:<br><a target="_blank" rel="noopener" href="https://www.runoob.com/git/git-server.html">Git 服务器搭建</a><br><a target="_blank" rel="noopener" href="https://www.linuxidc.com/Linux/2014-05/101830.htm">Git 服务器搭建与客户端安装</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bass6/p/6382633.html">git 从远程git服务上拉代码 git服务器非默认端口</a><br><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1621628813408131040&wfr=spider&for=pc">Git常用命令总结及其用法说明</a></p>
 
     </div>
 
@@ -265,11 +330,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/Blog/2019/07/07/MySQL基本命令/" rel="prev" title="MySQL基本命令">
+    <a href="/Blog/2019/07/07/MySQL%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" rel="prev" title="MySQL基本命令">
       <i class="fa fa-chevron-left"></i> MySQL基本命令
     </a></div>
       <div class="post-nav-item">
-    <a href="/Blog/2019/08/24/Linux下安装FTP/" rel="next" title="Linux下安装FTP">
+    <a href="/Blog/2019/08/24/Linux%E4%B8%8B%E5%AE%89%E8%A3%85FTP/" rel="next" title="Linux下安装FTP">
       Linux下安装FTP <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -330,7 +395,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-使用ssh命令登录Linux服务器"><span class="nav-number">1.</span> <span class="nav-text">1.使用ssh命令登录Linux服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装Git"><span class="nav-number">2.</span> <span class="nav-text">2.安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-接下来我们-创建一个git用户组和用户，用来运行git服务："><span class="nav-number">3.</span> <span class="nav-text">3.接下来我们 创建一个git用户组和用户，用来运行git服务：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-客户端生成ssh公钥"><span class="nav-number">4.</span> <span class="nav-text">4.客户端生成ssh公钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-创建证书登录，如果没有该文件就创建它："><span class="nav-number">5.</span> <span class="nav-text">5.创建证书登录，如果没有该文件就创建它：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-将生成客户端公钥并复制到服务器上"><span class="nav-number">6.</span> <span class="nav-text">6.将生成客户端公钥并复制到服务器上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-初始化Git仓库"><span class="nav-number">7.</span> <span class="nav-text">7.初始化Git仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-以上命令Git创建一个空仓库，服务器上的Git仓库通常都以-git结尾。然后，把仓库所属用户改为git："><span class="nav-number">8.</span> <span class="nav-text">8.以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-克隆仓库"><span class="nav-number">9.</span> <span class="nav-text">9.克隆仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下"><span class="nav-number">10.</span> <span class="nav-text">10.克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-如果需要继续添加新的仓库，请到服务器的-home-gitrepo目录下输入命令："><span class="nav-number">11.</span> <span class="nav-text">11.如果需要继续添加新的仓库，请到服务器的/home/gitrepo目录下输入命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。"><span class="nav-number">12.</span> <span class="nav-text">12.克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-禁用shell登录"><span class="nav-number">13.</span> <span class="nav-text">13.禁用shell登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Git报错收集"><span class="nav-number">14.</span> <span class="nav-text">14.Git报错收集</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8ssh%E5%91%BD%E4%BB%A4%E7%99%BB%E5%BD%95Linux%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">1.使用ssh命令登录Linux服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85Git"><span class="nav-number">2.</span> <span class="nav-text">2.安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%8E%A5%E4%B8%8B%E6%9D%A5%E6%88%91%E4%BB%AC-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAgit%E7%94%A8%E6%88%B7%E7%BB%84%E5%92%8C%E7%94%A8%E6%88%B7%EF%BC%8C%E7%94%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cgit%E6%9C%8D%E5%8A%A1%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">3.接下来我们 创建一个git用户组和用户，用来运行git服务：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%94%9F%E6%88%90ssh%E5%85%AC%E9%92%A5"><span class="nav-number">4.</span> <span class="nav-text">4.客户端生成ssh公钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%88%9B%E5%BB%BA%E8%AF%81%E4%B9%A6%E7%99%BB%E5%BD%95%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%E8%AF%A5%E6%96%87%E4%BB%B6%E5%B0%B1%E5%88%9B%E5%BB%BA%E5%AE%83%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">5.创建证书登录，如果没有该文件就创建它：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%B0%86%E7%94%9F%E6%88%90%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E9%92%A5%E5%B9%B6%E5%A4%8D%E5%88%B6%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A"><span class="nav-number">6.</span> <span class="nav-text">6.将生成客户端公钥并复制到服务器上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%88%9D%E5%A7%8B%E5%8C%96Git%E4%BB%93%E5%BA%93"><span class="nav-number">7.</span> <span class="nav-text">7.初始化Git仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E4%BB%A5%E4%B8%8A%E5%91%BD%E4%BB%A4Git%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%A9%BA%E4%BB%93%E5%BA%93%EF%BC%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84Git%E4%BB%93%E5%BA%93%E9%80%9A%E5%B8%B8%E9%83%BD%E4%BB%A5-git%E7%BB%93%E5%B0%BE%E3%80%82%E7%84%B6%E5%90%8E%EF%BC%8C%E6%8A%8A%E4%BB%93%E5%BA%93%E6%89%80%E5%B1%9E%E7%94%A8%E6%88%B7%E6%94%B9%E4%B8%BAgit%EF%BC%9A"><span class="nav-number">8.</span> <span class="nav-text">8.以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E5%85%8B%E9%9A%86%E4%BB%93%E5%BA%93"><span class="nav-number">9.</span> <span class="nav-text">9.克隆仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%85%8B%E9%9A%86%E4%BB%93%E5%BA%93%E7%9A%84%E6%97%B6%E5%80%99%E5%87%BA%E4%BA%86%E7%82%B9%E5%B0%8F%E5%B7%AE%E9%94%99%EF%BC%8C%E5%9B%A0%E4%B8%BAssh%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%A2%AB%E6%88%91%E6%94%B9%E4%BA%86%EF%BC%8C%E8%80%8CGit%E6%98%AF%E4%BE%9D%E8%B5%96%E4%BA%8Essh%EF%BC%8C%E6%89%80%E4%BB%A5Git%E7%9A%84%E8%BF%9E%E6%8E%A5%E8%AF%B7%E6%B1%82%E4%B9%9F%E4%BC%9A%E5%A4%B1%E8%B4%A5%E3%80%82%E7%AC%AC9%E6%AD%A5%E7%9A%84%E5%91%BD%E4%BB%A4%E5%BA%94%E8%AF%A5%E6%8D%A2%E4%B8%80%E4%B8%8B"><span class="nav-number">10.</span> <span class="nav-text">10.克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81%E7%BB%A7%E7%BB%AD%E6%B7%BB%E5%8A%A0%E6%96%B0%E7%9A%84%E4%BB%93%E5%BA%93%EF%BC%8C%E8%AF%B7%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84-home-gitrepo%E7%9B%AE%E5%BD%95%E4%B8%8B%E8%BE%93%E5%85%A5%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-number">11.</span> <span class="nav-text">11.如果需要继续添加新的仓库，请到服务器的&#x2F;home&#x2F;gitrepo目录下输入命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E5%85%8B%E9%9A%86%E4%BA%86%E7%A9%BA%E9%A1%B9%E7%9B%AE%EF%BC%8C%E6%83%B3%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%AF%95%E4%B8%8Bgit%E6%98%AF%E5%90%A6%E5%A5%BD%E7%94%A8%EF%BC%8C%E5%8F%AF%E4%BB%A5%E8%AF%95%E8%AF%95%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%91%BD%E4%BB%A4%E3%80%82"><span class="nav-number">12.</span> <span class="nav-text">12.克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E7%A6%81%E7%94%A8shell%E7%99%BB%E5%BD%95"><span class="nav-number">13.</span> <span class="nav-text">13.禁用shell登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Git%E6%8A%A5%E9%94%99%E6%94%B6%E9%9B%86"><span class="nav-number">14.</span> <span class="nav-text">14.Git报错收集</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -389,6 +454,16 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Wanderer</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">193k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">2:55</span>
 </div>
 
         
@@ -408,9 +483,17 @@
   <script src="/Blog/lib/anime.min.js"></script>
   <script src="/Blog/lib/velocity/velocity.min.js"></script>
   <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
-<script src="/Blog/js/utils.js"></script><script src="/Blog/js/motion.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
 <script src="/Blog/js/schemes/pisces.js"></script>
+
+
 <script src="/Blog/js/next-boot.js"></script>
+
 
 
 
