@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="Stay hungry, Stay foolish.">
 <meta property="og:description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Wanderer">
+<meta property="article:author" content="Wanderer的博客">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://github.com/DavidWanderer/Blog/page/3/">
@@ -186,11 +186,113 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/01/27/%E6%9F%A5%E7%9C%8Bautoreleasepool%E7%9A%84%E7%8A%B6%E6%80%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="Wanderer的博客">
+      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/01/27/%E6%9F%A5%E7%9C%8Bautoreleasepool%E7%9A%84%E7%8A%B6%E6%80%81/" class="post-title-link" itemprop="url">查看autoreleasepool的状态</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-27 18:28:04" itemprop="dateCreated datePublished" datetime="2020-01-27T18:28:04+08:00">2020-01-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>22k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>20 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>查看NSAutoreleasePool 中 autorelease对象的状况，可以使用运行时系统中的函数<code>(lldb)po _objc_autoreleasePoolPrint();</code>。</p>
+<p>测试的源代码如下:</p>
+<img src="/Blog/2020/01/27/%E6%9F%A5%E7%9C%8Bautoreleasepool%E7%9A%84%E7%8A%B6%E6%80%81/snip1.png" class="" title="源代码截图">
+
+<p>执行断点1处的代码，日志如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">2020-01-27 19:22:37.241288+0800 NSAutoReleasePool测试[7028:191376] 执行断点1处的代码。</span><br><span class="line">(lldb) po _objc_autoreleasePoolPrint();</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">objc[7028]: AUTORELEASE POOLS for thread 0x11a0615c0</span><br><span class="line">objc[7028]: 86 releases pending.</span><br><span class="line">objc[7028]: [0x7ff577009000]  ................  PAGE  (hot) (cold)</span><br><span class="line">objc[7028]: [0x7ff577009038]  ################  POOL 0x7ff577009038</span><br><span class="line">objc[7028]: [0x7ff577009040]    0x60800002d3a0  __NSCFString</span><br><span class="line">objc[7028]: [0x7ff577009048]  ################  POOL 0x7ff577009048</span><br><span class="line">objc[7028]: [0x7ff577009050]  ################  POOL 0x7ff577009050</span><br><span class="line">objc[7028]: [0x7ff577009058]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009060]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009068]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009070]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009078]    0x604000028d20  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009080]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009088]    0x604000071c40  __NSCFDictionary</span><br><span class="line">objc[7028]: [0x7ff577009090]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009098]    0x604000049e40  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770090a8]    0x7ff576604080  UIStatusBarWindow</span><br><span class="line">objc[7028]: [0x7ff5770090b0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090b8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090c0]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090c8]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090d0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090d8]    0x604000048970  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090e0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090e8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090f0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770090f8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009100]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009108]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009110]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009118]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009120]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009128]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009130]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009138]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009140]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009148]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009150]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009158]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009160]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009168]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009170]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009178]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009180]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009188]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009190]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009198]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091a0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091a8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091b0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091b8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091d0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091d8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770091f0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091f8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009200]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009208]    0x7ff578800540  UITouch</span><br><span class="line">objc[7028]: [0x7ff577009210]    0x604000049420  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff577009218]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009220]    0x60400008de80  __NSMallocBlock__</span><br><span class="line">objc[7028]: [0x7ff577009228]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009230]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009238]    0x60800010ee80  NSXPCConnection</span><br><span class="line">objc[7028]: [0x7ff577009240]    0x60400008de30  __NSXPCInterfaceProxy__UIKeyboardArbitration</span><br><span class="line">objc[7028]: [0x7ff577009248]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009250]       0x10ecc4a58  __NSGlobalBlock__</span><br><span class="line">objc[7028]: [0x7ff577009258]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009260]    0x60800002ef60  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009268]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009270]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009278]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009280]    0x6040000130f0  __NSDate</span><br><span class="line">objc[7028]: [0x7ff577009288]    0x604000360cc0  __NSCFTimer</span><br><span class="line">objc[7028]: [0x7ff577009290]    0x604000029440  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009298]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b8]    0x60400002abc0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c0]    0x60400002aaa0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c8]    0x6040000132d0  __NSSingleObjectArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092d0]    0x60800010edf0  UITouchesEvent</span><br><span class="line">objc[7028]: [0x7ff5770092d8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092e0]    0x604000026f00  AppDelegate</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">0x75269231ba3900d2</span><br></pre></td></tr></table></figure>
+
+<p>执行断点2处的代码，日志如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">2020-01-27 19:24:29.654753+0800 NSAutoReleasePool测试[7028:191376] 执行断点2处的代码。</span><br><span class="line">2020-01-27 19:24:29.654806+0800 NSAutoReleasePool测试[7028:191487] XPC connection interrupted</span><br><span class="line">(lldb) po _objc_autoreleasePoolPrint();</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">objc[7028]: AUTORELEASE POOLS for thread 0x11a0615c0</span><br><span class="line">objc[7028]: 87 releases pending.</span><br><span class="line">objc[7028]: [0x7ff577009000]  ................  PAGE  (hot) (cold)</span><br><span class="line">objc[7028]: [0x7ff577009038]  ################  POOL 0x7ff577009038</span><br><span class="line">objc[7028]: [0x7ff577009040]    0x60800002d3a0  __NSCFString</span><br><span class="line">objc[7028]: [0x7ff577009048]  ################  POOL 0x7ff577009048</span><br><span class="line">objc[7028]: [0x7ff577009050]  ################  POOL 0x7ff577009050</span><br><span class="line">objc[7028]: [0x7ff577009058]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009060]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009068]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009070]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009078]    0x604000028d20  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009080]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009088]    0x604000071c40  __NSCFDictionary</span><br><span class="line">objc[7028]: [0x7ff577009090]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009098]    0x604000049e40  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770090a8]    0x7ff576604080  UIStatusBarWindow</span><br><span class="line">objc[7028]: [0x7ff5770090b0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090b8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090c0]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090c8]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090d0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090d8]    0x604000048970  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090e0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090e8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090f0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770090f8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009100]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009108]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009110]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009118]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009120]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009128]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009130]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009138]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009140]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009148]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009150]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009158]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009160]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009168]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009170]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009178]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009180]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009188]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009190]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009198]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091a0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091a8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091b0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091b8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091d0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091d8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770091f0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091f8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009200]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009208]    0x7ff578800540  UITouch</span><br><span class="line">objc[7028]: [0x7ff577009210]    0x604000049420  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff577009218]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009220]    0x60400008de80  __NSMallocBlock__</span><br><span class="line">objc[7028]: [0x7ff577009228]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009230]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009238]    0x60800010ee80  NSXPCConnection</span><br><span class="line">objc[7028]: [0x7ff577009240]    0x60400008de30  __NSXPCInterfaceProxy__UIKeyboardArbitration</span><br><span class="line">objc[7028]: [0x7ff577009248]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009250]       0x10ecc4a58  __NSGlobalBlock__</span><br><span class="line">objc[7028]: [0x7ff577009258]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009260]    0x60800002ef60  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009268]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009270]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009278]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009280]    0x6040000130f0  __NSDate</span><br><span class="line">objc[7028]: [0x7ff577009288]    0x604000360cc0  __NSCFTimer</span><br><span class="line">objc[7028]: [0x7ff577009290]    0x604000029440  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009298]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b8]    0x60400002abc0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c0]    0x60400002aaa0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c8]    0x6040000132d0  __NSSingleObjectArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092d0]    0x60800010edf0  UITouchesEvent</span><br><span class="line">objc[7028]: [0x7ff5770092d8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092e0]    0x604000026f00  AppDelegate</span><br><span class="line">objc[7028]: [0x7ff5770092e8]  ################  POOL 0x7ff5770092e8</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">0x75269231ba3900d2</span><br></pre></td></tr></table></figure>
+
+<p>执行断点3处的代码，日志如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">2020-01-27 19:27:07.529438+0800 NSAutoReleasePool测试[7028:191376] 执行断点3处的代码。</span><br><span class="line">(lldb) po _objc_autoreleasePoolPrint();</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">objc[7028]: AUTORELEASE POOLS for thread 0x11a0615c0</span><br><span class="line">objc[7028]: 88 releases pending.</span><br><span class="line">objc[7028]: [0x7ff577009000]  ................  PAGE  (hot) (cold)</span><br><span class="line">objc[7028]: [0x7ff577009038]  ################  POOL 0x7ff577009038</span><br><span class="line">objc[7028]: [0x7ff577009040]    0x60800002d3a0  __NSCFString</span><br><span class="line">objc[7028]: [0x7ff577009048]  ################  POOL 0x7ff577009048</span><br><span class="line">objc[7028]: [0x7ff577009050]  ################  POOL 0x7ff577009050</span><br><span class="line">objc[7028]: [0x7ff577009058]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009060]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009068]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009070]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009078]    0x604000028d20  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009080]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009088]    0x604000071c40  __NSCFDictionary</span><br><span class="line">objc[7028]: [0x7ff577009090]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009098]    0x604000049e40  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770090a8]    0x7ff576604080  UIStatusBarWindow</span><br><span class="line">objc[7028]: [0x7ff5770090b0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090b8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090c0]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090c8]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090d0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090d8]    0x604000048970  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090e0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090e8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090f0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770090f8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009100]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009108]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009110]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009118]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009120]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009128]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009130]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009138]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009140]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009148]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009150]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009158]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009160]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009168]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009170]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009178]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009180]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009188]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009190]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009198]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091a0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091a8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091b0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091b8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091d0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091d8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770091f0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091f8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009200]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009208]    0x7ff578800540  UITouch</span><br><span class="line">objc[7028]: [0x7ff577009210]    0x604000049420  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff577009218]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009220]    0x60400008de80  __NSMallocBlock__</span><br><span class="line">objc[7028]: [0x7ff577009228]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009230]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009238]    0x60800010ee80  NSXPCConnection</span><br><span class="line">objc[7028]: [0x7ff577009240]    0x60400008de30  __NSXPCInterfaceProxy__UIKeyboardArbitration</span><br><span class="line">objc[7028]: [0x7ff577009248]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009250]       0x10ecc4a58  __NSGlobalBlock__</span><br><span class="line">objc[7028]: [0x7ff577009258]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009260]    0x60800002ef60  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009268]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009270]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009278]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009280]    0x6040000130f0  __NSDate</span><br><span class="line">objc[7028]: [0x7ff577009288]    0x604000360cc0  __NSCFTimer</span><br><span class="line">objc[7028]: [0x7ff577009290]    0x604000029440  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009298]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b8]    0x60400002abc0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c0]    0x60400002aaa0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c8]    0x6040000132d0  __NSSingleObjectArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092d0]    0x60800010edf0  UITouchesEvent</span><br><span class="line">objc[7028]: [0x7ff5770092d8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092e0]    0x604000026f00  AppDelegate</span><br><span class="line">objc[7028]: [0x7ff5770092e8]  ################  POOL 0x7ff5770092e8</span><br><span class="line">objc[7028]: [0x7ff5770092f0]    0x60400004a770  __NSArrayI</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">0x75269231ba3900d2</span><br></pre></td></tr></table></figure>
+
+<p>执行断点4处的代码，日志如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">2020-01-27 19:28:45.777438+0800 NSAutoReleasePool测试[7028:191376] 执行断点4处的代码。</span><br><span class="line">(lldb) po _objc_autoreleasePoolPrint();</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">objc[7028]: AUTORELEASE POOLS for thread 0x11a0615c0</span><br><span class="line">objc[7028]: 86 releases pending.</span><br><span class="line">objc[7028]: [0x7ff577009000]  ................  PAGE  (hot) (cold)</span><br><span class="line">objc[7028]: [0x7ff577009038]  ################  POOL 0x7ff577009038</span><br><span class="line">objc[7028]: [0x7ff577009040]    0x60800002d3a0  __NSCFString</span><br><span class="line">objc[7028]: [0x7ff577009048]  ################  POOL 0x7ff577009048</span><br><span class="line">objc[7028]: [0x7ff577009050]  ################  POOL 0x7ff577009050</span><br><span class="line">objc[7028]: [0x7ff577009058]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009060]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009068]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009070]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009078]    0x604000028d20  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009080]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009088]    0x604000071c40  __NSCFDictionary</span><br><span class="line">objc[7028]: [0x7ff577009090]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009098]    0x604000049e40  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770090a8]    0x7ff576604080  UIStatusBarWindow</span><br><span class="line">objc[7028]: [0x7ff5770090b0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090b8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090c0]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090c8]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090d0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090d8]    0x604000048970  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090e0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090e8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090f0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770090f8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009100]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009108]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009110]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009118]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009120]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009128]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009130]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009138]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009140]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009148]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009150]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009158]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009160]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009168]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009170]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009178]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009180]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009188]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009190]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009198]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091a0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091a8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091b0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091b8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091d0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091d8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770091f0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091f8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009200]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009208]    0x7ff578800540  UITouch</span><br><span class="line">objc[7028]: [0x7ff577009210]    0x604000049420  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff577009218]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009220]    0x60400008de80  __NSMallocBlock__</span><br><span class="line">objc[7028]: [0x7ff577009228]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009230]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009238]    0x60800010ee80  NSXPCConnection</span><br><span class="line">objc[7028]: [0x7ff577009240]    0x60400008de30  __NSXPCInterfaceProxy__UIKeyboardArbitration</span><br><span class="line">objc[7028]: [0x7ff577009248]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009250]       0x10ecc4a58  __NSGlobalBlock__</span><br><span class="line">objc[7028]: [0x7ff577009258]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009260]    0x60800002ef60  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009268]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009270]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009278]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009280]    0x6040000130f0  __NSDate</span><br><span class="line">objc[7028]: [0x7ff577009288]    0x604000360cc0  __NSCFTimer</span><br><span class="line">objc[7028]: [0x7ff577009290]    0x604000029440  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009298]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b8]    0x60400002abc0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c0]    0x60400002aaa0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c8]    0x6040000132d0  __NSSingleObjectArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092d0]    0x60800010edf0  UITouchesEvent</span><br><span class="line">objc[7028]: [0x7ff5770092d8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092e0]    0x604000026f00  AppDelegate</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">0x75269231ba3900d2</span><br></pre></td></tr></table></figure>
+
+<p>由以上日志可见，断点1处时<code>objc[7028]: 86 releases pending.</code>，有86个autorelease对象等待释放；然后新建一个autoreleasepool，到断点2处时<code>objc[7028]: 87 releases pending.</code>，有87个autorelease对象等待释放；然后创建一个NSArray对象并注册到autoreleasepool，到断点3处时<code>objc[7028]: 88 releases pending.</code>，有88个对象等待释放；最后出autoreleasepool的范围，新建的NSArray对象和autoreleasepool对象都被释放了，又恢复到最初时候<code>objc[7028]: 86 releases pending.</code>，仍然只有86个对象等待释放。整个的过程可以判断出autoreleasepool的内存管理方式。注意在autoreleasepool中包裹的部分，只有通过类方法，并且不是 alloc/init/copy/mutableCopy 获取到的对象才会注册到当前的autoreleasepool中，才可以使用以上方式查找内存的详细情况。</p>
+<p>如果autorelease NSAutoreleasePool对象会如何?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSAutoreleasePool *pool &#x3D; [[NSAutoreleasePool alloc] init];</span><br><span class="line">[pool autorelease];</span><br></pre></td></tr></table></figure>
+
+<p>回答：发生异常，通常在使用Objective-C，也就是Foundation框架时，无论调用哪一个对象的 autorelease 实例方法，实现上调用的都是 NSObject 类的 autorelease 实例方法。但是对于 NSAutoreleasePool类，autorelease 实例方法已被该类重载，因此运行时就会报错。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>《iOS与OS X多线程和内存管理》</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/12/30/%E8%87%AA%E5%8A%A8%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="name" content="Wanderer的博客">
       <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
     </span>
 
@@ -336,7 +438,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="name" content="Wanderer的博客">
       <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
     </span>
 
@@ -449,7 +551,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="name" content="Wanderer的博客">
       <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
     </span>
 
@@ -547,7 +649,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="name" content="Wanderer的博客">
       <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
     </span>
 
@@ -644,7 +746,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="name" content="Wanderer的博客">
       <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
     </span>
 
@@ -730,7 +832,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="name" content="Wanderer的博客">
       <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
     </span>
 
@@ -887,7 +989,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="name" content="Wanderer的博客">
       <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
     </span>
 
@@ -1057,7 +1159,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="name" content="Wanderer的博客">
       <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
     </span>
 
@@ -1163,7 +1265,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
+      <meta itemprop="name" content="Wanderer的博客">
       <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
     </span>
 
@@ -1407,289 +1509,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/06/27/Load%E5%92%8Cinitialize%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="Wanderer">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/06/27/Load%E5%92%8Cinitialize%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F/" class="post-title-link" itemprop="url">Load和initialize加载顺序</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-27 16:25:18" itemprop="dateCreated datePublished" datetime="2019-06-27T16:25:18+08:00">2019-06-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>8.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Load和Initialize实现原理"><a href="#Load和Initialize实现原理" class="headerlink" title="Load和Initialize实现原理"></a>Load和Initialize实现原理</h2><h3 id="Load实现原理"><a href="#Load实现原理" class="headerlink" title="+Load实现原理"></a>+Load实现原理</h3><blockquote>
-<p>+load方法会在<code>runtime</code>加载<code>类</code>、<code>分类</code>时调用</p>
-</blockquote>
-<blockquote>
-<p>每个类、分类的+load，在程序运行过程中<code>只调用一次</code></p>
-</blockquote>
-<blockquote>
-<p>+load方法是根据方法<code>地址</code>直接调用，并不是经过objc_msgSend函数调用</p>
-</blockquote>
-<p><strong>调用顺序</strong></p>
-<ul>
-<li>1、先调用类的+load<ul>
-<li>按照编译先后顺序调用（先编译，先调用）</li>
-<li>调用子类的+load之前会先调用父类的+load</li>
-</ul>
-</li>
-<li>2、再调用分类的+load<ul>
-<li>按照编译先后顺序调用（先编译，先调用）</li>
-</ul>
-</li>
-</ul>
-<p><strong>objc4源码解读过程</strong><br>objc-os.mm 文件</p>
-<ul>
-<li>_objc_init</li>
-<li>load_images</li>
-<li>prepare_load_methods<ul>
-<li>schedule_class_load</li>
-<li>add_class_to_loadable_list</li>
-<li>add_category_to_loadable_list</li>
-</ul>
-</li>
-<li>call_load_methods<ul>
-<li>call_class_loads</li>
-<li>call_category_loads</li>
-</ul>
-</li>
-</ul>
-<p><code>_objc_init</code>方法是RunTime运行的入口</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> _objc_init(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">bool</span> initialized = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (initialized) <span class="keyword">return</span>;</span><br><span class="line">    initialized = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// fixme defer initialization until an objc-using image is found?</span></span><br><span class="line">    environ_init();</span><br><span class="line">    tls_init();</span><br><span class="line">    static_init();</span><br><span class="line">    lock_init();</span><br><span class="line">    exception_init();</span><br><span class="line"></span><br><span class="line">    _dyld_objc_notify_register(&amp;map_images, load_images, unmap_image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>小知识：<code>images</code>是镜像的意思</p>
-</blockquote>
-<p>我们在<code>_objc_init</code>方法中找到<code>load_images</code>，<code>load_images</code>是Load加载镜像的意思，所有我们可以猜测这个里面应该有我们load的加载方法的相关实现</p>
-<p>我们点击进入<code>load_images</code>方法</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">load_images(<span class="keyword">const</span> <span class="keyword">char</span> *path __unused, <span class="keyword">const</span> struct mach_header *mh)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Return without taking locks if there are no +load methods here.</span></span><br><span class="line">    <span class="keyword">if</span> (!hasLoadMethods((<span class="keyword">const</span> headerType *)mh)) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">recursive_mutex_locker_t</span> <span class="title">lock</span><span class="params">(loadMethodLock)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Discover load methods</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">rwlock_writer_t</span> <span class="title">lock2</span><span class="params">(runtimeLock)</span></span>;</span><br><span class="line">        prepare_load_methods((<span class="keyword">const</span> headerType *)mh);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Call +load methods (without runtimeLock - re-entrant)</span></span><br><span class="line">    call_load_methods();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>里面有两个需要我们注意的</p>
-<ul>
-<li>1、<code>prepare_load_methods((const headerType *)mh)</code>准备加载Load方法，我们也可以看到上面的官方文档解释也是这个意思</li>
-<li>2、<code>call_load_methods()</code> 加载load方法</li>
-</ul>
-<p>我们点击进入<code>prepare_load_methods((const headerType *)mh)</code>准备加载Load方法</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prepare_load_methods</span><span class="params">(<span class="keyword">const</span> headerType *mhdr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">size_t</span> count, i;</span><br><span class="line"></span><br><span class="line">    runtimeLock.assertWriting();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">classref_t</span> *classlist = </span><br><span class="line">    _getObjc2NonlazyClassList(mhdr, &amp;count);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        schedule_class_load(remapClass(classlist[i]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">category_t</span> **categorylist = _getObjc2NonlazyCategoryList(mhdr, &amp;count);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">    <span class="keyword">category_t</span> *cat = categorylist[i];</span><br><span class="line">    Class cls = remapClass(cat-&gt;cls);</span><br><span class="line">    <span class="keyword">if</span> (!cls) <span class="keyword">continue</span>;  <span class="comment">// category for ignored weak-linked class</span></span><br><span class="line">        realizeClass(cls);</span><br><span class="line">        assert(cls-&gt;ISA()-&gt;isRealized());</span><br><span class="line">        add_category_to_loadable_list(cat);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到执行顺序</p>
-<ul>
-<li>1、<code>schedule_class_load(remapClass(classlist[i]));</code>,这个是把类中的<code>Load</code>方法添加到数组中</li>
-<li>2、<code>add_category_to_loadable_list(cat);</code>这个是把分类中的<code>load</code>方法添加到数组中</li>
-</ul>
-<p><strong>查看类的load方法</strong></p>
-<p>我们查看<code>schedule_class_load(remapClass(classlist[i]));</code>方法里面还有哪些实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">schedule_class_load</span><span class="params">(Class cls)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!cls) <span class="keyword">return</span>;</span><br><span class="line">    assert(cls-&gt;isRealized());  <span class="comment">// _read_images should realize</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (cls-&gt;data()-&gt;flags &amp; RW_LOADED) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Ensure superclass-first ordering</span></span><br><span class="line">    schedule_class_load(cls-&gt;superclass);</span><br><span class="line"></span><br><span class="line">    add_class_to_loadable_list(cls);</span><br><span class="line">    cls-&gt;setInfo(RW_LOADED); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>1、<code>schedule_class_load(cls-&gt;superclass);</code> 把父类load先添加到数组中</li>
-<li>2、<code>add_class_to_loadable_list(cls);</code>把自己的load方法添加到数组中</li>
-</ul>
-<p>走到这里我们大概是清楚了类中load方法的加载添加过程，就是先把<code>父类添加带数组中，然后再把自己添加到数组中</code></p>
-<p><strong>查看分类的load方法</strong></p>
-<p>我们点击<code>add_category_to_loadable_list(cat)</code>进入查看方法实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_category_to_loadable_list</span><span class="params">(Category cat)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    IMP method;</span><br><span class="line"></span><br><span class="line">    loadMethodLock.assertLocked();</span><br><span class="line"></span><br><span class="line">    method = _category_getLoadMethod(cat);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Don&#x27;t bother if cat has no +load method</span></span><br><span class="line">    <span class="keyword">if</span> (!method) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (PrintLoading) &#123;</span><br><span class="line">        _objc_inform(<span class="string">&quot;LOAD: category &#x27;%s(%s)&#x27; scheduled for +load&quot;</span>, </span><br><span class="line">        _category_getClassName(cat), _category_getName(cat));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (loadable_categories_used == loadable_categories_allocated) &#123;</span><br><span class="line">        loadable_categories_allocated = loadable_categories_allocated*<span class="number">2</span> + <span class="number">16</span>;</span><br><span class="line">        loadable_categories = (struct loadable_category *)</span><br><span class="line">        <span class="built_in">realloc</span>(loadable_categories,</span><br><span class="line">        loadable_categories_allocated *</span><br><span class="line">        <span class="keyword">sizeof</span>(struct loadable_category));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    loadable_categories[loadable_categories_used].cat = cat;</span><br><span class="line">    loadable_categories[loadable_categories_used].method = method;</span><br><span class="line">    loadable_categories_used++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>loadable_categories_used++;</code>分类没有什么特殊的方法，应该就是按照编译顺序添加到数组的。</p>
-<p><strong>实现</strong></p>
-<p>我们刚才看到了类分类中的添加顺序，我们在来看看加载顺序<br>点击<code>call_load_methods();</code>进入相关实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">call_load_methods</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">bool</span> loading = NO;</span><br><span class="line">    <span class="keyword">bool</span> more_categories;</span><br><span class="line"></span><br><span class="line">    loadMethodLock.assertLocked();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Re-entrant calls do nothing; the outermost call will finish the job.</span></span><br><span class="line">    <span class="keyword">if</span> (loading) <span class="keyword">return</span>;</span><br><span class="line">    loading = YES;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> *pool = objc_autoreleasePoolPush();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="comment">// 1. Repeatedly call class +loads until there aren&#x27;t any more</span></span><br><span class="line">        <span class="keyword">while</span> (loadable_classes_used &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        call_class_loads();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. Call category +loads ONCE</span></span><br><span class="line">    more_categories = call_category_loads();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. Run more +loads if there are classes OR more untried categories</span></span><br><span class="line">    &#125; <span class="keyword">while</span> (loadable_classes_used &gt; <span class="number">0</span>  ||  more_categories);</span><br><span class="line"></span><br><span class="line">    objc_autoreleasePoolPop(pool);</span><br><span class="line"></span><br><span class="line">    loading = NO;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面直接有官方文档给我们的顺序</p>
-<ul>
-<li>1、<code>call_class_loads();</code>加载类中load方法</li>
-<li>2、<code>more_categories = call_category_loads()</code>加载分类中load方法</li>
-</ul>
-<p><strong>Demo</strong><br>我们这里来一个测试demo</p>
-<ul>
-<li>父类<code>Person</code><ul>
-<li>1、分类<code>Person+Run.h</code></li>
-<li>2、分类<code>Person+Eat</code></li>
-</ul>
-</li>
-<li>2、子类<ul>
-<li>1、<code>Student</code></li>
-<li>2、<code>Teacher</code></li>
-</ul>
-</li>
-</ul>
-<p>编译顺序:</p>
-<img src="/Blog/2019/06/27/Load%E5%92%8Cinitialize%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F/Load1.png" class="" title="Load">
-
-<p>打印顺序:</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">44</span>:<span class="number">07.407021</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4819</span>:<span class="number">145771</span>] +[Person load]</span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">44</span>:<span class="number">07.407358</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4819</span>:<span class="number">145771</span>] +[Teacher load]</span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">44</span>:<span class="number">07.407394</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4819</span>:<span class="number">145771</span>] +[Student load]</span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">44</span>:<span class="number">07.407417</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4819</span>:<span class="number">145771</span>] +[Person(Eat) load]</span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">44</span>:<span class="number">07.407453</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4819</span>:<span class="number">145771</span>] +[Person(Run) load]</span><br><span class="line">Program ended with exit code: <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>1、先编译<code>Teacher</code>但是最先打印<code>Person</code></li>
-<li>2、分类<code>Person+Run</code>在子类<code>Student</code>之前编译，但是打印确实先打印<code>Student</code></li>
-</ul>
-<p>所有上面总结是十分准确的</p>
-<ul>
-<li>1、先调用类的+load<ul>
-<li>按照编译先后顺序调用（先编译，先调用）</li>
-<li>调用子类的+load之前会先调用父类的+load</li>
-</ul>
-</li>
-<li>2、再调用分类的+load<ul>
-<li>按照编译先后顺序调用（先编译，先调用）</li>
-</ul>
-</li>
-</ul>
-<p>我们是否注意到了另一个问题，为什么在有分类的时候还加载类的<code>load</code>方法，不应该是分类覆盖类吗？</p>
-<p>我们在查看<code>load</code>的源码实现的时候发现，+load方法是根据方法<code>地址</code>直接调用，并不是经过<code>objc_msgSend</code>函数调用，如果使用<code>objc_msgSend</code>会出现分类覆盖类，但是<code>load</code>直接是根据<code>指针</code>找方法的，所以不会覆盖。</p>
-<h3 id="Initialize实现原理"><a href="#Initialize实现原理" class="headerlink" title="Initialize实现原理"></a>Initialize实现原理</h3><blockquote>
-<p>+initialize方法会在类<code>第一次接收到消息</code>时调用</p>
-</blockquote>
-<p><strong>调用顺序</strong></p>
-<ul>
-<li>先调用父类的+initialize，再调用子类的+initialize(先初始化父类，再初始化子类，每个类只会初始化1次)</li>
-<li>+initialize和+load的很大区别是，+initialize是通过objc_msgSend进行调用的，所以有以下特点<ul>
-<li>如果子类没有实现+initialize，会调用父类的+initialize（所以父类的+initialize可能会被调用多次）</li>
-<li>如果分类实现了+initialize，就覆盖类本身的+initialize调用</li>
-</ul>
-</li>
-</ul>
-<p><strong>objc4源码解读过程</strong></p>
-<p>objc-runtime-new.mm</p>
-<ul>
-<li>class_getInstanceMethod</li>
-<li>lookUpImpOrNil</li>
-<li>lookUpImpOrForward</li>
-<li>_class_initialize</li>
-<li>callInitialize</li>
-<li>objc_msgSend(cls, SEL_initialize)</li>
-</ul>
-<p>我们在<code>objc-runtime-new.mm</code>文件中找到<code>class_getInstanceMethod</code>，里面就有一个主要实现方法<code>lookUpImpOrNil</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Method <span class="title">class_getInstanceMethod</span><span class="params">(Class cls, SEL sel)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!cls  ||  !sel) <span class="keyword">return</span> nil;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">warning</span> fixme build and search caches</span></span><br><span class="line">    lookUpImpOrNil(cls, sel, nil, </span><br><span class="line">    NO<span class="comment">/*initialize*/</span>, NO<span class="comment">/*cache*/</span>, YES<span class="comment">/*resolver*/</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">warning</span> fixme build and search caches</span></span><br><span class="line">    <span class="keyword">return</span> _class_getMethod(cls, sel);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>里面没有什么实现我们继续点击<code>lookUpImpOrNil</code>进入实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">IMP <span class="title">lookUpImpOrNil</span><span class="params">(Class cls, SEL sel, id inst, </span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">bool</span> initialize, <span class="keyword">bool</span> cache, <span class="keyword">bool</span> resolver)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    IMP imp = lookUpImpOrForward(cls, sel, inst, initialize, cache, resolver);</span><br><span class="line">    <span class="keyword">if</span> (imp == _objc_msgForward_impcache) <span class="keyword">return</span> nil;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> imp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>里面好像还是没有我们想要的具体实现，继续点击<code>lookUpImpOrForward</code>查看实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (initialize  &amp;&amp;  !cls-&gt;isInitialized()) &#123;</span><br><span class="line">    runtimeLock.unlockRead();</span><br><span class="line">    _class_initialize (_class_getNonMetaClass(cls, inst));</span><br><span class="line">    runtimeLock.read();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个里面有一个<code>if</code>判断里面有一些东西，就是在没有实现<code>isInitialized</code>的时候，调用<code>_class_initialize</code>方法，我们点击进入查看相关实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (supercls  &amp;&amp;  !supercls-&gt;isInitialized()) &#123;</span><br><span class="line">    _class_initialize(supercls);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">callInitialize(cls);</span><br></pre></td></tr></table></figure>
-<p>里面有这两个主要的函数</p>
-<ul>
-<li>1、第一个是判断是否存在父类，以及父类是否实现<code>initialize</code>方法，如果没有实现就去实现</li>
-<li>2、去实现自己的<code>initialize</code>方法。</li>
-</ul>
-<p>我们在点击<code>callInitialize</code>发现具体是通过<code>objc_msgSend</code>来实现的。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">callInitialize</span><span class="params">(Class cls)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">((<span class="keyword">void</span>(*)(Class, SEL))objc_msgSend)(cls, SEL_initialize);</span><br><span class="line"><span class="keyword">asm</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Demo</strong><br>测试案例1<br>我们创建父类<code>Person</code>，然后创建子类<code>Student</code>&amp;<code>Teacher</code>，子类不实现<code>initialize</code>方法，父类实现该方法</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Teacher alloc];</span><br><span class="line">[Student alloc];</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">51</span>:<span class="number">34.924111</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4965</span>:<span class="number">150760</span>] +[Person initialize]</span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">51</span>:<span class="number">34.924518</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4965</span>:<span class="number">150760</span>] +[Person initialize]</span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">51</span>:<span class="number">34.924562</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4965</span>:<span class="number">150760</span>] +[Person initialize]</span><br><span class="line">Program ended with exit code: <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<p>结果打印三次<code>[Person initialize]</code>方法，打印一次我们是能够想到了，因为实现过程是先看看父类有没有已经实现，如果没有实现就先实现父类的。但是另外两次是怎么来的呢。</p>
-<p><code>[Student alloc]</code>的实现大概是这样的</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">objc_msgSend([Person <span class="keyword">class</span>], <span class="keyword">@selector</span>(initialize));</span><br><span class="line">objc_msgSend([Student <span class="keyword">class</span>], <span class="keyword">@selector</span>(initialize));</span><br></pre></td></tr></table></figure>
-<ul>
-<li>1、第一步就是实现父类的<code>initialize</code>方法</li>
-<li>2、第二步，Student先查找自己元类有没有<code>initialize</code>方法，如果自己元类没有实现，就向上查找父类元类有没有<code>initialize</code>方法，如果有就执行，没有继续向上查找 </li>
-</ul>
-<p>测试案例2</p>
-<p>我们创建父类<code>Person</code>，然后创建分类<code>Person+Eat</code>，都是实现<code>initialize</code>方法</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Person alloc];</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">07.870498</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4993</span>:<span class="number">151954</span>] +[Person(Eat) initialize]</span><br><span class="line">Program ended with exit code: <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<p>这句代码就是证明了<code>如果分类实现了+initialize，就覆盖类本身的+initialize调用</code></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>load、initialize方法的区别什么？</p>
-<ul>
-<li>1.调用方式<ul>
-<li>1&gt; load是根据函数地址直接调用</li>
-</ul>
-</li>
-<li>2&gt; initialize是通过objc_msgSend调用</li>
-</ul>
-<p>-2.调用时刻<br>    - 1&gt; load是runtime加载类、分类的时候调用（只会调用1次）<br>    - 2&gt; initialize是类第一次接收到消息的时候调用，每一个类只会initialize一次（父类的initialize方法可能会被调用多次）</p>
-<p>load、initialize的调用顺序？</p>
-<p>1.load</p>
-<ul>
-<li><p>1&gt; 先调用类的load</p>
-<ul>
-<li>a) 先编译的类，优先调用load</li>
-<li>b) 调用子类的load之前，会先调用父类的load</li>
-</ul>
-</li>
-<li><p>2&gt; 再调用分类的load</p>
-<ul>
-<li>a) 先编译的分类，优先调用load</li>
-</ul>
-</li>
-</ul>
-<p>2.initialize</p>
-<ul>
-<li>1&gt; 先初始化父类</li>
-<li>2&gt; 再初始化子类（可能最终调用的是父类的initialize方法）</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1751,7 +1570,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Wanderer</p>
+  <p class="site-author-name" itemprop="name">Wanderer的博客</p>
   <div class="site-description" itemprop="description">合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。</div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -1759,7 +1578,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1803,17 +1622,17 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Wanderer</span>
+  <span class="author" itemprop="copyrightHolder">Wanderer的博客</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">193k</span>
+    <span title="站点总字数">194k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:55</span>
+    <span title="站点阅读时长">2:57</span>
 </div>
 
         
