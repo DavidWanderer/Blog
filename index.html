@@ -228,7 +228,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -282,7 +282,7 @@
 <img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E7%A7%81%E6%9C%89%E5%BA%93%E7%B4%A2%E5%BC%95%E5%90%8C%E6%AD%A5%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%92%8C%E8%BF%9C%E7%A8%8B%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="私有库索引同步到本地和远程索引库截图">
 
 <h2 id="在自己的项目中引用私有库"><a href="#在自己的项目中引用私有库" class="headerlink" title="在自己的项目中引用私有库"></a>在自己的项目中引用私有库</h2><p>Podfile如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/CocoaPods/Specs.git&#x27;</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/DavidWanderer/CDSpecs.git&#x27;</span></span><br><span class="line">platform :ios, <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">target <span class="string">&quot;TestDemo&quot;</span> <span class="keyword">do</span></span><br><span class="line">pod <span class="string">&#x27;CDUtils&#x27;</span>, <span class="string">&#x27;~&gt; 0.0.1’</span></span><br><span class="line"><span class="string">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Uncomment the next line to define a global platform for your project</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/CocoaPods/Specs.git&#x27;</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/DavidWanderer/CDSpecs.git&#x27;</span></span><br><span class="line">platform :ios, <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">target <span class="string">&#x27;测试&#x27;</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Comment the next line if you don&#x27;t want to use dynamic frameworks</span></span><br><span class="line">  <span class="comment">#use_frameworks!</span></span><br><span class="line">  pod <span class="string">&#x27;CDUtils&#x27;</span>, <span class="string">&#x27;~&gt; 0.0.1&#x27;</span></span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
       
     </div>
 
