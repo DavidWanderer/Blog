@@ -1067,43 +1067,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MySQL基本命令</title>
-    <url>/Blog/2019/07/07/MySQL%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<p>MAC OSX上安装MySQL有多种方法：</p>
-<ul>
-<li><ol>
-<li>使用DMG文件安装，安装完在系统偏好设置中有相应的管理面板可以控制MySQL服务器开启和关闭，详情可访问<a href="https://dev.mysql.com/downloads/mysql/">官网下载地址</a></li>
-</ol>
-</li>
-<li><ol start="2">
-<li>使用Homebrew安装，打开终端，输入命令<code>brew install mysql</code> ,这个安装过程中可能需要升级Homebrew，Homebrew的升级需要翻墙</li>
-</ol>
-</li>
-</ul>
-<h2 id="安装完测试MySQL需要使用的基本命令如下："><a href="#安装完测试MySQL需要使用的基本命令如下：" class="headerlink" title="安装完测试MySQL需要使用的基本命令如下："></a>安装完测试MySQL需要使用的基本命令如下：</h2><p>1.使用brew安装完MySQL时,root密码默认为空，如果要设置MySQL的相关安全策略，使用命令: <code>mysql_secure_installation</code></p>
-<p>2.打开mysql,带后台线程（电脑重启后会自己开启）:<code>brew services start mysql</code></p>
-<p>3.打开mysql，不带后台线程:<code>mysql.server start</code></p>
-<p>4.退出mysql:<code>brew services stop mysql</code></p>
-<p>5.登录MySQL:<code>mysql -u root -p</code></p>
-<p>6.查看MySQL的版本号:mysql&gt; <code>select Version();</code></p>
-<p>7.查看当前登录的MySQL运行的端口号:mysql&gt; <code>show global variables like &#39;port&#39;;</code></p>
-<p>8.显示可用的数据库:<code>SHOW DATABASES;</code></p>
-<p>9.选择数据库:mysql&gt; <code>USE crashcourse;</code></p>
-<p>10.显示数据库中所有可用的表:mysql&gt; <code>SHOW TABLES;</code></p>
-<p>11.显示表列: <code>SHOW COLUMNS FROM customers;</code> 或 <code>DESCRIBE customers;</code></p>
-<p>12.显示服务器状态信息:<code>SHOW STATUS;</code></p>
-<p>13.显示用户的安全权限:<code>SHOW GRANTS;</code></p>
-<p>14.显示服务器错误信息:<code>SHOW ERRORS;</code></p>
-<p>15.显示服务器警告信息:<code>SHOW WARNINGS;</code></p>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown语法</title>
     <url>/Blog/2020/05/23/Markdown%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h2 id="标题的使用"><a href="#标题的使用" class="headerlink" title="标题的使用"></a>标题的使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
@@ -1205,6 +1168,43 @@
       </categories>
       <tags>
         <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL基本命令</title>
+    <url>/Blog/2019/07/07/MySQL%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>MAC OSX上安装MySQL有多种方法：</p>
+<ul>
+<li><ol>
+<li>使用DMG文件安装，安装完在系统偏好设置中有相应的管理面板可以控制MySQL服务器开启和关闭，详情可访问<a href="https://dev.mysql.com/downloads/mysql/">官网下载地址</a></li>
+</ol>
+</li>
+<li><ol start="2">
+<li>使用Homebrew安装，打开终端，输入命令<code>brew install mysql</code> ,这个安装过程中可能需要升级Homebrew，Homebrew的升级需要翻墙</li>
+</ol>
+</li>
+</ul>
+<h2 id="安装完测试MySQL需要使用的基本命令如下："><a href="#安装完测试MySQL需要使用的基本命令如下：" class="headerlink" title="安装完测试MySQL需要使用的基本命令如下："></a>安装完测试MySQL需要使用的基本命令如下：</h2><p>1.使用brew安装完MySQL时,root密码默认为空，如果要设置MySQL的相关安全策略，使用命令: <code>mysql_secure_installation</code></p>
+<p>2.打开mysql,带后台线程（电脑重启后会自己开启）:<code>brew services start mysql</code></p>
+<p>3.打开mysql，不带后台线程:<code>mysql.server start</code></p>
+<p>4.退出mysql:<code>brew services stop mysql</code></p>
+<p>5.登录MySQL:<code>mysql -u root -p</code></p>
+<p>6.查看MySQL的版本号:mysql&gt; <code>select Version();</code></p>
+<p>7.查看当前登录的MySQL运行的端口号:mysql&gt; <code>show global variables like &#39;port&#39;;</code></p>
+<p>8.显示可用的数据库:<code>SHOW DATABASES;</code></p>
+<p>9.选择数据库:mysql&gt; <code>USE crashcourse;</code></p>
+<p>10.显示数据库中所有可用的表:mysql&gt; <code>SHOW TABLES;</code></p>
+<p>11.显示表列: <code>SHOW COLUMNS FROM customers;</code> 或 <code>DESCRIBE customers;</code></p>
+<p>12.显示服务器状态信息:<code>SHOW STATUS;</code></p>
+<p>13.显示用户的安全权限:<code>SHOW GRANTS;</code></p>
+<p>14.显示服务器错误信息:<code>SHOW ERRORS;</code></p>
+<p>15.显示服务器警告信息:<code>SHOW WARNINGS;</code></p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1488,50 +1488,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Ruby相关命令收集</title>
-    <url>/Blog/2019/12/12/Ruby%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</url>
-    <content><![CDATA[<p>RVM是一个命令行工具，它能帮你安装多个版本的Ruby，并切换不同的版本。</p>
-<h2 id="安装RVM步骤"><a href="#安装RVM步骤" class="headerlink" title="安装RVM步骤"></a>安装RVM步骤</h2><p>1.安装rvm</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3</span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable</span><br><span class="line"><span class="comment"># 如果上面的连接失败，可以尝试: </span></span><br><span class="line">$ curl -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable</span><br></pre></td></tr></table></figure>
-<p>2.载入rvm环境(新开Terminal,会自动重新载入)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm</span><br></pre></td></tr></table></figure>
-<p>3.修改rvm下载的Ruby源，到RubyChina的镜像:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;ruby_url=https://cache.ruby-china.com/pub/ruby&quot;</span> &gt; ~/.rvm/user/db</span><br></pre></td></tr></table></figure>
-<p>4.检查rvm是否安装正确</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rvm -v</span><br><span class="line">rvm 1.22.17 (stable) by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; [https://rvm.io/]</span><br></pre></td></tr></table></figure>
-<h2 id="RVM常用指令"><a href="#RVM常用指令" class="headerlink" title="RVM常用指令"></a>RVM常用指令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ruby -v <span class="comment"># 查看ruby 版本</span></span><br><span class="line">$ rvm list known <span class="comment"># 列出已知的 ruby 版本</span></span><br><span class="line">$ rvm install 2.3.0 <span class="comment"># 选择指定 ruby 版本进行更新</span></span><br><span class="line">$ rvm get stable <span class="comment"># 更新 rvm</span></span><br><span class="line">$ rvm use 2.2.2 <span class="comment"># 切换到指定 ruby 版本</span></span><br><span class="line">$ rvm use 2.2.2 --default <span class="comment"># 设置指定 ruby 版本为默认版本</span></span><br><span class="line">$ rvm list <span class="comment"># 查询已安装的 ruby 版本</span></span><br><span class="line">$ rvm remove 1.9.2 <span class="comment"># 卸载移除 指定 ruby 版本</span></span><br><span class="line"></span><br><span class="line">$ curl -L https://get.rvm.io | bash -s stable <span class="comment"># 安装 rvm 环境</span></span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby <span class="comment"># 默认安装 rvm 最新版本</span></span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3.0 <span class="comment"># 安装 rvm 指定版本</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm <span class="comment"># 载入 rvm</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Gem常用指令"><a href="#Gem常用指令" class="headerlink" title="Gem常用指令"></a>Gem常用指令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gem -v <span class="comment"># 查看 gem 版本</span></span><br><span class="line">$ gem <span class="built_in">source</span> <span class="comment"># 查看 gem 配置源</span></span><br><span class="line">$ gem <span class="built_in">source</span> -l <span class="comment"># 查看 gem 配置源目录</span></span><br><span class="line">$ gem sources -a url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --add url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources -r url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --remove url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem update <span class="comment"># 更新 所有包</span></span><br><span class="line">$ gem update --system <span class="comment"># 更新 Ruby Gems 软件</span></span><br><span class="line"></span><br><span class="line">$ gem install rake <span class="comment"># 安装 rake，从本地或远程服务器</span></span><br><span class="line">$ gem install rake --remote <span class="comment"># 安装 rake，从远程服务器</span></span><br><span class="line">$ gem install watir -v 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem install watir --version 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem uninstall rake <span class="comment"># 卸载 rake 包</span></span><br><span class="line">$ gem list d <span class="comment"># 列出 本地以 d 打头的包</span></span><br><span class="line">$ gem query -n <span class="string">&#x27;&#x27;</span>[0-9]<span class="string">&#x27;&#x27;</span> --<span class="built_in">local</span> <span class="comment"># 查找 本地含有数字的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --both <span class="comment"># 查找 从本地和远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --remoter <span class="comment"># 查找 只从远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search -r <span class="built_in">log</span> <span class="comment"># 查找 只从远程服务器上查找含有log字符串的包</span></span><br><span class="line"></span><br><span class="line">$ gem <span class="built_in">help</span> <span class="comment"># 提醒式的帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> install <span class="comment"># 列出 install 命令 帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> examples <span class="comment"># 列出 gem 命令使用一些例子</span></span><br><span class="line">$ gem build rake.gemspec <span class="comment"># 把 rake.gemspec 编译成 rake.gem</span></span><br><span class="line">$ gem check -v pkg/rake-0.4.0.gem <span class="comment"># 检测 rake 是否有效</span></span><br><span class="line">$ gem cleanup <span class="comment"># 清除 所有包旧版本，保留最新版本</span></span><br><span class="line">$ gem contents rake <span class="comment"># 显示 rake 包中所包含的文件</span></span><br><span class="line">$ gem dependency rails -v 0.10.1 <span class="comment"># 列出 与 rails 相互依赖的包</span></span><br><span class="line">$ gem environment <span class="comment"># 查看 gem 的环境</span></span><br><span class="line"></span><br><span class="line">$ sudo gem -v <span class="comment"># 查看 gem 版本（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoa pods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods --pre <span class="comment"># 安装 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods -v 1.4.0 <span class="comment"># 安装 CocoaPods 指定版本（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods <span class="comment"># 更新 CocoaPods 至最新版（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods --pre <span class="comment"># 更新 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem uninstall cocoapods -v 1.4.0 <span class="comment"># 移除 CocoaPods 指定版本（以管理员权限）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在Catalina系统上执行上述命令会报无权限访问错误，需要使用下面的命令</span></span><br><span class="line">$ sudo gem install -n /usr/<span class="built_in">local</span>/bin cocoapods -v 1.9.1</span><br></pre></td></tr></table></figure>
-
-<p>如果命令无法修改Gem源，可以手动修改Gem源，Gem的配置文件位置在<code>~/.gemrc</code>，编辑<code>~/.gemrc</code>文件，在:sources:配置行下添加<code>https://gems.ruby-china.com/</code>，这样就配置了ruby-china的Gem源。最终的配置文件如下:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">:backtrace: <span class="literal">false</span></span><br><span class="line">:bulk_threshold: 1000</span><br><span class="line">:sources:</span><br><span class="line">- https://gems.ruby-china.com</span><br><span class="line">:update_sources: <span class="literal">true</span></span><br><span class="line">:verbose: <span class="literal">true</span></span><br><span class="line">:ssl_verify_mode: 0</span><br><span class="line">concurrent_downloads: 8</span><br></pre></td></tr></table></figure>
-
-<p>mac系统升级到Catalina时，使用cocoa pod时报错：-bash: /usr/local/bin/pod: /<br>System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/bin/ruby: bad interpreter: No such file or directory”. </p>
-<p>解决方案：<code>sudo gem install -n /usr/local/bin cocoapods -v 1.4.0</code></p>
-<h2 id="Fastlane安装步骤"><a href="#Fastlane安装步骤" class="headerlink" title="Fastlane安装步骤"></a>Fastlane安装步骤</h2><p>指定版本安装fastlane</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">set</span> -ex</span><br><span class="line">$ gem uninstall fastlane --all --executables</span><br><span class="line">$ gem install fastlane --version 2.28.3 --no-document</span><br></pre></td></tr></table></figure>
-<p>mac系统升级到Catalina时，安装Fastlane会报错，请尝试:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">set</span> -ex</span><br><span class="line">$ gem uninstall -n /usr/<span class="built_in">local</span>/bin fastlane --all --executables</span><br><span class="line">$ gem install -n /usr/<span class="built_in">local</span>/bin fastlane --version 2.28.3 --no-document</span><br></pre></td></tr></table></figure>
-<p>如果尝试多次仍然无法安装Fastlane，可以尝试:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#brew cask安装fastlane的执行命令:</span></span><br><span class="line">$ brew cask uninstall fastlane</span><br><span class="line">$ brew cask install fastlane</span><br></pre></td></tr></table></figure>
-
-<h2 id="将homebrew的源换成阿里云，提高下载速度"><a href="#将homebrew的源换成阿里云，提高下载速度" class="headerlink" title="将homebrew的源换成阿里云，提高下载速度"></a>将homebrew的源换成阿里云，提高下载速度</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.替换brew.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/brew.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.替换homebrew-core.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core&quot;</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.替换homebrew-cask.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span>/Library/Taps/homebrew/homebrew-cask</span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.替换homebrew-bottles:</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line">$ <span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<h2 id="给Git添加代理访问，提高Git的访问速度"><a href="#给Git添加代理访问，提高Git的访问速度" class="headerlink" title="给Git添加代理访问，提高Git的访问速度"></a>给Git添加代理访问，提高Git的访问速度</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.编辑PAC用户自定义规则,添加以下地址:</span></span><br><span class="line">github.com</span><br><span class="line">githubusercontent.com</span><br><span class="line">githubassets.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.编辑~/.ssh/config文件，在文件中添加以下命令:</span></span><br><span class="line">Host github.com</span><br><span class="line">   HostName github.com</span><br><span class="line">   User git</span><br><span class="line">   ProxyCommand nc -v -x 127.0.0.1:1086 %h %p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.让配置立即生效:</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.ssh/config</span><br></pre></td></tr></table></figure>
-
-<h2 id="给终端添加代理访问"><a href="#给终端添加代理访问" class="headerlink" title="给终端添加代理访问"></a>给终端添加代理访问</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.编辑～/.bash_profile文件</span></span><br><span class="line">$ vim ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.在配置文件中加入如下内容，并保存</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:1087</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:1087</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.让配置立即生效</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.测试代理是否成功</span></span><br><span class="line">$ curl cip.cc</span><br><span class="line">IP	: 192.3.249.219</span><br><span class="line">地址	: 美国  华盛顿州  西雅图</span><br><span class="line">运营商	: colocrossing.com</span><br><span class="line"></span><br><span class="line">数据二	: 美国</span><br><span class="line"></span><br><span class="line">数据三	: 美国华盛顿西雅图</span><br><span class="line"></span><br><span class="line">URL	: http://www.cip.cc/192.3.249.219</span><br></pre></td></tr></table></figure>
-
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://ruby-china.org/wiki/install_ruby_guide">安装配置RVM环境</a><br><a href="https://stackoverflow.com/questions/20487849/how-to-downgrade-or-install-an-older-version-of-cocoapods">安装指定版本的cocoapods</a><br><a href="https://gist.github.com/neekey/4601713">手动安装RVM</a><br><a href="https://www.raydbg.com/2019/Homebrew-Update-Slow/">解决Homebrew下载更新极慢的问题</a><br><a href="http://skx926.me/2019/01/23/mac-proxy/">Mac上的各种代理设置</a><br><a href="https://www.jianshu.com/p/c44ef74d99f9">Mac安装Ruby版本管理器RVM</a></p>
-]]></content>
-      <categories>
-        <category>Ruby</category>
-      </categories>
-      <tags>
-        <tag>Ruby</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python学习笔记-对象和类</title>
     <url>/Blog/2019/04/02/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/</url>
     <content><![CDATA[<h2 id="使用class定义类"><a href="#使用class定义类" class="headerlink" title="使用class定义类"></a>使用class定义类</h2><p>Python中使用class关键字来定义类，下面定义一个Person类</p>
@@ -1664,40 +1620,47 @@
       </tags>
   </entry>
   <entry>
-    <title>SourceTree commit数据后，想撤销刚刚的commit操作，并将修改的文件恢复到已暂存状态</title>
-    <url>/Blog/2020/04/04/SourceTree-commit%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80%E5%88%9A%E5%88%9A%E7%9A%84commit%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%B9%B6%E5%B0%86%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%B7%B2%E6%9A%82%E5%AD%98%E7%8A%B6%E6%80%81/</url>
-    <content><![CDATA[<p>在工作中有时会遇到这样的情况，修改完文件之后，因为各种原因，误操作导致文件本提交，但是还没有push到远端，希望撤回之前的修改，并且将改动保存到暂存区，方便再次修改或贮存操作。</p>
-<p>问题截图如下:</p>
-<img src="/Blog/2020/04/04/SourceTree-commit%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80%E5%88%9A%E5%88%9A%E7%9A%84commit%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%B9%B6%E5%B0%86%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%B7%B2%E6%9A%82%E5%AD%98%E7%8A%B6%E6%80%81/1.png" class="" title="误操作commit的截图">
+    <title>Ruby相关命令收集</title>
+    <url>/Blog/2019/12/12/Ruby%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</url>
+    <content><![CDATA[<p>RVM是一个命令行工具，它能帮你安装多个版本的Ruby，并切换不同的版本。</p>
+<h2 id="安装RVM步骤"><a href="#安装RVM步骤" class="headerlink" title="安装RVM步骤"></a>安装RVM步骤</h2><p>1.安装rvm</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3</span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable</span><br><span class="line"><span class="comment"># 如果上面的连接失败，可以尝试: </span></span><br><span class="line">$ curl -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable</span><br></pre></td></tr></table></figure>
+<p>2.载入rvm环境(新开Terminal,会自动重新载入)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm</span><br></pre></td></tr></table></figure>
+<p>3.修改rvm下载的Ruby源，到RubyChina的镜像:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;ruby_url=https://cache.ruby-china.com/pub/ruby&quot;</span> &gt; ~/.rvm/user/db</span><br></pre></td></tr></table></figure>
+<p>4.检查rvm是否安装正确</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rvm -v</span><br><span class="line">rvm 1.22.17 (stable) by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; [https://rvm.io/]</span><br></pre></td></tr></table></figure>
+<h2 id="RVM常用指令"><a href="#RVM常用指令" class="headerlink" title="RVM常用指令"></a>RVM常用指令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ruby -v <span class="comment"># 查看ruby 版本</span></span><br><span class="line">$ rvm list known <span class="comment"># 列出已知的 ruby 版本</span></span><br><span class="line">$ rvm install 2.3.0 <span class="comment"># 选择指定 ruby 版本进行更新</span></span><br><span class="line">$ rvm get stable <span class="comment"># 更新 rvm</span></span><br><span class="line">$ rvm use 2.2.2 <span class="comment"># 切换到指定 ruby 版本</span></span><br><span class="line">$ rvm use 2.2.2 --default <span class="comment"># 设置指定 ruby 版本为默认版本</span></span><br><span class="line">$ rvm list <span class="comment"># 查询已安装的 ruby 版本</span></span><br><span class="line">$ rvm remove 1.9.2 <span class="comment"># 卸载移除 指定 ruby 版本</span></span><br><span class="line"></span><br><span class="line">$ curl -L https://get.rvm.io | bash -s stable <span class="comment"># 安装 rvm 环境</span></span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby <span class="comment"># 默认安装 rvm 最新版本</span></span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3.0 <span class="comment"># 安装 rvm 指定版本</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm <span class="comment"># 载入 rvm</span></span><br></pre></td></tr></table></figure>
 
-<p>使用<code>git log</code>查看一下日志，截图如下：</p>
-<img src="/Blog/2020/04/04/SourceTree-commit%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80%E5%88%9A%E5%88%9A%E7%9A%84commit%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%B9%B6%E5%B0%86%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%B7%B2%E6%9A%82%E5%AD%98%E7%8A%B6%E6%80%81/2.png" class="" title="查看git提交日志">
 
+<h2 id="Gem常用指令"><a href="#Gem常用指令" class="headerlink" title="Gem常用指令"></a>Gem常用指令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gem -v <span class="comment"># 查看 gem 版本</span></span><br><span class="line">$ gem <span class="built_in">source</span> <span class="comment"># 查看 gem 配置源</span></span><br><span class="line">$ gem <span class="built_in">source</span> -l <span class="comment"># 查看 gem 配置源目录</span></span><br><span class="line">$ gem sources -a url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --add url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources -r url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --remove url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem update <span class="comment"># 更新 所有包</span></span><br><span class="line">$ gem update --system <span class="comment"># 更新 Ruby Gems 软件</span></span><br><span class="line"></span><br><span class="line">$ gem install rake <span class="comment"># 安装 rake，从本地或远程服务器</span></span><br><span class="line">$ gem install rake --remote <span class="comment"># 安装 rake，从远程服务器</span></span><br><span class="line">$ gem install watir -v 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem install watir --version 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem uninstall rake <span class="comment"># 卸载 rake 包</span></span><br><span class="line">$ gem list d <span class="comment"># 列出 本地以 d 打头的包</span></span><br><span class="line">$ gem query -n <span class="string">&#x27;&#x27;</span>[0-9]<span class="string">&#x27;&#x27;</span> --<span class="built_in">local</span> <span class="comment"># 查找 本地含有数字的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --both <span class="comment"># 查找 从本地和远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --remoter <span class="comment"># 查找 只从远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search -r <span class="built_in">log</span> <span class="comment"># 查找 只从远程服务器上查找含有log字符串的包</span></span><br><span class="line"></span><br><span class="line">$ gem <span class="built_in">help</span> <span class="comment"># 提醒式的帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> install <span class="comment"># 列出 install 命令 帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> examples <span class="comment"># 列出 gem 命令使用一些例子</span></span><br><span class="line">$ gem build rake.gemspec <span class="comment"># 把 rake.gemspec 编译成 rake.gem</span></span><br><span class="line">$ gem check -v pkg/rake-0.4.0.gem <span class="comment"># 检测 rake 是否有效</span></span><br><span class="line">$ gem cleanup <span class="comment"># 清除 所有包旧版本，保留最新版本</span></span><br><span class="line">$ gem contents rake <span class="comment"># 显示 rake 包中所包含的文件</span></span><br><span class="line">$ gem dependency rails -v 0.10.1 <span class="comment"># 列出 与 rails 相互依赖的包</span></span><br><span class="line">$ gem environment <span class="comment"># 查看 gem 的环境</span></span><br><span class="line"></span><br><span class="line">$ sudo gem -v <span class="comment"># 查看 gem 版本（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoa pods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods --pre <span class="comment"># 安装 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods -v 1.4.0 <span class="comment"># 安装 CocoaPods 指定版本（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods <span class="comment"># 更新 CocoaPods 至最新版（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods --pre <span class="comment"># 更新 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem uninstall cocoapods -v 1.4.0 <span class="comment"># 移除 CocoaPods 指定版本（以管理员权限）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在Catalina系统上执行上述命令会报无权限访问错误，需要使用下面的命令</span></span><br><span class="line">$ sudo gem install -n /usr/<span class="built_in">local</span>/bin cocoapods -v 1.9.1</span><br></pre></td></tr></table></figure>
 
+<p>如果命令无法修改Gem源，可以手动修改Gem源，Gem的配置文件位置在<code>~/.gemrc</code>，编辑<code>~/.gemrc</code>文件，在:sources:配置行下添加<code>https://gems.ruby-china.com/</code>，这样就配置了ruby-china的Gem源。最终的配置文件如下:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">:backtrace: <span class="literal">false</span></span><br><span class="line">:bulk_threshold: 1000</span><br><span class="line">:sources:</span><br><span class="line">- https://gems.ruby-china.com</span><br><span class="line">:update_sources: <span class="literal">true</span></span><br><span class="line">:verbose: <span class="literal">true</span></span><br><span class="line">:ssl_verify_mode: 0</span><br><span class="line">concurrent_downloads: 8</span><br></pre></td></tr></table></figure>
 
-<p>解决方法是，使用命令:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset --soft HEAD^</span><br></pre></td></tr></table></figure>
+<p>mac系统升级到Catalina时，使用cocoa pod时报错：-bash: /usr/local/bin/pod: /<br>System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/bin/ruby: bad interpreter: No such file or directory”. </p>
+<p>解决方案：<code>sudo gem install -n /usr/local/bin cocoapods -v 1.4.0</code></p>
+<h2 id="Fastlane安装步骤"><a href="#Fastlane安装步骤" class="headerlink" title="Fastlane安装步骤"></a>Fastlane安装步骤</h2><p>指定版本安装fastlane</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">set</span> -ex</span><br><span class="line">$ gem uninstall fastlane --all --executables</span><br><span class="line">$ gem install fastlane --version 2.28.3 --no-document</span><br></pre></td></tr></table></figure>
+<p>mac系统升级到Catalina时，安装Fastlane会报错，请尝试:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">set</span> -ex</span><br><span class="line">$ gem uninstall -n /usr/<span class="built_in">local</span>/bin fastlane --all --executables</span><br><span class="line">$ gem install -n /usr/<span class="built_in">local</span>/bin fastlane --version 2.28.3 --no-document</span><br></pre></td></tr></table></figure>
+<p>如果尝试多次仍然无法安装Fastlane，可以尝试:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#brew cask安装fastlane的执行命令:</span></span><br><span class="line">$ brew cask uninstall fastlane</span><br><span class="line">$ brew cask install fastlane</span><br></pre></td></tr></table></figure>
 
-<p>使用上面的命令，可以将刚刚commit的数据撤销回来，改动的数据不会丢失。命令撤销commit的截图:</p>
-<img src="/Blog/2020/04/04/SourceTree-commit%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80%E5%88%9A%E5%88%9A%E7%9A%84commit%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%B9%B6%E5%B0%86%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%B7%B2%E6%9A%82%E5%AD%98%E7%8A%B6%E6%80%81/3.png" class="" title="命令撤销commit的截图">
+<h2 id="将homebrew的源换成阿里云，提高下载速度"><a href="#将homebrew的源换成阿里云，提高下载速度" class="headerlink" title="将homebrew的源换成阿里云，提高下载速度"></a>将homebrew的源换成阿里云，提高下载速度</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.替换brew.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/brew.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.替换homebrew-core.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core&quot;</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.替换homebrew-cask.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span>/Library/Taps/homebrew/homebrew-cask</span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.替换homebrew-bottles:</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line">$ <span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
 
-<p>关掉SourceTree，重新打开，发现commit的状态已经没有了，数据已经恢复到commit之前的状态。</p>
-<img src="/Blog/2020/04/04/SourceTree-commit%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80%E5%88%9A%E5%88%9A%E7%9A%84commit%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%B9%B6%E5%B0%86%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%B7%B2%E6%9A%82%E5%AD%98%E7%8A%B6%E6%80%81/4.png" class="" title="SourceTree撤销commit之后的截图">
+<h2 id="给Git添加代理访问，提高Git的访问速度"><a href="#给Git添加代理访问，提高Git的访问速度" class="headerlink" title="给Git添加代理访问，提高Git的访问速度"></a>给Git添加代理访问，提高Git的访问速度</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.编辑PAC用户自定义规则,添加以下地址:</span></span><br><span class="line">github.com</span><br><span class="line">githubusercontent.com</span><br><span class="line">githubassets.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.编辑~/.ssh/config文件，在文件中添加以下命令:</span></span><br><span class="line">Host github.com</span><br><span class="line">   HostName github.com</span><br><span class="line">   User git</span><br><span class="line">   ProxyCommand nc -v -x 127.0.0.1:1086 %h %p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.让配置立即生效:</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.ssh/config</span><br></pre></td></tr></table></figure>
 
-<p>上述命令在使用时是可以加参数的具体参数如下:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">HEAD^    // 意思是撤销上一个commit提交,也可以写成 HEAD^1</span><br><span class="line">HEAD^~2  // 撤销之前的2次commit提交</span><br><span class="line">--soft   // 不删除工作空间改动代码，撤销commit，不撤销git add .</span><br><span class="line">--hard   // 删除工作空间改动代码，撤销commit，撤销git add .</span><br><span class="line">--mixed  // 不删除工作空间改动代码，撤销commit，并且撤销git add .操作。这个为默认参数，git reset --mixed HEAD^和 git reset HEAD^效果是一样的。</span><br></pre></td></tr></table></figure>
+<h2 id="给终端添加代理访问"><a href="#给终端添加代理访问" class="headerlink" title="给终端添加代理访问"></a>给终端添加代理访问</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.编辑～/.bash_profile文件</span></span><br><span class="line">$ vim ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.在配置文件中加入如下内容，并保存</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:1087</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:1087</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.让配置立即生效</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.测试代理是否成功</span></span><br><span class="line">$ curl cip.cc</span><br><span class="line">IP	: 192.3.249.219</span><br><span class="line">地址	: 美国  华盛顿州  西雅图</span><br><span class="line">运营商	: colocrossing.com</span><br><span class="line"></span><br><span class="line">数据二	: 美国</span><br><span class="line"></span><br><span class="line">数据三	: 美国华盛顿西雅图</span><br><span class="line"></span><br><span class="line">URL	: http://www.cip.cc/192.3.249.219</span><br></pre></td></tr></table></figure>
 
-<p>如果commit注释写错了，只是想改一下注释，需要执行以下命令:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
-
-<p>此时会进入默认vim编辑器，修改注释完毕后保存就好了。</p>
-<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p><a href="https://blog.csdn.net/w958796636/article/details/53611133">git使用情景2：commit之后，想撤销commit</a></p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://ruby-china.org/wiki/install_ruby_guide">安装配置RVM环境</a><br><a href="https://stackoverflow.com/questions/20487849/how-to-downgrade-or-install-an-older-version-of-cocoapods">安装指定版本的cocoapods</a><br><a href="https://gist.github.com/neekey/4601713">手动安装RVM</a><br><a href="https://www.raydbg.com/2019/Homebrew-Update-Slow/">解决Homebrew下载更新极慢的问题</a><br><a href="http://skx926.me/2019/01/23/mac-proxy/">Mac上的各种代理设置</a><br><a href="https://www.jianshu.com/p/c44ef74d99f9">Mac安装Ruby版本管理器RVM</a></p>
 ]]></content>
       <categories>
-        <category>Git</category>
+        <category>Ruby</category>
       </categories>
       <tags>
-        <tag>Git</tag>
+        <tag>Ruby</tag>
       </tags>
   </entry>
   <entry>
@@ -1963,6 +1926,43 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </tags>
   </entry>
   <entry>
+    <title>SourceTree commit数据后，想撤销刚刚的commit操作，并将修改的文件恢复到已暂存状态</title>
+    <url>/Blog/2020/04/04/SourceTree-commit%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80%E5%88%9A%E5%88%9A%E7%9A%84commit%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%B9%B6%E5%B0%86%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%B7%B2%E6%9A%82%E5%AD%98%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<p>在工作中有时会遇到这样的情况，修改完文件之后，因为各种原因，误操作导致文件本提交，但是还没有push到远端，希望撤回之前的修改，并且将改动保存到暂存区，方便再次修改或贮存操作。</p>
+<p>问题截图如下:</p>
+<img src="/Blog/2020/04/04/SourceTree-commit%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80%E5%88%9A%E5%88%9A%E7%9A%84commit%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%B9%B6%E5%B0%86%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%B7%B2%E6%9A%82%E5%AD%98%E7%8A%B6%E6%80%81/1.png" class="" title="误操作commit的截图">
+
+<p>使用<code>git log</code>查看一下日志，截图如下：</p>
+<img src="/Blog/2020/04/04/SourceTree-commit%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80%E5%88%9A%E5%88%9A%E7%9A%84commit%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%B9%B6%E5%B0%86%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%B7%B2%E6%9A%82%E5%AD%98%E7%8A%B6%E6%80%81/2.png" class="" title="查看git提交日志">
+
+
+
+<p>解决方法是，使用命令:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset --soft HEAD^</span><br></pre></td></tr></table></figure>
+
+<p>使用上面的命令，可以将刚刚commit的数据撤销回来，改动的数据不会丢失。命令撤销commit的截图:</p>
+<img src="/Blog/2020/04/04/SourceTree-commit%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80%E5%88%9A%E5%88%9A%E7%9A%84commit%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%B9%B6%E5%B0%86%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%B7%B2%E6%9A%82%E5%AD%98%E7%8A%B6%E6%80%81/3.png" class="" title="命令撤销commit的截图">
+
+<p>关掉SourceTree，重新打开，发现commit的状态已经没有了，数据已经恢复到commit之前的状态。</p>
+<img src="/Blog/2020/04/04/SourceTree-commit%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80%E5%88%9A%E5%88%9A%E7%9A%84commit%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%B9%B6%E5%B0%86%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%B7%B2%E6%9A%82%E5%AD%98%E7%8A%B6%E6%80%81/4.png" class="" title="SourceTree撤销commit之后的截图">
+
+<p>上述命令在使用时是可以加参数的具体参数如下:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">HEAD^    // 意思是撤销上一个commit提交,也可以写成 HEAD^1</span><br><span class="line">HEAD^~2  // 撤销之前的2次commit提交</span><br><span class="line">--soft   // 不删除工作空间改动代码，撤销commit，不撤销git add .</span><br><span class="line">--hard   // 删除工作空间改动代码，撤销commit，撤销git add .</span><br><span class="line">--mixed  // 不删除工作空间改动代码，撤销commit，并且撤销git add .操作。这个为默认参数，git reset --mixed HEAD^和 git reset HEAD^效果是一样的。</span><br></pre></td></tr></table></figure>
+
+<p>如果commit注释写错了，只是想改一下注释，需要执行以下命令:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
+
+<p>此时会进入默认vim编辑器，修改注释完毕后保存就好了。</p>
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p><a href="https://blog.csdn.net/w958796636/article/details/53611133">git使用情景2：commit之后，想撤销commit</a></p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VPS使用心得</title>
     <url>/Blog/2019/11/17/VPS%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</url>
     <content><![CDATA[<h2 id="什么是VPS"><a href="#什么是VPS" class="headerlink" title="什么是VPS?"></a>什么是VPS?</h2><p>Virtual Private Server简称VPS。是在一台真实服务器上使用虚拟机技术虚拟成多个小主机，用VZ或VM在一台服务器上虚拟出多个类似独立服务器的部分，每个部分都可以做单独的操作系统，管理方法同服务器一样。通俗讲就是物理机上开出的虚拟机。</p>
@@ -1988,22 +1988,6 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </categories>
       <tags>
         <tag>VPS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue CLI安装报错</title>
-    <url>/Blog/2020/03/15/Vue-CLI%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<p>执行<code>npm install -g @vue/cli</code>安装报错，错误信息如下:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:~ kris$ npm install -g @vue&#x2F;cli</span><br><span class="line">npm WARN deprecated request@2.88.2: request has been deprecated, see https:&#x2F;&#x2F;github.com&#x2F;request&#x2F;request&#x2F;issues&#x2F;3142</span><br><span class="line">npm ERR! code Z_BUF_ERROR</span><br><span class="line">npm ERR! errno -5</span><br><span class="line">npm ERR! zlib: unexpected end of file</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     &#x2F;Users&#x2F;kris&#x2F;.npm&#x2F;_logs&#x2F;2020-03-14T22_56_23_922Z-debug.log</span><br></pre></td></tr></table></figure>
-
-<p>解决办法，切换网络，清除npm缓存，执行命令:<code>npm cache clean --force</code></p>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://blog.csdn.net/zhuzhuzhihao/article/details/79753243">npm install 的时候 出现 unexpected end of file的问题</a></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -2033,6 +2017,22 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </categories>
       <tags>
         <tag>VPS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue CLI安装报错</title>
+    <url>/Blog/2020/03/15/Vue-CLI%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<p>执行<code>npm install -g @vue/cli</code>安装报错，错误信息如下:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:~ kris$ npm install -g @vue&#x2F;cli</span><br><span class="line">npm WARN deprecated request@2.88.2: request has been deprecated, see https:&#x2F;&#x2F;github.com&#x2F;request&#x2F;request&#x2F;issues&#x2F;3142</span><br><span class="line">npm ERR! code Z_BUF_ERROR</span><br><span class="line">npm ERR! errno -5</span><br><span class="line">npm ERR! zlib: unexpected end of file</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     &#x2F;Users&#x2F;kris&#x2F;.npm&#x2F;_logs&#x2F;2020-03-14T22_56_23_922Z-debug.log</span><br></pre></td></tr></table></figure>
+
+<p>解决办法，切换网络，清除npm缓存，执行命令:<code>npm cache clean --force</code></p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://blog.csdn.net/zhuzhuzhihao/article/details/79753243">npm install 的时候 出现 unexpected end of file的问题</a></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
