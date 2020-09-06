@@ -187,6 +187,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/05/23/ES6%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/05/23/ES6%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">ES6语法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-23 09:02:58" itemprop="dateCreated datePublished" datetime="2020-05-23T09:02:58+08:00">2020-05-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>383</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="ES6新语法"><a href="#ES6新语法" class="headerlink" title="ES6新语法"></a>ES6新语法</h2><p>1.变量/赋值<br>var     可以重复定义，不能限制修改，没有块级作用域<br>let      不能重复定义，变量，块级作用域<br>const 不能重复定义，常量，块级作用域</p>
+<p>解构赋值：<br>1.左右两边格式相同，右边必须是合法类型<br>2.必须是定义和赋值同步完成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,c] = [<span class="number">1</span>, <span class="number">12</span>, <span class="number">23</span>]；</span><br><span class="line"><span class="keyword">let</span> &#123;a, b, c&#125; = &#123;<span class="attr">a</span>: <span class="number">12</span>, <span class="attr">b</span>: <span class="number">89</span>, <span class="attr">c</span>: <span class="number">55</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>2.函数<br>    箭头函数<br>    function (参数，参数) {<br>        函数体<br>    }<br>    (参数，参数) =&gt; {<br>        函数体<br>    }<br>    1.如果有且仅有1个参数，()可以省<br>    2.如果函数体只有一句话，而且是return，{}可以省</p>
+<p>​    默认参数<br>​        (a, b=xx, c=xxx)</p>
+<p>​    参数展示<br>​        function show(a, b, …参数名)<br>​        剩余参数必须在参数列表的最后</p>
+<p>3.数组/json</p>
+<p>4.字符串</p>
+<p>5.面向对象</p>
+<p>6.Promise</p>
+<p>7.generator</p>
+<p>8.模块</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/05/23/Markdown%E8%AF%AD%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1157,164 +1250,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/" class="post-title-link" itemprop="url">iOS创建Framwork工程步骤</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 14:14:20" itemprop="dateCreated datePublished" datetime="2020-02-19T14:14:20+08:00">2020-02-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-新建远程Git仓库，将空的仓库克隆至本地。"><a href="#1-新建远程Git仓库，将空的仓库克隆至本地。" class="headerlink" title="1.新建远程Git仓库，将空的仓库克隆至本地。"></a>1.新建远程Git仓库，将空的仓库克隆至本地。</h2><p>在gitlab上新建一个空的仓库。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/1.png" class="" title="新建远程Git截图">
-
-<h2 id="2-创建SDK项目，创建项目时选Framework。"><a href="#2-创建SDK项目，创建项目时选Framework。" class="headerlink" title="2.创建SDK项目，创建项目时选Framework。"></a>2.创建SDK项目，创建项目时选Framework。</h2><p>创建项目时选Framework。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/2.png" class="" title="创建SDK项目截图1">
-
-<p>将项目的目录新建到Git的文件夹中。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/3.png" class="" title="创建SDK项目截图2">
-
-<h2 id="3-创建SDK项目的Example工程。Exmaple工程的根目录需要在SDK的根目录中。"><a href="#3-创建SDK项目的Example工程。Exmaple工程的根目录需要在SDK的根目录中。" class="headerlink" title="3.创建SDK项目的Example工程。Exmaple工程的根目录需要在SDK的根目录中。"></a>3.创建SDK项目的Example工程。Exmaple工程的根目录需要在SDK的根目录中。</h2><p>创建Example工程。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/4.png" class="" title="创建Example项目截图1">
-
-<p>填写Example工程名。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/5.png" class="" title="创建Example项目截图2">
-
-<p>选择工程的目录。将工程根目录创建到SDK工程根目录下。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/6.png" class="" title="创建Example项目截图3">
-
-<p>最终的项目目录结构如图。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/7.png" class="" title="创建Example项目截图4">
-
-<h2 id="4-在SDK工程目录中创建Podfile文件。"><a href="#4-在SDK工程目录中创建Podfile文件。" class="headerlink" title="4.在SDK工程目录中创建Podfile文件。"></a>4.在SDK工程目录中创建Podfile文件。</h2><p>执行<code>pod init</code>命令，在工程目录中创建Podfile文件。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/8.png" class="" title="创建Podfile截图">
-
-<h2 id="5-编辑podfile文件，指定workspace，添加example和sdk工程的target，target中需要指定-xcodeproj文件的路径；workspace可以提前建好然后指定，如果指定的workspace文件不错在，cocoapods会自动创建，所以只需要在podfile文件中写入想要的workspace的名字；编辑完成后保存。"><a href="#5-编辑podfile文件，指定workspace，添加example和sdk工程的target，target中需要指定-xcodeproj文件的路径；workspace可以提前建好然后指定，如果指定的workspace文件不错在，cocoapods会自动创建，所以只需要在podfile文件中写入想要的workspace的名字；编辑完成后保存。" class="headerlink" title="5.编辑podfile文件，指定workspace，添加example和sdk工程的target，target中需要指定.xcodeproj文件的路径；workspace可以提前建好然后指定，如果指定的workspace文件不错在，cocoapods会自动创建，所以只需要在podfile文件中写入想要的workspace的名字；编辑完成后保存。"></a>5.编辑podfile文件，指定workspace，添加example和sdk工程的target，target中需要指定.xcodeproj文件的路径；workspace可以提前建好然后指定，如果指定的workspace文件不错在，cocoapods会自动创建，所以只需要在podfile文件中写入想要的workspace的名字；编辑完成后保存。</h2><p>编辑Podfile文件，将example和sdk工程的target添加到Podfile中。注意example工程的target路径。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/9.png" class="" title="编辑Podfile截图">
-
-<h2 id="6-执行命令Pod-install，cocoapods自动创建workspace文件，workspace文件打开前要把workspace关联的工程关闭。"><a href="#6-执行命令Pod-install，cocoapods自动创建workspace文件，workspace文件打开前要把workspace关联的工程关闭。" class="headerlink" title="6.执行命令Pod install，cocoapods自动创建workspace文件，workspace文件打开前要把workspace关联的工程关闭。"></a>6.执行命令Pod install，cocoapods自动创建workspace文件，workspace文件打开前要把workspace关联的工程关闭。</h2><p>执行Pod install命令，让Pod自动生成workspace文件。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/10.png" class="" title="pod install截图1">
-
-<p>选择workspance文件，打开工程。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/11.png" class="" title="pod install截图2">
-
-<p>打开工程后，目录结构如下图。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/12.png" class="" title="pod install截图3">
-
-<h2 id="7-将文件放入工程，建议先将文件复制到framework工程的文件夹中，可以方便文件夹结构调整并重命名，最后将文件添加到工程，保证target选择正确。"><a href="#7-将文件放入工程，建议先将文件复制到framework工程的文件夹中，可以方便文件夹结构调整并重命名，最后将文件添加到工程，保证target选择正确。" class="headerlink" title="7.将文件放入工程，建议先将文件复制到framework工程的文件夹中，可以方便文件夹结构调整并重命名，最后将文件添加到工程，保证target选择正确。"></a>7.将文件放入工程，建议先将文件复制到framework工程的文件夹中，可以方便文件夹结构调整并重命名，最后将文件添加到工程，保证target选择正确。</h2><p>将SDK工程目录下的源代码目录Sources和资源文件目录Resources添加到SDK工程中。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/13.png" class="" title="SDK工程添加源文件目录和资源文件目录截图">
-
-<h2 id="8-编辑podfile文件，添加依赖项，放在target外部意思是两个target都需要引入这些库，但是不管放在内部还是外部，Pod文件夹中引入的第三方库是他们的总和。"><a href="#8-编辑podfile文件，添加依赖项，放在target外部意思是两个target都需要引入这些库，但是不管放在内部还是外部，Pod文件夹中引入的第三方库是他们的总和。" class="headerlink" title="8.编辑podfile文件，添加依赖项，放在target外部意思是两个target都需要引入这些库，但是不管放在内部还是外部，Pod文件夹中引入的第三方库是他们的总和。"></a>8.编辑podfile文件，添加依赖项，放在target外部意思是两个target都需要引入这些库，但是不管放在内部还是外部，Pod文件夹中引入的第三方库是他们的总和。</h2><p>编辑Podfile文件，将依赖项放到target外部。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/14.png" class="" title="编辑Podfile文件，添加依赖截图">
-
-<h2 id="9-工程根目录中创建podspec文件，创建license文件，编辑podspec基本项目（descritpion-license-source-homepage-source-files-resources）。"><a href="#9-工程根目录中创建podspec文件，创建license文件，编辑podspec基本项目（descritpion-license-source-homepage-source-files-resources）。" class="headerlink" title="9.工程根目录中创建podspec文件，创建license文件，编辑podspec基本项目（descritpion, license, source, homepage, source_files., resources）。"></a>9.工程根目录中创建podspec文件，创建license文件，编辑podspec基本项目（descritpion, license, source, homepage, source_files., resources）。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod spec create <span class="string">&quot;组件名&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>命令行创建podspec文件。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/15.png" class="" title="新建podspec文件截图">
-
-<p>将podspec文件添加到工程中。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/16.png" class="" title="将podspec文件添加到工程中截图">
-
-<p>编辑podspec文件。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/17.png" class="" title="编辑podspec文件截图">
-
-<h2 id="10-执行pod-install。"><a href="#10-执行pod-install。" class="headerlink" title="10.执行pod install。"></a>10.执行pod install。</h2><h2 id="11-将framework工程的Products文件夹中的framework文件放入Framewors-Link配置中。"><a href="#11-将framework工程的Products文件夹中的framework文件放入Framewors-Link配置中。" class="headerlink" title="11.将framework工程的Products文件夹中的framework文件放入Framewors Link配置中。"></a>11.将framework工程的Products文件夹中的framework文件放入Framewors Link配置中。</h2><p>将项目中生成的Framework库文件添加到Exmaple工程中。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/18.png" class="" title="将framweork库添加到Example项目截图">
-
-<h2 id="12-使用example或者framework工程的scheme来调试，解决由于文件冲突或者头文件引用方式导致的编译不通过的问题。"><a href="#12-使用example或者framework工程的scheme来调试，解决由于文件冲突或者头文件引用方式导致的编译不通过的问题。" class="headerlink" title="12.使用example或者framework工程的scheme来调试，解决由于文件冲突或者头文件引用方式导致的编译不通过的问题。"></a>12.使用example或者framework工程的scheme来调试，解决由于文件冲突或者头文件引用方式导致的编译不通过的问题。</h2><p>选择PHUpdateSDK的Target，编译测试SDK是否可以正常编译通过。选择PHUpdateSDKExample的Target运行测试代码，查看SDK功能是否正常工作。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/19.png" class="" title="编译Example项目截图">
-
-<h2 id="13-将SDK中的头文件都添加到对应的SDK头文件中。"><a href="#13-将SDK中的头文件都添加到对应的SDK头文件中。" class="headerlink" title="13.将SDK中的头文件都添加到对应的SDK头文件中。"></a>13.将SDK中的头文件都添加到对应的SDK头文件中。</h2><p>将SDK中需要暴露出来的.h文件都添加到PHUpdateSDK.h中。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/20.png" class="" title="添加头文件到SDK头文件截图">
-
-<h2 id="14-将SDK中的头文件移动到外面"><a href="#14-将SDK中的头文件移动到外面" class="headerlink" title="14.将SDK中的头文件移动到外面"></a>14.将SDK中的头文件移动到外面</h2><p>将SDK中的头文件从项目中移动到Public Group中。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/21.png" class="" title="移动头文件到Public截图">
-
-<h2 id="15-在Example工程中引入SDK中的类"><a href="#15-在Example工程中引入SDK中的类" class="headerlink" title="15.在Example工程中引入SDK中的类"></a>15.在Example工程中引入SDK中的类</h2><p>在Example工程中导入SDK中的类，测试SDK中的类是否可以正常工作。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/22.png" class="" title="在Example中引入SDK头文件截图">
-
-<h2 id="16-在Example中测试SDK代码功能"><a href="#16-在Example中测试SDK代码功能" class="headerlink" title="16.在Example中测试SDK代码功能"></a>16.在Example中测试SDK代码功能</h2><p>在Example工程中测试SDK代码是否正常工作</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/23.png" class="" title="在Example工程中运行测试代码.png">
-
-<h2 id="17-创建一个空工程或者利用已有工程作为pod管理，以本地路径的方式pod引入sdk，执行pod-install，打开该工程，可以更好的编辑podspec文件，并且在编辑好后可以立即使用pod-install命令查看修改结果；全部完成后，可以将pod方式改为使用git地址的方式，查看真实使用效果。"><a href="#17-创建一个空工程或者利用已有工程作为pod管理，以本地路径的方式pod引入sdk，执行pod-install，打开该工程，可以更好的编辑podspec文件，并且在编辑好后可以立即使用pod-install命令查看修改结果；全部完成后，可以将pod方式改为使用git地址的方式，查看真实使用效果。" class="headerlink" title="17.创建一个空工程或者利用已有工程作为pod管理，以本地路径的方式pod引入sdk，执行pod install，打开该工程，可以更好的编辑podspec文件，并且在编辑好后可以立即使用pod install命令查看修改结果；全部完成后，可以将pod方式改为使用git地址的方式，查看真实使用效果。"></a>17.创建一个空工程或者利用已有工程作为pod管理，以本地路径的方式pod引入sdk，执行pod install，打开该工程，可以更好的编辑podspec文件，并且在编辑好后可以立即使用pod install命令查看修改结果；全部完成后，可以将pod方式改为使用git地址的方式，查看真实使用效果。</h2><p>新建本地测试工程，在本地测试工程的Podfile文件中导入SDK工程。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/24.png" class="" title="本地工程打开截图">
-
-<p>查看本地工程Podfile如何配置。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/25.png" class="" title="本地工程Podfile配置截图">
-
-<h2 id="18-经过最后的修改，最终目录如下。"><a href="#18-经过最后的修改，最终目录如下。" class="headerlink" title="18.经过最后的修改，最终目录如下。"></a>18.经过最后的修改，最终目录如下。</h2><p>由于之前的SDK目录比较深，导致<code>pod update</code>的时候无法更新。所以将之前的SDK中的文件全部拷贝到git仓库的根目录下。还有LICENSE文件最好放一个，因为有可能因为这个导致最终的项目更新失败。最终目录结构如下图。</p>
-<img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/26.png" class="" title="最终目录结构截图">
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1384,20 +1319,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/Blog/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/Blog/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1433,12 +1368,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">197k</span>
+    <span title="站点总字数">199k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:59</span>
+    <span title="站点阅读时长">3:01</span>
 </div>
 
         

@@ -187,6 +187,233 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/09/05/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/09/05/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" class="post-title-link" itemprop="url">时间复杂度和空间复杂度</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-05 23:14:11" itemprop="dateCreated datePublished" datetime="2020-09-05T23:14:11+08:00">2020-09-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>算法（Algorithm）是指用来操作数据、解决程序问题的一组方法。对于同一个问题，使用不同的算法，也许最终得到的结果是一样的，但在过程中消耗的资源和时间却会有很大的区别。</p>
+<p>主要还是从算法所占用的「时间」和「空间」两个维度去考量。</p>
+<ul>
+<li>时间维度：是指执行当前算法所消耗的时间，我们通常用「时间复杂度」来描述。</li>
+<li>空间维度：是指执行当前算法需要占用多少内存空间，我们通常用「空间复杂度」来描述。</li>
+</ul>
+<h2 id="什么是时间复杂度，如何表示？"><a href="#什么是时间复杂度，如何表示？" class="headerlink" title="什么是时间复杂度，如何表示？"></a>什么是时间复杂度，如何表示？</h2><p>一般情况下，算法中基本操作重复执行的次数是问题规模n的某个函数，用T(n)表示，若有某个辅助函数f(n),使得当n趋近于无穷大时，T(n)/f(n)的极限值为不等于零的常数，则称f(n)是T(n)的同数量级函数。记作T(n)=Ｏ(f(n)),称Ｏ(f(n)) 为算法的渐进时间复杂度，简称时间复杂度。</p>
+<p>常见时间复杂度：</p>
+<table>
+<thead>
+<tr>
+<th align="center">时间复杂度</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">O(1)</td>
+<td align="center">常数复杂度</td>
+</tr>
+<tr>
+<td align="center">O(logn)</td>
+<td align="center">对数复杂度</td>
+</tr>
+<tr>
+<td align="center">O(n)</td>
+<td align="center">线性时间复杂度</td>
+</tr>
+<tr>
+<td align="center">O(n^2)</td>
+<td align="center">平方复杂度</td>
+</tr>
+<tr>
+<td align="center">O(n^3)</td>
+<td align="center">立方复杂度</td>
+</tr>
+<tr>
+<td align="center">O(2^n)</td>
+<td align="center">指数复杂度</td>
+</tr>
+<tr>
+<td align="center">O(n!)</td>
+<td align="center">阶乘复杂度</td>
+</tr>
+</tbody></table>
+<h2 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h2><blockquote>
+<p>在算法分析中，主定理（Master Theorem）提供了用渐近符号（大O符号）表示许多由分治法得到的递推关系式的方法。<br>——维基百科</p>
+</blockquote>
+<p>主定理可以用来分析递归算法的时间复杂度（也叫渐进复杂度）。</p>
+<h2 id="常见时间复杂度问题分析"><a href="#常见时间复杂度问题分析" class="headerlink" title="常见时间复杂度问题分析"></a>常见时间复杂度问题分析</h2><ul>
+<li>看一段代码根据n的不同情况，运行多少次。</li>
+<li>画出递归状态树，第一层1个节点，第二层2个节点，第三层2^2个节点，第四层2^3个节点，最终根据等比数列求和公式计算所有的节点数，就是它的时间复杂度。</li>
+</ul>
+<h3 id="二叉树遍历，前序、中序、后序：时间复杂度是多少？"><a href="#二叉树遍历，前序、中序、后序：时间复杂度是多少？" class="headerlink" title="二叉树遍历，前序、中序、后序：时间复杂度是多少？"></a>二叉树遍历，前序、中序、后序：时间复杂度是多少？</h3><p>遍历二叉树，每个节点都会访问一次，所以最终时间复杂度都为O(n)，n代表节点总数。<br>也可以通过主定理推算出来。</p>
+<h3 id="图的遍历，时间复杂度是多少？"><a href="#图的遍历，时间复杂度是多少？" class="headerlink" title="图的遍历，时间复杂度是多少？"></a>图的遍历，时间复杂度是多少？</h3><p>遍历图的时候，每个节点都会访问一次，所以时间复杂度都是O(n)，n代表节点总数。</p>
+<h2 id="搜索算法，DFS、BFS时间复杂度是多少？"><a href="#搜索算法，DFS、BFS时间复杂度是多少？" class="headerlink" title="搜索算法，DFS、BFS时间复杂度是多少？"></a>搜索算法，DFS、BFS时间复杂度是多少？</h2><p>无论是深度优先搜索还是广度优先搜索，每个节点都会遍历一次，最终的时间复杂度是O(n)，n代表节点总数。</p>
+<h2 id="二分查找，时间复杂度是多少？"><a href="#二分查找，时间复杂度是多少？" class="headerlink" title="二分查找，时间复杂度是多少？"></a>二分查找，时间复杂度是多少？</h2><p>二分查找，时间复杂度是O(logn)，n代表节点总数。</p>
+<h2 id="数组的时间复杂度？"><a href="#数组的时间复杂度？" class="headerlink" title="数组的时间复杂度？"></a>数组的时间复杂度？</h2><table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th align="center">时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">头部追加</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="center">尾部追加</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">查找元素</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">插入元素</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="center">删除元素</td>
+<td align="center">O(n)</td>
+</tr>
+</tbody></table>
+<h2 id="链表的时间复杂度？"><a href="#链表的时间复杂度？" class="headerlink" title="链表的时间复杂度？"></a>链表的时间复杂度？</h2><table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th align="center">时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">头部追加</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">尾部追加</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">查找元素</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="center">插入元素</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">删除元素</td>
+<td align="center">O(1)</td>
+</tr>
+</tbody></table>
+<h2 id="跳表的时间复杂度？"><a href="#跳表的时间复杂度？" class="headerlink" title="跳表的时间复杂度？"></a>跳表的时间复杂度？</h2><p>跳表处理的是有序链表，被称为“跳跃链表”。跳表的空间复杂度为O(n)。</p>
+<table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th align="center">时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">头部追加</td>
+<td align="center">O(logn)</td>
+</tr>
+<tr>
+<td align="center">尾部追加</td>
+<td align="center">O(logn)</td>
+</tr>
+<tr>
+<td align="center">查找元素</td>
+<td align="center">O(logn)</td>
+</tr>
+<tr>
+<td align="center">插入元素</td>
+<td align="center">O(logn)</td>
+</tr>
+<tr>
+<td align="center">删除元素</td>
+<td align="center">O(logn)</td>
+</tr>
+</tbody></table>
+<h2 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h2><ul>
+<li>1.数组的长度</li>
+<li>2.递归的深度</li>
+</ul>
+<p>如果程序里面开辟了数组，空间复杂度就是O(n)，如果开启的是二维数组，空间复杂度是O(n^2)。如果程序用到了递归，则递归的最大深度就是程序的空间复杂度。如果又开辟了数组又有递归，则空间复杂度为数组长度和递归最大深度之中的较大值。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://skywt.cn/posts/master-theorem">主定理与递归程序时间复杂度的计算</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zolalad/article/details/11848739">算法的时间复杂度和空间复杂度-总结</a><br><a target="_blank" rel="noopener" href="https://lotabout.me/2018/skip-list/">跳表──没听过但很犀利的数据结构</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/50479555">算法的时间与空间复杂度（一看就懂）</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1773,99 +2000,6 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/05/23/ES6%E8%AF%AD%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/05/23/ES6%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">ES6语法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-23 09:02:58" itemprop="dateCreated datePublished" datetime="2020-05-23T09:02:58+08:00">2020-05-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>383</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="ES6新语法"><a href="#ES6新语法" class="headerlink" title="ES6新语法"></a>ES6新语法</h2><p>1.变量/赋值<br>var     可以重复定义，不能限制修改，没有块级作用域<br>let      不能重复定义，变量，块级作用域<br>const 不能重复定义，常量，块级作用域</p>
-<p>解构赋值：<br>1.左右两边格式相同，右边必须是合法类型<br>2.必须是定义和赋值同步完成</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,c] = [<span class="number">1</span>, <span class="number">12</span>, <span class="number">23</span>]；</span><br><span class="line"><span class="keyword">let</span> &#123;a, b, c&#125; = &#123;<span class="attr">a</span>: <span class="number">12</span>, <span class="attr">b</span>: <span class="number">89</span>, <span class="attr">c</span>: <span class="number">55</span>&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>2.函数<br>    箭头函数<br>    function (参数，参数) {<br>        函数体<br>    }<br>    (参数，参数) =&gt; {<br>        函数体<br>    }<br>    1.如果有且仅有1个参数，()可以省<br>    2.如果函数体只有一句话，而且是return，{}可以省</p>
-<p>​    默认参数<br>​        (a, b=xx, c=xxx)</p>
-<p>​    参数展示<br>​        function show(a, b, …参数名)<br>​        剩余参数必须在参数列表的最后</p>
-<p>3.数组/json</p>
-<p>4.字符串</p>
-<p>5.面向对象</p>
-<p>6.Promise</p>
-<p>7.generator</p>
-<p>8.模块</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1935,20 +2069,20 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/Blog/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/Blog/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1984,12 +2118,12 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">197k</span>
+    <span title="站点总字数">199k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:59</span>
+    <span title="站点阅读时长">3:01</span>
 </div>
 
         
