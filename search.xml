@@ -426,40 +426,6 @@
       </tags>
   </entry>
   <entry>
-    <title>KVO本质分析</title>
-    <url>/Blog/2019/03/31/KVO%E6%9C%AC%E8%B4%A8%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
-<li>iOS中如何实现对一个对象的KVO？(KVO的本质是什么？)<br>答: 当给一个对象添加KVO监听之后，iOS系统会修改这个对象的isa指针，将这个指针指向Runtime动态创建的这个对象的子类。子类拥有自己的set方法的实现，set方法内部会顺序调用willChangeValueForKey方法、父类的set方法、didChangeValueForKey方法，这样会触发observeValueForKeyPath:ofObject:change:context:监听方法。</li>
-<li>如何手动触发KVO？<br>答: 被监听的属性值被修改时，就会触发KVO。如果想要手动触发KVO，则需要我们手动同时调用willChangeValueForKey方法和didChangeValueForKey方法，这两个方法缺一不可。</li>
-<li>KVO执行的条件？<br>答: 对象添加观察者(addObserver:forKeyPath:)、修改对象被监听的属性、对象在dealloc方法中移除观察者。</li>
-</ul>
-<p><a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/Articles/KVOImplementation.html#//apple_ref/doc/uid/20002307-BAJEAIEE">官方文档</a>:</p>
-<h2 id="Key-Value-Observing-Implementation-Details"><a href="#Key-Value-Observing-Implementation-Details" class="headerlink" title="Key-Value Observing Implementation Details"></a>Key-Value Observing Implementation Details</h2><p>Automatic key-value observing is implemented using a technique called isa-swizzling.</p>
-<p>The isa pointer, as the name suggests, points to the object’s class which maintains a dispatch table. This dispatch table essentially contains pointers to the methods the class implements, among other data.</p>
-<p>When an observer is registered for an attribute of an object the isa pointer of the observed object is modified, pointing to an intermediate class rather than at the true class. As a result the value of the isa pointer does not necessarily reflect the actual class of the instance.</p>
-<p>You should never rely on the isa pointer to determine class membership. Instead, you should use the class method to determine the class of an object instance.<br>大致意思是：KVO使用isa-swizzling技术实现，对象添加观察者之后，isa指针会指向一个临时的类，不能依赖isa的值来判断类的关系，应该使用class方法来判断实例对象真实的类。<br>接下来使用代码来验证KVO的执行过程：<br>Person.h (Person.m中什么也没有)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#import &lt;Foundation&#x2F;Foundation.h&gt;</span><br><span class="line"></span><br><span class="line">NS_ASSUME_NONNULL_BEGIN</span><br><span class="line"></span><br><span class="line">@interface Person : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, assign) int age;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">NS_ASSUME_NONNULL_END</span><br></pre></td></tr></table></figure>
-<p>ViewController.m (ViewController.h中什么也没有)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &lt;objc&#x2F;runtime.h&gt;</span><br><span class="line">#import &quot;Person.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">@property (nonatomic, strong) Person *p1;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">    &#x2F;&#x2F; 移除观察者</span><br><span class="line">    [self.p1 removeObserver:self forKeyPath:@&quot;age&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    &#x2F;&#x2F; Do any additional setup after loading the view, typically from a nib.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    </span><br><span class="line">    Person *p1 &#x3D; [[Person alloc] init];</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    self.p1 &#x3D; p1;</span><br><span class="line">    &#x2F;&#x2F; 打印p1对象所属类的内部方法列表</span><br><span class="line">    NSLog(@&quot;p1 class &#x3D; %@&quot;, [p1 class]);</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 添加观察者</span><br><span class="line">    [p1 addObserver:self forKeyPath:@&quot;age&quot; options:NSKeyValueObservingOptionNew context:nil];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 打印p1对象所属类的内部方法列表</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    NSLog(@&quot;p1 class &#x3D; %@&quot;, [p1 class]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;** 打印类中所有的方法  *&#x2F;</span><br><span class="line">- (void) printMethods:(Class)cls</span><br><span class="line">&#123;</span><br><span class="line">    unsigned int count ;</span><br><span class="line">    Method *methods &#x3D; class_copyMethodList(cls, &amp;count);</span><br><span class="line">    NSMutableString *methodNames &#x3D; [NSMutableString string];</span><br><span class="line">    [methodNames appendFormat:@&quot;%@ - &quot;, cls];</span><br><span class="line">    </span><br><span class="line">    for (int i &#x3D; 0 ; i &lt; count; i++) &#123;</span><br><span class="line">        Method method &#x3D; methods[i];</span><br><span class="line">        NSString *methodName  &#x3D; NSStringFromSelector(method_getName(method));</span><br><span class="line">        </span><br><span class="line">        [methodNames appendString: methodName];</span><br><span class="line">        [methodNames appendString:@&quot; &quot;];</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;%@&quot;,methodNames);</span><br><span class="line">    free(methods);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary&lt;NSKeyValueChangeKey,id&gt; *)change context:(void *)context &#123;</span><br><span class="line">    NSLog(@&quot;执行了监听方法:%@&quot;, change);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>运行结果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2019-03-31 19:06:48.896565+0800 KVO测试Demo[29498:3594134] Person - setAge: age</span><br><span class="line">2019-03-31 19:06:48.897033+0800 KVO测试Demo[29498:3594134] p1 class &#x3D; Person</span><br><span class="line">2019-03-31 19:06:48.897503+0800 KVO测试Demo[29498:3594134] NSKVONotifying_Person - setAge: class dealloc _isKVOA</span><br><span class="line">2019-03-31 19:06:48.897638+0800 KVO测试Demo[29498:3594134] p1 class &#x3D; Person</span><br></pre></td></tr></table></figure>
-<p>由此可见，对象p1添加观察者之后，p1的所属类由原来的Person类变成了NSKVONotifying_Person类，原来的Person类内部只实现了setAge:方法和age方法，新类NSKVONotifying_Person中有setAge:、class、dealloc、_isKVOA方法。经过分析判断，NSKVONotifying_Person是Person的子类，它重写了父类的setAge:和class方法，使NSKVONotifying_Person的class方法的返回值也是Person,隐藏了内部的实现。</p>
-<h2 id="如何手动触发KVO？"><a href="#如何手动触发KVO？" class="headerlink" title="如何手动触发KVO？"></a>如何手动触发KVO？</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    </span><br><span class="line">    Person *p1 &#x3D; [[Person alloc] init];</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    self.p1 &#x3D; p1;</span><br><span class="line">    &#x2F;&#x2F; 打印p1对象所属类的内部方法列表</span><br><span class="line">    NSLog(@&quot;p1 class &#x3D; %@&quot;, [p1 class]);</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 添加观察者</span><br><span class="line">    [p1 addObserver:self forKeyPath:@&quot;age&quot; options:NSKeyValueObservingOptionNew context:nil];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 打印p1对象所属类的内部方法列表</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    NSLog(@&quot;p1 class &#x3D; %@&quot;, [p1 class]);</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 手动触发KVO</span><br><span class="line">    [p1 willChangeValueForKey:@&quot;age&quot;];</span><br><span class="line">    [p1 didChangeValueForKey:@&quot;age&quot;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行结果:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2019-03-31 19:37:41.217175+0800 KVO测试Demo[29990:3611620] Person - setAge: age</span><br><span class="line">2019-03-31 19:37:41.217409+0800 KVO测试Demo[29990:3611620] p1 class &#x3D; Person</span><br><span class="line">2019-03-31 19:37:41.217999+0800 KVO测试Demo[29990:3611620] NSKVONotifying_Person - setAge: class dealloc _isKVOA</span><br><span class="line">2019-03-31 19:37:41.218145+0800 KVO测试Demo[29990:3611620] p1 class &#x3D; Person</span><br><span class="line">2019-03-31 19:37:41.218488+0800 KVO测试Demo[29990:3611620] 执行了监听方法:&#123;</span><br><span class="line">    kind &#x3D; 1;</span><br><span class="line">    new &#x3D; 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如何关闭自动KVO？<br>Person.m</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#import &quot;Person.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation Person</span><br><span class="line"></span><br><span class="line">+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key &#123;</span><br><span class="line">    if ([key isEqualToString:@&quot;age&quot;]) &#123;</span><br><span class="line">        return NO;</span><br><span class="line">    &#125;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>当返回值为NO的时候，即使改变p1的值也无法触发KVO，此时要想触发KVO只有手动模式，手动调用willChangeValueForKey和didChangeValueForKey。</p>
-]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>KVO实现原理</title>
     <url>/Blog/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<h2 id="KVO实现原理"><a href="#KVO实现原理" class="headerlink" title="KVO实现原理"></a>KVO实现原理</h2><p><code>KVO(key value observing)</code>键值监听是我们在开发中常使用的用于监听特定对象属性值变化的方法，常用于监听数据模型的变化 。<br>KVO是为了监听一个对象的某个属性值是否发生变化。在属性值发生变化的时候，肯定会调用其setter方法。所以**<code>KVO的本质就是监听对象有没有调用被监听属性对应的setter方法</code>**。<br>在学习实现原理之前我们首先先了解一下<code>KVO</code>常用的有哪些方法。</p>
@@ -548,6 +514,40 @@
 <li>但是多次重复移除会崩溃。系统为了实现KVO，为NSObject添加了一个名为NSKeyValueObserverRegistration的Category，KVO的add和remove的实现都在里面。在移除的时候，系统会判断当前KVO的key是否已经被移除，如果已经被移除，则主动抛出一个NSException的异常。</li>
 </ul>
 <p><a href="https://github.com/DavidWanderer/iOS_Examples">参考demo</a></p>
+]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>KVO本质分析</title>
+    <url>/Blog/2019/03/31/KVO%E6%9C%AC%E8%B4%A8%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li>iOS中如何实现对一个对象的KVO？(KVO的本质是什么？)<br>答: 当给一个对象添加KVO监听之后，iOS系统会修改这个对象的isa指针，将这个指针指向Runtime动态创建的这个对象的子类。子类拥有自己的set方法的实现，set方法内部会顺序调用willChangeValueForKey方法、父类的set方法、didChangeValueForKey方法，这样会触发observeValueForKeyPath:ofObject:change:context:监听方法。</li>
+<li>如何手动触发KVO？<br>答: 被监听的属性值被修改时，就会触发KVO。如果想要手动触发KVO，则需要我们手动同时调用willChangeValueForKey方法和didChangeValueForKey方法，这两个方法缺一不可。</li>
+<li>KVO执行的条件？<br>答: 对象添加观察者(addObserver:forKeyPath:)、修改对象被监听的属性、对象在dealloc方法中移除观察者。</li>
+</ul>
+<p><a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/Articles/KVOImplementation.html#//apple_ref/doc/uid/20002307-BAJEAIEE">官方文档</a>:</p>
+<h2 id="Key-Value-Observing-Implementation-Details"><a href="#Key-Value-Observing-Implementation-Details" class="headerlink" title="Key-Value Observing Implementation Details"></a>Key-Value Observing Implementation Details</h2><p>Automatic key-value observing is implemented using a technique called isa-swizzling.</p>
+<p>The isa pointer, as the name suggests, points to the object’s class which maintains a dispatch table. This dispatch table essentially contains pointers to the methods the class implements, among other data.</p>
+<p>When an observer is registered for an attribute of an object the isa pointer of the observed object is modified, pointing to an intermediate class rather than at the true class. As a result the value of the isa pointer does not necessarily reflect the actual class of the instance.</p>
+<p>You should never rely on the isa pointer to determine class membership. Instead, you should use the class method to determine the class of an object instance.<br>大致意思是：KVO使用isa-swizzling技术实现，对象添加观察者之后，isa指针会指向一个临时的类，不能依赖isa的值来判断类的关系，应该使用class方法来判断实例对象真实的类。<br>接下来使用代码来验证KVO的执行过程：<br>Person.h (Person.m中什么也没有)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#import &lt;Foundation&#x2F;Foundation.h&gt;</span><br><span class="line"></span><br><span class="line">NS_ASSUME_NONNULL_BEGIN</span><br><span class="line"></span><br><span class="line">@interface Person : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, assign) int age;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">NS_ASSUME_NONNULL_END</span><br></pre></td></tr></table></figure>
+<p>ViewController.m (ViewController.h中什么也没有)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &lt;objc&#x2F;runtime.h&gt;</span><br><span class="line">#import &quot;Person.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">@property (nonatomic, strong) Person *p1;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">    &#x2F;&#x2F; 移除观察者</span><br><span class="line">    [self.p1 removeObserver:self forKeyPath:@&quot;age&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    &#x2F;&#x2F; Do any additional setup after loading the view, typically from a nib.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    </span><br><span class="line">    Person *p1 &#x3D; [[Person alloc] init];</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    self.p1 &#x3D; p1;</span><br><span class="line">    &#x2F;&#x2F; 打印p1对象所属类的内部方法列表</span><br><span class="line">    NSLog(@&quot;p1 class &#x3D; %@&quot;, [p1 class]);</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 添加观察者</span><br><span class="line">    [p1 addObserver:self forKeyPath:@&quot;age&quot; options:NSKeyValueObservingOptionNew context:nil];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 打印p1对象所属类的内部方法列表</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    NSLog(@&quot;p1 class &#x3D; %@&quot;, [p1 class]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;** 打印类中所有的方法  *&#x2F;</span><br><span class="line">- (void) printMethods:(Class)cls</span><br><span class="line">&#123;</span><br><span class="line">    unsigned int count ;</span><br><span class="line">    Method *methods &#x3D; class_copyMethodList(cls, &amp;count);</span><br><span class="line">    NSMutableString *methodNames &#x3D; [NSMutableString string];</span><br><span class="line">    [methodNames appendFormat:@&quot;%@ - &quot;, cls];</span><br><span class="line">    </span><br><span class="line">    for (int i &#x3D; 0 ; i &lt; count; i++) &#123;</span><br><span class="line">        Method method &#x3D; methods[i];</span><br><span class="line">        NSString *methodName  &#x3D; NSStringFromSelector(method_getName(method));</span><br><span class="line">        </span><br><span class="line">        [methodNames appendString: methodName];</span><br><span class="line">        [methodNames appendString:@&quot; &quot;];</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;%@&quot;,methodNames);</span><br><span class="line">    free(methods);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary&lt;NSKeyValueChangeKey,id&gt; *)change context:(void *)context &#123;</span><br><span class="line">    NSLog(@&quot;执行了监听方法:%@&quot;, change);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2019-03-31 19:06:48.896565+0800 KVO测试Demo[29498:3594134] Person - setAge: age</span><br><span class="line">2019-03-31 19:06:48.897033+0800 KVO测试Demo[29498:3594134] p1 class &#x3D; Person</span><br><span class="line">2019-03-31 19:06:48.897503+0800 KVO测试Demo[29498:3594134] NSKVONotifying_Person - setAge: class dealloc _isKVOA</span><br><span class="line">2019-03-31 19:06:48.897638+0800 KVO测试Demo[29498:3594134] p1 class &#x3D; Person</span><br></pre></td></tr></table></figure>
+<p>由此可见，对象p1添加观察者之后，p1的所属类由原来的Person类变成了NSKVONotifying_Person类，原来的Person类内部只实现了setAge:方法和age方法，新类NSKVONotifying_Person中有setAge:、class、dealloc、_isKVOA方法。经过分析判断，NSKVONotifying_Person是Person的子类，它重写了父类的setAge:和class方法，使NSKVONotifying_Person的class方法的返回值也是Person,隐藏了内部的实现。</p>
+<h2 id="如何手动触发KVO？"><a href="#如何手动触发KVO？" class="headerlink" title="如何手动触发KVO？"></a>如何手动触发KVO？</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    </span><br><span class="line">    Person *p1 &#x3D; [[Person alloc] init];</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    self.p1 &#x3D; p1;</span><br><span class="line">    &#x2F;&#x2F; 打印p1对象所属类的内部方法列表</span><br><span class="line">    NSLog(@&quot;p1 class &#x3D; %@&quot;, [p1 class]);</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 添加观察者</span><br><span class="line">    [p1 addObserver:self forKeyPath:@&quot;age&quot; options:NSKeyValueObservingOptionNew context:nil];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 打印p1对象所属类的内部方法列表</span><br><span class="line">    [self printMethods:object_getClass(p1)];</span><br><span class="line">    NSLog(@&quot;p1 class &#x3D; %@&quot;, [p1 class]);</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 手动触发KVO</span><br><span class="line">    [p1 willChangeValueForKey:@&quot;age&quot;];</span><br><span class="line">    [p1 didChangeValueForKey:@&quot;age&quot;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2019-03-31 19:37:41.217175+0800 KVO测试Demo[29990:3611620] Person - setAge: age</span><br><span class="line">2019-03-31 19:37:41.217409+0800 KVO测试Demo[29990:3611620] p1 class &#x3D; Person</span><br><span class="line">2019-03-31 19:37:41.217999+0800 KVO测试Demo[29990:3611620] NSKVONotifying_Person - setAge: class dealloc _isKVOA</span><br><span class="line">2019-03-31 19:37:41.218145+0800 KVO测试Demo[29990:3611620] p1 class &#x3D; Person</span><br><span class="line">2019-03-31 19:37:41.218488+0800 KVO测试Demo[29990:3611620] 执行了监听方法:&#123;</span><br><span class="line">    kind &#x3D; 1;</span><br><span class="line">    new &#x3D; 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如何关闭自动KVO？<br>Person.m</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#import &quot;Person.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation Person</span><br><span class="line"></span><br><span class="line">+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key &#123;</span><br><span class="line">    if ([key isEqualToString:@&quot;age&quot;]) &#123;</span><br><span class="line">        return NO;</span><br><span class="line">    &#125;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>当返回值为NO的时候，即使改变p1的值也无法触发KVO，此时要想触发KVO只有手动模式，手动调用willChangeValueForKey和didChangeValueForKey。</p>
 ]]></content>
       <categories>
         <category>iOS</category>
@@ -1007,6 +1007,66 @@
       </tags>
   </entry>
   <entry>
+    <title>MAC破解WiFi</title>
+    <url>/Blog/2020/03/15/MAC%E7%A0%B4%E8%A7%A3WiFi/</url>
+    <content><![CDATA[<p>1.安装airport</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport</span><br></pre></td></tr></table></figure>
+
+<p>2.扫描周围的Wifi</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport -s</span><br></pre></td></tr></table></figure>
+
+<p>3.嗅探指定的信道</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport en0 sniff <span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
+
+<p>如果出现错误，Segmentation fault: 11，可以使用 tcpdump 抓包<br>4.1 断开airport的连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport -z</span><br></pre></td></tr></table></figure>
+
+<p>4.2 设置信道，-c和信道号之间没有空格</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo airport -c6</span></span><br><span class="line">$ sudo airport -c<span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
+
+<p>4.3 从指定AP开始抓包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;type mgt subtype beacon and ether src 98:13:33:b4:35:a4&quot; -I -c 1 -i en0 -w beacon.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;type mgt subtype beacon and ether src <span class="variable">$BSSID</span>&quot;</span> -I -c 1 -i en0 -w beacon.cap</span><br></pre></td></tr></table></figure>
+
+<p>4.4 等待WPA的握手</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;ether proto 0x888e and ether host 98:13:33:b4:35:a4&quot; -I -U -vvv -i en0 -w handshake.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;ether proto 0x888e and ether host <span class="variable">$BSSID</span>&quot;</span> -I -U -vvv -i en0 -w handshake.cap</span><br></pre></td></tr></table></figure>
+
+<p>4.5 安装wireshark，下一步会用到它的合包命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install wireshark</span><br></pre></td></tr></table></figure>
+
+<p>4.6 将2个cap文件合并成一个cap文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mergecap -a -F pcap -w capture.cap beacon.cap handshake.cap</span><br></pre></td></tr></table></figure>
+
+<p>至少要等到4.4获取到4 frames或更多的包才可以Ctrl-C终止抓包。</p>
+<p>4.7 安装 aircrack-ng</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install aircrack-ng</span><br></pre></td></tr></table></figure>
+
+<p>4.8 将 aircrack-ng 路径添加到 /etc/paths 中。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /etc/paths</span><br></pre></td></tr></table></figure>
+<p>然后将 aircrack-ng 路径添加到最后一行。</p>
+<p>4.9 查看抓到的包中是否包含握手包。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#$ aircrack-ng capture.cap</span></span><br><span class="line">Hu-YupingdeMacBook-Pro:wifi kris$ aircrack-ng capture.cap</span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">   <span class="comment">#  BSSID              ESSID                     Encryption</span></span><br><span class="line"></span><br><span class="line">   1  74:7D:24:D7:AF:DC  @PHICOMM_DA               WPA (0 handshake)</span><br><span class="line"></span><br><span class="line">Choosing first network as target.</span><br><span class="line"></span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">1 potential targets</span><br><span class="line"></span><br><span class="line">Please specify a dictionary (option -w).</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li><p>撞击密码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ aircrack-ng -w alphaDic.txt -b 98:13:33:B4:35:A4 capture1.cap</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转换包格式,如果使用上面的cap无法爆破，或者爆破比较麻烦，可以将cap包转换成hcccapx格式，然后再破解。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./cap2hccapx.bin /Users/kris/Desktop/wifi/20200208/capture.cap /Users/kris/Desktop/wifi/20200208/capture.hccapx</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<p>下面是一个破解示例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Aircrack-ng 1.5.2 </span><br><span class="line"></span><br><span class="line">      [00:03:20] 2018576/13516904 keys tested (10197.95 k/s) </span><br><span class="line"></span><br><span class="line">      Time left: 18 minutes, 47 seconds                         14.93%</span><br><span class="line"></span><br><span class="line">                          KEY FOUND! [ 19731009qiu ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      Master Key     : A8 36 07 C4 68 42 71 E0 B9 38 6E 16 B7 1B 7A 77 </span><br><span class="line">                       DA 07 E9 A1 82 CE 95 56 22 C2 76 16 93 B1 8E 9B </span><br><span class="line"></span><br><span class="line">      Transient Key  : 34 83 20 8E B0 2E F2 11 FF 5B 68 A4 A3 16 94 FE </span><br><span class="line">                       74 28 4D D9 99 BA 10 38 F4 20 6D 14 D1 47 89 C9 </span><br><span class="line">                       22 75 EB B5 29 FD CF 9B 01 32 38 B7 51 10 94 88 </span><br><span class="line">                       90 4D 52 D5 88 E4 B1 58 DA 2D DC 35 5F 61 88 92 </span><br><span class="line"></span><br><span class="line">      EAPOL HMAC     : F6 4D 5F 02 77 F9 96 8A F4 E3 C7 8C DA E4 C6 E0 </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>通用</category>
+      </categories>
+      <tags>
+        <tag>通用</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown语法</title>
     <url>/Blog/2020/05/23/Markdown%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h2 id="标题的使用"><a href="#标题的使用" class="headerlink" title="标题的使用"></a>标题的使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
@@ -1108,66 +1168,6 @@
       </categories>
       <tags>
         <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MAC破解WiFi</title>
-    <url>/Blog/2020/03/15/MAC%E7%A0%B4%E8%A7%A3WiFi/</url>
-    <content><![CDATA[<p>1.安装airport</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport</span><br></pre></td></tr></table></figure>
-
-<p>2.扫描周围的Wifi</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport -s</span><br></pre></td></tr></table></figure>
-
-<p>3.嗅探指定的信道</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport en0 sniff <span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
-
-<p>如果出现错误，Segmentation fault: 11，可以使用 tcpdump 抓包<br>4.1 断开airport的连接</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport -z</span><br></pre></td></tr></table></figure>
-
-<p>4.2 设置信道，-c和信道号之间没有空格</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo airport -c6</span></span><br><span class="line">$ sudo airport -c<span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
-
-<p>4.3 从指定AP开始抓包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;type mgt subtype beacon and ether src 98:13:33:b4:35:a4&quot; -I -c 1 -i en0 -w beacon.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;type mgt subtype beacon and ether src <span class="variable">$BSSID</span>&quot;</span> -I -c 1 -i en0 -w beacon.cap</span><br></pre></td></tr></table></figure>
-
-<p>4.4 等待WPA的握手</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;ether proto 0x888e and ether host 98:13:33:b4:35:a4&quot; -I -U -vvv -i en0 -w handshake.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;ether proto 0x888e and ether host <span class="variable">$BSSID</span>&quot;</span> -I -U -vvv -i en0 -w handshake.cap</span><br></pre></td></tr></table></figure>
-
-<p>4.5 安装wireshark，下一步会用到它的合包命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install wireshark</span><br></pre></td></tr></table></figure>
-
-<p>4.6 将2个cap文件合并成一个cap文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mergecap -a -F pcap -w capture.cap beacon.cap handshake.cap</span><br></pre></td></tr></table></figure>
-
-<p>至少要等到4.4获取到4 frames或更多的包才可以Ctrl-C终止抓包。</p>
-<p>4.7 安装 aircrack-ng</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install aircrack-ng</span><br></pre></td></tr></table></figure>
-
-<p>4.8 将 aircrack-ng 路径添加到 /etc/paths 中。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /etc/paths</span><br></pre></td></tr></table></figure>
-<p>然后将 aircrack-ng 路径添加到最后一行。</p>
-<p>4.9 查看抓到的包中是否包含握手包。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#$ aircrack-ng capture.cap</span></span><br><span class="line">Hu-YupingdeMacBook-Pro:wifi kris$ aircrack-ng capture.cap</span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">   <span class="comment">#  BSSID              ESSID                     Encryption</span></span><br><span class="line"></span><br><span class="line">   1  74:7D:24:D7:AF:DC  @PHICOMM_DA               WPA (0 handshake)</span><br><span class="line"></span><br><span class="line">Choosing first network as target.</span><br><span class="line"></span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">1 potential targets</span><br><span class="line"></span><br><span class="line">Please specify a dictionary (option -w).</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li><p>撞击密码</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ aircrack-ng -w alphaDic.txt -b 98:13:33:B4:35:A4 capture1.cap</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>转换包格式,如果使用上面的cap无法爆破，或者爆破比较麻烦，可以将cap包转换成hcccapx格式，然后再破解。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./cap2hccapx.bin /Users/kris/Desktop/wifi/20200208/capture.cap /Users/kris/Desktop/wifi/20200208/capture.hccapx</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<p>下面是一个破解示例：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Aircrack-ng 1.5.2 </span><br><span class="line"></span><br><span class="line">      [00:03:20] 2018576/13516904 keys tested (10197.95 k/s) </span><br><span class="line"></span><br><span class="line">      Time left: 18 minutes, 47 seconds                         14.93%</span><br><span class="line"></span><br><span class="line">                          KEY FOUND! [ 19731009qiu ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      Master Key     : A8 36 07 C4 68 42 71 E0 B9 38 6E 16 B7 1B 7A 77 </span><br><span class="line">                       DA 07 E9 A1 82 CE 95 56 22 C2 76 16 93 B1 8E 9B </span><br><span class="line"></span><br><span class="line">      Transient Key  : 34 83 20 8E B0 2E F2 11 FF 5B 68 A4 A3 16 94 FE </span><br><span class="line">                       74 28 4D D9 99 BA 10 38 F4 20 6D 14 D1 47 89 C9 </span><br><span class="line">                       22 75 EB B5 29 FD CF 9B 01 32 38 B7 51 10 94 88 </span><br><span class="line">                       90 4D 52 D5 88 E4 B1 58 DA 2D DC 35 5F 61 88 92 </span><br><span class="line"></span><br><span class="line">      EAPOL HMAC     : F6 4D 5F 02 77 F9 96 8A F4 E3 C7 8C DA E4 C6 E0 </span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>通用</category>
-      </categories>
-      <tags>
-        <tag>通用</tag>
       </tags>
   </entry>
   <entry>
@@ -1371,22 +1371,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Python学习笔记(函数)</title>
-    <url>/Blog/2019/03/28/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="None作为布尔值和False是一样的，如何区分None和False"><a href="#None作为布尔值和False是一样的，如何区分None和False" class="headerlink" title="None作为布尔值和False是一样的，如何区分None和False?"></a>None作为布尔值和False是一样的，如何区分None和False?</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">thing = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> thing:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s some thing.&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s no thing.&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> thing <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s nothing&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s something&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 你需要把None和不含任何值的空数据结构区分开来。0值的整型/浮点型、</span></span><br><span class="line"><span class="comment"># 空字符串(&#x27;&#x27;)、空列表([])、空元组((,))、空字典(&#123;&#125;)、</span></span><br><span class="line"><span class="comment"># 空集合(set())都等价于False，但是不等于None。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_none</span>(<span class="params">thing</span>):</span></span><br><span class="line">    <span class="keyword">if</span> thing <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        print(<span class="string">&quot;It&#x27;s None&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> thing:</span><br><span class="line">        print(<span class="string">&quot;It&#x27;s True&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">&quot;It&#x27;s False&quot;</span>)</span><br><span class="line"></span><br><span class="line">is_none(<span class="literal">None</span>)</span><br><span class="line">is_none(<span class="literal">True</span>)</span><br><span class="line">is_none(<span class="literal">False</span>)</span><br><span class="line">is_none(<span class="number">0</span>)</span><br><span class="line">is_none(<span class="number">0.0</span>)</span><br><span class="line">is_none(())</span><br><span class="line">is_none([])</span><br><span class="line">is_none(&#123;&#125;)</span><br><span class="line">is_none(set())</span><br></pre></td></tr></table></figure>
-<p>运行结果:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">It<span class="string">&#x27;s no thing.</span></span><br><span class="line"><span class="string">It&#x27;</span>s nothing</span><br><span class="line">It<span class="string">&#x27;s None</span></span><br><span class="line"><span class="string">It&#x27;</span>s <span class="literal">True</span></span><br><span class="line">It<span class="string">&#x27;s False</span></span><br><span class="line"><span class="string">It&#x27;</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">&#x27;s False</span></span><br><span class="line"><span class="string">It&#x27;</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">&#x27;s False</span></span><br><span class="line"><span class="string">It&#x27;</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">&#x27;s False</span></span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python学习笔记(使用for迭代)</title>
     <url>/Blog/2019/03/26/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BD%BF%E7%94%A8for%E8%BF%AD%E4%BB%A3/</url>
     <content><![CDATA[<h2 id="列表迭代"><a href="#列表迭代" class="headerlink" title="列表迭代"></a>列表迭代</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rabbits = [<span class="string">&#x27;Flopsy&#x27;</span>, <span class="string">&#x27;Mopsy&#x27;</span>, <span class="string">&#x27;Cottontail&#x27;</span>, <span class="string">&#x27;Peter&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> rabbit <span class="keyword">in</span> rabbits:</span><br><span class="line">    print(rabbit)</span><br></pre></td></tr></table></figure>
@@ -1477,6 +1461,22 @@
 
 
 
+
+
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python学习笔记(函数)</title>
+    <url>/Blog/2019/03/28/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="None作为布尔值和False是一样的，如何区分None和False"><a href="#None作为布尔值和False是一样的，如何区分None和False" class="headerlink" title="None作为布尔值和False是一样的，如何区分None和False?"></a>None作为布尔值和False是一样的，如何区分None和False?</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">thing = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> thing:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s some thing.&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s no thing.&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> thing <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s nothing&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s something&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 你需要把None和不含任何值的空数据结构区分开来。0值的整型/浮点型、</span></span><br><span class="line"><span class="comment"># 空字符串(&#x27;&#x27;)、空列表([])、空元组((,))、空字典(&#123;&#125;)、</span></span><br><span class="line"><span class="comment"># 空集合(set())都等价于False，但是不等于None。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_none</span>(<span class="params">thing</span>):</span></span><br><span class="line">    <span class="keyword">if</span> thing <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        print(<span class="string">&quot;It&#x27;s None&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> thing:</span><br><span class="line">        print(<span class="string">&quot;It&#x27;s True&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">&quot;It&#x27;s False&quot;</span>)</span><br><span class="line"></span><br><span class="line">is_none(<span class="literal">None</span>)</span><br><span class="line">is_none(<span class="literal">True</span>)</span><br><span class="line">is_none(<span class="literal">False</span>)</span><br><span class="line">is_none(<span class="number">0</span>)</span><br><span class="line">is_none(<span class="number">0.0</span>)</span><br><span class="line">is_none(())</span><br><span class="line">is_none([])</span><br><span class="line">is_none(&#123;&#125;)</span><br><span class="line">is_none(set())</span><br></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">It<span class="string">&#x27;s no thing.</span></span><br><span class="line"><span class="string">It&#x27;</span>s nothing</span><br><span class="line">It<span class="string">&#x27;s None</span></span><br><span class="line"><span class="string">It&#x27;</span>s <span class="literal">True</span></span><br><span class="line">It<span class="string">&#x27;s False</span></span><br><span class="line"><span class="string">It&#x27;</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">&#x27;s False</span></span><br><span class="line"><span class="string">It&#x27;</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">&#x27;s False</span></span><br><span class="line"><span class="string">It&#x27;</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">&#x27;s False</span></span><br></pre></td></tr></table></figure>
 
 
 ]]></content>
@@ -2105,50 +2105,6 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </tags>
   </entry>
   <entry>
-    <title>iOS安装包瘦身</title>
-    <url>/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/</url>
-    <content><![CDATA[<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB.png" class="" title="iOS安装包瘦身思维导图">
-
-<h2 id="iPA解压排查"><a href="#iPA解压排查" class="headerlink" title="iPA解压排查"></a>iPA解压排查</h2><p>iOS安装包瘦身时，最直接的办法就是，解压打包完的iPA，查找大文件，优化对应的大文件。</p>
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/ipa.png" class="" title="iPA解压后内部截图">
-
-<ul>
-<li><p>_CodeSignature：文件hash列表。里面有一个属性列表文件CodeResources，包含.app中所有文件的列表，里面是一个字典，key是文件名，value通常是Base64格式的散列值。它的作用是用来判断应用程序是否完好无损，防止资源文件修改损坏。</p>
-</li>
-<li><p>Assets.car：由.xcassets统一打包生成。包含所有.xcassets下的资源文件.xcassets可以存放图片资源，组织清晰，便于管理，Xcode也会对一些资源做优化处理。如果直接放在Xcode工程目录下，打包后这些资源会在包的根目录下面展示。Assets.car可以通过Asset Catalog Tinkerer软件打开，并导出相关资源。</p>
-</li>
-<li><p>embedded.mobileprovision：描述文件</p>
-</li>
-<li><p>Info.plist：工程信息配置文件</p>
-</li>
-<li><p>YXTDemo：与工程同名的可执行文件。可以通过file命令查看类型。</p>
-</li>
-</ul>
-<h2 id="图片资源优化"><a href="#图片资源优化" class="headerlink" title="图片资源优化"></a>图片资源优化</h2><h3 id="删除未使用的图片资源"><a href="#删除未使用的图片资源" class="headerlink" title="删除未使用的图片资源"></a>删除未使用的图片资源</h3><p>可以使用工具LSUnusedResources工具查找未使用的图片资源，工具下载地址：<a href="https://github.com/tinymind/LSUnusedResources%E3%80%82">https://github.com/tinymind/LSUnusedResources。</a></p>
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/lsunusedresources.png" class="" title="查找未使用的图片的截图1">
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/lsunusedresources2.png" class="" title="查找未使用的图片的截图2">
-
-<h3 id="压缩图标和图片"><a href="#压缩图标和图片" class="headerlink" title="压缩图标和图片"></a>压缩图标和图片</h3><p>对于一些较大的图标和图片可以使用工具ImageOptim压缩一下。</p>
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/imageoptim1.png" class="" title="图片压缩工具截图">
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/imageoptim2.png" class="" title="图片压缩工具截图">
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/imageoptim3.png" class="" title="图片压缩工具截图">
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/imageoptim4.png" class="" title="图片压缩工具截图">
-
-<h3 id="特殊大图放工程目录下"><a href="#特殊大图放工程目录下" class="headerlink" title="特殊大图放工程目录下"></a>特殊大图放工程目录下</h3><p>大图(例如游戏界面背景图)若放在.xcassets文件夹中，工程打包后大图的尺寸会变大，因此建议特定大图不要放在.xcassets中，放在工程目录下即可。</p>
-<h2 id="删除冗余代码"><a href="#删除冗余代码" class="headerlink" title="删除冗余代码"></a>删除冗余代码</h2><h3 id="删除未使用的类文件"><a href="#删除未使用的类文件" class="headerlink" title="删除未使用的类文件"></a>删除未使用的类文件</h3><p>使用CATClearProjectTool工具查找未使用的类，删除即可。</p>
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/catclearprojecttool1.png" class="" title="查找未使用的类">
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/catclearprojecttool2.png" class="" title="查找未使用的类">
-
-<h3 id="使用LinkMap分析类文件和静态库的大小"><a href="#使用LinkMap分析类文件和静态库的大小" class="headerlink" title="使用LinkMap分析类文件和静态库的大小"></a>使用LinkMap分析类文件和静态库的大小</h3><p>使用LinkMap工具可以分析具体类文件和静态库大小，工具下载地址：<a href="https://github.com/huanxsd/LinkMap%E3%80%82">https://github.com/huanxsd/LinkMap。</a></p>
-]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>iOS创建Framwork工程步骤</title>
     <url>/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/</url>
     <content><![CDATA[<h2 id="1-新建远程Git仓库，将空的仓库克隆至本地。"><a href="#1-新建远程Git仓库，将空的仓库克隆至本地。" class="headerlink" title="1.新建远程Git仓库，将空的仓库克隆至本地。"></a>1.新建远程Git仓库，将空的仓库克隆至本地。</h2><p>在gitlab上新建一个空的仓库。</p>
@@ -2230,6 +2186,50 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
 
 <h2 id="18-经过最后的修改，最终目录如下。"><a href="#18-经过最后的修改，最终目录如下。" class="headerlink" title="18.经过最后的修改，最终目录如下。"></a>18.经过最后的修改，最终目录如下。</h2><p>由于之前的SDK目录比较深，导致<code>pod update</code>的时候无法更新。所以将之前的SDK中的文件全部拷贝到git仓库的根目录下。还有LICENSE文件最好放一个，因为有可能因为这个导致最终的项目更新失败。最终目录结构如下图。</p>
 <img src="/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/26.png" class="" title="最终目录结构截图">]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iOS安装包瘦身</title>
+    <url>/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/</url>
+    <content><![CDATA[<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB.png" class="" title="iOS安装包瘦身思维导图">
+
+<h2 id="iPA解压排查"><a href="#iPA解压排查" class="headerlink" title="iPA解压排查"></a>iPA解压排查</h2><p>iOS安装包瘦身时，最直接的办法就是，解压打包完的iPA，查找大文件，优化对应的大文件。</p>
+<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/ipa.png" class="" title="iPA解压后内部截图">
+
+<ul>
+<li><p>_CodeSignature：文件hash列表。里面有一个属性列表文件CodeResources，包含.app中所有文件的列表，里面是一个字典，key是文件名，value通常是Base64格式的散列值。它的作用是用来判断应用程序是否完好无损，防止资源文件修改损坏。</p>
+</li>
+<li><p>Assets.car：由.xcassets统一打包生成。包含所有.xcassets下的资源文件.xcassets可以存放图片资源，组织清晰，便于管理，Xcode也会对一些资源做优化处理。如果直接放在Xcode工程目录下，打包后这些资源会在包的根目录下面展示。Assets.car可以通过Asset Catalog Tinkerer软件打开，并导出相关资源。</p>
+</li>
+<li><p>embedded.mobileprovision：描述文件</p>
+</li>
+<li><p>Info.plist：工程信息配置文件</p>
+</li>
+<li><p>YXTDemo：与工程同名的可执行文件。可以通过file命令查看类型。</p>
+</li>
+</ul>
+<h2 id="图片资源优化"><a href="#图片资源优化" class="headerlink" title="图片资源优化"></a>图片资源优化</h2><h3 id="删除未使用的图片资源"><a href="#删除未使用的图片资源" class="headerlink" title="删除未使用的图片资源"></a>删除未使用的图片资源</h3><p>可以使用工具LSUnusedResources工具查找未使用的图片资源，工具下载地址：<a href="https://github.com/tinymind/LSUnusedResources%E3%80%82">https://github.com/tinymind/LSUnusedResources。</a></p>
+<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/lsunusedresources.png" class="" title="查找未使用的图片的截图1">
+<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/lsunusedresources2.png" class="" title="查找未使用的图片的截图2">
+
+<h3 id="压缩图标和图片"><a href="#压缩图标和图片" class="headerlink" title="压缩图标和图片"></a>压缩图标和图片</h3><p>对于一些较大的图标和图片可以使用工具ImageOptim压缩一下。</p>
+<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/imageoptim1.png" class="" title="图片压缩工具截图">
+<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/imageoptim2.png" class="" title="图片压缩工具截图">
+<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/imageoptim3.png" class="" title="图片压缩工具截图">
+<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/imageoptim4.png" class="" title="图片压缩工具截图">
+
+<h3 id="特殊大图放工程目录下"><a href="#特殊大图放工程目录下" class="headerlink" title="特殊大图放工程目录下"></a>特殊大图放工程目录下</h3><p>大图(例如游戏界面背景图)若放在.xcassets文件夹中，工程打包后大图的尺寸会变大，因此建议特定大图不要放在.xcassets中，放在工程目录下即可。</p>
+<h2 id="删除冗余代码"><a href="#删除冗余代码" class="headerlink" title="删除冗余代码"></a>删除冗余代码</h2><h3 id="删除未使用的类文件"><a href="#删除未使用的类文件" class="headerlink" title="删除未使用的类文件"></a>删除未使用的类文件</h3><p>使用CATClearProjectTool工具查找未使用的类，删除即可。</p>
+<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/catclearprojecttool1.png" class="" title="查找未使用的类">
+<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/catclearprojecttool2.png" class="" title="查找未使用的类">
+
+<h3 id="使用LinkMap分析类文件和静态库的大小"><a href="#使用LinkMap分析类文件和静态库的大小" class="headerlink" title="使用LinkMap分析类文件和静态库的大小"></a>使用LinkMap分析类文件和静态库的大小</h3><p>使用LinkMap工具可以分析具体类文件和静态库大小，工具下载地址：<a href="https://github.com/huanxsd/LinkMap%E3%80%82">https://github.com/huanxsd/LinkMap。</a></p>
+]]></content>
       <categories>
         <category>iOS</category>
       </categories>
@@ -2432,52 +2432,6 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </tags>
   </entry>
   <entry>
-    <title>如何制作一个CocoaPods私有库</title>
-    <url>/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/</url>
-    <content><![CDATA[<h2 id="创建私有库模版"><a href="#创建私有库模版" class="headerlink" title="创建私有库模版"></a>创建私有库模版</h2><p>使用命令进入到要建立私有库工程的目录，执行以下命令，<code>CDUtils</code>是私有库项目名。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod lib create CDUtils</span><br></pre></td></tr></table></figure>
-<p>接下来终端会询问几个问题，请根据实际情况设置：</p>
-<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E6%A8%A1%E7%89%88%E9%97%AE%E9%A2%98%E6%88%AA%E5%9B%BE.png" class="" title="创建模版问题截图">
-<p>根据提示最终就会创建一个私有工程。</p>
-<h2 id="创建私有库Git地址，这里以Github为例"><a href="#创建私有库Git地址，这里以Github为例" class="headerlink" title="创建私有库Git地址，这里以Github为例"></a>创建私有库Git地址，这里以Github为例</h2><img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E5%BA%93Git%E6%88%AA%E5%9B%BE.png" class="" title="创建私有库Git截图">
-
-<h2 id="修改配置文件CDUtils-podspec"><a href="#修改配置文件CDUtils-podspec" class="headerlink" title="修改配置文件CDUtils.podspec"></a>修改配置文件CDUtils.podspec</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Be sure to run `pod lib lint CDUtils.podspec&#x27; to ensure this is a</span></span><br><span class="line"><span class="comment"># valid spec before submitting.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Any lines starting with a # are optional, but their use is encouraged</span></span><br><span class="line"><span class="comment"># To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">Pod::Spec.new <span class="keyword">do</span> |s|</span><br><span class="line">  s.name             = <span class="string">&#x27;CDUtils&#x27;</span></span><br><span class="line">  s.version          = <span class="string">&#x27;0.0.1&#x27;</span></span><br><span class="line">  s.summary          = <span class="string">&#x27;CDUtils 是一个公共方法库。&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This description is used to generate tags and improve search results.</span></span><br><span class="line"><span class="comment">#   * Think: What does it do? Why did you write it? What is the focus?</span></span><br><span class="line"><span class="comment">#   * Try to keep it short, snappy and to the point.</span></span><br><span class="line"><span class="comment">#   * Write the description between the DESC delimiters below.</span></span><br><span class="line"><span class="comment">#   * Finally, don&#x27;t worry about the indent, CocoaPods strips it!</span></span><br><span class="line"></span><br><span class="line">  s.description      = &lt;&lt;-DESC</span><br><span class="line">TODO: Add long description of the pod here.</span><br><span class="line">                       DESC</span><br><span class="line"></span><br><span class="line">  s.homepage         = <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span></span><br><span class="line">  <span class="comment"># s.screenshots     = &#x27;www.example.com/screenshots_1&#x27;, &#x27;www.example.com/screenshots_2&#x27;</span></span><br><span class="line">  s.license          = &#123; :<span class="built_in">type</span> =&gt; <span class="string">&#x27;MIT&#x27;</span>, :file =&gt; <span class="string">&#x27;LICENSE&#x27;</span> &#125;</span><br><span class="line">  s.author           = &#123; <span class="string">&#x27;1516715172@qq.com&#x27;</span> =&gt; <span class="string">&#x27;jsjhyp@gmail.com&#x27;</span> &#125;</span><br><span class="line">  s.source           = &#123; :git =&gt; <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span>, :tag =&gt; s.version.to_s &#125;</span><br><span class="line">  <span class="comment"># s.social_media_url = &#x27;https://twitter.com/&lt;TWITTER_USERNAME&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.ios.deployment_target = <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.source_files = <span class="string">&#x27;CDUtils/Classes/**/*&#x27;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># s.resource_bundles = &#123;</span></span><br><span class="line">  <span class="comment">#   &#x27;CDUtils&#x27; =&gt; [&#x27;CDUtils/Assets/*.png&#x27;]</span></span><br><span class="line">  <span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># s.public_header_files = &#x27;Pod/Classes/**/*.h&#x27;</span></span><br><span class="line">  <span class="comment"># s.frameworks = &#x27;UIKit&#x27;, &#x27;MapKit&#x27;</span></span><br><span class="line">  <span class="comment"># s.dependency &#x27;AFNetworking&#x27;, &#x27;~&gt; 2.3&#x27;</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>命令行进入私有库工程所在目录下的Example文件夹，执行<code>pod install</code>，安装依赖项。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PoetMacBook-Pro:Example kris$ pod install</span><br><span class="line">Analyzing dependencies</span><br><span class="line">Downloading dependencies</span><br><span class="line">Generating Pods project</span><br><span class="line">Integrating client project</span><br><span class="line">Pod installation complete! There is 1 dependency from the Podfile and 1 total pod installed.</span><br><span class="line">PoetMacBook-Pro:Example kris$ </span><br></pre></td></tr></table></figure>
-
-<h2 id="添加库的源代码文件"><a href="#添加库的源代码文件" class="headerlink" title="添加库的源代码文件"></a>添加库的源代码文件</h2><p>将源码文件放入<code>CDUtils/Classes</code>目录下，与podspec文件保持一致。</p>
-<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E6%B7%BB%E5%8A%A0%E5%BA%93%E7%9A%84%E6%BA%90%E7%A0%81%E6%96%87%E4%BB%B6%E6%88%AA%E5%9B%BE.png" class="" title="添加库的源码文件截图">
-
-<h2 id="验证私有库的正确性"><a href="#验证私有库的正确性" class="headerlink" title="验证私有库的正确性"></a>验证私有库的正确性</h2><p>使用命令验证私有库的正确性。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod lib lint CDUtils.podspec</span><br></pre></td></tr></table></figure>
-
-<h2 id="提交源码到github，并打Tag。"><a href="#提交源码到github，并打Tag。" class="headerlink" title="提交源码到github，并打Tag。"></a>提交源码到github，并打Tag。</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin https://github.com/DavidWanderer/CDUtils.git</span><br><span class="line"></span><br><span class="line">$ git add .</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">&quot;0.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">$ git pull origin master</span><br><span class="line"></span><br><span class="line">$ git push origin master</span><br><span class="line"></span><br><span class="line">$ git tag 0.0.1</span><br><span class="line"> </span><br><span class="line">$ git push origin 0.0.1</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建私有库的索引库"><a href="#创建私有库的索引库" class="headerlink" title="创建私有库的索引库"></a>创建私有库的索引库</h2><p>在Github上创建私有库的索引库，并进行初始化操作。</p>
-<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="创建私有索引库截图">
-
-<h2 id="将创建的索引库添加到本地cocoapods仓库"><a href="#将创建的索引库添加到本地cocoapods仓库" class="headerlink" title="将创建的索引库添加到本地cocoapods仓库"></a>将创建的索引库添加到本地cocoapods仓库</h2><ul>
-<li>在自己的私有库目录下执行命令，将创建的索引库克隆到本地的cocoapods的仓库中。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo add CDSpecs https://github.com/DavidWanderer/CDSpecs.git</span><br></pre></td></tr></table></figure></li>
-<li>cocoapods本地仓库路径为：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ~/.cocoapods/repos</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="发布私有库"><a href="#发布私有库" class="headerlink" title="发布私有库"></a>发布私有库</h2><p>在自己的私有库目录下执行命令，把当前私有库的索引同步到本地索引库，并同步给远程索引库。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo push CDUtils CDUtils.podspec</span><br></pre></td></tr></table></figure>
-<p>终端截图:</p>
-<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E7%A7%81%E6%9C%89%E5%BA%93%E7%B4%A2%E5%BC%95%E5%90%8C%E6%AD%A5%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%92%8C%E8%BF%9C%E7%A8%8B%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="私有库索引同步到本地和远程索引库截图">
-
-<h2 id="在自己的项目中引用私有库"><a href="#在自己的项目中引用私有库" class="headerlink" title="在自己的项目中引用私有库"></a>在自己的项目中引用私有库</h2><p>Podfile如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Uncomment the next line to define a global platform for your project</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/CocoaPods/Specs.git&#x27;</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/DavidWanderer/CDSpecs.git&#x27;</span></span><br><span class="line">platform :ios, <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">target <span class="string">&#x27;测试&#x27;</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Comment the next line if you don&#x27;t want to use dynamic frameworks</span></span><br><span class="line">  <span class="comment">#use_frameworks!</span></span><br><span class="line">  pod <span class="string">&#x27;CDUtils&#x27;</span>, <span class="string">&#x27;~&gt; 0.0.1&#x27;</span></span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>分类的原理</title>
     <url>/Blog/2019/06/27/%E5%88%86%E7%B1%BB%E7%9A%84%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<h2 id="分类的原理"><a href="#分类的原理" class="headerlink" title="分类的原理"></a>分类的原理</h2><p>对于分类的作用恐怕大家都是知道的吧，今天就让我们一起研究一下分类的实现原理。</p>
@@ -2520,6 +2474,52 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
 </ul>
 <img src="/Blog/2019/06/27/%E5%88%86%E7%B1%BB%E7%9A%84%E5%8E%9F%E7%90%86/%E5%88%86%E7%B1%BB.png" class="" title="分类">
 ]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何制作一个CocoaPods私有库</title>
+    <url>/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/</url>
+    <content><![CDATA[<h2 id="创建私有库模版"><a href="#创建私有库模版" class="headerlink" title="创建私有库模版"></a>创建私有库模版</h2><p>使用命令进入到要建立私有库工程的目录，执行以下命令，<code>CDUtils</code>是私有库项目名。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod lib create CDUtils</span><br></pre></td></tr></table></figure>
+<p>接下来终端会询问几个问题，请根据实际情况设置：</p>
+<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E6%A8%A1%E7%89%88%E9%97%AE%E9%A2%98%E6%88%AA%E5%9B%BE.png" class="" title="创建模版问题截图">
+<p>根据提示最终就会创建一个私有工程。</p>
+<h2 id="创建私有库Git地址，这里以Github为例"><a href="#创建私有库Git地址，这里以Github为例" class="headerlink" title="创建私有库Git地址，这里以Github为例"></a>创建私有库Git地址，这里以Github为例</h2><img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E5%BA%93Git%E6%88%AA%E5%9B%BE.png" class="" title="创建私有库Git截图">
+
+<h2 id="修改配置文件CDUtils-podspec"><a href="#修改配置文件CDUtils-podspec" class="headerlink" title="修改配置文件CDUtils.podspec"></a>修改配置文件CDUtils.podspec</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Be sure to run `pod lib lint CDUtils.podspec&#x27; to ensure this is a</span></span><br><span class="line"><span class="comment"># valid spec before submitting.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Any lines starting with a # are optional, but their use is encouraged</span></span><br><span class="line"><span class="comment"># To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">Pod::Spec.new <span class="keyword">do</span> |s|</span><br><span class="line">  s.name             = <span class="string">&#x27;CDUtils&#x27;</span></span><br><span class="line">  s.version          = <span class="string">&#x27;0.0.1&#x27;</span></span><br><span class="line">  s.summary          = <span class="string">&#x27;CDUtils 是一个公共方法库。&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This description is used to generate tags and improve search results.</span></span><br><span class="line"><span class="comment">#   * Think: What does it do? Why did you write it? What is the focus?</span></span><br><span class="line"><span class="comment">#   * Try to keep it short, snappy and to the point.</span></span><br><span class="line"><span class="comment">#   * Write the description between the DESC delimiters below.</span></span><br><span class="line"><span class="comment">#   * Finally, don&#x27;t worry about the indent, CocoaPods strips it!</span></span><br><span class="line"></span><br><span class="line">  s.description      = &lt;&lt;-DESC</span><br><span class="line">TODO: Add long description of the pod here.</span><br><span class="line">                       DESC</span><br><span class="line"></span><br><span class="line">  s.homepage         = <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span></span><br><span class="line">  <span class="comment"># s.screenshots     = &#x27;www.example.com/screenshots_1&#x27;, &#x27;www.example.com/screenshots_2&#x27;</span></span><br><span class="line">  s.license          = &#123; :<span class="built_in">type</span> =&gt; <span class="string">&#x27;MIT&#x27;</span>, :file =&gt; <span class="string">&#x27;LICENSE&#x27;</span> &#125;</span><br><span class="line">  s.author           = &#123; <span class="string">&#x27;1516715172@qq.com&#x27;</span> =&gt; <span class="string">&#x27;jsjhyp@gmail.com&#x27;</span> &#125;</span><br><span class="line">  s.source           = &#123; :git =&gt; <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span>, :tag =&gt; s.version.to_s &#125;</span><br><span class="line">  <span class="comment"># s.social_media_url = &#x27;https://twitter.com/&lt;TWITTER_USERNAME&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.ios.deployment_target = <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.source_files = <span class="string">&#x27;CDUtils/Classes/**/*&#x27;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># s.resource_bundles = &#123;</span></span><br><span class="line">  <span class="comment">#   &#x27;CDUtils&#x27; =&gt; [&#x27;CDUtils/Assets/*.png&#x27;]</span></span><br><span class="line">  <span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># s.public_header_files = &#x27;Pod/Classes/**/*.h&#x27;</span></span><br><span class="line">  <span class="comment"># s.frameworks = &#x27;UIKit&#x27;, &#x27;MapKit&#x27;</span></span><br><span class="line">  <span class="comment"># s.dependency &#x27;AFNetworking&#x27;, &#x27;~&gt; 2.3&#x27;</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>命令行进入私有库工程所在目录下的Example文件夹，执行<code>pod install</code>，安装依赖项。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PoetMacBook-Pro:Example kris$ pod install</span><br><span class="line">Analyzing dependencies</span><br><span class="line">Downloading dependencies</span><br><span class="line">Generating Pods project</span><br><span class="line">Integrating client project</span><br><span class="line">Pod installation complete! There is 1 dependency from the Podfile and 1 total pod installed.</span><br><span class="line">PoetMacBook-Pro:Example kris$ </span><br></pre></td></tr></table></figure>
+
+<h2 id="添加库的源代码文件"><a href="#添加库的源代码文件" class="headerlink" title="添加库的源代码文件"></a>添加库的源代码文件</h2><p>将源码文件放入<code>CDUtils/Classes</code>目录下，与podspec文件保持一致。</p>
+<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E6%B7%BB%E5%8A%A0%E5%BA%93%E7%9A%84%E6%BA%90%E7%A0%81%E6%96%87%E4%BB%B6%E6%88%AA%E5%9B%BE.png" class="" title="添加库的源码文件截图">
+
+<h2 id="验证私有库的正确性"><a href="#验证私有库的正确性" class="headerlink" title="验证私有库的正确性"></a>验证私有库的正确性</h2><p>使用命令验证私有库的正确性。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod lib lint CDUtils.podspec</span><br></pre></td></tr></table></figure>
+
+<h2 id="提交源码到github，并打Tag。"><a href="#提交源码到github，并打Tag。" class="headerlink" title="提交源码到github，并打Tag。"></a>提交源码到github，并打Tag。</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin https://github.com/DavidWanderer/CDUtils.git</span><br><span class="line"></span><br><span class="line">$ git add .</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">&quot;0.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">$ git pull origin master</span><br><span class="line"></span><br><span class="line">$ git push origin master</span><br><span class="line"></span><br><span class="line">$ git tag 0.0.1</span><br><span class="line"> </span><br><span class="line">$ git push origin 0.0.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建私有库的索引库"><a href="#创建私有库的索引库" class="headerlink" title="创建私有库的索引库"></a>创建私有库的索引库</h2><p>在Github上创建私有库的索引库，并进行初始化操作。</p>
+<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="创建私有索引库截图">
+
+<h2 id="将创建的索引库添加到本地cocoapods仓库"><a href="#将创建的索引库添加到本地cocoapods仓库" class="headerlink" title="将创建的索引库添加到本地cocoapods仓库"></a>将创建的索引库添加到本地cocoapods仓库</h2><ul>
+<li>在自己的私有库目录下执行命令，将创建的索引库克隆到本地的cocoapods的仓库中。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo add CDSpecs https://github.com/DavidWanderer/CDSpecs.git</span><br></pre></td></tr></table></figure></li>
+<li>cocoapods本地仓库路径为：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ~/.cocoapods/repos</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="发布私有库"><a href="#发布私有库" class="headerlink" title="发布私有库"></a>发布私有库</h2><p>在自己的私有库目录下执行命令，把当前私有库的索引同步到本地索引库，并同步给远程索引库。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo push CDUtils CDUtils.podspec</span><br></pre></td></tr></table></figure>
+<p>终端截图:</p>
+<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E7%A7%81%E6%9C%89%E5%BA%93%E7%B4%A2%E5%BC%95%E5%90%8C%E6%AD%A5%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%92%8C%E8%BF%9C%E7%A8%8B%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="私有库索引同步到本地和远程索引库截图">
+
+<h2 id="在自己的项目中引用私有库"><a href="#在自己的项目中引用私有库" class="headerlink" title="在自己的项目中引用私有库"></a>在自己的项目中引用私有库</h2><p>Podfile如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Uncomment the next line to define a global platform for your project</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/CocoaPods/Specs.git&#x27;</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/DavidWanderer/CDSpecs.git&#x27;</span></span><br><span class="line">platform :ios, <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">target <span class="string">&#x27;测试&#x27;</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Comment the next line if you don&#x27;t want to use dynamic frameworks</span></span><br><span class="line">  <span class="comment">#use_frameworks!</span></span><br><span class="line">  pod <span class="string">&#x27;CDUtils&#x27;</span>, <span class="string">&#x27;~&gt; 0.0.1&#x27;</span></span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>iOS</category>
       </categories>
@@ -2774,6 +2774,7 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
 <p><a href="https://www.btbtt.life/">BT之家</a></p>
 <p><a href="https://www.btbtt.live/">BT之家</a></p>
 <h2 id="资源下载："><a href="#资源下载：" class="headerlink" title="资源下载："></a>资源下载：</h2><p>Aria2c </p>
+<p>bt-tracker数据:<a href="https://github.com/ngosang/trackerslist/blob/master/trackers_all_udp.txt">https://github.com/ngosang/trackerslist/blob/master/trackers_all_udp.txt</a></p>
 <p><a href="https://cowtransfer.com/">奶牛快传(分享临时文件)</a></p>
 <h2 id="计算机免费书籍GitHub合集"><a href="#计算机免费书籍GitHub合集" class="headerlink" title="计算机免费书籍GitHub合集:"></a>计算机免费书籍GitHub合集:</h2><p><a href="https://github.com/justjavac/free-programming-books-zh_CN">justjavac/free-programming-books-zh_CN</a>(免费的编程中文书籍索引)</p>
 <h2 id="iOS-开发："><a href="#iOS-开发：" class="headerlink" title="iOS 开发："></a>iOS 开发：</h2><p><a href="https://github.com/Tim9Liu9/TimLiu-iOS">https://github.com/Tim9Liu9/TimLiu-iOS</a> （iOS Demo，教程等等）</p>
