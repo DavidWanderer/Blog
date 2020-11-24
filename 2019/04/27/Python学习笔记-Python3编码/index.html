@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
@@ -102,7 +102,6 @@
       <h1 class="site-title">Stay hungry, Stay foolish.</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">向上吧，少年</p>
   </div>
 
   <div class="site-nav-right">
@@ -198,7 +197,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -278,7 +277,7 @@
 <div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/04/27/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Python3%E7%BC%96%E7%A0%81/Snip20190427_1.png" class="" title="编码方式的截图"> </div>
 
 <p>下面使用代码进行说明:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义一个Unicode字符串，它含有一个中文字符</span></span><br><span class="line">name = <span class="string">&quot;中&quot;</span></span><br><span class="line"><span class="comment"># 打印字符串的类型</span></span><br><span class="line">print(type(name))</span><br><span class="line"><span class="comment"># 打印字符串</span></span><br><span class="line">print(name)</span><br><span class="line"><span class="comment"># 打印字符串的长度，最后结果为1，说明len()获取的是字符串中字符的个数，不是字节长度</span></span><br><span class="line">print(len(name))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将字符串编码为UTF-8的字节序列</span></span><br><span class="line">ds = name.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(<span class="string">&quot;--------&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印字节序列的类型</span></span><br><span class="line">print(type(ds))</span><br><span class="line"><span class="comment"># 打印字符串编码过后的字节序列</span></span><br><span class="line">print(ds)</span><br><span class="line"><span class="comment"># 打印字节序列的长度，发现一个中文字符在UTF-8编码中占3个字节</span></span><br><span class="line">print(len(ds))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义一个Unicode字符串，它含有一个中文字符</span></span><br><span class="line">name = <span class="string">&quot;中&quot;</span></span><br><span class="line"><span class="comment"># 打印字符串的类型</span></span><br><span class="line">print(<span class="built_in">type</span>(name))</span><br><span class="line"><span class="comment"># 打印字符串</span></span><br><span class="line">print(name)</span><br><span class="line"><span class="comment"># 打印字符串的长度，最后结果为1，说明len()获取的是字符串中字符的个数，不是字节长度</span></span><br><span class="line">print(<span class="built_in">len</span>(name))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将字符串编码为UTF-8的字节序列</span></span><br><span class="line">ds = name.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(<span class="string">&quot;--------&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印字节序列的类型</span></span><br><span class="line">print(<span class="built_in">type</span>(ds))</span><br><span class="line"><span class="comment"># 打印字符串编码过后的字节序列</span></span><br><span class="line">print(ds)</span><br><span class="line"><span class="comment"># 打印字节序列的长度，发现一个中文字符在UTF-8编码中占3个字节</span></span><br><span class="line">print(<span class="built_in">len</span>(ds))</span><br></pre></td></tr></table></figure>
 
 <p>程序的运行结果如下:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">str</span>&#x27;&gt;</span></span><br><span class="line"><span class="class">中</span></span><br><span class="line"><span class="class">1</span></span><br><span class="line"><span class="class">--------</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> &#x27;<span class="title">bytes</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">b</span>&#x27;\<span class="title">xe4</span>\<span class="title">xb8</span>\<span class="title">xad</span>&#x27;</span></span><br><span class="line"><span class="class">3</span></span><br></pre></td></tr></table></figure>
@@ -293,7 +292,7 @@
 
 <h3 id="解码"><a href="#解码" class="headerlink" title="解码"></a>解码</h3><p>__解码__是将字节序列转化为Unicode字符串的过程。我们从外界文本源(文件、数据库、网站、网络API等)获得的所有文本都是经过编码的字节序列。重要的是需要知道它是以何种方式编码的，这样才能逆转编码过程以获得Unicode字符串。</p>
 <p>问题是字节序列本身不带有任何指明编码方式的信息。之前我也提到过网站随意复制粘贴文本的风险,你也可能遇到过网页乱码的情况,本应是ASCII字符的位置却被奇怪的字符占据了,这些都是编码和解码的方式不一致导致的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">place = <span class="string">&#x27;caf\u00e9&#x27;</span></span><br><span class="line">print(place)</span><br><span class="line">print(type(place))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编码</span></span><br><span class="line">place_tytes = place.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(place_tytes)</span><br><span class="line">print(type(place_tytes))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解码</span></span><br><span class="line">place2 = place_tytes.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(place2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用ASCII解码,会报错</span></span><br><span class="line"><span class="comment"># place3 = place_tytes.decode(&#x27;ascii&#x27;)</span></span><br><span class="line"><span class="comment"># print(place3)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用其他编码格式解码</span></span><br><span class="line">place4 = place_tytes.decode(<span class="string">&#x27;latin_1&#x27;</span>)</span><br><span class="line">print(place4)</span><br><span class="line"></span><br><span class="line">place5 = place_tytes.decode(<span class="string">&#x27;windows-1252&#x27;</span>)</span><br><span class="line">print(place5)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">place = <span class="string">&#x27;caf\u00e9&#x27;</span></span><br><span class="line">print(place)</span><br><span class="line">print(<span class="built_in">type</span>(place))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编码</span></span><br><span class="line">place_tytes = place.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(place_tytes)</span><br><span class="line">print(<span class="built_in">type</span>(place_tytes))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解码</span></span><br><span class="line">place2 = place_tytes.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(place2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用ASCII解码,会报错</span></span><br><span class="line"><span class="comment"># place3 = place_tytes.decode(&#x27;ascii&#x27;)</span></span><br><span class="line"><span class="comment"># print(place3)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用其他编码格式解码</span></span><br><span class="line">place4 = place_tytes.decode(<span class="string">&#x27;latin_1&#x27;</span>)</span><br><span class="line">print(place4)</span><br><span class="line"></span><br><span class="line">place5 = place_tytes.decode(<span class="string">&#x27;windows-1252&#x27;</span>)</span><br><span class="line">print(place5)</span><br></pre></td></tr></table></figure>
 <p>程序的运行结果:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">café</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">str</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">b</span>&#x27;<span class="title">caf</span>\<span class="title">xc3</span>\<span class="title">xa9</span>&#x27;</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> &#x27;<span class="title">bytes</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">caf</span>é</span></span><br><span class="line"><span class="class"><span class="title">caf</span>Ã©</span></span><br><span class="line"><span class="class"><span class="title">caf</span>Ã©</span></span><br></pre></td></tr></table></figure>
 <p>上面的运行结果说明，</p>
@@ -388,14 +387,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">David的博客</p>
-  <div class="site-description" itemprop="description">合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。</div>
+  <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -444,12 +443,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">199k</span>
+    <span title="站点总字数">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:01</span>
+    <span title="站点阅读时长">3:13</span>
 </div>
 
         

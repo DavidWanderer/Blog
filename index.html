@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"github.com","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+  <meta name="description" content="Your dreams don&#39;t work unless you do.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Stay hungry, Stay foolish.">
 <meta property="og:url" content="https://github.com/DavidWanderer/Blog/index.html">
 <meta property="og:site_name" content="Stay hungry, Stay foolish.">
-<meta property="og:description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+<meta property="og:description" content="Your dreams don&#39;t work unless you do.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="David的博客">
 <meta name="twitter:card" content="summary">
@@ -97,7 +97,6 @@
       <h1 class="site-title">Stay hungry, Stay foolish.</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">向上吧，少年</p>
   </div>
 
   <div class="site-nav-right">
@@ -187,12 +186,393 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/" class="post-title-link" itemprop="url">GCD什么情况下会死锁?</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-05 17:22:10" itemprop="dateCreated datePublished" datetime="2020-11-05T17:22:10+08:00">2020-11-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/GCD%E6%AD%BB%E9%94%81.png" class="" title="GCD死锁情景分析图">
+
+<blockquote>
+<p>A serial dispatch queue runs only one task at a time, waiting until that task is complete before dequeuing and starting a new one. By contrast, a concurrent dispatch queue starts as many tasks as it can without waiting for already started tasks to finish.</p>
+</blockquote>
+<h2 id="串行队列-同步-同步"><a href="#串行队列-同步-同步" class="headerlink" title="串行队列-同步-同步"></a>串行队列-同步-同步</h2><p>运行结果：死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：串行队列，同步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod2 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11&quot;</span>);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22&quot;</span>);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/1.png" class="" title="串行队列-同步-同步执行截图">
+
+<h2 id="串行队列-同步-异步"><a href="#串行队列-同步-异步" class="headerlink" title="串行队列-同步-异步"></a>串行队列-同步-异步</h2><p>运行结果：不死锁，同步操作在主线程中执行，异步操作在子线程执行。为什么第一个同步操作没有死锁，因为第一个同步操作在“com.serial”这个队列里，而testMethod10在主队列里，虽然是同步操作，但是二者不属于同一个队列，不会互相阻塞。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：串行队列，同步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod10 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/2.png" class="" title="串行队列-同步-异步执行截图">
+
+<h2 id="串行队列-异步-同步"><a href="#串行队列-异步-同步" class="headerlink" title="串行队列-异步-同步"></a>串行队列-异步-同步</h2><p>运行结果：死锁。打印“22”、“44”的操作已经在串行队列上执行了，此时要求插入打印“33”的操作，这个同步操作造成“com.serial”串行队列死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：串行队列，异步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod5 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/3.png" class="" title="串行队列-异步-同步执行截图">
+
+<h2 id="串行队列-异步-异步"><a href="#串行队列-异步-异步" class="headerlink" title="串行队列-异步-异步"></a>串行队列-异步-异步</h2><p>运行结果：不死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：串行队列，异步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">线程：创建了一个线程。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod8 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/4.png" class="" title="串行队列-异步-异步执行截图">
+
+<h2 id="并发队列-同步-同步"><a href="#并发队列-同步-同步" class="headerlink" title="并发队列-同步-同步"></a>并发队列-同步-同步</h2><p>运行结果：不死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：并发队列，同步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod3 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial.11&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/5.png" class="" title="并发队列-同步-同步执行截图">
+
+<h2 id="并发队列-同步-异步"><a href="#并发队列-同步-异步" class="headerlink" title="并发队列-同步-异步"></a>并发队列-同步-异步</h2><p>运行结果：不死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：并发队列，同步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod11 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial.11&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/6.png" class="" title="并发队列-同步-异步执行截图">
+
+<h2 id="并发队列-异步-同步"><a href="#并发队列-异步-同步" class="headerlink" title="并发队列-异步-同步"></a>并发队列-异步-同步</h2><p>运行结果：不死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：并发队列，异步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod6 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial.11&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/7.png" class="" title="并发队列-异步-同步执行截图">
+
+<h2 id="并发队列-异步-异步"><a href="#并发队列-异步-异步" class="headerlink" title="并发队列-异步-异步"></a>并发队列-异步-异步</h2><p>运行结果：不死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：并发队列，异步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">线程：创建了一个线程。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod9 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial.11&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/8.png" class="" title="并发队列-异步-异步执行截图">
+
+<h2 id="主队列-同步-同步"><a href="#主队列-同步-同步" class="headerlink" title="主队列-同步-同步"></a>主队列-同步-同步</h2><p>运行结果：死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 条件：主队列，同步执行，同步执行。</span></span><br><span class="line"><span class="comment"> 结果：死锁。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod1 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/9.png" class="" title="主队列-同步-同步执行截图">
+
+<h2 id="主队列-同步-异步"><a href="#主队列-同步-异步" class="headerlink" title="主队列-同步-异步"></a>主队列-同步-异步</h2><p>运行结果：死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：主队列，同步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod12 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/10.png" class="" title="主队列-同步-异步执行截图">
+
+<h2 id="主队列-异步-同步"><a href="#主队列-异步-同步" class="headerlink" title="主队列-异步-同步"></a>主队列-异步-同步</h2><p>运行结果：死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：主队列，异步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod4 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/11.png" class="" title="主队列-异步-同步执行截图">
+
+<h2 id="主队列-异步-异步"><a href="#主队列-异步-异步" class="headerlink" title="主队列-异步-异步"></a>主队列-异步-异步</h2><p>运行结果：不死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：主队列，异步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">线程：主线程执行。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod7 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/12.png" class="" title="主队列-异步-异步执行截图">
+
+<p>总结：在并发队列上，无论是同步还是异步都不会发生死锁；主队列上只有异步执行的时候才不会发生死锁；串行队列是否发生死锁需要具体分析。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html">官方文档</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/" class="post-title-link" itemprop="url">SourceTree 回滚项目(本地回滚和远程回滚)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-22 12:23:48" itemprop="dateCreated datePublished" datetime="2020-10-22T12:23:48+08:00">2020-10-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在使用SourceTree来管理Git项目的时候，有时需要回滚项目，具体的回滚操作包含本地回滚和远程回滚。<strong>建议回滚前先做好代码备份。</strong></p>
+<h2 id="本地回滚"><a href="#本地回滚" class="headerlink" title="本地回滚"></a>本地回滚</h2><p>使用命令<code>git reset</code>进行本地回滚操作，本地回滚操作一步即可完成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 回退到指定的提交版本，22f8aae 为某次提交的提交号。</span></span><br><span class="line">$ git reset --hard   22f8aae  </span><br><span class="line"></span><br><span class="line"><span class="comment">#（回退3次提交）</span></span><br><span class="line">$ git reset --hard HEAD~3 //（回退3次提交）</span><br></pre></td></tr></table></figure>
+<p>–hard：本地的源码和本地未提交的源码都会回退到某个版本，包括commit内容，和git自己对代码的索引都会回退到某个版本，any local changes will be lost。<br>–soft：保留源码，只能回退到commit信息到某个版本，不涉及到index的回退，如果还需要提交，直接commit即可。比如我选择soft方式来进行回退，我的本地代码和本地新添加的尚未commit的代码都没有改变。<br>–mixed：会保留源码，只是将git commit和index信息回退到某个版本。</p>
+<h2 id="远程回滚"><a href="#远程回滚" class="headerlink" title="远程回滚"></a>远程回滚</h2><p>远程回滚的操作流程是，先回滚本地操作，然后将本地的修改强行push到远程仓库。具体操作分为以下2步：</p>
+<p>1.在需要回滚的提交记录上<code>右键</code>选择<code>将master重置到这次提交</code>，选择重置（强行合并）到需要回滚的历史节点。</p>
+<img src="/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/1.png" class="" title="回滚本地操作截图">
+
+<p>2.打开终端，cd到项目目录，执行<code>git push origin master -f</code>，即可。<br>origin：远程仓库名<br>master：分支名称<br>-f：force，意为强制、强行</p>
+<p>3.如果出现<code> ! [remote rejected]   master -&gt; master (pre-receive hook declined)</code>错误，需要去gitlab网站去除master分支保护，才可以强制推送。<br>具体错误信息如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master -f</span><br><span class="line">总共 0 （差异 0），复用 0 （差异 0）</span><br><span class="line">remote: GitLab: You are not allowed to force push code to a protected branch on this project.</span><br><span class="line">To https://test.com.cn/test.git</span><br><span class="line"> ! [remote rejected]   master -&gt; master (pre-receive hook declined)</span><br><span class="line">error: 推送一些引用到 <span class="string">&#x27;https://test.com.cn/test.git&#x27;</span> 失败</span><br></pre></td></tr></table></figure>
+<p>需要去到gitlab的网站上去除master分支保护。</p>
+<img src="/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/2.png" class="" title="去除master分支保护截图">
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lovesummerforever/article/details/71526900">git 远程代码回滚master</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012373815/article/details/78142806">使用sourceTree回滚git代码到历史节点</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/09/23/iOS%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/09/23/iOS%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">iOS定时器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-23 23:02:50" itemprop="dateCreated datePublished" datetime="2020-09-23T23:02:50+08:00">2020-09-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="NSTimer如何使用"><a href="#NSTimer如何使用" class="headerlink" title="NSTimer如何使用"></a>NSTimer如何使用</h2><blockquote>
+<p>方法1: Creates a timer and schedules it on the current run loop in the default mode.</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSTimer</span> *)scheduledTimerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)ti </span><br><span class="line">                                     target:(<span class="keyword">id</span>)aTarget </span><br><span class="line">                                   selector:(SEL)aSelector </span><br><span class="line">                                   userInfo:(<span class="keyword">id</span>)userInfo </span><br><span class="line">                                    repeats:(<span class="built_in">BOOL</span>)yesOrNo;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>方法2: Initializes a timer object with the specified object and selector.</p>
+</blockquote>
+<blockquote>
+<p>You must add the new timer to a run loop, using <strong>addTimer:forMode:</strong>. Then, after ti seconds have elapsed, the timer fires, sending the message aSelector to target. (If the timer is configured to repeat, there is no need to subsequently re-add the timer to the run loop.)</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSTimer</span> *)timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)ti </span><br><span class="line">                            target:(<span class="keyword">id</span>)aTarget </span><br><span class="line">                          selector:(SEL)aSelector </span><br><span class="line">                          userInfo:(<span class="keyword">id</span>)userInfo </span><br><span class="line">                           repeats:(<span class="built_in">BOOL</span>)yesOrNo;</span><br><span class="line"></span><br><span class="line">[[<span class="built_in">NSRunLoop</span> mainRunLoop] addTimer:<span class="keyword">self</span>.timer forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</span><br></pre></td></tr></table></figure>
+
+<p>这两个方法是等价的，区别是第一个方法默认创建了一个NSTimer并自动添加到了当前线程的Runloop中去，第二个需要我们手动添加。如果当前线程是主线程的话，某些UI事件，比如UIScrollView的拖拽操作，会将Runloop切换成UITrackingRunLoopMode,这时候，默认的NSDefaultRunLoopMode模式中注册的事件是不会被执行的。所以为了设置一个不会被UI干扰的Timer，我们需要手动将timer的当前RunloopMode设置为NSRunLoopCommonModes，这个模式等效于NSDefaultRunLoopMode和UITrackingRunLoopMode的结合。</p>
+<p>由于NSTimer会强引用Target，RunLoop会强引用NSTimer，若ViewController再强引用NSTimer，NSTimer找不到合适的时机释放的时候，很容易造成内存泄漏，这个问题如何解决？</p>
+<h2 id="如何解决NSTimer找不到释放时机的问题？"><a href="#如何解决NSTimer找不到释放时机的问题？" class="headerlink" title="如何解决NSTimer找不到释放时机的问题？"></a>如何解决NSTimer找不到释放时机的问题？</h2><h2 id="方案1，使用官方API带Block的方式来创建NSTimer"><a href="#方案1，使用官方API带Block的方式来创建NSTimer" class="headerlink" title="方案1，使用官方API带Block的方式来创建NSTimer"></a>方案1，使用官方API带Block的方式来创建NSTimer</h2><p>具体的创建方法如下，但是仅支持iOS 10以上的系统。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSTimer</span> *)timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)interval repeats:(<span class="built_in">BOOL</span>)repeats block:(<span class="keyword">void</span> (^)(<span class="built_in">NSTimer</span> *timer))block API_AVAILABLE(macosx(<span class="number">10.12</span>), ios(<span class="number">10.0</span>), watchos(<span class="number">3.0</span>), tvos(<span class="number">10.0</span>));</span><br></pre></td></tr></table></figure>
+
+<p>在ViewController中的使用方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>)weakSelf = <span class="keyword">self</span>;</span><br><span class="line"><span class="keyword">self</span>.timer = [<span class="built_in">NSTimer</span> timerWithTimeInterval:<span class="number">1.0</span> repeats:<span class="literal">YES</span> block:^(<span class="built_in">NSTimer</span> * _Nonnull timer) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;第%ld次执行&quot;</span>, (<span class="keyword">long</span>)weakSelf.count);</span><br><span class="line">    weakSelf.count ++;</span><br><span class="line">&#125;];</span><br><span class="line">[[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:<span class="keyword">self</span>.timer forMode:<span class="built_in">NSRunLoopCommonModes</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案2，使用Block的方式来创建NSTimer"><a href="#方案2，使用Block的方式来创建NSTimer" class="headerlink" title="方案2，使用Block的方式来创建NSTimer"></a>方案2，使用Block的方式来创建NSTimer</h2><p>具体实现方式是，需要创建一个NSTimer的分类，让外部传入一个Block，NSTimer每次到时间就执行传入进来的Block。新建一个分类：<br>NSTimer+BlockSupport.h </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSTimer</span> (<span class="title">BlockSupport</span>)</span></span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSTimer</span> *)cd_timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)interval</span><br><span class="line">                                       repeats:(<span class="built_in">BOOL</span>)repeats</span><br><span class="line">                                         block:(<span class="keyword">void</span>(^)(<span class="keyword">void</span>))block;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+
+<p>NSTimer+BlockSupport.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;NSTimer+BlockSupport.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSTimer</span> (<span class="title">BlockSupport</span>)</span></span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSTimer</span> *)cd_timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)interval</span><br><span class="line">                              repeats:(<span class="built_in">BOOL</span>)repeats</span><br><span class="line">                                block:(<span class="keyword">void</span>(^)(<span class="keyword">void</span>))block &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> scheduledTimerWithTimeInterval:interval</span><br><span class="line">                                         target:<span class="keyword">self</span></span><br><span class="line">                                       selector:<span class="keyword">@selector</span>(cd_blockInvoke:)</span><br><span class="line">                                       userInfo:[block <span class="keyword">copy</span>]</span><br><span class="line">                                        repeats:repeats];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">void</span>)cd_blockInvoke:(<span class="built_in">NSTimer</span> *)timer &#123;</span><br><span class="line">    <span class="keyword">void</span> (^block)(<span class="keyword">void</span>) = timer.userInfo;</span><br><span class="line">    <span class="keyword">if</span>(block) &#123;</span><br><span class="line">        block();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>在ViewController中使用方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>)weakSelf = <span class="keyword">self</span>;</span><br><span class="line"><span class="keyword">self</span>.timer = [<span class="built_in">NSTimer</span> cd_timerWithTimeInterval:<span class="number">1.0</span> repeats:<span class="literal">YES</span> block:^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;第%ld次执行&quot;</span>, (<span class="keyword">long</span>)weakSelf.count);</span><br><span class="line">    weakSelf.count ++;</span><br><span class="line">&#125;];</span><br><span class="line">[[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:<span class="keyword">self</span>.timer forMode:<span class="built_in">NSRunLoopCommonModes</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案3，自定义NSTimer的Target"><a href="#方案3，自定义NSTimer的Target" class="headerlink" title="方案3，自定义NSTimer的Target"></a>方案3，自定义NSTimer的Target</h2><p>封装自定义NSTimer的Target和NSTimer的工具类，让NSTimer在合适的时机释放。<br>CDTimerTarget.h</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CDTimerTarget</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 目标对象</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">weak</span>) <span class="keyword">id</span> target;</span><br><span class="line"><span class="comment">// 目标方法</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) SEL selector;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+
+<p>CDTimerTarget.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;CDTimerTarget.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">CDTimerTarget</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)fire:(<span class="built_in">NSTimer</span> *)timer &#123;</span><br><span class="line">    <span class="comment">// target为弱引用,所以当target对象销毁时,target 为nil</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.target) &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic push</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic ignored <span class="meta-string">&quot;-Warc-performSelector-leaks&quot;</span></span></span><br><span class="line">        [<span class="keyword">self</span>.target performSelector:<span class="keyword">self</span>.selector withObject:timer.userInfo];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic pop</span></span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        [timer invalidate];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>CDTimer.h</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CDTimer</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSTimer</span> *)scheduleTimerWithTimerInterval:(<span class="built_in">NSTimeInterval</span>)interval</span><br><span class="line">                                     target:(<span class="keyword">id</span>)aTarget</span><br><span class="line">                                   selector:(SEL)aSelector</span><br><span class="line">                                   userInfo:(<span class="keyword">id</span>)userInfo</span><br><span class="line">                                    repeats:(<span class="built_in">BOOL</span>)repeats;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+
+<p>CDTimer.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;CDTimer.h&quot;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&quot;CDTimerTarget.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">CDTimer</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSTimer</span> *)scheduleTimerWithTimerInterval:(<span class="built_in">NSTimeInterval</span>)interval</span><br><span class="line">                                     target:(<span class="keyword">id</span>)aTarget</span><br><span class="line">                                   selector:(SEL)aSelector</span><br><span class="line">                                   userInfo:(<span class="keyword">id</span>)userInfo</span><br><span class="line">                                    repeats:(<span class="built_in">BOOL</span>)repeats &#123;</span><br><span class="line">    </span><br><span class="line">    CDTimerTarget *timerTarget = [[CDTimerTarget alloc]init];</span><br><span class="line">    timerTarget.target = aTarget;</span><br><span class="line">    timerTarget.selector = aSelector;</span><br><span class="line">    <span class="built_in">NSTimer</span> *timer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:interval</span><br><span class="line">                                                      target:timerTarget</span><br><span class="line">                                                    selector:<span class="keyword">@selector</span>(fire:)</span><br><span class="line">                                                    userInfo:userInfo</span><br><span class="line">                                                     repeats:repeats];</span><br><span class="line">    <span class="keyword">return</span> timer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>在ViewController中的用法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.timer = [CDTimer scheduleTimerWithTimerInterval:<span class="number">1.0</span> target:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(repeatAction) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案4，自定义NSProxy子类，作为NSTimer的Target"><a href="#方案4，自定义NSProxy子类，作为NSTimer的Target" class="headerlink" title="方案4，自定义NSProxy子类，作为NSTimer的Target"></a>方案4，自定义NSProxy子类，作为NSTimer的Target</h2><img src="/Blog/2020/09/23/iOS%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9B%B8%E5%85%B3/1.png" class="" title="NSProxy原理图">
+
+<p>TargetProxy.h</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TargetProxy</span> : <span class="title">NSProxy</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)proxyWithTarget:(<span class="keyword">id</span>)target;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+
+<p>TargetProxy.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;TargetProxy.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TargetProxy</span>()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//target, 这里必须要用weak, 因为某个对象会强引TimeProxy对象, TimeProxy对象不能再强引target, 否则会形成循环引用</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>)<span class="keyword">id</span> target;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">TargetProxy</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)proxyWithTarget:(<span class="keyword">id</span>)target &#123;</span><br><span class="line">    TargetProxy *proxy = [[<span class="keyword">self</span> <span class="keyword">class</span>] alloc];</span><br><span class="line">    proxy.target = target;</span><br><span class="line">    <span class="keyword">return</span> proxy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取target类中的sel方法的方法签名</span></span><br><span class="line">- (<span class="built_in">NSMethodSignature</span> *)methodSignatureForSelector:(SEL)sel &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span>.target methodSignatureForSelector:sel];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)forwardInvocation:(<span class="built_in">NSInvocation</span> *)invocation &#123;</span><br><span class="line">    <span class="comment">//判断target是否实现了该方法</span></span><br><span class="line">    <span class="keyword">if</span> ([<span class="keyword">self</span>.target respondsToSelector:invocation.selector]) &#123;</span><br><span class="line">        <span class="comment">//让target调用该方法</span></span><br><span class="line">        [invocation invokeWithTarget:<span class="keyword">self</span>.target];</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//找不到该方法</span></span><br><span class="line">        [invocation doesNotRecognizeSelector:invocation.selector];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>在ViewController中的使用方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.timer = [CDTimer scheduleTimerWithTimerInterval:<span class="number">1.0</span> target:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(repeatAction) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/foundation/nstimer">NSTimer</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/73cd476ec3f0">NSProxy解决NSTimer和CADisplayLink的循环引用</a></p>
+<p>《Effective Objective-C 2.0 编写高质量iOS与OS X代码的52个有效方法》</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/09/05/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -419,7 +799,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -482,7 +862,7 @@
 <p>根据提示最终就会创建一个私有工程。</p>
 <h2 id="创建私有库Git地址，这里以Github为例"><a href="#创建私有库Git地址，这里以Github为例" class="headerlink" title="创建私有库Git地址，这里以Github为例"></a>创建私有库Git地址，这里以Github为例</h2><img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E5%BA%93Git%E6%88%AA%E5%9B%BE.png" class="" title="创建私有库Git截图">
 
-<h2 id="修改配置文件CDUtils-podspec"><a href="#修改配置文件CDUtils-podspec" class="headerlink" title="修改配置文件CDUtils.podspec"></a>修改配置文件CDUtils.podspec</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Be sure to run `pod lib lint CDUtils.podspec&#x27; to ensure this is a</span></span><br><span class="line"><span class="comment"># valid spec before submitting.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Any lines starting with a # are optional, but their use is encouraged</span></span><br><span class="line"><span class="comment"># To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">Pod::Spec.new <span class="keyword">do</span> |s|</span><br><span class="line">  s.name             = <span class="string">&#x27;CDUtils&#x27;</span></span><br><span class="line">  s.version          = <span class="string">&#x27;0.0.1&#x27;</span></span><br><span class="line">  s.summary          = <span class="string">&#x27;CDUtils 是一个公共方法库。&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This description is used to generate tags and improve search results.</span></span><br><span class="line"><span class="comment">#   * Think: What does it do? Why did you write it? What is the focus?</span></span><br><span class="line"><span class="comment">#   * Try to keep it short, snappy and to the point.</span></span><br><span class="line"><span class="comment">#   * Write the description between the DESC delimiters below.</span></span><br><span class="line"><span class="comment">#   * Finally, don&#x27;t worry about the indent, CocoaPods strips it!</span></span><br><span class="line"></span><br><span class="line">  s.description      = &lt;&lt;-DESC</span><br><span class="line">TODO: Add long description of the pod here.</span><br><span class="line">                       DESC</span><br><span class="line"></span><br><span class="line">  s.homepage         = <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span></span><br><span class="line">  <span class="comment"># s.screenshots     = &#x27;www.example.com/screenshots_1&#x27;, &#x27;www.example.com/screenshots_2&#x27;</span></span><br><span class="line">  s.license          = &#123; :<span class="built_in">type</span> =&gt; <span class="string">&#x27;MIT&#x27;</span>, :file =&gt; <span class="string">&#x27;LICENSE&#x27;</span> &#125;</span><br><span class="line">  s.author           = &#123; <span class="string">&#x27;1516715172@qq.com&#x27;</span> =&gt; <span class="string">&#x27;jsjhyp@gmail.com&#x27;</span> &#125;</span><br><span class="line">  s.source           = &#123; :git =&gt; <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span>, :tag =&gt; s.version.to_s &#125;</span><br><span class="line">  <span class="comment"># s.social_media_url = &#x27;https://twitter.com/&lt;TWITTER_USERNAME&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.ios.deployment_target = <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.source_files = <span class="string">&#x27;CDUtils/Classes/**/*&#x27;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># s.resource_bundles = &#123;</span></span><br><span class="line">  <span class="comment">#   &#x27;CDUtils&#x27; =&gt; [&#x27;CDUtils/Assets/*.png&#x27;]</span></span><br><span class="line">  <span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># s.public_header_files = &#x27;Pod/Classes/**/*.h&#x27;</span></span><br><span class="line">  <span class="comment"># s.frameworks = &#x27;UIKit&#x27;, &#x27;MapKit&#x27;</span></span><br><span class="line">  <span class="comment"># s.dependency &#x27;AFNetworking&#x27;, &#x27;~&gt; 2.3&#x27;</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="修改配置文件CDUtils-podspec"><a href="#修改配置文件CDUtils-podspec" class="headerlink" title="修改配置文件CDUtils.podspec"></a>修改配置文件CDUtils.podspec</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Be sure to run `pod lib lint CDUtils.podspec&#x27; to ensure this is a</span></span><br><span class="line"><span class="comment"># valid spec before submitting.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Any lines starting with a # are optional, but their use is encouraged</span></span><br><span class="line"><span class="comment"># To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">Pod::Spec.new <span class="keyword">do</span> |s|</span><br><span class="line">  s.name             = <span class="string">&#x27;CDUtils&#x27;</span></span><br><span class="line">  s.version          = <span class="string">&#x27;0.0.1&#x27;</span></span><br><span class="line">  s.summary          = <span class="string">&#x27;CDUtils 是一个公共方法库。&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This description is used to generate tags and improve search results.</span></span><br><span class="line"><span class="comment">#   * Think: What does it do? Why did you write it? What is the focus?</span></span><br><span class="line"><span class="comment">#   * Try to keep it short, snappy and to the point.</span></span><br><span class="line"><span class="comment">#   * Write the description between the DESC delimiters below.</span></span><br><span class="line"><span class="comment">#   * Finally, don&#x27;t worry about the indent, CocoaPods strips it!</span></span><br><span class="line"></span><br><span class="line">  s.description      = &lt;&lt;-<span class="string">DESC</span></span><br><span class="line"><span class="string">TODO: Add long description of the pod here.</span></span><br><span class="line"><span class="string">                       DESC</span></span><br><span class="line"></span><br><span class="line">  s.homepage         = <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span></span><br><span class="line">  <span class="comment"># s.screenshots     = &#x27;www.example.com/screenshots_1&#x27;, &#x27;www.example.com/screenshots_2&#x27;</span></span><br><span class="line">  s.license          = &#123; :<span class="built_in">type</span> =&gt; <span class="string">&#x27;MIT&#x27;</span>, :file =&gt; <span class="string">&#x27;LICENSE&#x27;</span> &#125;</span><br><span class="line">  s.author           = &#123; <span class="string">&#x27;1516715172@qq.com&#x27;</span> =&gt; <span class="string">&#x27;jsjhyp@gmail.com&#x27;</span> &#125;</span><br><span class="line">  s.source           = &#123; :git =&gt; <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span>, :tag =&gt; s.version.to_s &#125;</span><br><span class="line">  <span class="comment"># s.social_media_url = &#x27;https://twitter.com/&lt;TWITTER_USERNAME&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.ios.deployment_target = <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.source_files = <span class="string">&#x27;CDUtils/Classes/**/*&#x27;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># s.resource_bundles = &#123;</span></span><br><span class="line">  <span class="comment">#   &#x27;CDUtils&#x27; =&gt; [&#x27;CDUtils/Assets/*.png&#x27;]</span></span><br><span class="line">  <span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># s.public_header_files = &#x27;Pod/Classes/**/*.h&#x27;</span></span><br><span class="line">  <span class="comment"># s.frameworks = &#x27;UIKit&#x27;, &#x27;MapKit&#x27;</span></span><br><span class="line">  <span class="comment"># s.dependency &#x27;AFNetworking&#x27;, &#x27;~&gt; 2.3&#x27;</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
 <h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>命令行进入私有库工程所在目录下的Example文件夹，执行<code>pod install</code>，安装依赖项。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PoetMacBook-Pro:Example kris$ pod install</span><br><span class="line">Analyzing dependencies</span><br><span class="line">Downloading dependencies</span><br><span class="line">Generating Pods project</span><br><span class="line">Integrating client project</span><br><span class="line">Pod installation complete! There is 1 dependency from the Podfile and 1 total pod installed.</span><br><span class="line">PoetMacBook-Pro:Example kris$ </span><br></pre></td></tr></table></figure>
@@ -534,7 +914,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -629,7 +1009,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -742,7 +1122,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -996,7 +1376,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1260,7 +1640,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1359,647 +1739,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">LLDB使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-30 20:12:03" itemprop="dateCreated datePublished" datetime="2020-06-30T20:12:03+08:00">2020-06-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="LLDB"><a href="#LLDB" class="headerlink" title="LLDB"></a>LLDB</h2><p>LLDB 是一个有着 REPL 的特性和 C++ ,Python 插件的开源调试器。LLDB 绑定在 Xcode 内部，存在于主窗口底部的控制台中。调试器允许你在程序运行的特定时暂停它，你可以查看变量的值，执行自定的指令，并且按照你所认为合适的步骤来操作程序的进展。</p>
-<h3 id="expression"><a href="#expression" class="headerlink" title="expression"></a>expression</h3><p>可简写为e，作用为执行一个表达式。</p>
-<ul>
-<li>1、查询当前堆栈变量的值</li>
-<li>2、动态修改当前线程堆栈变量的值</li>
-</ul>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB1.png" class="" title="LLDB">
-
-<p>我们在调试数据的时候，有的时候需要动态修改变量值，使用<code>expression</code>那是十分方便的调试。</p>
-<h4 id="po-amp-p"><a href="#po-amp-p" class="headerlink" title="po &amp; p"></a><code>po</code> &amp; <code>p</code></h4><p><code>po</code>的作用为打印对象，事实上，我们可以通过<code>help po</code>得知，<code>po</code>是<code>expression -O --</code>的简写，我们可以通过它打印出对象，而不是打印对象的指针。而值得一提的是，在 <code>help expression</code> 返回的帮助信息中，我们可以知道，<code>po</code>命令会尝试调用对象的 <code>description</code> 方法来取得对象信息，因此我们也可以重载某个对象的<code>description方法</code>，使我们调试的时候能获得可读性更强，更全面的信息。</p>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB2.png" class="" title="LLDB">
-
-<p><code>p</code>即是<code>print</code>，也是<code>expression --</code>的缩写，与<code>po</code>不同，它不会打出对象的详细信息，只会打印出一个$符号，数字，再加上一段地址信息。打印对象的时候我们也可以指定特定格式。</p>
-<ul>
-<li><code>x</code> ：十六进制打印</li>
-<li><code>d</code>:十进制打印</li>
-<li><code>u</code>:无符号十进制打印</li>
-<li><code>o</code>:八进制打印</li>
-<li><code>t</code>:二进制形式打印</li>
-<li><code>f</code>:浮点数</li>
-</ul>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB3.png" class="" title="LLDB">
-
-
-<h3 id="堆栈"><a href="#堆栈" class="headerlink" title="堆栈"></a>堆栈</h3><p><code>bt</code>即是<code>thread backtrace</code>，作用是打印出当前线程的堆栈信息。</p>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB4.png" class="" title="LLDB">
-
-<p>我们在打印断点的时候，我们可以在左侧看到一些堆栈信息，但是看不完全，这个时候使用<code>bt</code>指令可以打印出完整的堆栈信息。</p>
-<p>输入<code>frame select</code>指令我们可以任意的去选择一个作用域去查看。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame select <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p><code>thread</code>另一个比较常用的用法是 <code>thread return</code>，调试的时候，我们希望在当前执行的程序堆栈直接返回一个自己想要的值，可以执行该命令直接返回。<br><code>thread return &lt;expr&gt;</code><br>在这个断点中，我们可以执行 <code>thread return NO</code>让该函数调用直接返回<code>NO </code>，在调试中轻松覆盖任何函数的返回路径。</p>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB5.png" class="" title="LLDB">
-
-<p><code>frame</code>即是帧，其实就是当前的程序堆栈，我们输入<code>bt</code>命令，打印出来的其实是当前线程的<code>frame</code>。</p>
-<ul>
-<li>展示当前作用域下的参数和局部变量<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame variable</span><br><span class="line">(lldb)fr v</span><br><span class="line">frame variable --no-summary-depth</span><br></pre></td></tr></table></figure>
-<ul>
-<li>展示当前作用域下的局部变量<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame variable --no-args</span><br><span class="line">(lldb)fr v -a</span><br></pre></td></tr></table></figure></li>
-<li>展示指定变量var的具体内容<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame variable var</span><br><span class="line">(lldb)fr v var</span><br><span class="line">(lldb)p var</span><br><span class="line">(lldb)po var</span><br></pre></td></tr></table></figure></li>
-<li>展示当前对象的全局变量<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb)target variable</span><br><span class="line">(lldb)ta v</span><br></pre></td></tr></table></figure></li>
-<li>打印某一方法具体的信息<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frame select num（<span class="number">1</span>，<span class="number">2</span>，<span class="number">3.</span>）</span><br></pre></td></tr></table></figure>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB7.png" class="" title="LLDB">
-
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="设置断点"><a href="#设置断点" class="headerlink" title="设置断点"></a>设置断点</h3><h4 id="breakpoint"><a href="#breakpoint" class="headerlink" title="breakpoint"></a>breakpoint</h4><p>所有调试都是由断点开始的，我们接触的最多，就是以breakpoint命令为基础的断点。<br>一般我们对breakpoint命令使用得不多，而是在XCode的GUI界面中直接添加断点。除了直接触发程序暂停供调试外，我们可以进行进一步的配置。</p>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB8.png" class="" title="LLDB">
-
-<ul>
-<li>添加condition，一般用于多次调用的函数或者循坏的代码中，在作用域内达到某个条件，才会触发程序暂停</li>
-<li>忽略次数，这个很容易理解，在忽略触发几次后再触发暂停</li>
-<li>添加Action，为这个断点添加子命令、脚本、shell命令、声效（有个毛线用）等Action，我的理解是一个脚本化的功能，我们可以在断点的基础上添加一些方便调试的脚本，提高调试效率。</li>
-<li>自动继续，配合上面的添加Action，我们就可以不用一次又一次的暂停程序进行调试来查询某些值（大型程序中断一次还是会有卡顿），直接用Action将需要的信息打印在控制台，一次性查看即可。</li>
-</ul>
-<h4 id="watchpoint"><a href="#watchpoint" class="headerlink" title="watchpoint"></a>watchpoint</h4><p>有时候我们会关心类的某个属性什么时候被人修改了，最简单的方法当然就是在setter的方法打断点，或者在<code>@property</code>的属性生命行打上断点。这样当对象的setter方法被调用时，就会触发这个断点<br>当然这么做是有缺点的，对于直接访问内存地址的修改，setter方法的断点并没有办法监控得到，因此我们需要用到<code>watchpoint</code>命令。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">watchpoint set variable str</span><br><span class="line">watchpoint list <span class="comment">//列出所有watchpoint</span></span><br><span class="line">watchpoint delete <span class="comment">// 删除所有watchpoint</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Chisel"><a href="#Chisel" class="headerlink" title="Chisel"></a>Chisel</h2><p><a href="https://github.com/facebook/chisel">Chisel</a>是facebook开源的一个LLDB命令的集合，它里面简化和扩展了LLDB的命令。使用它会更方便的调试我们的程序。在它的GitHub上有详细的安装方式，这里就不赘述了。</p>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p><strong>1. pviews</strong></p>
-<p>这个命令可以按层级递归打印指定view的所有subView，相当于 UIView 的私有辅助方法 [view recursiveDescription]。如果不指定view的话就是默认window：</p>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB9.png" class="" title="LLDB">
-
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB10.png" class="" title="LLDB">
-
-
-<p><strong>2. pvc</strong></p>
-<p>这个命令递归打印出viewController的层级，相当于 UIViewController 的一个私有辅助方法 [UIViewController _printHierarchy] ：</p>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB11.png" class="" title="LLDB">
-
-<p><strong>3. visualize</strong></p>
-<p>它可以使用Mac的预览打开一个 UIImage, CGImageRef, UIView, 或 CALayer。 我们其实可以用这个功能来截图或者查看一个view的具体内容：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb) visualize <span class="number">0x7feb5cf18210</span></span><br><span class="line">(lldb) visualize <span class="keyword">self</span>.view</span><br></pre></td></tr></table></figure>
-
-
-<p><strong>4. mask/unmask</strong></p>
-<p>mask用来在view或者layer上覆盖一个半透明的矩形， unmask解除。当我们想找一个view的时候可以使用。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb) mask <span class="keyword">self</span>.imageView</span><br><span class="line">(lldb) unmask <span class="number">0x7f8732e037b0</span></span><br></pre></td></tr></table></figure>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB12.png" class="" title="LLDB">
-
-<p><strong>5. border/unborder</strong></p>
-<p>border可以给view或者layer添加边框，unborder解除。当我们想找一个view的时候可以使用。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb) border <span class="keyword">self</span>.imageView</span><br><span class="line">(lldb) unborder <span class="number">0x7f8732e037b0</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>6. show/hide</strong></p>
-<p>显示隐藏一个view或者layer。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb) hide <span class="keyword">self</span>.imageView</span><br><span class="line">(lldb) show <span class="keyword">self</span>.imageView</span><br></pre></td></tr></table></figure>
-<p><strong>7. caflush</strong></p>
-<p>这个命令用来刷新UI，当我们改变了UI的时候，不用重新启动，使用caflush刷新UI就行。</p>
-<p><strong>8. presponder</strong></p>
-<p>打印响应者链：</p>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB13.png" class="" title="LLDB">
-
-
-<p><strong>9. pclass</strong></p>
-<p>打印指定对象的class的继承关系：</p>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB14.png" class="" title="LLDB">
-
-<p><strong>10. pjson</strong></p>
-<p>打印一个字典或者数组的json样式。</p>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB15.png" class="" title="LLDB">
-
-
-<p><strong>11. slowanim/unslowanim</strong></p>
-<p>减慢动画的效果，检查一个动画哪里有问题时可以使用。</p>
-<p><strong>12. pdocspath</strong></p>
-<p>打印App的Documents路径：</p>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB16.png" class="" title="LLDB">
-
-<p><strong>13. fv &amp; fvc</strong></p>
-<p>这两个命令是用来搜索当前内存中存在的view和viewController实例的命令，支持正则搜索。</p>
-<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB17.png" class="" title="LLDB">
-
-<p><strong>14. vs</strong><br>这个命令可以移动正在调试的对象，让对象切换到其父视图之前，或切换到其兄弟视图之前。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(lldb) vs <span class="number">0x128430c50</span></span><br><span class="line"></span><br><span class="line">Use the following and (q) to quit.</span><br><span class="line">(w) move to superview</span><br><span class="line">(s) move to first subview</span><br><span class="line">(a) move to previous sibling</span><br><span class="line">(d) move to next sibling</span><br><span class="line">(p) print the hierarchy</span><br></pre></td></tr></table></figure>
-
-<h2 id="Chisel安装步骤"><a href="#Chisel安装步骤" class="headerlink" title="Chisel安装步骤"></a>Chisel安装步骤</h2><p>官网地址：<a href="https://github.com/facebook/chisel">https://github.com/facebook/chisel</a> ，官网推荐使用<code>Homebrew</code>安装，但是实际测试下来发现<code>Homebrew</code>安装的版本有问题，所以这里推荐使用<code>git clone</code>最新的版本，然后配置路径使用。</p>
-<h3 id="下载仓库最新的代码"><a href="#下载仓库最新的代码" class="headerlink" title="下载仓库最新的代码"></a>下载仓库最新的代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/facebook/chisel.git</span><br></pre></td></tr></table></figure>
-
-<h3 id="配置～-lldbinit文件"><a href="#配置～-lldbinit文件" class="headerlink" title="配置～/.lldbinit文件"></a>配置<code>～/.lldbinit</code>文件</h3><p>查找<code>～/.lldbinit</code>文件是否存在，如果不存在，创建一个。如果存在，就修改这个文件。下面创建一个这样的文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~</span><br><span class="line">$ touch .lldbinit</span><br><span class="line">$ open .lldbinit</span><br></pre></td></tr></table></figure>
-
-<p>打开<code>.lldbinit</code>文件后，在这个文件中配置第1步中克隆下来的代码里<code>fbchisellldb.py</code>文件的路径，我这里提供我自己的<code>.lldbinit</code>文件的内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ~/.lldbinit</span></span><br><span class="line"><span class="built_in">command</span> script import /Users/kris/Documents/git/chisel/fbchisellldb.py</span><br></pre></td></tr></table></figure>
-
-<h3 id="配置完这些操作后，重新启动Xcode，打个断点，使用新的LLDB命令试下"><a href="#配置完这些操作后，重新启动Xcode，打个断点，使用新的LLDB命令试下" class="headerlink" title="配置完这些操作后，重新启动Xcode，打个断点，使用新的LLDB命令试下"></a>配置完这些操作后，重新启动Xcode，打个断点，使用新的LLDB命令试下</h3><img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB19.png" class="" title="LLDB">
-
-
-
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d6a0a5e39b0e">iOS调试-LLDB学习总结</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/67f08a4d8cf2">iOS开发调试 - LLDB使用概览</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011374318/article/details/79648178">LLDB 常用命令</a></p>
-<p><a href="https://github.com/facebook/chisel/wiki">chisel命令列表</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/06/29/RunLoop/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/06/29/RunLoop/" class="post-title-link" itemprop="url">RunLoop</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-29 22:40:23" itemprop="dateCreated datePublished" datetime="2020-06-29T22:40:23+08:00">2020-06-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>9.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="RunLoop"><a href="#RunLoop" class="headerlink" title="RunLoop"></a>RunLoop</h2><p>RunLoop 运行循环，在程序运行过程中循环做一些事情。<br><strong>应用范畴</strong></p>
-<ul>
-<li>1、定时器（Timer）、PerformSelector</li>
-<li>2、GCD </li>
-<li>3、事件响应、手势识别、界面刷新</li>
-<li>4、网络请求</li>
-<li>5、AutoreleasePool</li>
-</ul>
-<h3 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h3><p>在我们命令行项目的<code>main</code>函数里面</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">  <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;Hello, World!&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行完<code>NSLog(@&quot;Hello, World!&quot;);</code>这个代码以后，程序立即退出，但是在我们的正常项目<code>main</code>函数里面</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">  <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">UIApplicationMain</span>(argc, argv, <span class="literal">nil</span>, <span class="built_in">NSStringFromClass</span>([AppDelegate <span class="keyword">class</span>]));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 如果用一个伪代码来简单的解释一下上面代码的意思，就是<br> <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">  <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">    <span class="keyword">int</span> retVal = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">      <span class="comment">//休眠等待消息</span></span><br><span class="line">      <span class="keyword">int</span> message = sleep_and_wait();</span><br><span class="line">      <span class="comment">//处理消息</span></span><br><span class="line">      retVal = process_message(message)</span><br><span class="line">    &#125; <span class="keyword">while</span> (<span class="number">0</span> == retVal);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br> 程序不会马上退出，而是保持运行状态，RunLoop的基本作用：</p>
-<ul>
-<li>1、保持程序持续的运行</li>
-<li>2、处理app中的各种事件（比如触摸事件，定时器事件）</li>
-<li>3、节省CPU资源，提高程序性能，该做事的时候做事，改休息的时候休息</li>
-</ul>
-<p><strong>RunLoop对象</strong><br>iOS中有2套API来访问和使用RunLoop</p>
-<ul>
-<li>1、Fundataion：NSRunLoop</li>
-<li>2、Core Fundataion：CFRunLoop</li>
-</ul>
-<p><code>NSRunLoop</code>是基于<code>CFRunLoop</code>的一层OC包装，<code>CFRunLoop</code>是开源的，地址:<a target="_blank" rel="noopener" href="https://opensource.apple.com/tarballs/CF/">https://opensource.apple.com/tarballs/CF/</a></p>
-<p><strong>RunLoop与线程</strong></p>
-<ul>
-<li>1、每一条线程都有唯一的一个与之对应的RunLoop对象</li>
-<li>2、RunLoop保存在一个全局的Dictionary里，线程作为Key，RunLoop作为Value</li>
-<li>3、线程刚创建时，并没有RunLoop对象，RunLoop会在第一次获取她时创建</li>
-<li>4、RunLoop会在线程结束的时候销毁</li>
-<li>5、主线程的RunLoop已经自动获取（创建），子线程默认没有开启RunLoop</li>
-</ul>
-<p><strong>获取RunLoop对象</strong></p>
-<ul>
-<li>1、Fundation<ul>
-<li>1、获取当前线程的RunLoop对象<code>[NSRunLoop currentRunLoop]</code></li>
-<li>2、获取主线程的RunLoop对象<code>[NSRunLoop mainRunLoop]</code></li>
-</ul>
-</li>
-<li>2、Core Foundation<ul>
-<li>1、获取当前线程的RunLoop对象<code>CFRunLoopGetCurrent()</code></li>
-<li>2、获取主线程的RunLoop对象<code>CFRunLoopGetMain()</code></li>
-</ul>
-</li>
-</ul>
-<p><strong>RunLoop相关类</strong><br>Core Foundation中关于RunLoop一共有5个类</p>
-<ul>
-<li>1、CFRunLoopRef</li>
-<li>2、CFRunLoopModeRef</li>
-<li>3、CFRunLoopSourceRef</li>
-<li>4、CFRunLoopTimerRef</li>
-<li>5、CFRunLoopObserverRef</li>
-</ul>
-<p>我们下载<code>RunLoop</code>，然后搜索<code>CFRunLoop</code>的组成</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> __CFRunLoop &#123;</span><br><span class="line">  <span class="built_in">CFRuntimeBase</span> _base;</span><br><span class="line">  pthread_mutex_t _lock;            <span class="comment">/* locked for accessing mode list */</span></span><br><span class="line">  __CFPort _wakeUpPort;            <span class="comment">// used for CFRunLoopWakeUp </span></span><br><span class="line">  Boolean _unused;</span><br><span class="line">  <span class="keyword">volatile</span> _per_run_data *_perRunData;              <span class="comment">// reset for runs of the run loop</span></span><br><span class="line">  pthread_t _pthread;</span><br><span class="line">  uint32_t _winthread;</span><br><span class="line">  <span class="built_in">CFMutableSetRef</span> _commonModes;</span><br><span class="line">  <span class="built_in">CFMutableSetRef</span> _commonModeItems;</span><br><span class="line">  <span class="built_in">CFRunLoopModeRef</span> _currentMode;</span><br><span class="line">  <span class="built_in">CFMutableSetRef</span> _modes;</span><br><span class="line">  <span class="keyword">struct</span> _block_item *_blocks_head;</span><br><span class="line">  <span class="keyword">struct</span> _block_item *_blocks_tail;</span><br><span class="line">  <span class="built_in">CFAbsoluteTime</span> _runTime;</span><br><span class="line">  <span class="built_in">CFAbsoluteTime</span> _sleepTime;</span><br><span class="line">  <span class="built_in">CFTypeRef</span> _counterpart;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>我们打印一下<code>NSLog(@&quot;%@&quot;,[NSRunLoop currentRunLoop]);</code></p>
-<p>其中主要的有下面几个:</p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop1.png" class="" title="RunLoop">
-
-<ul>
-<li>1、<code>_pthread</code>记录当前线程</li>
-<li>2、<code>_commonModes</code></li>
-<li>3、<code>_commonModeItems</code></li>
-<li>4、<code>_currentMode</code>,当前mode类型</li>
-<li>5、<code>_modes</code> 存放CFRunLoop里面的所有mode</li>
-</ul>
-<p>我们在RunLoop源码中搜索<code>CFRunLoopMode</code>来查看一下CFRunLoopMode都存放了哪些东西:</p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop2.png" class="" title="RunLoop">
-
-<ul>
-<li>1、Source0：<ul>
-<li>处理触摸事件，</li>
-<li>performSelector:onThread:</li>
-</ul>
-</li>
-<li>2、Source1：<ul>
-<li>基于Port的线程间通信，</li>
-<li>系统事件的捕捉</li>
-</ul>
-</li>
-<li>3、Timer ：<ul>
-<li>NSTimer，</li>
-<li>performSelector:withObject:afterDelay:</li>
-</ul>
-</li>
-<li>4、Observers：<ul>
-<li>用于监听RunLoop的状态</li>
-<li>UI刷新</li>
-<li>Autorelease pool（BeforeWaiting）</li>
-</ul>
-</li>
-</ul>
-<p>我们来简单的证明一下<code>Source0</code>,我们随便写一个<code>touchesBegan</code>触摸事件，然后在里面打一个断点，<code>bt</code>指令就是打印线程执行的所有方法</p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop4.png" class="" title="RunLoop">
-
-<p>我们可以在线程执行方法中可以发现，在调用RunLoop相关方法的时候，第一个是调用的<code>__CFRunLoopDoSources0</code></p>
-<p>RunLoop里面会有多个Mode，但是只有一个<code>_currentMode</code></p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop3.png" class="" title="RunLoop">
-
-
-
-<p><strong>CFRunLoopModeRef</strong></p>
-<ul>
-<li>1、CFRunLoopModeRef代表着RunLoop的运行模式</li>
-<li>2、一个RunLoop包含若干个<code>Mode</code>，每个<code>Mode</code>又包含若干个<code>Source0/Source1/Timer/Observer</code></li>
-<li>3、RunLoop启动的时候只能选择其中一个Mode作为currentMode</li>
-<li>4、如果要切换Mode，只能退出当前Loop，再重新选择一个Mode进入，不同组的<code>Source0/Source1/Timer/Observer</code>互不影响</li>
-<li>5、如果Mode里面没有任何<code>Source0/Source1/Timer/Observer</code>，RunLoop会立刻退出</li>
-</ul>
-<p><strong>CFRunLoopModeRef常见的Mode</strong></p>
-<ul>
-<li>1、KCFRunLoopDefaultMode（NSDefaultRunLoopMode）：App的默认Mode，通常主线程是在这个Mode下运行的</li>
-<li>2、UITrackingRunLoopMode：界面跟踪 Mode，用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其他 Mode 影响</li>
-</ul>
-<p>获取当前Mode</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CFRunLoopMode</span> mode = <span class="built_in">CFRunLoopCopyCurrentMode</span>(<span class="built_in">CFRunLoopGetCurrent</span>());</span><br></pre></td></tr></table></figure>
-
-
-<p><strong>CFRunLoopObserverRef</strong></p>
-<p>RunLoop的几种状态</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Run Loop Observer Activities */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">CF_OPTIONS</span>(<span class="built_in">CFOptionFlags</span>, <span class="built_in">CFRunLoopActivity</span>) &#123;</span><br><span class="line">  kCFRunLoopEntry = (<span class="number">1</span>UL &lt;&lt; <span class="number">0</span>), <span class="comment">//即将进入runloop</span></span><br><span class="line">  kCFRunLoopBeforeTimers = (<span class="number">1</span>UL &lt;&lt; <span class="number">1</span>), <span class="comment">//即将处理timer</span></span><br><span class="line">  kCFRunLoopBeforeSources = (<span class="number">1</span>UL &lt;&lt; <span class="number">2</span>), <span class="comment">//即将处理source</span></span><br><span class="line">  kCFRunLoopBeforeWaiting = (<span class="number">1</span>UL &lt;&lt; <span class="number">5</span>), <span class="comment">//即将进入休眠</span></span><br><span class="line">  kCFRunLoopAfterWaiting = (<span class="number">1</span>UL &lt;&lt; <span class="number">6</span>),  <span class="comment">//刚从休眠中唤醒</span></span><br><span class="line">  kCFRunLoopExit = (<span class="number">1</span>UL &lt;&lt; <span class="number">7</span>),          <span class="comment">//即将退出Loop</span></span><br><span class="line">  kCFRunLoopAllActivities = <span class="number">0x0FFFFFFF</span>U</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>我们可以添加一个Observer监听RunLoop的所有状态，代码如下</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建Observer</span></span><br><span class="line"><span class="built_in">CFRunLoopObserverRef</span> observer = <span class="built_in">CFRunLoopObserverCreateWithHandler</span>(kCFAllocatorDefault,kCFRunLoopAllActivities, <span class="literal">YES</span>, <span class="number">0</span>, ^(<span class="built_in">CFRunLoopObserverRef</span> observer, <span class="built_in">CFRunLoopActivity</span> activity) &#123;</span><br><span class="line">  <span class="keyword">switch</span> (activity) &#123;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopEntry:</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopEntry&quot;</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopBeforeTimers:</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopBeforeTimers&quot;</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopBeforeSources:</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopBeforeSources&quot;</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopBeforeWaiting:</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopBeforeWaiting&quot;</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopAfterWaiting:</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopAfterWaiting&quot;</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopExit:</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopExit&quot;</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 添加Observer到RunLoop中</span></span><br><span class="line"><span class="built_in">CFRunLoopAddObserver</span>(<span class="built_in">CFRunLoopGetMain</span>(), observer, kCFRunLoopCommonModes);</span><br><span class="line"><span class="comment">// 释放</span></span><br><span class="line"><span class="built_in">CFRelease</span>(observer);</span><br></pre></td></tr></table></figure>
-
-<p>我们运行上面代码，然后查看打印结果:</p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop6.png" class="" title="RunLoop">
-
-<p>在没有任何事件处理的情况下，最终RunLoop的活动状态为<code>kCFRunLoopBeforeWaiting</code>即将进入休眠。</p>
-<p>既然我们可以监听到了<code>RunLoop</code>的<code>Mode</code>变化情况，那么我们就可以打印一下<code>KCFRunLoopDefaultMode</code>和<code>UITrackingRunLoopMode</code>的切换情况了。</p>
-<p>我们在view上随便拉一个<code>UITextView</code>,然后滚动<code>UITextView</code><br>监听代码</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建observer</span></span><br><span class="line"><span class="built_in">CFRunLoopObserverRef</span> observer = <span class="built_in">CFRunLoopObserverCreateWithHandler</span>(kCFAllocatorDefault, kCFRunLoopAllActivities, <span class="literal">YES</span>, <span class="number">0</span>, ^(<span class="built_in">CFRunLoopObserverRef</span> observer, <span class="built_in">CFRunLoopActivity</span> activity) &#123;</span><br><span class="line">  <span class="keyword">switch</span> (activity) &#123;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopEntry: &#123;</span><br><span class="line">      <span class="built_in">CFRunLoopMode</span> mode = <span class="built_in">CFRunLoopCopyCurrentMode</span>(<span class="built_in">CFRunLoopGetCurrent</span>());</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopEntry - %@&quot;</span>, mode);</span><br><span class="line">      <span class="built_in">CFRelease</span>(mode);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopExit: &#123;</span><br><span class="line">      <span class="built_in">CFRunLoopMode</span> mode = <span class="built_in">CFRunLoopCopyCurrentMode</span>(<span class="built_in">CFRunLoopGetCurrent</span>());</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopExit - %@&quot;</span>, mode);</span><br><span class="line">      <span class="built_in">CFRelease</span>(mode);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加observer到runloop中</span></span><br><span class="line"><span class="built_in">CFRunLoopAddObserver</span>(<span class="built_in">CFRunLoopGetMain</span>(), observer, kCFRunLoopCommonModes);</span><br><span class="line"><span class="comment">// 释放</span></span><br><span class="line"><span class="built_in">CFRelease</span>(observer);</span><br></pre></td></tr></table></figure>
-<p>打印结果为:</p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop5.png" class="" title="RunLoop">
-
-<ul>
-<li>1、在刚开始滚动<code>UITextView</code>的时候，先退出<code>kCFRunLoopDefaultMode</code>，所以默认应该就是<code>kCFRunLoopDefaultMode</code></li>
-<li>2、在滚动中，进入<code>UITrackingRunLoopMode</code></li>
-<li>3、在滚动结束，先退出<code>UITrackingRunLoopMode</code>，然后在进入<code>kCFRunLoopDefaultMode</code></li>
-</ul>
-<h3 id="RunLoop的运行逻辑"><a href="#RunLoop的运行逻辑" class="headerlink" title="RunLoop的运行逻辑:"></a>RunLoop的运行逻辑:</h3><img src="/Blog/2020/06/29/RunLoop/RunLoop7.png" class="" title="RunLoop">
-
-
-<p>每次运行RunLoop，线程的RunLoop会自动处理之前未处理的消息，并通知相关的观察者。具体顺序</p>
-<ul>
-<li>1、通知观察者（observers）RunLoop即将启动</li>
-<li>2、通知观察者（observers）任何即将要开始的定时器</li>
-<li>3、通知观察者（observers）即将处理source0事件</li>
-<li>4、处理source0</li>
-<li>5、如果有source1，跳到第9步</li>
-<li>6、通知观察者（observers）线程即将进入休眠</li>
-<li>7、将线程置于休眠知道任一下面的事件发生<ul>
-<li>1、source0事件触发</li>
-<li>2、定时器启动</li>
-<li>3、外部手动唤醒</li>
-</ul>
-</li>
-<li>8、通知观察者（observers）线程即将唤醒</li>
-<li>9、处理唤醒时收到的时间，之后跳回2<ul>
-<li>1、如果用户定义的定时器启动，处理定时器事件</li>
-<li>2、如果source0启动，传递相应的消息</li>
-</ul>
-</li>
-<li>10、通知观察者RunLoop结束</li>
-</ul>
-<p><strong>RunLoop休眠原理</strong></p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop8.png" class="" title="RunLoop">
-
-<p>在RunLoop即将休眠的时候，通过<code>mach_msg()</code>方法来让软件和硬件交互</p>
-<ul>
-<li>1、即将休眠的时候，程序调用<code>mach_msg()</code>传递给CPU，告诉CPU停止运行</li>
-<li>2、即将启动RunLoop的时候，程序调用<code>mach_msg()</code>传递给CPU，告诉CPU开始工作</li>
-</ul>
-<h3 id="RunLoop简单应用"><a href="#RunLoop简单应用" class="headerlink" title="RunLoop简单应用"></a>RunLoop简单应用</h3><h4 id="滚动视图上面NSTimer不失效"><a href="#滚动视图上面NSTimer不失效" class="headerlink" title="滚动视图上面NSTimer不失效"></a>滚动视图上面NSTimer不失效</h4><p>我们写一个简单的定时器,然后视图上面创建一个TextView,然后滚动TextView</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">[<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">1</span> repeats:<span class="literal">YES</span> block:^(<span class="built_in">NSTimer</span> * _Nonnull timer) &#123;</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;%d&quot;</span>,count++);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
-
-<img src="/Blog/2020/06/29/RunLoop/RunLoop9.png" class="" title="RunLoop">
-
-<p>我们观察可以发现在打印的第二秒和第三秒之间其实相差了<code>14s</code>，因为一个线程只会有一个RunLoop，默认情况下是<code>kCFRunLoopDefaultMode</code>，在滚动<code>UITextView</code>的时候，RunLoop切换到了<code>UITrackingRunLoopMode</code>,这个时候定时器就会停止，在滚动<code>UITextView</code>结束的时候，RunLoop切换到了<code>kCFRunLoopDefaultMode</code>，定时器继续开始启动了。</p>
-<p>解决这个问题的方法就是把这个<code>NSTimer</code>添加到两种RunLoop中</p>
-<ul>
-<li>1、<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:timer forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</span><br><span class="line">[[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:timer forMode:<span class="built_in">UITrackingRunLoopMode</span>];</span><br></pre></td></tr></table></figure></li>
-<li>2、还有一个NSRunLoopCommonModes，我们用<code>NSRunLoopCommonModes</code>标记的时候，就可以实现上面效果<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:timer forMode:<span class="built_in">NSRunLoopCommonModes</span>];</span><br></pre></td></tr></table></figure>
-NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能在_commonModes数组中存放的模式下工作</li>
-</ul>
-<h4 id="线程保活-常驻线程"><a href="#线程保活-常驻线程" class="headerlink" title="线程保活(常驻线程)"></a>线程保活(常驻线程)</h4><p>开始之前先介绍几个概念</p>
-<ul>
-<li>1、线程刚创建时，并没有RunLoop对象，RunLoop会在第一次获取她时创建<ul>
-<li>1、获取线程：[NSRunLoop currentRunLoop]</li>
-<li>2、获取线程：CFRunLoopGetCurrent()</li>
-</ul>
-</li>
-<li>2、启动RunLoop的三种方法<ul>
-<li>1、<code>- (void)run; </code>,<br>  这种方法runloop会一直运行下去，在此期间会处理来自输入源的数据，并且会在NSDefaultRunLoopMode模式下重复调用runMode:beforeDate:方法；</li>
-<li>2、<code>- (void)runUntilDate:(NSDate *)limitDate；</code><br>  可以设置超时时间，在超时时间到达之前，runloop会一直运行，在此期间runloop会处理来自输入源的数据，并且也会在NSDefaultRunLoopMode模式下重复调用runMode:beforeDate:方法；</li>
-<li>3、<code>- (void)runMode:(NSString *)mode beforeDate:(NSDate *)limitDate;</code><br>  runloop会运行一次，超时时间到达或者第一个input source被处理，则runloop就会退出</li>
-</ul>
-</li>
-<li>3、退出RunLoop的方式<ul>
-<li>1、启动方式的退出方法，如果runloop没有input sources或者附加的timer，runloop就会退出。</li>
-<li>2、启动方式runUntilDate，可以通过设置超时时间来退出runloop。</li>
-<li>3、启动方式runMode:beforeDate，通过这种方式启动，runloop会运行一次，当超时时间到达或者第一个输入源被处理，runloop就会退出。</li>
-</ul>
-</li>
-</ul>
-<p>如果我们想控制runloop的退出时机，而不是在处理完一个输入源事件之后就退出，那么就要重复调用runMode:beforeDate:，<br>具体可以参考苹果文档给出的方案，如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSRunLoop</span> *myLoop  = [<span class="built_in">NSRunLoop</span> currentRunLoop];</span><br><span class="line">myPort = (<span class="built_in">NSMachPort</span> *)[<span class="built_in">NSMachPort</span> port];</span><br><span class="line">[myLoop addPort:_port forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</span><br><span class="line"><span class="built_in">BOOL</span> isLoopRunning = <span class="literal">YES</span>; <span class="comment">// global</span></span><br><span class="line"><span class="keyword">while</span> (isLoopRunning &amp;&amp; [myLoop runMode:<span class="built_in">NSDefaultRunLoopMode</span> beforeDate:[<span class="built_in">NSDate</span> distantFuture]]);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//关闭runloop的地方</span></span><br><span class="line">- (<span class="keyword">void</span>)quitLoop &#123;</span><br><span class="line">  isLoopRunning = <span class="literal">NO</span>;</span><br><span class="line">  <span class="built_in">CFRunLoopStop</span>(<span class="built_in">CFRunLoopGetCurrent</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h3><p>1、讲讲RunLoop项目中有用到吗？</p>
-<ul>
-<li>1、定时器切换的时候，为了保证定时器的准确性，需要添加runLoop</li>
-<li>2、在聊天界面，我们需要持续的把聊天信息存到数据库中，这个时候需要开启一个保活线程，在这个线程中处理</li>
-</ul>
-<p>2、RunLoop内部实现逻辑？</p>
-<ul>
-<li>1、通知观察者（observers）RunLoop即将启动</li>
-<li>2、通知观察者（observers）任何即将要开始的定时器</li>
-<li>3、通知观察者（observers）即将处理source0事件</li>
-<li>4、处理source0</li>
-<li>5、如果有source1，跳到第9步</li>
-<li>6、通知观察者（observers）线程即将进入休眠</li>
-<li>7、将线程置于休眠知道任一下面的事件发生</li>
-<li>1、source0事件触发</li>
-<li>2、定时器启动</li>
-<li>3、外部手动唤醒</li>
-<li>8、通知观察者（observers）线程即将唤醒</li>
-<li>9、处理唤醒时收到的时间，之后跳回2</li>
-<li>1、如果用户定义的定时器启动，处理定时器事件</li>
-<li>2、如果source0启动，传递相应的消息</li>
-<li>10、通知观察者RunLoop结束</li>
-</ul>
-<p>3、RunLoop和线程的关系？</p>
-<ul>
-<li>1、每一条线程都有唯一的一个与之对应的RunLoop对象</li>
-<li>2、RunLoop保存在一个全局的Dictionary里，线程作为Key，RunLoop作为Value</li>
-<li>3、线程刚创建时，并没有RunLoop对象，RunLoop会在第一次获取她时创建</li>
-<li>4、RunLoop会在线程结束的时候销毁</li>
-<li>5、主线程的RunLoop已经自动获取（创建），子线程默认没有开启RunLoop</li>
-</ul>
-<p>4、RunLoop有几种状态</p>
-<p>kCFRunLoopEntry = (1UL &lt;&lt; 0),   //   即将进入RunLoop<br>kCFRunLoopBeforeTimers = (1UL &lt;&lt; 1), // 即将处理Timer<br>kCFRunLoopBeforeSources = (1UL &lt;&lt; 2), // 即将处理Source<br>kCFRunLoopBeforeWaiting = (1UL &lt;&lt; 5), //即将进入休眠<br>kCFRunLoopAfterWaiting = (1UL &lt;&lt; 6),// 刚从休眠中唤醒<br>kCFRunLoopExit = (1UL &lt;&lt; 7),// 即将退出RunLoop</p>
-<p>5、RunLoop的mode的作用<br>系统注册了5中mode</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kCFRunLoopDefaultMode <span class="comment">//App的默认Mode，通常主线程是在这个Mode下运行</span></span><br><span class="line"><span class="built_in">UITrackingRunLoopMode</span> <span class="comment">//界面跟踪 Mode，用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其他 Mode 影响</span></span><br><span class="line"><span class="built_in">UIInitializationRunLoopMode</span> <span class="comment">// 在刚启动 App 时第进入的第一个 Mode，启动完成后就不再使用</span></span><br><span class="line">GSEventReceiveRunLoopMode <span class="comment">// 接受系统事件的内部 Mode，通常用不到</span></span><br><span class="line">kCFRunLoopCommonModes <span class="comment">//这是一个占位用的Mode，不是一种真正的Mode</span></span><br></pre></td></tr></table></figure>
-<p>但是我们只能使用两种mode</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kCFRunLoopDefaultMode <span class="comment">//App的默认Mode，通常主线程是在这个Mode下运行</span></span><br><span class="line"><span class="built_in">UITrackingRunLoopMode</span> <span class="comment">//界面跟踪 Mode，用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其他 Mode 影响</span></span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d260d18dd551">iOS 多线程：『RunLoop』详尽总结</a></p>
-<p><a target="_blank" rel="noopener" href="http://www.cocoachina.com/ios/20180515/23380.html">iOS RunLoop入门小结</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f3079ea36775">iOS-Runloop常驻线程／性能优化</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/05/26/NodeJS%E4%BF%AE%E6%94%B9%E9%95%9C%E5%83%8F%E6%BA%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/05/26/NodeJS%E4%BF%AE%E6%94%B9%E9%95%9C%E5%83%8F%E6%BA%90/" class="post-title-link" itemprop="url">NodeJS修改镜像源</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-26 23:21:33" itemprop="dateCreated datePublished" datetime="2020-05-26T23:21:33+08:00">2020-05-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/NodeJS/" itemprop="url" rel="index"><span itemprop="name">NodeJS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>656</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1.查看<code>NodeJS</code>当前使用的镜像源，使用命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 查看当前NodeJS使用的镜像源</span><br><span class="line">$ npm config get registry</span><br></pre></td></tr></table></figure>
-
-<p>使用上述命令查看<code>NodeJS</code>使用的默认镜像源：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">poetmacbook-pro:~ kris$ npm config get registry</span><br><span class="line">https://registry.npmjs.org/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   ╭────────────────────────────────────────────────────────────────╮</span><br><span class="line">   │                                                                │</span><br><span class="line">   │       New minor version of npm available! 6.4.1 → 6.14.5       │</span><br><span class="line">   │   Changelog: https://github.com/npm/cli/releases/tag/v6.14.5   │</span><br><span class="line">   │               Run npm install -g npm to update!                │</span><br><span class="line">   │                                                                │</span><br><span class="line">   ╰────────────────────────────────────────────────────────────────╯</span><br><span class="line"></span><br><span class="line">poetmacbook-pro:~ kris$ </span><br></pre></td></tr></table></figure>
-
-<p>2.将<code>NodeJS</code>的源切换成淘宝的镜像源。<br>首先打开网址<code>https://developer.aliyun.com/mirror/NPM?from=tnpm</code>,根据网站提示在终端执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>切记：如果淘宝镜像源不管用了，及时切回默认的镜像源。</p>
-</blockquote>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/oukele/p/11592638.html">nodeJs修改镜像源</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2062,14 +1801,14 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">David的博客</p>
-  <div class="site-description" itemprop="description">合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。</div>
+  <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2118,12 +1857,12 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">199k</span>
+    <span title="站点总字数">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:01</span>
+    <span title="站点阅读时长">3:13</span>
 </div>
 
         

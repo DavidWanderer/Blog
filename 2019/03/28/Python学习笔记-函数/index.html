@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
@@ -100,7 +100,6 @@
       <h1 class="site-title">Stay hungry, Stay foolish.</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">向上吧，少年</p>
   </div>
 
   <div class="site-nav-right">
@@ -196,7 +195,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -258,7 +257,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="None作为布尔值和False是一样的，如何区分None和False"><a href="#None作为布尔值和False是一样的，如何区分None和False" class="headerlink" title="None作为布尔值和False是一样的，如何区分None和False?"></a>None作为布尔值和False是一样的，如何区分None和False?</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">thing = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> thing:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s some thing.&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s no thing.&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> thing <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s nothing&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s something&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 你需要把None和不含任何值的空数据结构区分开来。0值的整型/浮点型、</span></span><br><span class="line"><span class="comment"># 空字符串(&#x27;&#x27;)、空列表([])、空元组((,))、空字典(&#123;&#125;)、</span></span><br><span class="line"><span class="comment"># 空集合(set())都等价于False，但是不等于None。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_none</span>(<span class="params">thing</span>):</span></span><br><span class="line">    <span class="keyword">if</span> thing <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        print(<span class="string">&quot;It&#x27;s None&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> thing:</span><br><span class="line">        print(<span class="string">&quot;It&#x27;s True&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">&quot;It&#x27;s False&quot;</span>)</span><br><span class="line"></span><br><span class="line">is_none(<span class="literal">None</span>)</span><br><span class="line">is_none(<span class="literal">True</span>)</span><br><span class="line">is_none(<span class="literal">False</span>)</span><br><span class="line">is_none(<span class="number">0</span>)</span><br><span class="line">is_none(<span class="number">0.0</span>)</span><br><span class="line">is_none(())</span><br><span class="line">is_none([])</span><br><span class="line">is_none(&#123;&#125;)</span><br><span class="line">is_none(set())</span><br></pre></td></tr></table></figure>
+        <h2 id="None作为布尔值和False是一样的，如何区分None和False"><a href="#None作为布尔值和False是一样的，如何区分None和False" class="headerlink" title="None作为布尔值和False是一样的，如何区分None和False?"></a>None作为布尔值和False是一样的，如何区分None和False?</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">thing = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> thing:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s some thing.&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s no thing.&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> thing <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s nothing&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">&quot;It&#x27;s something&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 你需要把None和不含任何值的空数据结构区分开来。0值的整型/浮点型、</span></span><br><span class="line"><span class="comment"># 空字符串(&#x27;&#x27;)、空列表([])、空元组((,))、空字典(&#123;&#125;)、</span></span><br><span class="line"><span class="comment"># 空集合(set())都等价于False，但是不等于None。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_none</span>(<span class="params">thing</span>):</span></span><br><span class="line">    <span class="keyword">if</span> thing <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        print(<span class="string">&quot;It&#x27;s None&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> thing:</span><br><span class="line">        print(<span class="string">&quot;It&#x27;s True&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">&quot;It&#x27;s False&quot;</span>)</span><br><span class="line"></span><br><span class="line">is_none(<span class="literal">None</span>)</span><br><span class="line">is_none(<span class="literal">True</span>)</span><br><span class="line">is_none(<span class="literal">False</span>)</span><br><span class="line">is_none(<span class="number">0</span>)</span><br><span class="line">is_none(<span class="number">0.0</span>)</span><br><span class="line">is_none(())</span><br><span class="line">is_none([])</span><br><span class="line">is_none(&#123;&#125;)</span><br><span class="line">is_none(<span class="built_in">set</span>())</span><br></pre></td></tr></table></figure>
 <p>运行结果:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">It<span class="string">&#x27;s no thing.</span></span><br><span class="line"><span class="string">It&#x27;</span>s nothing</span><br><span class="line">It<span class="string">&#x27;s None</span></span><br><span class="line"><span class="string">It&#x27;</span>s <span class="literal">True</span></span><br><span class="line">It<span class="string">&#x27;s False</span></span><br><span class="line"><span class="string">It&#x27;</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">&#x27;s False</span></span><br><span class="line"><span class="string">It&#x27;</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">&#x27;s False</span></span><br><span class="line"><span class="string">It&#x27;</span>s <span class="literal">False</span></span><br><span class="line">It<span class="string">&#x27;s False</span></span><br></pre></td></tr></table></figure>
 
@@ -354,14 +353,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">David的博客</p>
-  <div class="site-description" itemprop="description">合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。</div>
+  <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -410,12 +409,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">199k</span>
+    <span title="站点总字数">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:01</span>
+    <span title="站点阅读时长">3:13</span>
 </div>
 
         

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"github.com","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+  <meta name="description" content="Your dreams don&#39;t work unless you do.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Stay hungry, Stay foolish.">
 <meta property="og:url" content="https://github.com/DavidWanderer/Blog/page/3/index.html">
 <meta property="og:site_name" content="Stay hungry, Stay foolish.">
-<meta property="og:description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+<meta property="og:description" content="Your dreams don&#39;t work unless you do.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="David的博客">
 <meta name="twitter:card" content="summary">
@@ -97,7 +97,6 @@
       <h1 class="site-title">Stay hungry, Stay foolish.</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">向上吧，少年</p>
   </div>
 
   <div class="site-nav-right">
@@ -187,12 +186,317 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/18/Vue%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Error-Cannot-find-module-webpack-bin-config-yargs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/03/18/Vue%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Error-Cannot-find-module-webpack-bin-config-yargs/" class="post-title-link" itemprop="url">Vue启动报错Error: Cannot find module 'webpack/bin/config-yargs'</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-18 21:27:49" itemprop="dateCreated datePublished" datetime="2020-03-18T21:27:49+08:00">2020-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天执行<code>npm run dev</code>时出现报错，提示<code>Error: Cannot find module &#39;webpack/bin/config-yargs&#39;</code>，查资料发现问题出在，<code>webpack</code>、<code>webpack-cli</code>、<code>webpack-dev-server</code>的版本不匹配。</p>
+<p>打开项目根目录下的<code>package.json</code> 文件，发现我的项目里面的配置信息为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;webpack&quot;</span>: <span class="string">&quot;^4.42.0&quot;</span>,</span><br><span class="line"><span class="string">&quot;webpack-cli&quot;</span>: <span class="string">&quot;^3.3.11&quot;</span>,</span><br><span class="line"><span class="string">&quot;webpack-dev-server&quot;</span>: <span class="string">&quot;^2.11.5&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后我修改了<code>package.json</code>文件，修改<code>webpack-dev-sever</code>的版本为<code>3.1.4</code>，然后在项目根目录执行<code>npm install</code>命令。此命令执行完毕后再执行<code>npm run dev</code>发现可以正常运行。</p>
+<p>最终<code>package.json</code>文件的配置如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;babel-core&quot;: &quot;^6.26.0&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^7.1.2&quot;,</span><br><span class="line">    &quot;babel-polyfill&quot;: &quot;^6.26.0&quot;,</span><br><span class="line">    &quot;babel-preset-env&quot;: &quot;^1.6.0&quot;,</span><br><span class="line">    &quot;babel-preset-stage-3&quot;: &quot;^6.24.1&quot;,</span><br><span class="line">    &quot;babel-preset-vue&quot;: &quot;^2.0.2&quot;,</span><br><span class="line">    &quot;cross-env&quot;: &quot;^5.0.5&quot;,</span><br><span class="line">    &quot;css-loader&quot;: &quot;^3.4.2&quot;,</span><br><span class="line">    &quot;file-loader&quot;: &quot;^1.1.4&quot;,</span><br><span class="line">    &quot;vue-loader&quot;: &quot;^13.0.5&quot;,</span><br><span class="line">    &quot;vue-template-compiler&quot;: &quot;^2.4.4&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^4.42.0&quot;,</span><br><span class="line">    &quot;webpack-cli&quot;: &quot;^3.3.11&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^3.1.4&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013894429/article/details/94393342">已解决 - 问题Cannot find module ‘webpack/bin/config-yargs’</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/15/MAC%E7%A0%B4%E8%A7%A3WiFi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/03/15/MAC%E7%A0%B4%E8%A7%A3WiFi/" class="post-title-link" itemprop="url">MAC破解WiFi</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-15 21:07:19" itemprop="dateCreated datePublished" datetime="2020-03-15T21:07:19+08:00">2020-03-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/%E9%80%9A%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">通用</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1.安装airport</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport</span><br></pre></td></tr></table></figure>
+
+<p>2.扫描周围的Wifi</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo airport -s</span><br></pre></td></tr></table></figure>
+
+<p>3.嗅探指定的信道</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo airport en0 sniff <span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
+
+<p>如果出现错误，Segmentation fault: 11，可以使用 tcpdump 抓包<br>4.1 断开airport的连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo airport -z</span><br></pre></td></tr></table></figure>
+
+<p>4.2 设置信道，-c和信道号之间没有空格</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo airport -c6</span></span><br><span class="line">$ sudo airport -c<span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
+
+<p>4.3 从指定AP开始抓包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;type mgt subtype beacon and ether src 98:13:33:b4:35:a4&quot; -I -c 1 -i en0 -w beacon.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;type mgt subtype beacon and ether src <span class="variable">$BSSID</span>&quot;</span> -I -c 1 -i en0 -w beacon.cap</span><br></pre></td></tr></table></figure>
+
+<p>4.4 等待WPA的握手</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;ether proto 0x888e and ether host 98:13:33:b4:35:a4&quot; -I -U -vvv -i en0 -w handshake.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;ether proto 0x888e and ether host <span class="variable">$BSSID</span>&quot;</span> -I -U -vvv -i en0 -w handshake.cap</span><br></pre></td></tr></table></figure>
+
+<p>4.5 安装wireshark，下一步会用到它的合包命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install wireshark</span><br></pre></td></tr></table></figure>
+
+<p>4.6 将2个cap文件合并成一个cap文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mergecap -a -F pcap -w capture.cap beacon.cap handshake.cap</span><br></pre></td></tr></table></figure>
+
+<p>至少要等到4.4获取到4 frames或更多的包才可以Ctrl-C终止抓包。</p>
+<p>4.7 安装 aircrack-ng</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install aircrack-ng</span><br></pre></td></tr></table></figure>
+
+<p>4.8 将 aircrack-ng 路径添加到 /etc/paths 中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/paths</span><br></pre></td></tr></table></figure>
+<p>然后将 aircrack-ng 路径添加到最后一行。</p>
+<p>4.9 查看抓到的包中是否包含握手包。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#$ aircrack-ng capture.cap</span></span><br><span class="line">Hu-YupingdeMacBook-Pro:wifi kris$ aircrack-ng capture.cap</span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">   <span class="comment">#  BSSID              ESSID                     Encryption</span></span><br><span class="line"></span><br><span class="line">   1  74:7D:24:D7:AF:DC  @PHICOMM_DA               WPA (0 handshake)</span><br><span class="line"></span><br><span class="line">Choosing first network as target.</span><br><span class="line"></span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">1 potential targets</span><br><span class="line"></span><br><span class="line">Please specify a dictionary (option -w).</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li><p>撞击密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ aircrack-ng -w alphaDic.txt -b 98:13:33:B4:35:A4 capture1.cap</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转换包格式,如果使用上面的cap无法爆破，或者爆破比较麻烦，可以将cap包转换成hcccapx格式，然后再破解。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./cap2hccapx.bin /Users/kris/Desktop/wifi/20200208/capture.cap /Users/kris/Desktop/wifi/20200208/capture.hccapx</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<p>下面是一个破解示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Aircrack-ng 1.5.2 </span><br><span class="line"></span><br><span class="line">      [00:03:20] 2018576/13516904 keys tested (10197.95 k/s) </span><br><span class="line"></span><br><span class="line">      Time left: 18 minutes, 47 seconds                         14.93%</span><br><span class="line"></span><br><span class="line">                          KEY FOUND! [ 19731009qiu ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      Master Key     : A8 36 07 C4 68 42 71 E0 B9 38 6E 16 B7 1B 7A 77 </span><br><span class="line">                       DA 07 E9 A1 82 CE 95 56 22 C2 76 16 93 B1 8E 9B </span><br><span class="line"></span><br><span class="line">      Transient Key  : 34 83 20 8E B0 2E F2 11 FF 5B 68 A4 A3 16 94 FE </span><br><span class="line">                       74 28 4D D9 99 BA 10 38 F4 20 6D 14 D1 47 89 C9 </span><br><span class="line">                       22 75 EB B5 29 FD CF 9B 01 32 38 B7 51 10 94 88 </span><br><span class="line">                       90 4D 52 D5 88 E4 B1 58 DA 2D DC 35 5F 61 88 92 </span><br><span class="line"></span><br><span class="line">      EAPOL HMAC     : F6 4D 5F 02 77 F9 96 8A F4 E3 C7 8C DA E4 C6 E0 </span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/15/Vue-CLI%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/03/15/Vue-CLI%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">Vue CLI安装报错</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-15 07:38:38" itemprop="dateCreated datePublished" datetime="2020-03-15T07:38:38+08:00">2020-03-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>513</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>执行<code>npm install -g @vue/cli</code>安装报错，错误信息如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:~ kris$ npm install -g @vue&#x2F;cli</span><br><span class="line">npm WARN deprecated request@2.88.2: request has been deprecated, see https:&#x2F;&#x2F;github.com&#x2F;request&#x2F;request&#x2F;issues&#x2F;3142</span><br><span class="line">npm ERR! code Z_BUF_ERROR</span><br><span class="line">npm ERR! errno -5</span><br><span class="line">npm ERR! zlib: unexpected end of file</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     &#x2F;Users&#x2F;kris&#x2F;.npm&#x2F;_logs&#x2F;2020-03-14T22_56_23_922Z-debug.log</span><br></pre></td></tr></table></figure>
+
+<p>解决办法，切换网络，清除npm缓存，执行命令:<code>npm cache clean --force</code></p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhuzhuzhihao/article/details/79753243">npm install 的时候 出现 unexpected end of file的问题</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/02/19/iOS%E5%88%9B%E5%BB%BAFramwork%E5%B7%A5%E7%A8%8B%E6%AD%A5%E9%AA%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -350,7 +654,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -553,7 +857,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -655,7 +959,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -801,7 +1105,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -883,7 +1187,7 @@
 <p>如果尝试多次仍然无法安装Fastlane，可以尝试:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#brew cask安装fastlane的执行命令:</span></span><br><span class="line">$ brew cask uninstall fastlane</span><br><span class="line">$ brew cask install fastlane</span><br></pre></td></tr></table></figure>
 
-<h2 id="将homebrew的源换成阿里云，提高下载速度"><a href="#将homebrew的源换成阿里云，提高下载速度" class="headerlink" title="将homebrew的源换成阿里云，提高下载速度"></a>将homebrew的源换成阿里云，提高下载速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.替换brew.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/brew.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.替换homebrew-core.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core&quot;</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.替换homebrew-cask.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span>/Library/Taps/homebrew/homebrew-cask</span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.替换homebrew-bottles:</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line">$ <span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+<h2 id="将homebrew的源换成阿里云，提高下载速度"><a href="#将homebrew的源换成阿里云，提高下载速度" class="headerlink" title="将homebrew的源换成阿里云，提高下载速度"></a>将homebrew的源换成阿里云，提高下载速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.替换brew.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span></span><br><span class="line">$ git remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.替换homebrew-core.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core&quot;</span></span><br><span class="line">$ git remote set-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.替换homebrew-cask.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span>/Library/Taps/homebrew/homebrew-cask</span><br><span class="line">$ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.替换homebrew-bottles:</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line">$ <span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
 
 <h2 id="给Git添加代理访问，提高Git的访问速度"><a href="#给Git添加代理访问，提高Git的访问速度" class="headerlink" title="给Git添加代理访问，提高Git的访问速度"></a>给Git添加代理访问，提高Git的访问速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.编辑PAC用户自定义规则,添加以下地址:</span></span><br><span class="line">github.com</span><br><span class="line">githubusercontent.com</span><br><span class="line">githubassets.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.编辑~/.ssh/config文件，在文件中添加以下命令:</span></span><br><span class="line">Host github.com</span><br><span class="line">   HostName github.com</span><br><span class="line">   User git</span><br><span class="line">   ProxyCommand nc -v -x 127.0.0.1:1086 %h %p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.让配置立即生效:</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.ssh/config</span><br></pre></td></tr></table></figure>
 
@@ -914,7 +1218,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1012,7 +1316,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1100,419 +1404,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/11/07/iOS%E4%BD%BF%E7%94%A8SVG%E5%92%8CPDF%E5%9B%BE%E7%89%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/11/07/iOS%E4%BD%BF%E7%94%A8SVG%E5%92%8CPDF%E5%9B%BE%E7%89%87/" class="post-title-link" itemprop="url">iOS使用SVG和PDF图片</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 12:19:50" itemprop="dateCreated datePublished" datetime="2019-11-07T12:19:50+08:00">2019-11-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>856</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="什么是SVG"><a href="#什么是SVG" class="headerlink" title="什么是SVG?"></a>什么是SVG?</h2><p>SVG是一种用XML定义的语言，用来描述二维矢量及矢量/栅格图形。</p>
-<h2 id="SVG有哪些优势？"><a href="#SVG有哪些优势？" class="headerlink" title="SVG有哪些优势？"></a>SVG有哪些优势？</h2><p>参与定义 SVG 的组织有：太阳微系统、Adobe、苹果公司、IBM 以及柯达。<br>与其他图像格式相比，使用 SVG 的优势在于：<br>●SVG 可被非常多的工具读取和修改（比如记事本）<br>●SVG 与 JPEG 和 GIF 图像比起来，尺寸更小，且可压缩性更强。<br>●SVG 是可伸缩的<br>●SVG 图像可在任何的分辨率下被高质量地打印<br>●SVG 可在图像质量不下降的情况下被放大<br>●SVG 图像中的文本是可选的，同时也是可搜索的（很适合制作地图）<br>●SVG 可以与 JavaScript 技术一起运行<br>●SVG 是开放的标准<br>●SVG 文件是纯粹的 XML<br>●SVG 的主要竞争者是 Flash。</p>
-<h2 id="SVG在iOS中有哪些劣势？"><a href="#SVG在iOS中有哪些劣势？" class="headerlink" title="SVG在iOS中有哪些劣势？"></a>SVG在iOS中有哪些劣势？</h2><p>●Xcode 6以后支持矢量图,原生支持pdf格式<br>●原生不支持SVG格式(因为svg本质是xml),如果要加载SVG格式,使用WebView或第三方框架<br>●原生中如果使用SVG格式的图片，不能放在Assets.xcassets中，要像本地文件或者网络文件一样给个地址，存放起来有点麻烦<br>●集成起来麻烦<br>●只支持放大缩小，颜色修改需要另外的分类来支持<br>●不支持带滤镜的SVG<br>●UIButton使用SVG时，需要设置Button的Type为Custom，否则改变颜色的时候，没有效果。</p>
-<h2 id="iOS使用第三方框架加载svg格式"><a href="#iOS使用第三方框架加载svg格式" class="headerlink" title="iOS使用第三方框架加载svg格式"></a>iOS使用第三方框架加载svg格式</h2><p>iOS中使用 SVGKit(Objective-C库)和 Macaw(Swift库)。</p>
-<h2 id="iOS中使用PDF格式的图片"><a href="#iOS中使用PDF格式的图片" class="headerlink" title="iOS中使用PDF格式的图片"></a>iOS中使用PDF格式的图片</h2><p>在Asset.xcassets中添加一张图片，选择Attributes inspector，scales设置成SingleScale，原来3个占位图的位置会变成1个占位图的位置。在这个占位图中拖入一个pdf格式的图片。iOS系统会根据PDF格式的图片自动生成@1x、@2x和@3x图，对应适配不同的屏幕。</p>
-<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a><a target="_blank" rel="noopener" href="https://files-cdn.cnblogs.com/files/wobuyayi/SVG%E5%92%8CPDF%E9%A2%84%E6%BC%94.zip">Demo</a></h2><h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h3><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/SVG%E6%A0%BC%E5%BC%8F/3463453?fr=aladdin">百度百科SVG格式</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e4fe82ca6fd0">Xcode项目中使用矢量图(pdf,svg)</a><br><a target="_blank" rel="noopener" href="http://blog.startry.com/2016/06/15/vector-apply-to-iOS-Project/">矢量图在iOS中的应用细节</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/aca8f6976acf">iOS开发APP瘦身之PDF图片资源加载框架</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/08/24/Linux%E4%B8%8B%E5%AE%89%E8%A3%85FTP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/08/24/Linux%E4%B8%8B%E5%AE%89%E8%A3%85FTP/" class="post-title-link" itemprop="url">Linux下安装FTP</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-08-24 16:25:29" itemprop="dateCreated datePublished" datetime="2019-08-24T16:25:29+08:00">2019-08-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/FTP/" itemprop="url" rel="index"><span itemprop="name">FTP</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-什么是vsftpd"><a href="#1-什么是vsftpd" class="headerlink" title="1.什么是vsftpd"></a>1.什么是vsftpd</h2><p>vsftpd是一款在Linux发行版中最受推崇的FTP服务器程序。特点是小巧轻快，安全易用。<br>vsftpd 的名字代表”very secure FTP daemon”, 安全是它的开发者 Chris Evans 考虑的首要问题之一。在这个 FTP 服务器设计开发的最开始的时候，高安全性就是一个目标。</p>
-<h2 id="2-查看当前服务器是否安装过"><a href="#2-查看当前服务器是否安装过" class="headerlink" title="2.查看当前服务器是否安装过"></a>2.查看当前服务器是否安装过</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rpm -qa|grep vsftp</span><br></pre></td></tr></table></figure>
-<p>如果显示版本号，说明安装成功，如果没有安装文件，什么都不显示，说明没有安装或者其他情况。也可以通过which vsftp检查是否有ftp的安装文件。</p>
-<h2 id="3-安装FTP"><a href="#3-安装FTP" class="headerlink" title="3.安装FTP"></a>3.安装FTP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum -y install vsftpd</span><br></pre></td></tr></table></figure>
-<p>安装完后，有/etc/vsftpd/vsftpd.conf 文件，是vsftp的配置文件。还新建了一个ftp用户和ftp的组，指向home目录为/var/ftp,默认是nologin（不能登录系统）。可以用cat /etc/passwd 命令查看用户。</p>
-<h2 id="4-启动ftp，执行命令"><a href="#4-启动ftp，执行命令" class="headerlink" title="4.启动ftp，执行命令"></a>4.启动ftp，执行命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service vsftpd start</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="5-查看ftp的状态"><a href="#5-查看ftp的状态" class="headerlink" title="5.查看ftp的状态"></a>5.查看ftp的状态</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service vsftpd status</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="6-安装ftp客户端组件（用来验证登录vsftpd）"><a href="#6-安装ftp客户端组件（用来验证登录vsftpd）" class="headerlink" title="6.安装ftp客户端组件（用来验证登录vsftpd）"></a>6.安装ftp客户端组件（用来验证登录vsftpd）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install ftp</span></span><br></pre></td></tr></table></figure>
-<p>执行命令尝试登录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ftp localhost</span></span><br></pre></td></tr></table></figure>
-<p>输入用户名ftp，密码随便（因为默认是允许匿名的）<br>登录成功，就代表ftp服务可用了。<br>但是，外网是访问不了的，所以还要继续配置。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ftp localhost</span></span><br><span class="line">Trying ::1...</span><br><span class="line">ftp: connect to address ::1拒绝连接</span><br><span class="line">Trying 127.0.0.1...</span><br><span class="line">Connected to localhost (127.0.0.1).</span><br><span class="line">220 (vsFTPd 2.2.2)</span><br><span class="line">Name (localhost:root): ftp</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system <span class="built_in">type</span> is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line">ftp&gt; ls</span><br><span class="line">227 Entering Passive Mode (127,0,0,1,177,184).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">drwxr-xr-x    2 0        0            4096 Mar 22  2017 pub</span><br><span class="line">226 Directory send OK.</span><br><span class="line">ftp&gt; </span><br></pre></td></tr></table></figure>
-
-
-<h2 id="7-添加一个ftp用户"><a href="#7-添加一个ftp用户" class="headerlink" title="7.添加一个ftp用户"></a>7.添加一个ftp用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># useradd ftpuser</span></span><br></pre></td></tr></table></figure>
-<p>此用户就是用来登录ftp服务器用的。<br>这样一个用户建完，可以用这个登录，记得用普通登录不要用匿名了。登录后默认的路径为 /home/ftpuser.</p>
-<h2 id="8-给ftp用户添加密码"><a href="#8-给ftp用户添加密码" class="headerlink" title="8.给ftp用户添加密码"></a>8.给ftp用户添加密码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># passwd ftpuser</span></span><br></pre></td></tr></table></figure>
-<p>输入两次密码后修改密码。</p>
-<h2 id="9-关闭匿名登录"><a href="#9-关闭匿名登录" class="headerlink" title="9.关闭匿名登录"></a>9.关闭匿名登录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure>
-<p>设置anonymous_enable=NO。</p>
-<h2 id="10-重启ftp服务"><a href="#10-重启ftp服务" class="headerlink" title="10.重启ftp服务"></a>10.重启ftp服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># service vsftpd restart</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="11-开启passive模式"><a href="#11-开启passive模式" class="headerlink" title="11.开启passive模式"></a>11.开启passive模式</h2><p>默认是开启的，但是要指定一个端口范围，打开vsftpd.conf文件，在后面加上</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pasv_min_port=30000   </span><br><span class="line">pasv_max_port=30999  </span><br></pre></td></tr></table></figure>
-<p>表示端口范围为30000~30999，这个可以随意改。改完重启一下vsftpd。</p>
-<h2 id="12-修改ftp默认的端口号"><a href="#12-修改ftp默认的端口号" class="headerlink" title="12.修改ftp默认的端口号"></a>12.修改ftp默认的端口号</h2><p>常规下21端口容易遭到别人的扫描、带来了一定程度的不安全。所以，最好的就是把21端口修改掉。默认修改为6069。</p>
-<h2 id="12-1-修改vsftp的配置文件"><a href="#12-1-修改vsftp的配置文件" class="headerlink" title="12.1 修改vsftp的配置文件"></a>12.1 修改vsftp的配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure>
-<p>在原来的基础上加上：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">listen_port=6069</span><br><span class="line"></span><br><span class="line">pasv_enable=YES</span><br><span class="line"></span><br><span class="line">pasv_min_port=30000</span><br><span class="line"></span><br><span class="line">pasv_max_port=30999</span><br><span class="line"></span><br><span class="line">pasv_promiscuous=YES</span><br><span class="line"></span><br><span class="line">ftpd_banner=Welcome to Wander FTP service</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="12-2-修改-etc-services"><a href="#12-2-修改-etc-services" class="headerlink" title="12.2 修改/etc/services"></a>12.2 修改/etc/services</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/services</span><br></pre></td></tr></table></figure>
-<p>修改成：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ftp             6069/tcp</span><br><span class="line">ftp             6069/udp</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="12-3-修改防火墙规则"><a href="#12-3-修改防火墙规则" class="headerlink" title="12.3 修改防火墙规则"></a>12.3 修改防火墙规则</h2><p>如果防火墙开启、并且做了端口限制、请添加相应的规则</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 30000:30999 -j ACCEPT</span><br><span class="line">-A INPUT -p udp -m state --state NEW -m udp --dport 6069 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 6069 -j ACCEPT</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="12-4-重启服务"><a href="#12-4-重启服务" class="headerlink" title="12.4 重启服务"></a>12.4 重启服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># service iptables restart</span></span><br><span class="line"><span class="comment"># service vsftpd restart</span></span><br></pre></td></tr></table></figure>
-<p>然后就可以通过客户端6069端口连接ftp（选择被动模式连接）。</p>
-<h2 id="13-配置-vsftpd-使用-SSL-TLS"><a href="#13-配置-vsftpd-使用-SSL-TLS" class="headerlink" title="13.配置 vsftpd 使用 SSL / TLS"></a>13.配置 vsftpd 使用 SSL / TLS</h2><h2 id="13-1-检查-vsftpd-是否支持-ssl-模块"><a href="#13-1-检查-vsftpd-是否支持-ssl-模块" class="headerlink" title="13.1 检查 vsftpd 是否支持 ssl 模块"></a>13.1 检查 vsftpd 是否支持 ssl 模块</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ldd $(which vsftpd) | grep ssl</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="13-2-建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方-etc-pki-tls-certs-。"><a href="#13-2-建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方-etc-pki-tls-certs-。" class="headerlink" title="13.2 建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方/etc/pki/tls/certs/。"></a>13.2 建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方/etc/pki/tls/certs/。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd /etc/pki/tls/certs</span></span><br></pre></td></tr></table></figure>
-<p>生成密钥文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make vsftpd.pem</span></span><br></pre></td></tr></table></figure>
-<p>复制证书到vsftpd目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cp -a vsftpd.pem /etc/vsftpd/</span></span><br><span class="line"><span class="comment"># ll /etc/vsftpd/vsftpd.pem</span></span><br></pre></td></tr></table></figure>
-
-<p>证书配置解析：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Country Name (2 letter code) [XX]:CN                            国家名称(2个字母代码)[XX]:CN</span><br><span class="line">State or Province Name (full name) []:CHINA                     国家或省名(全称)[]:中国</span><br><span class="line">Locality Name (eg, city) [Default City]:CHINA                   地名(如城市)[默认城市]:中国</span><br><span class="line">Organization Name (eg, company) [Default Company Ltd]:ORG       组织名称(如公司)[默认公司有限公司]:ORG</span><br><span class="line">Organizational Unit Name (eg, section) []:ORG                   组织单元名称(例如，节)[]:ORG</span><br><span class="line">Common Name (eg, your name or your server<span class="string">&#x27;s hostname) []:NAME   常用名称(例如，您的名称或服务器的主机名)[]:Name</span></span><br><span class="line"><span class="string">Email Address []:EMAIL@163.com                                  电子邮件地址[]:EMAIL@163.com</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="13-3-修改-vsftpd-conf-配置文件"><a href="#13-3-修改-vsftpd-conf-配置文件" class="headerlink" title="13.3 修改 vsftpd.conf 配置文件"></a>13.3 修改 vsftpd.conf 配置文件</h2><p>停止服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># service vsftpd stop</span></span><br></pre></td></tr></table></figure>
-<p>在最后加上以下配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ssl_enable=YES</span><br><span class="line">allow_anon_ssl=YES</span><br><span class="line">force_anon_data_ssl=YES</span><br><span class="line">force_anon_logins_ssl=YES</span><br><span class="line">force_local_data_ssl=YES</span><br><span class="line">force_local_logins_ssl=YES</span><br><span class="line">ssl_tlsv1=YES</span><br><span class="line">rsa_cert_file=/etc/vsftpd/vsftpd.pem</span><br></pre></td></tr></table></figure>
-
-<p>配置解析：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###SSL#####</span></span><br><span class="line"><span class="comment"># 是否启用SSL，默认值：NO</span></span><br><span class="line">ssl_enable=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 活动。如果设置为YES，匿名用户将被允许使用安全的SSL连接</span></span><br><span class="line">默认值：NO</span><br><span class="line">allow_anon_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有匿名登录将被强制使用安全的SSL连接，以便在数据连接上发送和接收数据。默认值：NO</span></span><br><span class="line">force_anon_data_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有匿名登录将被强制使用安全的SSL连接以发送密码。默认值：NO</span></span><br><span class="line">force_anon_logins_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有非匿名登录将被强制使用安全的SSL连接，以便在数据连接上发送和接收数据。默认值：YES</span></span><br><span class="line">force_local_data_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有非匿名登录将被强制使用安全的SSL连接以发送密码。默认值：YES</span></span><br><span class="line">force_local_logins_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许TLS v1协议连接。TLS v1连接是首选。默认值：YES</span></span><br><span class="line">ssl_tlsv1=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许SSL v2协议连接。TLS v1连接是首选。默认值：NO</span></span><br><span class="line"><span class="comment">#ssl_sslv2=NO</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许SSL v3协议连接。TLS v1连接是首选。默认值：NO</span></span><br><span class="line"><span class="comment">#ssl_sslv3=NO</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 选项指定用于SSL加密连接的RSA证书的位置。默认值：/usr/share/ssl/certs/vsftpd.pem</span></span><br><span class="line">rsa_cert_file=/etc/vsftpd/vsftpd.pem</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="13-4-最后保存，重启服务就OK了"><a href="#13-4-最后保存，重启服务就OK了" class="headerlink" title="13.4 最后保存，重启服务就OK了"></a>13.4 最后保存，重启服务就OK了</h2><p>启动服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd start</span><br></pre></td></tr></table></figure>
-<p>重启服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="13-5-连接-Vsftpd"><a href="#13-5-连接-Vsftpd" class="headerlink" title="13.5 连接 Vsftpd"></a>13.5 连接 Vsftpd</h2><p>在连接的时候勾选信任证书就行。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/csdn_lqr/article/details/53333946">Linux安装ftp组件(8步完成)</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/lizexing1/article/details/79308961">小白教程：linux下安装FTP的过程和使用的整体过程</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chenmh/p/5365274.html">Linux 搭建FTP服务器</a><br><a target="_blank" rel="noopener" href="https://www.kancloud.cn/chandler/bc-linux/52710">centos启用ftp功能</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/caihuashen/article/details/80306131">修改ftp默认端口</a><br><a target="_blank" rel="noopener" href="https://blog.51cto.com/13481789/2366720">”不安全的服务器，不支持 FTP over TLS“ 配置 vsftpd 使用 SSL / TLS</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/08/24/Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/08/24/Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">Git服务器搭建</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-08-24 09:07:48" itemprop="dateCreated datePublished" datetime="2019-08-24T09:07:48+08:00">2019-08-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-使用ssh命令登录Linux服务器"><a href="#1-使用ssh命令登录Linux服务器" class="headerlink" title="1.使用ssh命令登录Linux服务器"></a>1.使用ssh命令登录Linux服务器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@104.224.156.100 -p 2022</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="2-安装Git"><a href="#2-安装Git" class="headerlink" title="2.安装Git"></a>2.安装Git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel</span><br><span class="line">$ yum install git</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="3-接下来我们-创建一个git用户组和用户，用来运行git服务："><a href="#3-接下来我们-创建一个git用户组和用户，用来运行git服务：" class="headerlink" title="3.接下来我们 创建一个git用户组和用户，用来运行git服务："></a>3.接下来我们 创建一个git用户组和用户，用来运行git服务：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ groupadd git</span><br><span class="line">$ useradd git -g git</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="4-客户端生成ssh公钥"><a href="#4-客户端生成ssh公钥" class="headerlink" title="4.客户端生成ssh公钥"></a>4.客户端生成ssh公钥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">192:git poet$ ssh-keygen -t rsa</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/Users/poet/.ssh/id_rsa): </span><br><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase): </span><br><span class="line">Enter same passphrase again: </span><br><span class="line">Your identification has been saved <span class="keyword">in</span> /Users/poet/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved <span class="keyword">in</span> /Users/poet/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:Rky+UE83syyOMjaKYHeoGduGBaPqnU+rtrcyl7TMdL8 poet@192.168.0.101</span><br><span class="line">The key<span class="string">&#x27;s randomart image is:</span></span><br><span class="line"><span class="string">+---[RSA 2048]----+</span></span><br><span class="line"><span class="string">|        o . +    |</span></span><br><span class="line"><span class="string">|       = o o +   |</span></span><br><span class="line"><span class="string">| o    . + o o    |</span></span><br><span class="line"><span class="string">|. o .  o + .     |</span></span><br><span class="line"><span class="string">|oo + .= S .      |</span></span><br><span class="line"><span class="string">|o.X..= *         |</span></span><br><span class="line"><span class="string">|.=.o*.+ .        |</span></span><br><span class="line"><span class="string">|. o+oB.  .       |</span></span><br><span class="line"><span class="string">| ..=O+.  E.      |</span></span><br><span class="line"><span class="string">+----[SHA256]-----+</span></span><br><span class="line"><span class="string">192:git poet$ cat /Users/poet/.ssh/id_rsa.pub</span></span><br><span class="line"><span class="string">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQVX+tOytAUJq3pKNvIFX2HETKvalq4rlqIFJ04KtKIDykzbct5FxK1jR92oIP+ylEsQGz6dJ3FqIsXSn200UIbGvdCvSX5uSFFu8psV4eX1J7DsA6gcLMXElTEHDr82U6MwFmOR6Vb8RkSwsNzRqv8uDdxrmayvbUnQL3VK+/VNcfTdPl2O4YyrYp/DBtFe8b61QvlmU6x4UaX40Sg/r9/JyFMSEDduse9bvVkqg3xkTpaZqwquY7384Ou2iIr4bzlb5mAjW222foM6YBuBhxlovu5kVhLx4GpPsCcxPBJe8lgiGyAGG4yvJ1CH7Rv658eIFqVUyVeOJGP871pLkR poet@192.168.0.101</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="5-创建证书登录，如果没有该文件就创建它："><a href="#5-创建证书登录，如果没有该文件就创建它：" class="headerlink" title="5.创建证书登录，如果没有该文件就创建它："></a>5.创建证书登录，如果没有该文件就创建它：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /home/git/</span><br><span class="line">$ mkdir .ssh</span><br><span class="line">$ chmod 755 .ssh</span><br><span class="line">$ touch .ssh/authorized_keys</span><br><span class="line">$ chmod 644 .ssh/authorized_keys</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="6-将生成客户端公钥并复制到服务器上"><a href="#6-将生成客户端公钥并复制到服务器上" class="headerlink" title="6.将生成客户端公钥并复制到服务器上"></a>6.将生成客户端公钥并复制到服务器上</h2><p>收集所有需要登录的用户的公钥，公钥位于id_rsa.pub文件中，把我们的公钥导入到/home/git/.ssh/authorized_keys文件里，一行一个。<br>下面我们复制id_rsa.pub里的公钥到服务器的authorized_keys文件中。<br>首先使用ssh连接远程的服务器,然后进入目录/home/git，然后执行如下命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost git]<span class="comment"># vim .ssh/authorized_keys</span></span><br></pre></td></tr></table></figure>
-<p>然后将上面生成的公钥复制到服务器的公钥文件中。复制万保存，查看公钥文件中的内容:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost git]<span class="comment"># cat .ssh/authorized_keys</span></span><br><span class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQVX+tOytAUJq3pKNvIFX2HETKvalq4rlqIFJ04KtKIDykzbct5FxK1jR92oIP+ylEsQGz6dJ3FqIsXSn200UIbGvdCvSX5uSFFu8psV4eX1J7DsA6gcLMXElTEHDr82U6MwFmOR6Vb8RkSwsNzRqv8uDdxrmayvbUnQL3VK+/VNcfTdPl2O4YyrYp/DBtFe8b61QvlmU6x4UaX40Sg/r9/JyFMSEDduse9bvVkqg3xkTpaZqwquY7384Ou2iIr4bzlb5mAjW222foM6YBuBhxlovu5kVhLx4GpPsCcxPBJe8lgiGyAGG4yvJ1CH7Rv658eIFqVUyVeOJGP871pLkR poet@192.168.0.101</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="7-初始化Git仓库"><a href="#7-初始化Git仓库" class="headerlink" title="7.初始化Git仓库"></a>7.初始化Git仓库</h2><p>首先我们选定一个目录作为Git仓库，假定是/home/gitrepo/helloword.git，在/home/gitrepo目录下输入命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /home</span><br><span class="line">$ mkdir gitrepo</span><br><span class="line">$ chown git:git gitrepo/</span><br><span class="line">$ <span class="built_in">cd</span> gitrepo</span><br><span class="line"></span><br><span class="line">$ git init --bare helloword.git</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /home/gitrepo/helloword.git/</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="8-以上命令Git创建一个空仓库，服务器上的Git仓库通常都以-git结尾。然后，把仓库所属用户改为git："><a href="#8-以上命令Git创建一个空仓库，服务器上的Git仓库通常都以-git结尾。然后，把仓库所属用户改为git：" class="headerlink" title="8.以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git："></a>8.以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chown -R git:git helloword.git</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="9-克隆仓库"><a href="#9-克隆仓库" class="headerlink" title="9.克隆仓库"></a>9.克隆仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@104.224.156.100:/home/gitrepo/helloword.git</span><br><span class="line">Cloning into <span class="string">&#x27;helloword&#x27;</span>...</span><br><span class="line">warning: You appear to have cloned an empty repository.</span><br><span class="line">Checking connectivity... <span class="keyword">done</span>.</span><br></pre></td></tr></table></figure>
-<p>104.224.156.100 为 Git 所在服务器 ip ，你需要将其修改为你自己的 Git 服务 ip。</p>
-<p>但是我克隆的时候却报错了:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">192:git poet$ git <span class="built_in">clone</span> git@104.224.156.100:2022:/home/gitrepo/helloword.git</span><br><span class="line">Cloning into <span class="string">&#x27;helloword&#x27;</span>...</span><br><span class="line">ssh: connect to host 104.224.156.100 port 22: Connection refused</span><br><span class="line">fatal: Could not <span class="built_in">read</span> from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">192:git poet$ </span><br></pre></td></tr></table></figure>
-
-<h2 id="10-克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下"><a href="#10-克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下" class="headerlink" title="10.克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下:"></a>10.克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> ssh://git@104.224.156.100:2022/home/gitrepo/helloword.git</span><br></pre></td></tr></table></figure>
-<p>如果你添加到服务器的公钥有效果，则上述命令会自动把项目克隆下来，但是如果公钥无效或者生成公钥的时候设置了密码，则克隆的步骤中会提示输入密码。</p>
-<p>这样我们的 Git 服务器安装就完成。</p>
-<h2 id="11-如果需要继续添加新的仓库，请到服务器的-home-gitrepo目录下输入命令："><a href="#11-如果需要继续添加新的仓库，请到服务器的-home-gitrepo目录下输入命令：" class="headerlink" title="11.如果需要继续添加新的仓库，请到服务器的/home/gitrepo目录下输入命令："></a>11.如果需要继续添加新的仓库，请到服务器的/home/gitrepo目录下输入命令：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git init --bare second.git</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /home/gitrepo/second.git/</span><br></pre></td></tr></table></figure>
-<p>以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chown -R git:git second.git</span><br></pre></td></tr></table></figure>
-<p>然后你就可以在客户端使用git clone正常的克隆项目了。具体操作命令如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> ssh://git@104.224.156.100:2022/home/gitrepo/second.git</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="12-克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。"><a href="#12-克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。" class="headerlink" title="12.克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。"></a>12.克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。</h2><p>创建Readme.txt文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch Readme.txt</span><br></pre></td></tr></table></figure>
-
-<p>查看当前项目的Git仓库的状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status -s</span><br></pre></td></tr></table></figure>
-
-<p>将Readme.txt文件添加到本地的Git仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add Readme.txt</span><br></pre></td></tr></table></figure>
-
-<p>继续查看本地的Git仓库的状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status -s</span><br></pre></td></tr></table></figure>
-
-<p>将操作提交到本地的Git仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;add Readme.txt file&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果你没有设置本地Git的全局用户名和邮箱，有时候会报错，设置方法如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config  --global user.name 你的目标用户名</span><br><span class="line">$ git config  --global user.email 你的目标邮箱名</span><br></pre></td></tr></table></figure>
-
-<p>将操作推送到远程的Git仓库的master分支</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
-
-<p>在另外一个客户端拉取Git远程仓库master分支的内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
-
-<p>在本地按时间倒序查看提交的log记录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="13-禁用shell登录"><a href="#13-禁用shell登录" class="headerlink" title="13.禁用shell登录"></a>13.禁用shell登录</h2><p>网上流传在搭建服务器的过程中创建的git用户可以免密登录远程的ssh，试了一把，果不其然登录了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">192:~ poet$ ssh git@104.224.156.100 -p 2022</span><br><span class="line">[git@localhost ~]$ ls</span><br><span class="line">[git@localhost ~]$ ls -a</span><br><span class="line">.  ..  .bash_logout  .bash_profile  .bashrc  .ssh</span><br><span class="line">[git@localhost ~]$ </span><br></pre></td></tr></table></figure>
-
-<p>出于安全考虑，第三步创建的git用户不允许登录shell，这可以通过编辑/etc/passwd文件完成。找到类似下面的一行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@git ~]<span class="comment"># cat /etc/passwd | grep git</span></span><br><span class="line"></span><br><span class="line">git:x:1001:1001:git version control:/home/git:/bin/bash</span><br></pre></td></tr></table></figure>
-<p>改为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@git ~]<span class="comment"># vim /etc/passwd</span></span><br><span class="line"></span><br><span class="line">git:x:1001:1001:git version control:/home/git:/usr/bin/git-shell</span><br></pre></td></tr></table></figure>
-<p>这样，git用户可以正常通过ssh使用git，但无法登录shell，因为我们为git用户指定的git-shell每次一登录就自动退出。</p>
-<p>修改完再试一把，发现已经连接不了远程ssh了:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">192:~ poet$ ssh git@104.224.156.100 -p 2022</span><br><span class="line">Last login: Fri Aug 23 07:56:10 2019 from 222.93.190.219</span><br><span class="line">fatal: What <span class="keyword">do</span> you think I am? A shell?</span><br><span class="line">Connection to 104.224.156.100 closed.</span><br><span class="line">192:~ poet$ ssh git@104.224.156.100 -p 2022</span><br><span class="line">Last login: Fri Aug 23 07:56:39 2019 from 222.93.190.219</span><br><span class="line">fatal: What <span class="keyword">do</span> you think I am? A shell?</span><br><span class="line">Connection to 104.224.156.100 closed.</span><br><span class="line">192:~ poet$ </span><br></pre></td></tr></table></figure>
-
-<h2 id="14-Git报错收集"><a href="#14-Git报错收集" class="headerlink" title="14.Git报错收集"></a>14.Git报错收集</h2><ul>
-<li><p>git clone does not appear to be a git repository<br>错误示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">poetmacbook-pro:git kris$ git <span class="built_in">clone</span> ssh://git@10.211.55.4:/home/gitrepo/IMBasic.git</span><br><span class="line">正克隆到 <span class="string">&#x27;IMBasic&#x27;</span>...</span><br><span class="line">fatal: <span class="string">&#x27;/home/gitrepo/IMBasic.git&#x27;</span> does not appear to be a git repository</span><br><span class="line">fatal: 无法读取远程仓库。</span><br><span class="line"></span><br><span class="line">请确认您有正确的访问权限并且仓库存在。</span><br></pre></td></tr></table></figure>
-
-<p>问题产生的原因：git仓库的路径不对，请确认<code>/home/gitrepo/IMBasic.git</code>是否确实存在，还要注意此处应该使用服务器上的绝对路径，不能使用相对路径。</p>
-</li>
-</ul>
-<p>参考链接:<br><a target="_blank" rel="noopener" href="https://www.runoob.com/git/git-server.html">Git 服务器搭建</a><br><a target="_blank" rel="noopener" href="https://www.linuxidc.com/Linux/2014-05/101830.htm">Git 服务器搭建与客户端安装</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bass6/p/6382633.html">git 从远程git服务上拉代码 git服务器非默认端口</a><br><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1621628813408131040&wfr=spider&for=pc">Git常用命令总结及其用法说明</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1575,14 +1466,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">David的博客</p>
-  <div class="site-description" itemprop="description">合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。</div>
+  <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1631,12 +1522,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">199k</span>
+    <span title="站点总字数">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:01</span>
+    <span title="站点阅读时长">3:13</span>
 </div>
 
         

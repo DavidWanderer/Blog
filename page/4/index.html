@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"github.com","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+  <meta name="description" content="Your dreams don&#39;t work unless you do.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Stay hungry, Stay foolish.">
 <meta property="og:url" content="https://github.com/DavidWanderer/Blog/page/4/index.html">
 <meta property="og:site_name" content="Stay hungry, Stay foolish.">
-<meta property="og:description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+<meta property="og:description" content="Your dreams don&#39;t work unless you do.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="David的博客">
 <meta name="twitter:card" content="summary">
@@ -97,7 +97,6 @@
       <h1 class="site-title">Stay hungry, Stay foolish.</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">向上吧，少年</p>
   </div>
 
   <div class="site-nav-right">
@@ -187,12 +186,425 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/11/07/iOS%E4%BD%BF%E7%94%A8SVG%E5%92%8CPDF%E5%9B%BE%E7%89%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2019/11/07/iOS%E4%BD%BF%E7%94%A8SVG%E5%92%8CPDF%E5%9B%BE%E7%89%87/" class="post-title-link" itemprop="url">iOS使用SVG和PDF图片</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-07 12:19:50" itemprop="dateCreated datePublished" datetime="2019-11-07T12:19:50+08:00">2019-11-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>856</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="什么是SVG"><a href="#什么是SVG" class="headerlink" title="什么是SVG?"></a>什么是SVG?</h2><p>SVG是一种用XML定义的语言，用来描述二维矢量及矢量/栅格图形。</p>
+<h2 id="SVG有哪些优势？"><a href="#SVG有哪些优势？" class="headerlink" title="SVG有哪些优势？"></a>SVG有哪些优势？</h2><p>参与定义 SVG 的组织有：太阳微系统、Adobe、苹果公司、IBM 以及柯达。<br>与其他图像格式相比，使用 SVG 的优势在于：<br>●SVG 可被非常多的工具读取和修改（比如记事本）<br>●SVG 与 JPEG 和 GIF 图像比起来，尺寸更小，且可压缩性更强。<br>●SVG 是可伸缩的<br>●SVG 图像可在任何的分辨率下被高质量地打印<br>●SVG 可在图像质量不下降的情况下被放大<br>●SVG 图像中的文本是可选的，同时也是可搜索的（很适合制作地图）<br>●SVG 可以与 JavaScript 技术一起运行<br>●SVG 是开放的标准<br>●SVG 文件是纯粹的 XML<br>●SVG 的主要竞争者是 Flash。</p>
+<h2 id="SVG在iOS中有哪些劣势？"><a href="#SVG在iOS中有哪些劣势？" class="headerlink" title="SVG在iOS中有哪些劣势？"></a>SVG在iOS中有哪些劣势？</h2><p>●Xcode 6以后支持矢量图,原生支持pdf格式<br>●原生不支持SVG格式(因为svg本质是xml),如果要加载SVG格式,使用WebView或第三方框架<br>●原生中如果使用SVG格式的图片，不能放在Assets.xcassets中，要像本地文件或者网络文件一样给个地址，存放起来有点麻烦<br>●集成起来麻烦<br>●只支持放大缩小，颜色修改需要另外的分类来支持<br>●不支持带滤镜的SVG<br>●UIButton使用SVG时，需要设置Button的Type为Custom，否则改变颜色的时候，没有效果。</p>
+<h2 id="iOS使用第三方框架加载svg格式"><a href="#iOS使用第三方框架加载svg格式" class="headerlink" title="iOS使用第三方框架加载svg格式"></a>iOS使用第三方框架加载svg格式</h2><p>iOS中使用 SVGKit(Objective-C库)和 Macaw(Swift库)。</p>
+<h2 id="iOS中使用PDF格式的图片"><a href="#iOS中使用PDF格式的图片" class="headerlink" title="iOS中使用PDF格式的图片"></a>iOS中使用PDF格式的图片</h2><p>在Asset.xcassets中添加一张图片，选择Attributes inspector，scales设置成SingleScale，原来3个占位图的位置会变成1个占位图的位置。在这个占位图中拖入一个pdf格式的图片。iOS系统会根据PDF格式的图片自动生成@1x、@2x和@3x图，对应适配不同的屏幕。</p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a><a target="_blank" rel="noopener" href="https://files-cdn.cnblogs.com/files/wobuyayi/SVG%E5%92%8CPDF%E9%A2%84%E6%BC%94.zip">Demo</a></h2><h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h3><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/SVG%E6%A0%BC%E5%BC%8F/3463453?fr=aladdin">百度百科SVG格式</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e4fe82ca6fd0">Xcode项目中使用矢量图(pdf,svg)</a><br><a target="_blank" rel="noopener" href="http://blog.startry.com/2016/06/15/vector-apply-to-iOS-Project/">矢量图在iOS中的应用细节</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/aca8f6976acf">iOS开发APP瘦身之PDF图片资源加载框架</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/08/24/Linux%E4%B8%8B%E5%AE%89%E8%A3%85FTP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2019/08/24/Linux%E4%B8%8B%E5%AE%89%E8%A3%85FTP/" class="post-title-link" itemprop="url">Linux下安装FTP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-24 16:25:29" itemprop="dateCreated datePublished" datetime="2019-08-24T16:25:29+08:00">2019-08-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/FTP/" itemprop="url" rel="index"><span itemprop="name">FTP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-什么是vsftpd"><a href="#1-什么是vsftpd" class="headerlink" title="1.什么是vsftpd"></a>1.什么是vsftpd</h2><p>vsftpd是一款在Linux发行版中最受推崇的FTP服务器程序。特点是小巧轻快，安全易用。<br>vsftpd 的名字代表”very secure FTP daemon”, 安全是它的开发者 Chris Evans 考虑的首要问题之一。在这个 FTP 服务器设计开发的最开始的时候，高安全性就是一个目标。</p>
+<h2 id="2-查看当前服务器是否安装过"><a href="#2-查看当前服务器是否安装过" class="headerlink" title="2.查看当前服务器是否安装过"></a>2.查看当前服务器是否安装过</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rpm -qa|grep vsftp</span><br></pre></td></tr></table></figure>
+<p>如果显示版本号，说明安装成功，如果没有安装文件，什么都不显示，说明没有安装或者其他情况。也可以通过which vsftp检查是否有ftp的安装文件。</p>
+<h2 id="3-安装FTP"><a href="#3-安装FTP" class="headerlink" title="3.安装FTP"></a>3.安装FTP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum -y install vsftpd</span><br></pre></td></tr></table></figure>
+<p>安装完后，有/etc/vsftpd/vsftpd.conf 文件，是vsftp的配置文件。还新建了一个ftp用户和ftp的组，指向home目录为/var/ftp,默认是nologin（不能登录系统）。可以用cat /etc/passwd 命令查看用户。</p>
+<h2 id="4-启动ftp，执行命令"><a href="#4-启动ftp，执行命令" class="headerlink" title="4.启动ftp，执行命令"></a>4.启动ftp，执行命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service vsftpd start</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="5-查看ftp的状态"><a href="#5-查看ftp的状态" class="headerlink" title="5.查看ftp的状态"></a>5.查看ftp的状态</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service vsftpd status</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="6-安装ftp客户端组件（用来验证登录vsftpd）"><a href="#6-安装ftp客户端组件（用来验证登录vsftpd）" class="headerlink" title="6.安装ftp客户端组件（用来验证登录vsftpd）"></a>6.安装ftp客户端组件（用来验证登录vsftpd）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install ftp</span></span><br></pre></td></tr></table></figure>
+<p>执行命令尝试登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ftp localhost</span></span><br></pre></td></tr></table></figure>
+<p>输入用户名ftp，密码随便（因为默认是允许匿名的）<br>登录成功，就代表ftp服务可用了。<br>但是，外网是访问不了的，所以还要继续配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ftp localhost</span></span><br><span class="line">Trying ::1...</span><br><span class="line">ftp: connect to address ::1拒绝连接</span><br><span class="line">Trying 127.0.0.1...</span><br><span class="line">Connected to localhost (127.0.0.1).</span><br><span class="line">220 (vsFTPd 2.2.2)</span><br><span class="line">Name (localhost:root): ftp</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system <span class="built_in">type</span> is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line">ftp&gt; ls</span><br><span class="line">227 Entering Passive Mode (127,0,0,1,177,184).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">drwxr-xr-x    2 0        0            4096 Mar 22  2017 pub</span><br><span class="line">226 Directory send OK.</span><br><span class="line">ftp&gt; </span><br></pre></td></tr></table></figure>
+
+
+<h2 id="7-添加一个ftp用户"><a href="#7-添加一个ftp用户" class="headerlink" title="7.添加一个ftp用户"></a>7.添加一个ftp用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># useradd ftpuser</span></span><br></pre></td></tr></table></figure>
+<p>此用户就是用来登录ftp服务器用的。<br>这样一个用户建完，可以用这个登录，记得用普通登录不要用匿名了。登录后默认的路径为 /home/ftpuser.</p>
+<h2 id="8-给ftp用户添加密码"><a href="#8-给ftp用户添加密码" class="headerlink" title="8.给ftp用户添加密码"></a>8.给ftp用户添加密码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># passwd ftpuser</span></span><br></pre></td></tr></table></figure>
+<p>输入两次密码后修改密码。</p>
+<h2 id="9-关闭匿名登录"><a href="#9-关闭匿名登录" class="headerlink" title="9.关闭匿名登录"></a>9.关闭匿名登录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure>
+<p>设置anonymous_enable=NO。</p>
+<h2 id="10-重启ftp服务"><a href="#10-重启ftp服务" class="headerlink" title="10.重启ftp服务"></a>10.重启ftp服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># service vsftpd restart</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="11-开启passive模式"><a href="#11-开启passive模式" class="headerlink" title="11.开启passive模式"></a>11.开启passive模式</h2><p>默认是开启的，但是要指定一个端口范围，打开vsftpd.conf文件，在后面加上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pasv_min_port=30000   </span><br><span class="line">pasv_max_port=30999  </span><br></pre></td></tr></table></figure>
+<p>表示端口范围为30000~30999，这个可以随意改。改完重启一下vsftpd。</p>
+<h2 id="12-修改ftp默认的端口号"><a href="#12-修改ftp默认的端口号" class="headerlink" title="12.修改ftp默认的端口号"></a>12.修改ftp默认的端口号</h2><p>常规下21端口容易遭到别人的扫描、带来了一定程度的不安全。所以，最好的就是把21端口修改掉。默认修改为6069。</p>
+<h2 id="12-1-修改vsftp的配置文件"><a href="#12-1-修改vsftp的配置文件" class="headerlink" title="12.1 修改vsftp的配置文件"></a>12.1 修改vsftp的配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure>
+<p>在原来的基础上加上：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">listen_port=6069</span><br><span class="line"></span><br><span class="line">pasv_enable=YES</span><br><span class="line"></span><br><span class="line">pasv_min_port=30000</span><br><span class="line"></span><br><span class="line">pasv_max_port=30999</span><br><span class="line"></span><br><span class="line">pasv_promiscuous=YES</span><br><span class="line"></span><br><span class="line">ftpd_banner=Welcome to Wander FTP service</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-2-修改-etc-services"><a href="#12-2-修改-etc-services" class="headerlink" title="12.2 修改/etc/services"></a>12.2 修改/etc/services</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/services</span><br></pre></td></tr></table></figure>
+<p>修改成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ftp             6069/tcp</span><br><span class="line">ftp             6069/udp</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-3-修改防火墙规则"><a href="#12-3-修改防火墙规则" class="headerlink" title="12.3 修改防火墙规则"></a>12.3 修改防火墙规则</h2><p>如果防火墙开启、并且做了端口限制、请添加相应的规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 30000:30999 -j ACCEPT</span><br><span class="line">-A INPUT -p udp -m state --state NEW -m udp --dport 6069 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 6069 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-4-重启服务"><a href="#12-4-重启服务" class="headerlink" title="12.4 重启服务"></a>12.4 重启服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># service iptables restart</span></span><br><span class="line"><span class="comment"># service vsftpd restart</span></span><br></pre></td></tr></table></figure>
+<p>然后就可以通过客户端6069端口连接ftp（选择被动模式连接）。</p>
+<h2 id="13-配置-vsftpd-使用-SSL-TLS"><a href="#13-配置-vsftpd-使用-SSL-TLS" class="headerlink" title="13.配置 vsftpd 使用 SSL / TLS"></a>13.配置 vsftpd 使用 SSL / TLS</h2><h2 id="13-1-检查-vsftpd-是否支持-ssl-模块"><a href="#13-1-检查-vsftpd-是否支持-ssl-模块" class="headerlink" title="13.1 检查 vsftpd 是否支持 ssl 模块"></a>13.1 检查 vsftpd 是否支持 ssl 模块</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ldd $(which vsftpd) | grep ssl</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-2-建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方-etc-pki-tls-certs-。"><a href="#13-2-建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方-etc-pki-tls-certs-。" class="headerlink" title="13.2 建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方/etc/pki/tls/certs/。"></a>13.2 建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方/etc/pki/tls/certs/。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd /etc/pki/tls/certs</span></span><br></pre></td></tr></table></figure>
+<p>生成密钥文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make vsftpd.pem</span></span><br></pre></td></tr></table></figure>
+<p>复制证书到vsftpd目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cp -a vsftpd.pem /etc/vsftpd/</span></span><br><span class="line"><span class="comment"># ll /etc/vsftpd/vsftpd.pem</span></span><br></pre></td></tr></table></figure>
+
+<p>证书配置解析：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Country Name (2 letter code) [XX]:CN                            国家名称(2个字母代码)[XX]:CN</span><br><span class="line">State or Province Name (full name) []:CHINA                     国家或省名(全称)[]:中国</span><br><span class="line">Locality Name (eg, city) [Default City]:CHINA                   地名(如城市)[默认城市]:中国</span><br><span class="line">Organization Name (eg, company) [Default Company Ltd]:ORG       组织名称(如公司)[默认公司有限公司]:ORG</span><br><span class="line">Organizational Unit Name (eg, section) []:ORG                   组织单元名称(例如，节)[]:ORG</span><br><span class="line">Common Name (eg, your name or your server<span class="string">&#x27;s hostname) []:NAME   常用名称(例如，您的名称或服务器的主机名)[]:Name</span></span><br><span class="line"><span class="string">Email Address []:EMAIL@163.com                                  电子邮件地址[]:EMAIL@163.com</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-3-修改-vsftpd-conf-配置文件"><a href="#13-3-修改-vsftpd-conf-配置文件" class="headerlink" title="13.3 修改 vsftpd.conf 配置文件"></a>13.3 修改 vsftpd.conf 配置文件</h2><p>停止服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># service vsftpd stop</span></span><br></pre></td></tr></table></figure>
+<p>在最后加上以下配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ssl_enable=YES</span><br><span class="line">allow_anon_ssl=YES</span><br><span class="line">force_anon_data_ssl=YES</span><br><span class="line">force_anon_logins_ssl=YES</span><br><span class="line">force_local_data_ssl=YES</span><br><span class="line">force_local_logins_ssl=YES</span><br><span class="line">ssl_tlsv1=YES</span><br><span class="line">rsa_cert_file=/etc/vsftpd/vsftpd.pem</span><br></pre></td></tr></table></figure>
+
+<p>配置解析：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###SSL#####</span></span><br><span class="line"><span class="comment"># 是否启用SSL，默认值：NO</span></span><br><span class="line">ssl_enable=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 活动。如果设置为YES，匿名用户将被允许使用安全的SSL连接</span></span><br><span class="line">默认值：NO</span><br><span class="line">allow_anon_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有匿名登录将被强制使用安全的SSL连接，以便在数据连接上发送和接收数据。默认值：NO</span></span><br><span class="line">force_anon_data_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有匿名登录将被强制使用安全的SSL连接以发送密码。默认值：NO</span></span><br><span class="line">force_anon_logins_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有非匿名登录将被强制使用安全的SSL连接，以便在数据连接上发送和接收数据。默认值：YES</span></span><br><span class="line">force_local_data_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有非匿名登录将被强制使用安全的SSL连接以发送密码。默认值：YES</span></span><br><span class="line">force_local_logins_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许TLS v1协议连接。TLS v1连接是首选。默认值：YES</span></span><br><span class="line">ssl_tlsv1=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许SSL v2协议连接。TLS v1连接是首选。默认值：NO</span></span><br><span class="line"><span class="comment">#ssl_sslv2=NO</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许SSL v3协议连接。TLS v1连接是首选。默认值：NO</span></span><br><span class="line"><span class="comment">#ssl_sslv3=NO</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 选项指定用于SSL加密连接的RSA证书的位置。默认值：/usr/share/ssl/certs/vsftpd.pem</span></span><br><span class="line">rsa_cert_file=/etc/vsftpd/vsftpd.pem</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-4-最后保存，重启服务就OK了"><a href="#13-4-最后保存，重启服务就OK了" class="headerlink" title="13.4 最后保存，重启服务就OK了"></a>13.4 最后保存，重启服务就OK了</h2><p>启动服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd start</span><br></pre></td></tr></table></figure>
+<p>重启服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-5-连接-Vsftpd"><a href="#13-5-连接-Vsftpd" class="headerlink" title="13.5 连接 Vsftpd"></a>13.5 连接 Vsftpd</h2><p>在连接的时候勾选信任证书就行。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/csdn_lqr/article/details/53333946">Linux安装ftp组件(8步完成)</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/lizexing1/article/details/79308961">小白教程：linux下安装FTP的过程和使用的整体过程</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chenmh/p/5365274.html">Linux 搭建FTP服务器</a><br><a target="_blank" rel="noopener" href="https://www.kancloud.cn/chandler/bc-linux/52710">centos启用ftp功能</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/caihuashen/article/details/80306131">修改ftp默认端口</a><br><a target="_blank" rel="noopener" href="https://blog.51cto.com/13481789/2366720">”不安全的服务器，不支持 FTP over TLS“ 配置 vsftpd 使用 SSL / TLS</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/08/24/Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2019/08/24/Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">Git服务器搭建</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-24 09:07:48" itemprop="dateCreated datePublished" datetime="2019-08-24T09:07:48+08:00">2019-08-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-使用ssh命令登录Linux服务器"><a href="#1-使用ssh命令登录Linux服务器" class="headerlink" title="1.使用ssh命令登录Linux服务器"></a>1.使用ssh命令登录Linux服务器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@104.224.156.100 -p 2022</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="2-安装Git"><a href="#2-安装Git" class="headerlink" title="2.安装Git"></a>2.安装Git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel</span><br><span class="line">$ yum install git</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-接下来我们-创建一个git用户组和用户，用来运行git服务："><a href="#3-接下来我们-创建一个git用户组和用户，用来运行git服务：" class="headerlink" title="3.接下来我们 创建一个git用户组和用户，用来运行git服务："></a>3.接下来我们 创建一个git用户组和用户，用来运行git服务：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ groupadd git</span><br><span class="line">$ useradd git -g git</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="4-客户端生成ssh公钥"><a href="#4-客户端生成ssh公钥" class="headerlink" title="4.客户端生成ssh公钥"></a>4.客户端生成ssh公钥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">192:git poet$ ssh-keygen -t rsa</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/Users/poet/.ssh/id_rsa): </span><br><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase): </span><br><span class="line">Enter same passphrase again: </span><br><span class="line">Your identification has been saved <span class="keyword">in</span> /Users/poet/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved <span class="keyword">in</span> /Users/poet/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:Rky+UE83syyOMjaKYHeoGduGBaPqnU+rtrcyl7TMdL8 poet@192.168.0.101</span><br><span class="line">The key<span class="string">&#x27;s randomart image is:</span></span><br><span class="line"><span class="string">+---[RSA 2048]----+</span></span><br><span class="line"><span class="string">|        o . +    |</span></span><br><span class="line"><span class="string">|       = o o +   |</span></span><br><span class="line"><span class="string">| o    . + o o    |</span></span><br><span class="line"><span class="string">|. o .  o + .     |</span></span><br><span class="line"><span class="string">|oo + .= S .      |</span></span><br><span class="line"><span class="string">|o.X..= *         |</span></span><br><span class="line"><span class="string">|.=.o*.+ .        |</span></span><br><span class="line"><span class="string">|. o+oB.  .       |</span></span><br><span class="line"><span class="string">| ..=O+.  E.      |</span></span><br><span class="line"><span class="string">+----[SHA256]-----+</span></span><br><span class="line"><span class="string">192:git poet$ cat /Users/poet/.ssh/id_rsa.pub</span></span><br><span class="line"><span class="string">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQVX+tOytAUJq3pKNvIFX2HETKvalq4rlqIFJ04KtKIDykzbct5FxK1jR92oIP+ylEsQGz6dJ3FqIsXSn200UIbGvdCvSX5uSFFu8psV4eX1J7DsA6gcLMXElTEHDr82U6MwFmOR6Vb8RkSwsNzRqv8uDdxrmayvbUnQL3VK+/VNcfTdPl2O4YyrYp/DBtFe8b61QvlmU6x4UaX40Sg/r9/JyFMSEDduse9bvVkqg3xkTpaZqwquY7384Ou2iIr4bzlb5mAjW222foM6YBuBhxlovu5kVhLx4GpPsCcxPBJe8lgiGyAGG4yvJ1CH7Rv658eIFqVUyVeOJGP871pLkR poet@192.168.0.101</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="5-创建证书登录，如果没有该文件就创建它："><a href="#5-创建证书登录，如果没有该文件就创建它：" class="headerlink" title="5.创建证书登录，如果没有该文件就创建它："></a>5.创建证书登录，如果没有该文件就创建它：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /home/git/</span><br><span class="line">$ mkdir .ssh</span><br><span class="line">$ chmod 755 .ssh</span><br><span class="line">$ touch .ssh/authorized_keys</span><br><span class="line">$ chmod 644 .ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="6-将生成客户端公钥并复制到服务器上"><a href="#6-将生成客户端公钥并复制到服务器上" class="headerlink" title="6.将生成客户端公钥并复制到服务器上"></a>6.将生成客户端公钥并复制到服务器上</h2><p>收集所有需要登录的用户的公钥，公钥位于id_rsa.pub文件中，把我们的公钥导入到/home/git/.ssh/authorized_keys文件里，一行一个。<br>下面我们复制id_rsa.pub里的公钥到服务器的authorized_keys文件中。<br>首先使用ssh连接远程的服务器,然后进入目录/home/git，然后执行如下命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost git]<span class="comment"># vim .ssh/authorized_keys</span></span><br></pre></td></tr></table></figure>
+<p>然后将上面生成的公钥复制到服务器的公钥文件中。复制万保存，查看公钥文件中的内容:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost git]<span class="comment"># cat .ssh/authorized_keys</span></span><br><span class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQVX+tOytAUJq3pKNvIFX2HETKvalq4rlqIFJ04KtKIDykzbct5FxK1jR92oIP+ylEsQGz6dJ3FqIsXSn200UIbGvdCvSX5uSFFu8psV4eX1J7DsA6gcLMXElTEHDr82U6MwFmOR6Vb8RkSwsNzRqv8uDdxrmayvbUnQL3VK+/VNcfTdPl2O4YyrYp/DBtFe8b61QvlmU6x4UaX40Sg/r9/JyFMSEDduse9bvVkqg3xkTpaZqwquY7384Ou2iIr4bzlb5mAjW222foM6YBuBhxlovu5kVhLx4GpPsCcxPBJe8lgiGyAGG4yvJ1CH7Rv658eIFqVUyVeOJGP871pLkR poet@192.168.0.101</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="7-初始化Git仓库"><a href="#7-初始化Git仓库" class="headerlink" title="7.初始化Git仓库"></a>7.初始化Git仓库</h2><p>首先我们选定一个目录作为Git仓库，假定是/home/gitrepo/helloword.git，在/home/gitrepo目录下输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /home</span><br><span class="line">$ mkdir gitrepo</span><br><span class="line">$ chown git:git gitrepo/</span><br><span class="line">$ <span class="built_in">cd</span> gitrepo</span><br><span class="line"></span><br><span class="line">$ git init --bare helloword.git</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /home/gitrepo/helloword.git/</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="8-以上命令Git创建一个空仓库，服务器上的Git仓库通常都以-git结尾。然后，把仓库所属用户改为git："><a href="#8-以上命令Git创建一个空仓库，服务器上的Git仓库通常都以-git结尾。然后，把仓库所属用户改为git：" class="headerlink" title="8.以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git："></a>8.以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chown -R git:git helloword.git</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="9-克隆仓库"><a href="#9-克隆仓库" class="headerlink" title="9.克隆仓库"></a>9.克隆仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@104.224.156.100:/home/gitrepo/helloword.git</span><br><span class="line">Cloning into <span class="string">&#x27;helloword&#x27;</span>...</span><br><span class="line">warning: You appear to have cloned an empty repository.</span><br><span class="line">Checking connectivity... <span class="keyword">done</span>.</span><br></pre></td></tr></table></figure>
+<p>104.224.156.100 为 Git 所在服务器 ip ，你需要将其修改为你自己的 Git 服务 ip。</p>
+<p>但是我克隆的时候却报错了:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">192:git poet$ git <span class="built_in">clone</span> git@104.224.156.100:2022:/home/gitrepo/helloword.git</span><br><span class="line">Cloning into <span class="string">&#x27;helloword&#x27;</span>...</span><br><span class="line">ssh: connect to host 104.224.156.100 port 22: Connection refused</span><br><span class="line">fatal: Could not <span class="built_in">read</span> from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">192:git poet$ </span><br></pre></td></tr></table></figure>
+
+<h2 id="10-克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下"><a href="#10-克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下" class="headerlink" title="10.克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下:"></a>10.克隆仓库的时候出了点小差错，因为ssh的端口号被我改了，而Git是依赖于ssh，所以Git的连接请求也会失败。第9步的命令应该换一下:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> ssh://git@104.224.156.100:2022/home/gitrepo/helloword.git</span><br></pre></td></tr></table></figure>
+<p>如果你添加到服务器的公钥有效果，则上述命令会自动把项目克隆下来，但是如果公钥无效或者生成公钥的时候设置了密码，则克隆的步骤中会提示输入密码。</p>
+<p>这样我们的 Git 服务器安装就完成。</p>
+<h2 id="11-如果需要继续添加新的仓库，请到服务器的-home-gitrepo目录下输入命令："><a href="#11-如果需要继续添加新的仓库，请到服务器的-home-gitrepo目录下输入命令：" class="headerlink" title="11.如果需要继续添加新的仓库，请到服务器的/home/gitrepo目录下输入命令："></a>11.如果需要继续添加新的仓库，请到服务器的/home/gitrepo目录下输入命令：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git init --bare second.git</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /home/gitrepo/second.git/</span><br></pre></td></tr></table></figure>
+<p>以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chown -R git:git second.git</span><br></pre></td></tr></table></figure>
+<p>然后你就可以在客户端使用git clone正常的克隆项目了。具体操作命令如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> ssh://git@104.224.156.100:2022/home/gitrepo/second.git</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。"><a href="#12-克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。" class="headerlink" title="12.克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。"></a>12.克隆了空项目，想在本地试下git是否好用，可以试试下面的命令。</h2><p>创建Readme.txt文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch Readme.txt</span><br></pre></td></tr></table></figure>
+
+<p>查看当前项目的Git仓库的状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status -s</span><br></pre></td></tr></table></figure>
+
+<p>将Readme.txt文件添加到本地的Git仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add Readme.txt</span><br></pre></td></tr></table></figure>
+
+<p>继续查看本地的Git仓库的状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status -s</span><br></pre></td></tr></table></figure>
+
+<p>将操作提交到本地的Git仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;add Readme.txt file&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你没有设置本地Git的全局用户名和邮箱，有时候会报错，设置方法如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config  --global user.name 你的目标用户名</span><br><span class="line">$ git config  --global user.email 你的目标邮箱名</span><br></pre></td></tr></table></figure>
+
+<p>将操作推送到远程的Git仓库的master分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+
+<p>在另外一个客户端拉取Git远程仓库master分支的内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
+
+<p>在本地按时间倒序查看提交的log记录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-禁用shell登录"><a href="#13-禁用shell登录" class="headerlink" title="13.禁用shell登录"></a>13.禁用shell登录</h2><p>网上流传在搭建服务器的过程中创建的git用户可以免密登录远程的ssh，试了一把，果不其然登录了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">192:~ poet$ ssh git@104.224.156.100 -p 2022</span><br><span class="line">[git@localhost ~]$ ls</span><br><span class="line">[git@localhost ~]$ ls -a</span><br><span class="line">.  ..  .bash_logout  .bash_profile  .bashrc  .ssh</span><br><span class="line">[git@localhost ~]$ </span><br></pre></td></tr></table></figure>
+
+<p>出于安全考虑，第三步创建的git用户不允许登录shell，这可以通过编辑/etc/passwd文件完成。找到类似下面的一行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@git ~]<span class="comment"># cat /etc/passwd | grep git</span></span><br><span class="line"></span><br><span class="line">git:x:1001:1001:git version control:/home/git:/bin/bash</span><br></pre></td></tr></table></figure>
+<p>改为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@git ~]<span class="comment"># vim /etc/passwd</span></span><br><span class="line"></span><br><span class="line">git:x:1001:1001:git version control:/home/git:/usr/bin/git-shell</span><br></pre></td></tr></table></figure>
+<p>这样，git用户可以正常通过ssh使用git，但无法登录shell，因为我们为git用户指定的git-shell每次一登录就自动退出。</p>
+<p>修改完再试一把，发现已经连接不了远程ssh了:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">192:~ poet$ ssh git@104.224.156.100 -p 2022</span><br><span class="line">Last login: Fri Aug 23 07:56:10 2019 from 222.93.190.219</span><br><span class="line">fatal: What <span class="keyword">do</span> you think I am? A shell?</span><br><span class="line">Connection to 104.224.156.100 closed.</span><br><span class="line">192:~ poet$ ssh git@104.224.156.100 -p 2022</span><br><span class="line">Last login: Fri Aug 23 07:56:39 2019 from 222.93.190.219</span><br><span class="line">fatal: What <span class="keyword">do</span> you think I am? A shell?</span><br><span class="line">Connection to 104.224.156.100 closed.</span><br><span class="line">192:~ poet$ </span><br></pre></td></tr></table></figure>
+
+<h2 id="14-Git报错收集"><a href="#14-Git报错收集" class="headerlink" title="14.Git报错收集"></a>14.Git报错收集</h2><ul>
+<li><p>git clone does not appear to be a git repository<br>错误示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">poetmacbook-pro:git kris$ git <span class="built_in">clone</span> ssh://git@10.211.55.4:/home/gitrepo/IMBasic.git</span><br><span class="line">正克隆到 <span class="string">&#x27;IMBasic&#x27;</span>...</span><br><span class="line">fatal: <span class="string">&#x27;/home/gitrepo/IMBasic.git&#x27;</span> does not appear to be a git repository</span><br><span class="line">fatal: 无法读取远程仓库。</span><br><span class="line"></span><br><span class="line">请确认您有正确的访问权限并且仓库存在。</span><br></pre></td></tr></table></figure>
+
+<p>问题产生的原因：git仓库的路径不对，请确认<code>/home/gitrepo/IMBasic.git</code>是否确实存在，还要注意此处应该使用服务器上的绝对路径，不能使用相对路径。</p>
+</li>
+</ul>
+<p>参考链接:<br><a target="_blank" rel="noopener" href="https://www.runoob.com/git/git-server.html">Git 服务器搭建</a><br><a target="_blank" rel="noopener" href="https://www.linuxidc.com/Linux/2014-05/101830.htm">Git 服务器搭建与客户端安装</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bass6/p/6382633.html">git 从远程git服务上拉代码 git服务器非默认端口</a><br><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1621628813408131040&wfr=spider&for=pc">Git常用命令总结及其用法说明</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/07/07/MySQL%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -298,7 +710,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -550,7 +962,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -782,10 +1194,8 @@
 <p>这句代码就是证明了<code>如果分类实现了+initialize，就覆盖类本身的+initialize调用</code></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>load、initialize方法的区别什么？</p>
 <ul>
-<li>1.调用方式<ul>
+<li>1.调用方式</li>
 <li>1&gt; load是根据函数地址直接调用</li>
-</ul>
-</li>
 <li>2&gt; initialize是通过objc_msgSend调用</li>
 </ul>
 <p>-2.调用时刻<br>    - 1&gt; load是runtime加载类、分类的时候调用（只会调用1次）<br>    - 2&gt; initialize是类第一次接收到消息的时候调用，每一个类只会initialize一次（父类的initialize方法可能会被调用多次）</p>
@@ -833,7 +1243,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -952,7 +1362,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1112,7 +1522,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1278,7 +1688,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1390,438 +1800,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/" class="post-title-link" itemprop="url">一个NSObject对象占用多少内存</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-19 12:12:17" itemprop="dateCreated datePublished" datetime="2019-06-19T12:12:17+08:00">2019-06-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一个NSObject对象占用多少内存"><a href="#一个NSObject对象占用多少内存" class="headerlink" title="一个NSObject对象占用多少内存"></a>一个NSObject对象占用多少内存</h2><p>我们平时所编写的Objective-C代码，底层实现都是C/C++代码，</p>
-<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/Object-C%E4%BB%A3%E7%A0%81%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.png" class="" title="Objective-C代码底层实现">
-
-<p>所以OC的面向对象都是基于C/C++的数据结构实现的</p>
-<p><code>思考:OC对象主要是基于C/C++的什么数据结构实现的呢？？？</code></p>
-<p>想要了解OC对象主要是基于C/C++的什么数据结构实现的，我们首先要做的就是将Objective-C代码转化为C/C++代码，这样我们才能清楚的看清是怎么实现的</p>
-<p>然后我们打开终端，在命令行找到cd到文件目录，然后中输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clang -rewrite-objc main.m </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>命令可以将main.m编译成C++的代码，改成不同的文件名，就会生成不同的c++代码<br>这是就生成了main.cpp这个c++文件，打开文件代码<br>查看该main.cpp最底下的main函数， </p>
-<p>但是不同平台支持的代码肯定是不一样的，像平台有<code>Windows</code>、<code>mac</code>、<code>iOS</code>，架构有<code>模拟器(i386)、32bit(armv7)、64bit（arm64）</code>，我们使用<code>iOS</code>，他的架构现在基本上都是<code>64bit（arm64）</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xcrun  -sdk  iphoneos  clang  -arch  arm64  -rewrite-objc OC源文件  -o  输出的CPP文件</span><br><span class="line">如果需要链接其他框架，使用-framework参数。比如-framework UIKit</span><br></pre></td></tr></table></figure>
-<p>在终端输入命令以后，我们会生成一个<code>main.cpp</code>文件，打开<code>main.cpp</code>文件文件，我们把<code>main.cpp</code>文件拉到最下面，我们会看到这样一段代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">&#x2F;* @autoreleasepool *&#x2F; &#123; __AtAutoreleasePool __autoreleasepool; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这一段代码就是我们OC代码中的<code>main</code>函数的实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">	@autoreleasepool &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>这时我们在<code>main</code>函数写入这一段代码，然后我们点击进入，查看代码实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSObject *obj &#x3D; [[NSObject alloc] init];</span><br></pre></td></tr></table></figure>
-<p>点击<code>NSObject</code>进入内部，可以看到NSObject底层实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject &#123;</span><br><span class="line">	Class isa;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>我们用<code>NSObject_IMPL</code>查找在c++文件中具体的实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject_IMPL &#123;</span><br><span class="line">	Class isa;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-<p>我们再一次执行命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcrun  -sdk  iphoneos  clang  -arch  arm64  -rewrite-objc main.m</span><br></pre></td></tr></table></figure>
-<p>生成的C++代码为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">	&#x2F;* @autoreleasepool *&#x2F; &#123; __AtAutoreleasePool __autoreleasepool; </span><br><span class="line">	NSObject *obj &#x3D; ((NSObject *(*)(id, SEL))(void *)objc_msgSend)((id)((NSObject *(*)(id, SEL))(void *)objc_msgSend)((id)objc_getClass(&quot;NSObject&quot;), sel_registerName(&quot;alloc&quot;)), sel_registerName(&quot;init&quot;));</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>有两个方法可以打印内存大小</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获得NSObject实例对象的成员变量所占用的大小  </span><br><span class="line">NSLog(@&quot;%zd&quot;, class_getInstanceSize([NSObject class]));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 获得obj指针所指向内存的大小  </span><br><span class="line">NSLog(@&quot;%zd&quot;, malloc_size((__bridge const void *)obj));</span><br></pre></td></tr></table></figure>
-<p>打印结果</p>
-<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/NSObject%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98.png" class="" title="NSObject对象内存">
-
-<h2 id="一个OC对象在内存中是怎么样布局的呢"><a href="#一个OC对象在内存中是怎么样布局的呢" class="headerlink" title="一个OC对象在内存中是怎么样布局的呢"></a>一个OC对象在内存中是怎么样布局的呢</h2><p>我们在C++文件中找到NSObject的实现<br>OC代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject &#123;</span><br><span class="line">	Class isa;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>c++代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject_IMPL &#123;</span><br><span class="line">	Class isa;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>我们知道一个指针是<code>8个字节</code>，但是NSObject对象打印<code>16个字节</code>,他们是怎么样布局的呢</p>
-<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/NSObject%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80.png" class="" title="NSObject对象内存地址">
-
-<p>我们可以根据内存地址实时查看内存分配情况<code>Debug -&gt; Debug Workfllow -&gt; View Memory （Shift + Command + M）</code></p>
-<p>菜单选项如何查看内存：</p>
-<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE.png" class="" title="查看内存数据">
-
-<p>输入内存地址：</p>
-<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE1.png" class="" title="查看内存数据1">
-
-<p>通过Xcode查看内存数据:</p>
-<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE2.png" class="" title="查看内存数据2">
-
-<p>通过LLDB命令查看内存数据:</p>
-<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE3.png" class="" title="查看内存数据3">
-
-
-<p>我们也可以直接使用 <code>LLDB命令</code>来查看内存地址<br><strong>常用LLDB命令</strong></p>
-<ul>
-<li><p>print、p：打印</p>
-</li>
-<li><p>po：打印对象</p>
-</li>
-<li><p>读取内存</p>
-<ul>
-<li>memory read/数量格式字节数  内存地址</li>
-<li>x/数量格式字节数  内存地址（格式：x是16进制，f是浮点，d是10进制；字节大小<br>：b：byte 1字节，h：half word 2字节，w：word 4字节，g：giant word 8字节）</li>
-</ul>
-</li>
-<li><p>修改内存中的值（memory  write  内存地址  数值   memory  write  0x0000010  10）</p>
-</li>
-</ul>
-<p><strong>问题1</strong>：假设我创建一个<code>Animal</code>类，里面有<code>age</code>,<code>weight</code>两个属性，那么他的内存是多大呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Animal *animal &#x3D; [[Animal alloc] init];</span><br><span class="line">animal.age &#x3D; 10;</span><br><span class="line">animal.weight &#x3D; 20;</span><br></pre></td></tr></table></figure>
-
-<p>我们先执行命令，查看一下c++源码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct Animal_IMPL &#123;</span><br><span class="line">	struct NSObject_IMPL NSObject_IVARS;</span><br><span class="line">	int _age;</span><br><span class="line">	int _weight;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>我们在知道结果之前大概猜猜内存是多大呢？16，24，32…</p>
-<p>猜16字节的猜对了，我们先看看结果</p>
-<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/Animal%E5%86%85%E5%AD%98%E6%89%93%E5%8D%B0.png" class="" title="Animal内存打印">
-
-<p>我们用<code>LLDB命令</code>打印一下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(lldb) po animal</span><br><span class="line">&lt;Animal: 0x1005c23c0&gt;</span><br><span class="line"></span><br><span class="line">(lldb) memory read 0x1005c23c0</span><br><span class="line">0x1005c23c0: 81 13 00 00 01 80 1d 00 0a 00 00 00 14 00 00 00  ................</span><br><span class="line">0x1005c23d0: a0 24 5c 00 01 00 00 00 e0 26 5c 00 01 00 00 00  .$\......&amp;\.....</span><br><span class="line">(lldb) </span><br></pre></td></tr></table></figure>
-
-<p> 为什么会是<code>0a 00 00 00</code>和<code>14 00 00 00</code>呢，而不是<code>00 00 00 0a</code>和<code>00 00 00 14</code>,这个就要考虑<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%A7%E5%B0%8F%E7%AB%AF%E6%A8%A1%E5%BC%8F/6750542?fromtitle=%E5%A4%A7%E7%AB%AF%E5%B0%8F%E7%AB%AF&fromid=15925891&fr=aladdin">大端小端</a>，具体概念自己可以去查。</p>
-<p>但是为什么会是16个字节呢，因为int类型占用4个字节，两个int类型8个字节，一个<code>isa</code>8个字节，因为刚刚占满16个字节，对象就没有在开辟新的空间了</p>
-<p>如果在多一个<code>feetCount</code>会占用几个字节呢</p>
-<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/Cat%E5%86%85%E5%AD%98%E6%89%93%E5%8D%B0.png" class="" title="Cat内存打印">
-
-<p><code>占用32个字节，大家是不是很惊讶，没有猜到</code></p>
-<p>其实这又要提到一个新的知识点了<code>内存对齐</code>,我们知道OC对象就是C++结构体，<code>而结构体的大小必须是最大成员大小的倍数</code>，当在多了一个<code>feetCount</code>以后，内存不够用了，然后就需要扩展了。</p>
-<p><strong>如果是这样呢，占用内存是多少</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@interface Animal : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, assign) int age;</span><br><span class="line">@property (nonatomic, assign) int weight;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation Animal</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@interface Cat : Animal</span><br><span class="line">@property (nonatomic, assign) int feetCount;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation Cat</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p><code>Cat</code>继承自<code>Animal</code></p>
-<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/Cat%E5%86%85%E5%AD%98%E6%89%93%E5%8D%B0.png" class="" title="Cat内存打印">
-
-<p>我们生成C++代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">struct Cat_IMPL &#123;</span><br><span class="line">	struct Animal_IMPL Animal_IVARS;</span><br><span class="line">	int _feetCount;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct Animal_IMPL &#123;</span><br><span class="line">	struct NSObject_IMPL NSObject_IVARS;</span><br><span class="line">	int _weight;</span><br><span class="line">	int _age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct NSObject_IMPL &#123;</span><br><span class="line">	Class isa;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>整理一下就是这样</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct Cat_IMPL &#123;</span><br><span class="line">	Class isa;</span><br><span class="line">	int _weight;</span><br><span class="line">	int _age;</span><br><span class="line">	int _feetCount;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><a href="https://github.com/DavidWanderer/iOS_Examples">参考demo</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/06/15/%E6%9C%89%E8%B6%A3%E7%9A%84%E7%BD%91%E5%9D%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/06/15/%E6%9C%89%E8%B6%A3%E7%9A%84%E7%BD%91%E5%9D%80/" class="post-title-link" itemprop="url">有趣的网址</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-15 10:08:20" itemprop="dateCreated datePublished" datetime="2019-06-15T10:08:20+08:00">2019-06-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/%E9%80%9A%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">通用</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h2><p><a target="_blank" rel="noopener" href="http://gufenso.coderschool.cn/">http://gufenso.coderschool.cn/</a> (谷粉搜导航，可以临时用一下谷歌搜索)</p>
-<p><a target="_blank" rel="noopener" href="https://coderschool.cn/2366.html">https://coderschool.cn/2366.html</a>  （谷歌镜像网站链接收集，有广告）</p>
-<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1gePw35p">https://pan.baidu.com/s/1gePw35p</a> 密码: kw1k  （Chrom的饭前插件，注册一个账号，可以免费使用）</p>
-<p><a href="https://github.com/XX-net/XX-Net">https://github.com/XX-net/XX-Net</a>   （这个配置有些麻烦，不过用起来还不错，免费）</p>
-<p><a target="_blank" rel="noopener" href="https://google.jiongjun.cc/user/miror.html">https://google.jiongjun.cc/user/miror.html</a>  （廉价VPS，还有搬瓦工优惠码）</p>
-<p><a target="_blank" rel="noopener" href="https://blog.kuoruan.com/48.html">https://blog.kuoruan.com/48.html</a>  （搬瓦工搭建Shadowsocks并优化速度）</p>
-<p><a href="https://github.com/iMeiji/shadowsocks_install/blob/master/shadowsocksR-wiki/config.json.md">https://github.com/iMeiji/shadowsocks_install/blob/master/shadowsocksR-wiki/config.json.md</a>  (SSR配置文件更改)</p>
-<p><a href="https://github.com/racaljk/hosts/blob/master/README.md">https://github.com/racaljk/hosts/blob/master/README.md</a>  （Hosts文件）</p>
-<h2 id="谷歌镜像网站"><a href="#谷歌镜像网站" class="headerlink" title="谷歌镜像网站"></a>谷歌镜像网站</h2><p><a target="_blank" rel="noopener" href="https://www.uedbox.com/post/54776/">https://www.uedbox.com/post/54776/</a> (体验盒子)<br><a target="_blank" rel="noopener" href="http://gufenso.coderschool.cn/">http://gufenso.coderschool.cn/</a> (谷粉搜导航，可以临时用一下谷歌搜索)</p>
-<h2 id="Vultr搭建VPS相关教程："><a href="#Vultr搭建VPS相关教程：" class="headerlink" title="Vultr搭建VPS相关教程："></a>Vultr搭建VPS相关教程：</h2><p><a target="_blank" rel="noopener" href="https://www.jiongjun.cc/vultr/315.html">https://www.jiongjun.cc/vultr/315.html</a>  (购买和搭建VPS详细教程)</p>
-<p><a target="_blank" rel="noopener" href="http://yucc.me/p/b4d20b2d/">http://yucc.me/p/b4d20b2d/</a>  (简略版教程)</p>
-<h2 id="Shadowsocks-客户端下载："><a href="#Shadowsocks-客户端下载：" class="headerlink" title="Shadowsocks 客户端下载："></a>Shadowsocks 客户端下载：</h2><p><a target="_blank" rel="noopener" href="https://lvii.gitbooks.io/outman/content/ss.mac.html">https://lvii.gitbooks.io/outman/content/ss.mac.html</a></p>
-<p><a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases/">https://github.com/shadowsocks/ShadowsocksX-NG/releases/</a>  （MAC版客户端下载地址）</p>
-<h2 id="资源搜索："><a href="#资源搜索：" class="headerlink" title="资源搜索："></a>资源搜索：</h2><p><a target="_blank" rel="noopener" href="https://www.panc.cc/">https://www.panc.cc/</a> 胖次（最新的电影资源，会抽风）</p>
-<p><a target="_blank" rel="noopener" href="https://www.quzhuanpan.com/">https://www.quzhuanpan.com/</a> 去转盘 （最新的电影，综艺）</p>
-<p><a target="_blank" rel="noopener" href="https://search.chongbuluo.com/">https://search.chongbuluo.com/</a> 虫部落  （整理非常好的搜索站）</p>
-<p><a target="_blank" rel="noopener" href="http://www.torrent.org.cn/">http://www.torrent.org.cn</a> (种子和磁链互相转换的网站)</p>
-<p><a target="_blank" rel="noopener" href="https://www.btbtt.us/">BT之家</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.88btbtt.com/">BT之家</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.51btbtt.com/">BT之家</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.52btbtt.com/">BT之家</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.91btbtt.com/">BT之家</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.mebtbtt.com/">BT之家</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.btbtt.life/">BT之家</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.btbtt.live/">BT之家</a></p>
-<h2 id="资源下载："><a href="#资源下载：" class="headerlink" title="资源下载："></a>资源下载：</h2><p>Aria2c </p>
-<p>bt-tracker数据:<a href="https://github.com/ngosang/trackerslist/blob/master/trackers_all_udp.txt">https://github.com/ngosang/trackerslist/blob/master/trackers_all_udp.txt</a></p>
-<p><a target="_blank" rel="noopener" href="https://cowtransfer.com/">奶牛快传(分享临时文件)</a></p>
-<h2 id="计算机免费书籍GitHub合集"><a href="#计算机免费书籍GitHub合集" class="headerlink" title="计算机免费书籍GitHub合集:"></a>计算机免费书籍GitHub合集:</h2><p><a href="https://github.com/justjavac/free-programming-books-zh_CN">justjavac/free-programming-books-zh_CN</a>(免费的编程中文书籍索引)</p>
-<h2 id="iOS-开发："><a href="#iOS-开发：" class="headerlink" title="iOS 开发："></a>iOS 开发：</h2><p><a href="https://github.com/Tim9Liu9/TimLiu-iOS">https://github.com/Tim9Liu9/TimLiu-iOS</a> （iOS Demo，教程等等）</p>
-<p><a href="https://github.com/Aufree/trip-to-iOS">https://github.com/Aufree/trip-to-iOS</a> （偏向于教程）</p>
-<p><a href="https://github.com/jobbole/awesome-ios-cn">https://github.com/jobbole/awesome-ios-cn</a> （iOS 资源大全中文版，Demo比较全）</p>
-<p><a href="https://github.com/Lax/iOS-Swift-Demos">https://github.com/Lax/iOS-Swift-Demos</a> （Swift 学习资源）</p>
-<p><a href="https://github.com/leecade/ios-dev-flow">https://github.com/leecade/ios-dev-flow</a> （iOS 开发证书相关）</p>
-<p><a href="https://github.com/Draveness/analyze">https://github.com/Draveness/analyze</a>  （iOS开源框架源代码解析）</p>
-<p><a href="https://github.com/zhouhuanqiang/LearningIOS">https://github.com/zhouhuanqiang/LearningIOS</a>  （iOS视频教程）</p>
-<p><a target="_blank" rel="noopener" href="http://bbs.itheima.com/thread-338489-1-1.html">http://bbs.itheima.com/thread-338489-1-1.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://zsisme.gitbooks.io/ios-/content/index.html">https://zsisme.gitbooks.io/ios-/content/index.html</a>  (iOS核心动画)</p>
-<p><a target="_blank" rel="noopener" href="https://nshipster.cn/">https://nshipster.cn/</a></p>
-<h2 id="Vue-开发："><a href="#Vue-开发：" class="headerlink" title="Vue 开发："></a>Vue 开发：</h2><p><a href="https://github.com/vuejs/awesome-vue">vuejs/awesome-vue</a>(vue 学习资料)</p>
-<p><a target="_blank" rel="noopener" href="https://ke.qq.com/course/402398?taid=3214894690608094">硅谷外卖视频课程以及很多免费课程</a></p>
-<h2 id="iPhone机型介绍："><a href="#iPhone机型介绍：" class="headerlink" title="iPhone机型介绍："></a>iPhone机型介绍：</h2><p><a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/HT201296">https://support.apple.com/zh-cn/HT201296</a>  （iPhone各种机型的详细介绍）</p>
-<p><a target="_blank" rel="noopener" href="https://www.theiphonewiki.com/wiki/Models">https://www.theiphonewiki.com/wiki/Models</a>  （iOS各种设备的Model的介绍）</p>
-<h2 id="Android开发："><a href="#Android开发：" class="headerlink" title="Android开发："></a>Android开发：</h2><p><a target="_blank" rel="noopener" href="http://bbs.itheima.com/thread-338469-1-1.html">http://bbs.itheima.com/thread-338469-1-1.html</a></p>
-<h2 id="VR开发："><a href="#VR开发：" class="headerlink" title="VR开发："></a>VR开发：</h2><p><a href="https://github.com/GeekLiB/Lee-VR-Source">https://github.com/GeekLiB/Lee-VR-Source</a></p>
-<h2 id="工具网站："><a href="#工具网站：" class="headerlink" title="工具网站："></a>工具网站：</h2><p><a target="_blank" rel="noopener" href="http://www.iconfont.cn/">http://www.iconfont.cn/</a>   （阿里巴巴矢量图标库）</p>
-<p><a href="https://github.com/shengxinjing/programmer-job-blacklist">https://github.com/shengxinjing/programmer-job-blacklist</a>  （程序员找工作黑名单）</p>
-<h2 id="设计类网站"><a href="#设计类网站" class="headerlink" title="设计类网站:"></a>设计类网站:</h2><p><a target="_blank" rel="noopener" href="http://www.xueui.cn/">http://www.xueui.cn</a></p>
-<p><a target="_blank" rel="noopener" href="https://magdeleine.co/">https://magdeleine.co</a>  (免费高清摄影图片下载)</p>
-<p><a target="_blank" rel="noopener" href="http://blog.cocoachina.com/article/73408">http://blog.cocoachina.com/article/73408</a> （8个免费UI图标网站）</p>
-<h2 id="逆向工程与加密解密："><a href="#逆向工程与加密解密：" class="headerlink" title="逆向工程与加密解密："></a>逆向工程与加密解密：</h2><p><a target="_blank" rel="noopener" href="https://pan.baidu.com/pcloud/album/info?uk=1745354485&amp;album_id=3855093648109743244">https://pan.baidu.com/pcloud/album/info?uk=1745354485&amp;album_id=3855093648109743244</a>  （百度网盘分享链接）</p>
-<p><a target="_blank" rel="noopener" href="https://www.hackfun.org/kali-tools/kali-tools-zh.html">https://www.hackfun.org/kali-tools/kali-tools-zh.html</a>  （Kali工具说明书）</p>
-<p><a target="_blank" rel="noopener" href="http://www.he11oworld.com/tag/shentoujiaocheng/page/2/">http://www.he11oworld.com/tag/shentoujiaocheng/page/2/</a> （渗透教程下载）</p>
-<p><a target="_blank" rel="noopener" href="http://daily.zhihu.com/story/3877456">http://daily.zhihu.com/story/3877456</a> （安全网站列表）</p>
-<h2 id="社区："><a href="#社区：" class="headerlink" title="社区："></a>社区：</h2><p>伯乐在线 （<a href="https://github.com/jobbole%EF%BC%89">https://github.com/jobbole）</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.v2ex.com/go/idev">https://www.v2ex.com/go/idev</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/04/27/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Python3%E7%BC%96%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/04/27/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Python3%E7%BC%96%E7%A0%81/" class="post-title-link" itemprop="url">Python学习笔记(Python3编码)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-04-27 10:14:35" itemprop="dateCreated datePublished" datetime="2019-04-27T10:14:35+08:00">2019-04-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Python3中的字符串是Unicode字符串而不是字节数组。这是与Python2相比最大的差别。在Python2中，我们需要区分普通的字节为单位的字符串以及Unicode字符串。</p>
-<h2 id="使用UTF-8编码和解码"><a href="#使用UTF-8编码和解码" class="headerlink" title="使用UTF-8编码和解码"></a>使用UTF-8编码和解码</h2><p>对字符串进行处理时，并不需要在意Python中Unicode字符的存储细节。当需要与外界进行数据交互时则需要完成两件事情:</p>
-<ul>
-<li>将字符串__编码__为字节</li>
-<li>将字节__解码__为字符串</li>
-</ul>
-<p>如果Unicode包含的字符种类不超过64000种，我们就可以将字符ID统一存储在2字节中。遗憾的是，Unicode所包含的字符种类远不只此。诚然，我们将字符ID统一编码在3或4字节中，但是这样会使空间开销(内存和硬盘)增加3到4倍。两位Unix开发大神设计出了UTF-8动态编码方案。这种方案会动态的为每个Unicode字符分配1到4字节不等:</p>
-<ul>
-<li>为ASCII字符分配1字节</li>
-<li>为拉丁语系(除西里尔语)的语言分配2字节</li>
-<li>为其他的位于基本多语言平面的字符分配3字节</li>
-<li>为剩下的字符集分配4字节，这包括一些亚洲语言及符号</li>
-</ul>
-<p>UTF-8是Python、Linux以及HTML的标准文本编码格式。</p>
-<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>__编码是将字符串转化为一系列字节的过程__。字符串的__encode()__函数所接收的第一个参数是编码方式。可选的编码方式见下表。</p>
-<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/04/27/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Python3%E7%BC%96%E7%A0%81/Snip20190427_1.png" class="" title="编码方式的截图"> </div>
-
-<p>下面使用代码进行说明:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义一个Unicode字符串，它含有一个中文字符</span></span><br><span class="line">name = <span class="string">&quot;中&quot;</span></span><br><span class="line"><span class="comment"># 打印字符串的类型</span></span><br><span class="line">print(type(name))</span><br><span class="line"><span class="comment"># 打印字符串</span></span><br><span class="line">print(name)</span><br><span class="line"><span class="comment"># 打印字符串的长度，最后结果为1，说明len()获取的是字符串中字符的个数，不是字节长度</span></span><br><span class="line">print(len(name))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将字符串编码为UTF-8的字节序列</span></span><br><span class="line">ds = name.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(<span class="string">&quot;--------&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印字节序列的类型</span></span><br><span class="line">print(type(ds))</span><br><span class="line"><span class="comment"># 打印字符串编码过后的字节序列</span></span><br><span class="line">print(ds)</span><br><span class="line"><span class="comment"># 打印字节序列的长度，发现一个中文字符在UTF-8编码中占3个字节</span></span><br><span class="line">print(len(ds))</span><br></pre></td></tr></table></figure>
-
-<p>程序的运行结果如下:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">str</span>&#x27;&gt;</span></span><br><span class="line"><span class="class">中</span></span><br><span class="line"><span class="class">1</span></span><br><span class="line"><span class="class">--------</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> &#x27;<span class="title">bytes</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">b</span>&#x27;\<span class="title">xe4</span>\<span class="title">xb8</span>\<span class="title">xad</span>&#x27;</span></span><br><span class="line"><span class="class">3</span></span><br></pre></td></tr></table></figure>
-<p>由上面的运行结果可以知道，单个的Unicode中文字符在UTF-8编码的格式下占用了3字节的空间。当然，你也可以使用UTF-8以外的编码方式，但该Unicode字符串可能无法被指定的编码方式处理，此时Python会抛出异常。例如将上面的Unicode中文字符编码为ascii字节，就会报错。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">&#x27;中&#x27;</span></span><br><span class="line">ds = name.encode(<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">print(ds)</span><br></pre></td></tr></table></figure>
-<p>运行结果:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;/Users/kris/PycharmProjects/pythons_demo/Python语言及其应用/第七章/test.py&quot;</span>, line <span class="number">26</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    ds = name.encode(<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">UnicodeEncodeError: <span class="string">&#x27;ascii&#x27;</span> codec can<span class="string">&#x27;t encode character &#x27;</span>\u4e2d<span class="string">&#x27; in position 0: ordinal not in range(128)</span></span><br></pre></td></tr></table></figure>
-<p>__encode()__函数可以接受额外的第二个参数来帮助你避免编码异常。它的默认值是’strict’,如上例所示,当函数检测到需要处理的字符串包含非ASCII字符时,会抛出UnicodeEncodeError异常。当然还有别的可选值,使用’ignore’会抛弃任何无法进行编码的字符;使用’replace’会将所有无法进行编码的字符替换为?;’backslashreplace’则会创建一个和Unicode-escape类似的Unicode字符串。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">&#x27;ab中cd&#x27;</span></span><br><span class="line">print(name)</span><br><span class="line">print(name.encode(<span class="string">&#x27;ascii&#x27;</span>, <span class="string">&#x27;ignore&#x27;</span>))</span><br><span class="line">print(name.encode(<span class="string">&#x27;ascii&#x27;</span>, <span class="string">&#x27;replace&#x27;</span>))</span><br><span class="line">print(name.encode(<span class="string">&#x27;ascii&#x27;</span>, <span class="string">&#x27;backslashreplace&#x27;</span>))</span><br></pre></td></tr></table></figure>
-<p>程序的运行结果:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ab中cd</span><br><span class="line"><span class="string">b&#x27;abcd&#x27;</span></span><br><span class="line"><span class="string">b&#x27;ab?cd&#x27;</span></span><br><span class="line"><span class="string">b&#x27;ab\\u4e2dcd&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="解码"><a href="#解码" class="headerlink" title="解码"></a>解码</h3><p>__解码__是将字节序列转化为Unicode字符串的过程。我们从外界文本源(文件、数据库、网站、网络API等)获得的所有文本都是经过编码的字节序列。重要的是需要知道它是以何种方式编码的，这样才能逆转编码过程以获得Unicode字符串。</p>
-<p>问题是字节序列本身不带有任何指明编码方式的信息。之前我也提到过网站随意复制粘贴文本的风险,你也可能遇到过网页乱码的情况,本应是ASCII字符的位置却被奇怪的字符占据了,这些都是编码和解码的方式不一致导致的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">place = <span class="string">&#x27;caf\u00e9&#x27;</span></span><br><span class="line">print(place)</span><br><span class="line">print(type(place))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编码</span></span><br><span class="line">place_tytes = place.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(place_tytes)</span><br><span class="line">print(type(place_tytes))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解码</span></span><br><span class="line">place2 = place_tytes.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(place2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用ASCII解码,会报错</span></span><br><span class="line"><span class="comment"># place3 = place_tytes.decode(&#x27;ascii&#x27;)</span></span><br><span class="line"><span class="comment"># print(place3)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用其他编码格式解码</span></span><br><span class="line">place4 = place_tytes.decode(<span class="string">&#x27;latin_1&#x27;</span>)</span><br><span class="line">print(place4)</span><br><span class="line"></span><br><span class="line">place5 = place_tytes.decode(<span class="string">&#x27;windows-1252&#x27;</span>)</span><br><span class="line">print(place5)</span><br></pre></td></tr></table></figure>
-<p>程序的运行结果:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">café</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">str</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">b</span>&#x27;<span class="title">caf</span>\<span class="title">xc3</span>\<span class="title">xa9</span>&#x27;</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> &#x27;<span class="title">bytes</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">caf</span>é</span></span><br><span class="line"><span class="class"><span class="title">caf</span>Ã©</span></span><br><span class="line"><span class="class"><span class="title">caf</span>Ã©</span></span><br></pre></td></tr></table></figure>
-<p>上面的运行结果说明，</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1884,14 +1862,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">David的博客</p>
-  <div class="site-description" itemprop="description">合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。</div>
+  <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1940,12 +1918,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">199k</span>
+    <span title="站点总字数">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:01</span>
+    <span title="站点阅读时长">3:13</span>
 </div>
 
         

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
@@ -100,7 +100,6 @@
       <h1 class="site-title">Stay hungry, Stay foolish.</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">向上吧，少年</p>
   </div>
 
   <div class="site-nav-right">
@@ -196,7 +195,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -284,7 +283,7 @@
 <p>如果尝试多次仍然无法安装Fastlane，可以尝试:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#brew cask安装fastlane的执行命令:</span></span><br><span class="line">$ brew cask uninstall fastlane</span><br><span class="line">$ brew cask install fastlane</span><br></pre></td></tr></table></figure>
 
-<h2 id="将homebrew的源换成阿里云，提高下载速度"><a href="#将homebrew的源换成阿里云，提高下载速度" class="headerlink" title="将homebrew的源换成阿里云，提高下载速度"></a>将homebrew的源换成阿里云，提高下载速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.替换brew.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/brew.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.替换homebrew-core.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core&quot;</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.替换homebrew-cask.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span>/Library/Taps/homebrew/homebrew-cask</span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.替换homebrew-bottles:</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line">$ <span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+<h2 id="将homebrew的源换成阿里云，提高下载速度"><a href="#将homebrew的源换成阿里云，提高下载速度" class="headerlink" title="将homebrew的源换成阿里云，提高下载速度"></a>将homebrew的源换成阿里云，提高下载速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.替换brew.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span></span><br><span class="line">$ git remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.替换homebrew-core.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core&quot;</span></span><br><span class="line">$ git remote set-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.替换homebrew-cask.git:</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span>/Library/Taps/homebrew/homebrew-cask</span><br><span class="line">$ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.替换homebrew-bottles:</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line">$ <span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
 
 <h2 id="给Git添加代理访问，提高Git的访问速度"><a href="#给Git添加代理访问，提高Git的访问速度" class="headerlink" title="给Git添加代理访问，提高Git的访问速度"></a>给Git添加代理访问，提高Git的访问速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.编辑PAC用户自定义规则,添加以下地址:</span></span><br><span class="line">github.com</span><br><span class="line">githubusercontent.com</span><br><span class="line">githubassets.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.编辑~/.ssh/config文件，在文件中添加以下命令:</span></span><br><span class="line">Host github.com</span><br><span class="line">   HostName github.com</span><br><span class="line">   User git</span><br><span class="line">   ProxyCommand nc -v -x 127.0.0.1:1086 %h %p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.让配置立即生效:</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.ssh/config</span><br></pre></td></tr></table></figure>
 
@@ -382,14 +381,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">David的博客</p>
-  <div class="site-description" itemprop="description">合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。</div>
+  <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -438,12 +437,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">199k</span>
+    <span title="站点总字数">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:01</span>
+    <span title="站点阅读时长">3:13</span>
 </div>
 
         

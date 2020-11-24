@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
@@ -118,7 +118,6 @@
       <h1 class="site-title">Stay hungry, Stay foolish.</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">向上吧，少年</p>
   </div>
 
   <div class="site-nav-right">
@@ -214,7 +213,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Blog/images/avatar.gif">
       <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -312,16 +311,13 @@
 
 <p><code>frame</code>即是帧，其实就是当前的程序堆栈，我们输入<code>bt</code>命令，打印出来的其实是当前线程的<code>frame</code>。</p>
 <ul>
-<li>展示当前作用域下的参数和局部变量<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame variable</span><br><span class="line">(lldb)fr v</span><br><span class="line">frame variable --no-summary-depth</span><br></pre></td></tr></table></figure>
-<ul>
+<li>展示当前作用域下的参数和局部变量<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame variable</span><br><span class="line">(lldb)fr v</span><br><span class="line">frame variable --no-summary-depth</span><br></pre></td></tr></table></figure></li>
 <li>展示当前作用域下的局部变量<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame variable --no-args</span><br><span class="line">(lldb)fr v -a</span><br></pre></td></tr></table></figure></li>
 <li>展示指定变量var的具体内容<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame variable var</span><br><span class="line">(lldb)fr v var</span><br><span class="line">(lldb)p var</span><br><span class="line">(lldb)po var</span><br></pre></td></tr></table></figure></li>
 <li>展示当前对象的全局变量<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb)target variable</span><br><span class="line">(lldb)ta v</span><br></pre></td></tr></table></figure></li>
 <li>打印某一方法具体的信息<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frame select num（<span class="number">1</span>，<span class="number">2</span>，<span class="number">3.</span>）</span><br></pre></td></tr></table></figure>
 <img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB7.png" class="" title="LLDB">
 
-</li>
-</ul>
 </li>
 </ul>
 <h3 id="设置断点"><a href="#设置断点" class="headerlink" title="设置断点"></a>设置断点</h3><h4 id="breakpoint"><a href="#breakpoint" class="headerlink" title="breakpoint"></a>breakpoint</h4><p>所有调试都是由断点开始的，我们接触的最多，就是以breakpoint命令为基础的断点。<br>一般我们对breakpoint命令使用得不多，而是在XCode的GUI界面中直接添加断点。除了直接触发程序暂停供调试外，我们可以进行进一步的配置。</p>
@@ -504,14 +500,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">David的博客</p>
-  <div class="site-description" itemprop="description">合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。</div>
+  <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -560,12 +556,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">199k</span>
+    <span title="站点总字数">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:01</span>
+    <span title="站点阅读时长">3:13</span>
 </div>
 
         
