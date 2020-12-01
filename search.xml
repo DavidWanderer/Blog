@@ -780,6 +780,94 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux下安装FTP</title>
+    <url>/Blog/2019/08/24/Linux%E4%B8%8B%E5%AE%89%E8%A3%85FTP/</url>
+    <content><![CDATA[<h2 id="1-什么是vsftpd"><a href="#1-什么是vsftpd" class="headerlink" title="1.什么是vsftpd"></a>1.什么是vsftpd</h2><p>vsftpd是一款在Linux发行版中最受推崇的FTP服务器程序。特点是小巧轻快，安全易用。<br>vsftpd 的名字代表”very secure FTP daemon”, 安全是它的开发者 Chris Evans 考虑的首要问题之一。在这个 FTP 服务器设计开发的最开始的时候，高安全性就是一个目标。</p>
+<h2 id="2-查看当前服务器是否安装过"><a href="#2-查看当前服务器是否安装过" class="headerlink" title="2.查看当前服务器是否安装过"></a>2.查看当前服务器是否安装过</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rpm -qa|grep vsftp</span><br></pre></td></tr></table></figure>
+<p>如果显示版本号，说明安装成功，如果没有安装文件，什么都不显示，说明没有安装或者其他情况。也可以通过which vsftp检查是否有ftp的安装文件。</p>
+<h2 id="3-安装FTP"><a href="#3-安装FTP" class="headerlink" title="3.安装FTP"></a>3.安装FTP</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yum -y install vsftpd</span><br></pre></td></tr></table></figure>
+<p>安装完后，有/etc/vsftpd/vsftpd.conf 文件，是vsftp的配置文件。还新建了一个ftp用户和ftp的组，指向home目录为/var/ftp,默认是nologin（不能登录系统）。可以用cat /etc/passwd 命令查看用户。</p>
+<h2 id="4-启动ftp，执行命令"><a href="#4-启动ftp，执行命令" class="headerlink" title="4.启动ftp，执行命令"></a>4.启动ftp，执行命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ service vsftpd start</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="5-查看ftp的状态"><a href="#5-查看ftp的状态" class="headerlink" title="5.查看ftp的状态"></a>5.查看ftp的状态</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ service vsftpd status</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="6-安装ftp客户端组件（用来验证登录vsftpd）"><a href="#6-安装ftp客户端组件（用来验证登录vsftpd）" class="headerlink" title="6.安装ftp客户端组件（用来验证登录vsftpd）"></a>6.安装ftp客户端组件（用来验证登录vsftpd）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># yum -y install ftp</span></span><br></pre></td></tr></table></figure>
+<p>执行命令尝试登录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ftp localhost</span></span><br></pre></td></tr></table></figure>
+<p>输入用户名ftp，密码随便（因为默认是允许匿名的）<br>登录成功，就代表ftp服务可用了。<br>但是，外网是访问不了的，所以还要继续配置。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ftp localhost</span></span><br><span class="line">Trying ::1...</span><br><span class="line">ftp: connect to address ::1拒绝连接</span><br><span class="line">Trying 127.0.0.1...</span><br><span class="line">Connected to localhost (127.0.0.1).</span><br><span class="line">220 (vsFTPd 2.2.2)</span><br><span class="line">Name (localhost:root): ftp</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system <span class="built_in">type</span> is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line">ftp&gt; ls</span><br><span class="line">227 Entering Passive Mode (127,0,0,1,177,184).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">drwxr-xr-x    2 0        0            4096 Mar 22  2017 pub</span><br><span class="line">226 Directory send OK.</span><br><span class="line">ftp&gt; </span><br></pre></td></tr></table></figure>
+
+
+<h2 id="7-添加一个ftp用户"><a href="#7-添加一个ftp用户" class="headerlink" title="7.添加一个ftp用户"></a>7.添加一个ftp用户</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># useradd ftpuser</span></span><br></pre></td></tr></table></figure>
+<p>此用户就是用来登录ftp服务器用的。<br>这样一个用户建完，可以用这个登录，记得用普通登录不要用匿名了。登录后默认的路径为 /home/ftpuser.</p>
+<h2 id="8-给ftp用户添加密码"><a href="#8-给ftp用户添加密码" class="headerlink" title="8.给ftp用户添加密码"></a>8.给ftp用户添加密码</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># passwd ftpuser</span></span><br></pre></td></tr></table></figure>
+<p>输入两次密码后修改密码。</p>
+<h2 id="9-关闭匿名登录"><a href="#9-关闭匿名登录" class="headerlink" title="9.关闭匿名登录"></a>9.关闭匿名登录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># vim /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure>
+<p>设置anonymous_enable=NO。</p>
+<h2 id="10-重启ftp服务"><a href="#10-重启ftp服务" class="headerlink" title="10.重启ftp服务"></a>10.重启ftp服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># service vsftpd restart</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="11-开启passive模式"><a href="#11-开启passive模式" class="headerlink" title="11.开启passive模式"></a>11.开启passive模式</h2><p>默认是开启的，但是要指定一个端口范围，打开vsftpd.conf文件，在后面加上</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pasv_min_port=30000   </span><br><span class="line">pasv_max_port=30999  </span><br></pre></td></tr></table></figure>
+<p>表示端口范围为30000~30999，这个可以随意改。改完重启一下vsftpd。</p>
+<h2 id="12-修改ftp默认的端口号"><a href="#12-修改ftp默认的端口号" class="headerlink" title="12.修改ftp默认的端口号"></a>12.修改ftp默认的端口号</h2><p>常规下21端口容易遭到别人的扫描、带来了一定程度的不安全。所以，最好的就是把21端口修改掉。默认修改为6069。</p>
+<h2 id="12-1-修改vsftp的配置文件"><a href="#12-1-修改vsftp的配置文件" class="headerlink" title="12.1 修改vsftp的配置文件"></a>12.1 修改vsftp的配置文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vi /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure>
+<p>在原来的基础上加上：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">listen_port=6069</span><br><span class="line"></span><br><span class="line">pasv_enable=YES</span><br><span class="line"></span><br><span class="line">pasv_min_port=30000</span><br><span class="line"></span><br><span class="line">pasv_max_port=30999</span><br><span class="line"></span><br><span class="line">pasv_promiscuous=YES</span><br><span class="line"></span><br><span class="line">ftpd_banner=Welcome to Wander FTP service</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-2-修改-etc-services"><a href="#12-2-修改-etc-services" class="headerlink" title="12.2 修改/etc/services"></a>12.2 修改/etc/services</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vi /etc/services</span><br></pre></td></tr></table></figure>
+<p>修改成：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ftp             6069/tcp</span><br><span class="line">ftp             6069/udp</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-3-修改防火墙规则"><a href="#12-3-修改防火墙规则" class="headerlink" title="12.3 修改防火墙规则"></a>12.3 修改防火墙规则</h2><p>如果防火墙开启、并且做了端口限制、请添加相应的规则</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vi /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 30000:30999 -j ACCEPT</span><br><span class="line">-A INPUT -p udp -m state --state NEW -m udp --dport 6069 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 6069 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-4-重启服务"><a href="#12-4-重启服务" class="headerlink" title="12.4 重启服务"></a>12.4 重启服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># service iptables restart</span></span><br><span class="line"><span class="comment"># service vsftpd restart</span></span><br></pre></td></tr></table></figure>
+<p>然后就可以通过客户端6069端口连接ftp（选择被动模式连接）。</p>
+<h2 id="13-配置-vsftpd-使用-SSL-TLS"><a href="#13-配置-vsftpd-使用-SSL-TLS" class="headerlink" title="13.配置 vsftpd 使用 SSL / TLS"></a>13.配置 vsftpd 使用 SSL / TLS</h2><h2 id="13-1-检查-vsftpd-是否支持-ssl-模块"><a href="#13-1-检查-vsftpd-是否支持-ssl-模块" class="headerlink" title="13.1 检查 vsftpd 是否支持 ssl 模块"></a>13.1 检查 vsftpd 是否支持 ssl 模块</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ldd $(which vsftpd) | grep ssl</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-2-建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方-etc-pki-tls-certs-。"><a href="#13-2-建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方-etc-pki-tls-certs-。" class="headerlink" title="13.2 建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方/etc/pki/tls/certs/。"></a>13.2 建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方/etc/pki/tls/certs/。</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cd /etc/pki/tls/certs</span></span><br></pre></td></tr></table></figure>
+<p>生成密钥文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># make vsftpd.pem</span></span><br></pre></td></tr></table></figure>
+<p>复制证书到vsftpd目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cp -a vsftpd.pem /etc/vsftpd/</span></span><br><span class="line"><span class="comment"># ll /etc/vsftpd/vsftpd.pem</span></span><br></pre></td></tr></table></figure>
+
+<p>证书配置解析：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Country Name (2 letter code) [XX]:CN                            国家名称(2个字母代码)[XX]:CN</span><br><span class="line">State or Province Name (full name) []:CHINA                     国家或省名(全称)[]:中国</span><br><span class="line">Locality Name (eg, city) [Default City]:CHINA                   地名(如城市)[默认城市]:中国</span><br><span class="line">Organization Name (eg, company) [Default Company Ltd]:ORG       组织名称(如公司)[默认公司有限公司]:ORG</span><br><span class="line">Organizational Unit Name (eg, section) []:ORG                   组织单元名称(例如，节)[]:ORG</span><br><span class="line">Common Name (eg, your name or your server<span class="string">&#x27;s hostname) []:NAME   常用名称(例如，您的名称或服务器的主机名)[]:Name</span></span><br><span class="line"><span class="string">Email Address []:EMAIL@163.com                                  电子邮件地址[]:EMAIL@163.com</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-3-修改-vsftpd-conf-配置文件"><a href="#13-3-修改-vsftpd-conf-配置文件" class="headerlink" title="13.3 修改 vsftpd.conf 配置文件"></a>13.3 修改 vsftpd.conf 配置文件</h2><p>停止服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># service vsftpd stop</span></span><br></pre></td></tr></table></figure>
+<p>在最后加上以下配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssl_enable=YES</span><br><span class="line">allow_anon_ssl=YES</span><br><span class="line">force_anon_data_ssl=YES</span><br><span class="line">force_anon_logins_ssl=YES</span><br><span class="line">force_local_data_ssl=YES</span><br><span class="line">force_local_logins_ssl=YES</span><br><span class="line">ssl_tlsv1=YES</span><br><span class="line">rsa_cert_file=/etc/vsftpd/vsftpd.pem</span><br></pre></td></tr></table></figure>
+
+<p>配置解析：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">###SSL#####</span></span><br><span class="line"><span class="comment"># 是否启用SSL，默认值：NO</span></span><br><span class="line">ssl_enable=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 活动。如果设置为YES，匿名用户将被允许使用安全的SSL连接</span></span><br><span class="line">默认值：NO</span><br><span class="line">allow_anon_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有匿名登录将被强制使用安全的SSL连接，以便在数据连接上发送和接收数据。默认值：NO</span></span><br><span class="line">force_anon_data_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有匿名登录将被强制使用安全的SSL连接以发送密码。默认值：NO</span></span><br><span class="line">force_anon_logins_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有非匿名登录将被强制使用安全的SSL连接，以便在数据连接上发送和接收数据。默认值：YES</span></span><br><span class="line">force_local_data_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有非匿名登录将被强制使用安全的SSL连接以发送密码。默认值：YES</span></span><br><span class="line">force_local_logins_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许TLS v1协议连接。TLS v1连接是首选。默认值：YES</span></span><br><span class="line">ssl_tlsv1=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许SSL v2协议连接。TLS v1连接是首选。默认值：NO</span></span><br><span class="line"><span class="comment">#ssl_sslv2=NO</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许SSL v3协议连接。TLS v1连接是首选。默认值：NO</span></span><br><span class="line"><span class="comment">#ssl_sslv3=NO</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 选项指定用于SSL加密连接的RSA证书的位置。默认值：/usr/share/ssl/certs/vsftpd.pem</span></span><br><span class="line">rsa_cert_file=/etc/vsftpd/vsftpd.pem</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-4-最后保存，重启服务就OK了"><a href="#13-4-最后保存，重启服务就OK了" class="headerlink" title="13.4 最后保存，重启服务就OK了"></a>13.4 最后保存，重启服务就OK了</h2><p>启动服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service vsftpd start</span><br></pre></td></tr></table></figure>
+<p>重启服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-5-连接-Vsftpd"><a href="#13-5-连接-Vsftpd" class="headerlink" title="13.5 连接 Vsftpd"></a>13.5 连接 Vsftpd</h2><p>在连接的时候勾选信任证书就行。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h2><p><a href="https://blog.csdn.net/csdn_lqr/article/details/53333946">Linux安装ftp组件(8步完成)</a><br><a href="https://blog.csdn.net/lizexing1/article/details/79308961">小白教程：linux下安装FTP的过程和使用的整体过程</a><br><a href="https://www.cnblogs.com/chenmh/p/5365274.html">Linux 搭建FTP服务器</a><br><a href="https://www.kancloud.cn/chandler/bc-linux/52710">centos启用ftp功能</a><br><a href="https://blog.csdn.net/caihuashen/article/details/80306131">修改ftp默认端口</a><br><a href="https://blog.51cto.com/13481789/2366720">”不安全的服务器，不支持 FTP over TLS“ 配置 vsftpd 使用 SSL / TLS</a></p>
+]]></content>
+      <categories>
+        <category>FTP</category>
+      </categories>
+      <tags>
+        <tag>FTP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Load和initialize加载顺序</title>
     <url>/Blog/2019/06/27/Load%E5%92%8Cinitialize%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F/</url>
     <content><![CDATA[<h2 id="Load和Initialize实现原理"><a href="#Load和Initialize实现原理" class="headerlink" title="Load和Initialize实现原理"></a>Load和Initialize实现原理</h2><h3 id="Load实现原理"><a href="#Load实现原理" class="headerlink" title="+Load实现原理"></a>+Load实现原理</h3><blockquote>
@@ -989,94 +1077,6 @@
       </categories>
       <tags>
         <tag>iOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux下安装FTP</title>
-    <url>/Blog/2019/08/24/Linux%E4%B8%8B%E5%AE%89%E8%A3%85FTP/</url>
-    <content><![CDATA[<h2 id="1-什么是vsftpd"><a href="#1-什么是vsftpd" class="headerlink" title="1.什么是vsftpd"></a>1.什么是vsftpd</h2><p>vsftpd是一款在Linux发行版中最受推崇的FTP服务器程序。特点是小巧轻快，安全易用。<br>vsftpd 的名字代表”very secure FTP daemon”, 安全是它的开发者 Chris Evans 考虑的首要问题之一。在这个 FTP 服务器设计开发的最开始的时候，高安全性就是一个目标。</p>
-<h2 id="2-查看当前服务器是否安装过"><a href="#2-查看当前服务器是否安装过" class="headerlink" title="2.查看当前服务器是否安装过"></a>2.查看当前服务器是否安装过</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rpm -qa|grep vsftp</span><br></pre></td></tr></table></figure>
-<p>如果显示版本号，说明安装成功，如果没有安装文件，什么都不显示，说明没有安装或者其他情况。也可以通过which vsftp检查是否有ftp的安装文件。</p>
-<h2 id="3-安装FTP"><a href="#3-安装FTP" class="headerlink" title="3.安装FTP"></a>3.安装FTP</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yum -y install vsftpd</span><br></pre></td></tr></table></figure>
-<p>安装完后，有/etc/vsftpd/vsftpd.conf 文件，是vsftp的配置文件。还新建了一个ftp用户和ftp的组，指向home目录为/var/ftp,默认是nologin（不能登录系统）。可以用cat /etc/passwd 命令查看用户。</p>
-<h2 id="4-启动ftp，执行命令"><a href="#4-启动ftp，执行命令" class="headerlink" title="4.启动ftp，执行命令"></a>4.启动ftp，执行命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ service vsftpd start</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="5-查看ftp的状态"><a href="#5-查看ftp的状态" class="headerlink" title="5.查看ftp的状态"></a>5.查看ftp的状态</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ service vsftpd status</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="6-安装ftp客户端组件（用来验证登录vsftpd）"><a href="#6-安装ftp客户端组件（用来验证登录vsftpd）" class="headerlink" title="6.安装ftp客户端组件（用来验证登录vsftpd）"></a>6.安装ftp客户端组件（用来验证登录vsftpd）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># yum -y install ftp</span></span><br></pre></td></tr></table></figure>
-<p>执行命令尝试登录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ftp localhost</span></span><br></pre></td></tr></table></figure>
-<p>输入用户名ftp，密码随便（因为默认是允许匿名的）<br>登录成功，就代表ftp服务可用了。<br>但是，外网是访问不了的，所以还要继续配置。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ftp localhost</span></span><br><span class="line">Trying ::1...</span><br><span class="line">ftp: connect to address ::1拒绝连接</span><br><span class="line">Trying 127.0.0.1...</span><br><span class="line">Connected to localhost (127.0.0.1).</span><br><span class="line">220 (vsFTPd 2.2.2)</span><br><span class="line">Name (localhost:root): ftp</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system <span class="built_in">type</span> is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line">ftp&gt; ls</span><br><span class="line">227 Entering Passive Mode (127,0,0,1,177,184).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">drwxr-xr-x    2 0        0            4096 Mar 22  2017 pub</span><br><span class="line">226 Directory send OK.</span><br><span class="line">ftp&gt; </span><br></pre></td></tr></table></figure>
-
-
-<h2 id="7-添加一个ftp用户"><a href="#7-添加一个ftp用户" class="headerlink" title="7.添加一个ftp用户"></a>7.添加一个ftp用户</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># useradd ftpuser</span></span><br></pre></td></tr></table></figure>
-<p>此用户就是用来登录ftp服务器用的。<br>这样一个用户建完，可以用这个登录，记得用普通登录不要用匿名了。登录后默认的路径为 /home/ftpuser.</p>
-<h2 id="8-给ftp用户添加密码"><a href="#8-给ftp用户添加密码" class="headerlink" title="8.给ftp用户添加密码"></a>8.给ftp用户添加密码</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># passwd ftpuser</span></span><br></pre></td></tr></table></figure>
-<p>输入两次密码后修改密码。</p>
-<h2 id="9-关闭匿名登录"><a href="#9-关闭匿名登录" class="headerlink" title="9.关闭匿名登录"></a>9.关闭匿名登录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># vim /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure>
-<p>设置anonymous_enable=NO。</p>
-<h2 id="10-重启ftp服务"><a href="#10-重启ftp服务" class="headerlink" title="10.重启ftp服务"></a>10.重启ftp服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># service vsftpd restart</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="11-开启passive模式"><a href="#11-开启passive模式" class="headerlink" title="11.开启passive模式"></a>11.开启passive模式</h2><p>默认是开启的，但是要指定一个端口范围，打开vsftpd.conf文件，在后面加上</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pasv_min_port=30000   </span><br><span class="line">pasv_max_port=30999  </span><br></pre></td></tr></table></figure>
-<p>表示端口范围为30000~30999，这个可以随意改。改完重启一下vsftpd。</p>
-<h2 id="12-修改ftp默认的端口号"><a href="#12-修改ftp默认的端口号" class="headerlink" title="12.修改ftp默认的端口号"></a>12.修改ftp默认的端口号</h2><p>常规下21端口容易遭到别人的扫描、带来了一定程度的不安全。所以，最好的就是把21端口修改掉。默认修改为6069。</p>
-<h2 id="12-1-修改vsftp的配置文件"><a href="#12-1-修改vsftp的配置文件" class="headerlink" title="12.1 修改vsftp的配置文件"></a>12.1 修改vsftp的配置文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vi /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure>
-<p>在原来的基础上加上：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">listen_port=6069</span><br><span class="line"></span><br><span class="line">pasv_enable=YES</span><br><span class="line"></span><br><span class="line">pasv_min_port=30000</span><br><span class="line"></span><br><span class="line">pasv_max_port=30999</span><br><span class="line"></span><br><span class="line">pasv_promiscuous=YES</span><br><span class="line"></span><br><span class="line">ftpd_banner=Welcome to Wander FTP service</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="12-2-修改-etc-services"><a href="#12-2-修改-etc-services" class="headerlink" title="12.2 修改/etc/services"></a>12.2 修改/etc/services</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vi /etc/services</span><br></pre></td></tr></table></figure>
-<p>修改成：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ftp             6069/tcp</span><br><span class="line">ftp             6069/udp</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="12-3-修改防火墙规则"><a href="#12-3-修改防火墙规则" class="headerlink" title="12.3 修改防火墙规则"></a>12.3 修改防火墙规则</h2><p>如果防火墙开启、并且做了端口限制、请添加相应的规则</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vi /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 30000:30999 -j ACCEPT</span><br><span class="line">-A INPUT -p udp -m state --state NEW -m udp --dport 6069 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 6069 -j ACCEPT</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="12-4-重启服务"><a href="#12-4-重启服务" class="headerlink" title="12.4 重启服务"></a>12.4 重启服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># service iptables restart</span></span><br><span class="line"><span class="comment"># service vsftpd restart</span></span><br></pre></td></tr></table></figure>
-<p>然后就可以通过客户端6069端口连接ftp（选择被动模式连接）。</p>
-<h2 id="13-配置-vsftpd-使用-SSL-TLS"><a href="#13-配置-vsftpd-使用-SSL-TLS" class="headerlink" title="13.配置 vsftpd 使用 SSL / TLS"></a>13.配置 vsftpd 使用 SSL / TLS</h2><h2 id="13-1-检查-vsftpd-是否支持-ssl-模块"><a href="#13-1-检查-vsftpd-是否支持-ssl-模块" class="headerlink" title="13.1 检查 vsftpd 是否支持 ssl 模块"></a>13.1 检查 vsftpd 是否支持 ssl 模块</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ldd $(which vsftpd) | grep ssl</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="13-2-建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方-etc-pki-tls-certs-。"><a href="#13-2-建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方-etc-pki-tls-certs-。" class="headerlink" title="13.2 建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方/etc/pki/tls/certs/。"></a>13.2 建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方/etc/pki/tls/certs/。</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cd /etc/pki/tls/certs</span></span><br></pre></td></tr></table></figure>
-<p>生成密钥文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># make vsftpd.pem</span></span><br></pre></td></tr></table></figure>
-<p>复制证书到vsftpd目录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cp -a vsftpd.pem /etc/vsftpd/</span></span><br><span class="line"><span class="comment"># ll /etc/vsftpd/vsftpd.pem</span></span><br></pre></td></tr></table></figure>
-
-<p>证书配置解析：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Country Name (2 letter code) [XX]:CN                            国家名称(2个字母代码)[XX]:CN</span><br><span class="line">State or Province Name (full name) []:CHINA                     国家或省名(全称)[]:中国</span><br><span class="line">Locality Name (eg, city) [Default City]:CHINA                   地名(如城市)[默认城市]:中国</span><br><span class="line">Organization Name (eg, company) [Default Company Ltd]:ORG       组织名称(如公司)[默认公司有限公司]:ORG</span><br><span class="line">Organizational Unit Name (eg, section) []:ORG                   组织单元名称(例如，节)[]:ORG</span><br><span class="line">Common Name (eg, your name or your server<span class="string">&#x27;s hostname) []:NAME   常用名称(例如，您的名称或服务器的主机名)[]:Name</span></span><br><span class="line"><span class="string">Email Address []:EMAIL@163.com                                  电子邮件地址[]:EMAIL@163.com</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="13-3-修改-vsftpd-conf-配置文件"><a href="#13-3-修改-vsftpd-conf-配置文件" class="headerlink" title="13.3 修改 vsftpd.conf 配置文件"></a>13.3 修改 vsftpd.conf 配置文件</h2><p>停止服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># service vsftpd stop</span></span><br></pre></td></tr></table></figure>
-<p>在最后加上以下配置</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssl_enable=YES</span><br><span class="line">allow_anon_ssl=YES</span><br><span class="line">force_anon_data_ssl=YES</span><br><span class="line">force_anon_logins_ssl=YES</span><br><span class="line">force_local_data_ssl=YES</span><br><span class="line">force_local_logins_ssl=YES</span><br><span class="line">ssl_tlsv1=YES</span><br><span class="line">rsa_cert_file=/etc/vsftpd/vsftpd.pem</span><br></pre></td></tr></table></figure>
-
-<p>配置解析：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">###SSL#####</span></span><br><span class="line"><span class="comment"># 是否启用SSL，默认值：NO</span></span><br><span class="line">ssl_enable=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 活动。如果设置为YES，匿名用户将被允许使用安全的SSL连接</span></span><br><span class="line">默认值：NO</span><br><span class="line">allow_anon_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有匿名登录将被强制使用安全的SSL连接，以便在数据连接上发送和接收数据。默认值：NO</span></span><br><span class="line">force_anon_data_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有匿名登录将被强制使用安全的SSL连接以发送密码。默认值：NO</span></span><br><span class="line">force_anon_logins_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有非匿名登录将被强制使用安全的SSL连接，以便在数据连接上发送和接收数据。默认值：YES</span></span><br><span class="line">force_local_data_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有非匿名登录将被强制使用安全的SSL连接以发送密码。默认值：YES</span></span><br><span class="line">force_local_logins_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许TLS v1协议连接。TLS v1连接是首选。默认值：YES</span></span><br><span class="line">ssl_tlsv1=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许SSL v2协议连接。TLS v1连接是首选。默认值：NO</span></span><br><span class="line"><span class="comment">#ssl_sslv2=NO</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许SSL v3协议连接。TLS v1连接是首选。默认值：NO</span></span><br><span class="line"><span class="comment">#ssl_sslv3=NO</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 选项指定用于SSL加密连接的RSA证书的位置。默认值：/usr/share/ssl/certs/vsftpd.pem</span></span><br><span class="line">rsa_cert_file=/etc/vsftpd/vsftpd.pem</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="13-4-最后保存，重启服务就OK了"><a href="#13-4-最后保存，重启服务就OK了" class="headerlink" title="13.4 最后保存，重启服务就OK了"></a>13.4 最后保存，重启服务就OK了</h2><p>启动服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service vsftpd start</span><br></pre></td></tr></table></figure>
-<p>重启服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="13-5-连接-Vsftpd"><a href="#13-5-连接-Vsftpd" class="headerlink" title="13.5 连接 Vsftpd"></a>13.5 连接 Vsftpd</h2><p>在连接的时候勾选信任证书就行。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h2><p><a href="https://blog.csdn.net/csdn_lqr/article/details/53333946">Linux安装ftp组件(8步完成)</a><br><a href="https://blog.csdn.net/lizexing1/article/details/79308961">小白教程：linux下安装FTP的过程和使用的整体过程</a><br><a href="https://www.cnblogs.com/chenmh/p/5365274.html">Linux 搭建FTP服务器</a><br><a href="https://www.kancloud.cn/chandler/bc-linux/52710">centos启用ftp功能</a><br><a href="https://blog.csdn.net/caihuashen/article/details/80306131">修改ftp默认端口</a><br><a href="https://blog.51cto.com/13481789/2366720">”不安全的服务器，不支持 FTP over TLS“ 配置 vsftpd 使用 SSL / TLS</a></p>
-]]></content>
-      <categories>
-        <category>FTP</category>
-      </categories>
-      <tags>
-        <tag>FTP</tag>
       </tags>
   </entry>
   <entry>
@@ -1999,6 +1999,32 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </tags>
   </entry>
   <entry>
+    <title>SourceTree 回滚项目(本地回滚和远程回滚)</title>
+    <url>/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/</url>
+    <content><![CDATA[<p>在使用SourceTree来管理Git项目的时候，有时需要回滚项目，具体的回滚操作包含本地回滚和远程回滚。<strong>建议回滚前先做好代码备份。</strong></p>
+<h2 id="本地回滚"><a href="#本地回滚" class="headerlink" title="本地回滚"></a>本地回滚</h2><p>使用命令<code>git reset</code>进行本地回滚操作，本地回滚操作一步即可完成。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 回退到指定的提交版本，22f8aae 为某次提交的提交号。</span></span><br><span class="line">$ git reset --hard   22f8aae  </span><br><span class="line"></span><br><span class="line"><span class="comment">#（回退3次提交）</span></span><br><span class="line">$ git reset --hard HEAD~3 //（回退3次提交）</span><br></pre></td></tr></table></figure>
+<p>–hard：本地的源码和本地未提交的源码都会回退到某个版本，包括commit内容，和git自己对代码的索引都会回退到某个版本，any local changes will be lost。<br>–soft：保留源码，只能回退到commit信息到某个版本，不涉及到index的回退，如果还需要提交，直接commit即可。比如我选择soft方式来进行回退，我的本地代码和本地新添加的尚未commit的代码都没有改变。<br>–mixed：会保留源码，只是将git commit和index信息回退到某个版本。</p>
+<h2 id="远程回滚"><a href="#远程回滚" class="headerlink" title="远程回滚"></a>远程回滚</h2><p>远程回滚的操作流程是，先回滚本地操作，然后将本地的修改强行push到远程仓库。具体操作分为以下2步：</p>
+<p>1.在需要回滚的提交记录上<code>右键</code>选择<code>将master重置到这次提交</code>，选择重置（强行合并）到需要回滚的历史节点。</p>
+<img src="/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/1.png" class="" title="回滚本地操作截图">
+
+<p>2.打开终端，cd到项目目录，执行<code>git push origin master -f</code>，即可。<br>origin：远程仓库名<br>master：分支名称<br>-f：force，意为强制、强行</p>
+<p>3.如果出现<code> ! [remote rejected]   master -&gt; master (pre-receive hook declined)</code>错误，需要去gitlab网站去除master分支保护，才可以强制推送。<br>具体错误信息如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master -f</span><br><span class="line">总共 0 （差异 0），复用 0 （差异 0）</span><br><span class="line">remote: GitLab: You are not allowed to force push code to a protected branch on this project.</span><br><span class="line">To https://test.com.cn/test.git</span><br><span class="line"> ! [remote rejected]   master -&gt; master (pre-receive hook declined)</span><br><span class="line">error: 推送一些引用到 <span class="string">&#x27;https://test.com.cn/test.git&#x27;</span> 失败</span><br></pre></td></tr></table></figure>
+<p>需要去到gitlab的网站上去除master分支保护。</p>
+<img src="/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/2.png" class="" title="去除master分支保护截图">
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://blog.csdn.net/lovesummerforever/article/details/71526900">git 远程代码回滚master</a><br><a href="https://blog.csdn.net/u012373815/article/details/78142806">使用sourceTree回滚git代码到历史节点</a></p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SourceTree commit数据后，想撤销刚刚的commit操作，并将修改的文件恢复到已暂存状态</title>
     <url>/Blog/2020/04/04/SourceTree-commit%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E6%83%B3%E6%92%A4%E9%94%80%E5%88%9A%E5%88%9A%E7%9A%84commit%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%B9%B6%E5%B0%86%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%B7%B2%E6%9A%82%E5%AD%98%E7%8A%B6%E6%80%81/</url>
     <content><![CDATA[<p>在工作中有时会遇到这样的情况，修改完文件之后，因为各种原因，误操作导致文件本提交，但是还没有push到远端，希望撤回之前的修改，并且将改动保存到暂存区，方便再次修改或贮存操作。</p>
@@ -2027,32 +2053,6 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
 
 <p>此时会进入默认vim编辑器，修改注释完毕后保存就好了。</p>
 <h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p><a href="https://blog.csdn.net/w958796636/article/details/53611133">git使用情景2：commit之后，想撤销commit</a></p>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SourceTree 回滚项目(本地回滚和远程回滚)</title>
-    <url>/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/</url>
-    <content><![CDATA[<p>在使用SourceTree来管理Git项目的时候，有时需要回滚项目，具体的回滚操作包含本地回滚和远程回滚。<strong>建议回滚前先做好代码备份。</strong></p>
-<h2 id="本地回滚"><a href="#本地回滚" class="headerlink" title="本地回滚"></a>本地回滚</h2><p>使用命令<code>git reset</code>进行本地回滚操作，本地回滚操作一步即可完成。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 回退到指定的提交版本，22f8aae 为某次提交的提交号。</span></span><br><span class="line">$ git reset --hard   22f8aae  </span><br><span class="line"></span><br><span class="line"><span class="comment">#（回退3次提交）</span></span><br><span class="line">$ git reset --hard HEAD~3 //（回退3次提交）</span><br></pre></td></tr></table></figure>
-<p>–hard：本地的源码和本地未提交的源码都会回退到某个版本，包括commit内容，和git自己对代码的索引都会回退到某个版本，any local changes will be lost。<br>–soft：保留源码，只能回退到commit信息到某个版本，不涉及到index的回退，如果还需要提交，直接commit即可。比如我选择soft方式来进行回退，我的本地代码和本地新添加的尚未commit的代码都没有改变。<br>–mixed：会保留源码，只是将git commit和index信息回退到某个版本。</p>
-<h2 id="远程回滚"><a href="#远程回滚" class="headerlink" title="远程回滚"></a>远程回滚</h2><p>远程回滚的操作流程是，先回滚本地操作，然后将本地的修改强行push到远程仓库。具体操作分为以下2步：</p>
-<p>1.在需要回滚的提交记录上<code>右键</code>选择<code>将master重置到这次提交</code>，选择重置（强行合并）到需要回滚的历史节点。</p>
-<img src="/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/1.png" class="" title="回滚本地操作截图">
-
-<p>2.打开终端，cd到项目目录，执行<code>git push origin master -f</code>，即可。<br>origin：远程仓库名<br>master：分支名称<br>-f：force，意为强制、强行</p>
-<p>3.如果出现<code> ! [remote rejected]   master -&gt; master (pre-receive hook declined)</code>错误，需要去gitlab网站去除master分支保护，才可以强制推送。<br>具体错误信息如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master -f</span><br><span class="line">总共 0 （差异 0），复用 0 （差异 0）</span><br><span class="line">remote: GitLab: You are not allowed to force push code to a protected branch on this project.</span><br><span class="line">To https://test.com.cn/test.git</span><br><span class="line"> ! [remote rejected]   master -&gt; master (pre-receive hook declined)</span><br><span class="line">error: 推送一些引用到 <span class="string">&#x27;https://test.com.cn/test.git&#x27;</span> 失败</span><br></pre></td></tr></table></figure>
-<p>需要去到gitlab的网站上去除master分支保护。</p>
-<img src="/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/2.png" class="" title="去除master分支保护截图">
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://blog.csdn.net/lovesummerforever/article/details/71526900">git 远程代码回滚master</a><br><a href="https://blog.csdn.net/u012373815/article/details/78142806">使用sourceTree回滚git代码到历史节点</a></p>
 ]]></content>
       <categories>
         <category>Git</category>
@@ -2402,7 +2402,7 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
 <figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;TargetProxy.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TargetProxy</span>()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//target, 这里必须要用weak, 因为某个对象会强引TimeProxy对象, TimeProxy对象不能再强引target, 否则会形成循环引用</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>)<span class="keyword">id</span> target;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">TargetProxy</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)proxyWithTarget:(<span class="keyword">id</span>)target &#123;</span><br><span class="line">    TargetProxy *proxy = [[<span class="keyword">self</span> <span class="keyword">class</span>] alloc];</span><br><span class="line">    proxy.target = target;</span><br><span class="line">    <span class="keyword">return</span> proxy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取target类中的sel方法的方法签名</span></span><br><span class="line">- (<span class="built_in">NSMethodSignature</span> *)methodSignatureForSelector:(SEL)sel &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span>.target methodSignatureForSelector:sel];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)forwardInvocation:(<span class="built_in">NSInvocation</span> *)invocation &#123;</span><br><span class="line">    <span class="comment">//判断target是否实现了该方法</span></span><br><span class="line">    <span class="keyword">if</span> ([<span class="keyword">self</span>.target respondsToSelector:invocation.selector]) &#123;</span><br><span class="line">        <span class="comment">//让target调用该方法</span></span><br><span class="line">        [invocation invokeWithTarget:<span class="keyword">self</span>.target];</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//找不到该方法</span></span><br><span class="line">        [invocation doesNotRecognizeSelector:invocation.selector];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
 
 <p>在ViewController中的使用方法：</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="keyword">self</span>.timer = [CDTimer scheduleTimerWithTimerInterval:<span class="number">1.0</span> target:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(repeatAction) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="keyword">self</span>.timer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">1.0</span> target:[TargetProxy proxyWithTarget:<span class="keyword">self</span>] selector:<span class="keyword">@selector</span>(repeatAction) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
 
 
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://developer.apple.com/documentation/foundation/nstimer">NSTimer</a></p>
