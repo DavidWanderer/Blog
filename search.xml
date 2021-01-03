@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ES6语法</title>
+    <url>/Blog/2020/05/23/ES6%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="ES6新语法"><a href="#ES6新语法" class="headerlink" title="ES6新语法"></a>ES6新语法</h2><p>1.变量/赋值<br>var     可以重复定义，不能限制修改，没有块级作用域<br>let      不能重复定义，变量，块级作用域<br>const 不能重复定义，常量，块级作用域</p>
+<p>解构赋值：<br>1.左右两边格式相同，右边必须是合法类型<br>2.必须是定义和赋值同步完成</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,c] = [<span class="number">1</span>, <span class="number">12</span>, <span class="number">23</span>]；</span><br><span class="line"><span class="keyword">let</span> &#123;a, b, c&#125; = &#123;<span class="attr">a</span>: <span class="number">12</span>, <span class="attr">b</span>: <span class="number">89</span>, <span class="attr">c</span>: <span class="number">55</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>2.函数<br>    箭头函数<br>    function (参数，参数) {<br>        函数体<br>    }<br>    (参数，参数) =&gt; {<br>        函数体<br>    }<br>    1.如果有且仅有1个参数，()可以省<br>    2.如果函数体只有一句话，而且是return，{}可以省</p>
+<p>​    默认参数<br>​        (a, b=xx, c=xxx)</p>
+<p>​    参数展示<br>​        function show(a, b, …参数名)<br>​        剩余参数必须在参数列表的最后</p>
+<p>3.数组/json</p>
+<p>4.字符串</p>
+<p>5.面向对象</p>
+<p>6.Promise</p>
+<p>7.generator</p>
+<p>8.模块</p>
+]]></content>
+      <categories>
+        <category>ES6</category>
+      </categories>
+      <tags>
+        <tag>ES6</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Block解析</title>
     <url>/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/</url>
     <content><![CDATA[<h2 id="Block底层解密"><a href="#Block底层解密" class="headerlink" title="Block底层解密"></a>Block底层解密</h2><p>block想必做过一段iOS开发的同学都用过吧，但是大部分人都是仅仅会用，不怎么理解他是怎么实现的，今天就让我们来一步一步的分析一下底层是怎么实现的吧。</p>
@@ -181,30 +205,6 @@
       </categories>
       <tags>
         <tag>iOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ES6语法</title>
-    <url>/Blog/2020/05/23/ES6%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="ES6新语法"><a href="#ES6新语法" class="headerlink" title="ES6新语法"></a>ES6新语法</h2><p>1.变量/赋值<br>var     可以重复定义，不能限制修改，没有块级作用域<br>let      不能重复定义，变量，块级作用域<br>const 不能重复定义，常量，块级作用域</p>
-<p>解构赋值：<br>1.左右两边格式相同，右边必须是合法类型<br>2.必须是定义和赋值同步完成</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,c] = [<span class="number">1</span>, <span class="number">12</span>, <span class="number">23</span>]；</span><br><span class="line"><span class="keyword">let</span> &#123;a, b, c&#125; = &#123;<span class="attr">a</span>: <span class="number">12</span>, <span class="attr">b</span>: <span class="number">89</span>, <span class="attr">c</span>: <span class="number">55</span>&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>2.函数<br>    箭头函数<br>    function (参数，参数) {<br>        函数体<br>    }<br>    (参数，参数) =&gt; {<br>        函数体<br>    }<br>    1.如果有且仅有1个参数，()可以省<br>    2.如果函数体只有一句话，而且是return，{}可以省</p>
-<p>​    默认参数<br>​        (a, b=xx, c=xxx)</p>
-<p>​    参数展示<br>​        function show(a, b, …参数名)<br>​        剩余参数必须在参数列表的最后</p>
-<p>3.数组/json</p>
-<p>4.字符串</p>
-<p>5.面向对象</p>
-<p>6.Promise</p>
-<p>7.generator</p>
-<p>8.模块</p>
-]]></content>
-      <categories>
-        <category>ES6</category>
-      </categories>
-      <tags>
-        <tag>ES6</tag>
       </tags>
   </entry>
   <entry>
@@ -868,6 +868,66 @@
       </tags>
   </entry>
   <entry>
+    <title>MAC破解WiFi</title>
+    <url>/Blog/2020/03/15/MAC%E7%A0%B4%E8%A7%A3WiFi/</url>
+    <content><![CDATA[<p>1.安装airport</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport</span><br></pre></td></tr></table></figure>
+
+<p>2.扫描周围的Wifi</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport -s</span><br></pre></td></tr></table></figure>
+
+<p>3.嗅探指定的信道</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport en0 sniff <span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
+
+<p>如果出现错误，Segmentation fault: 11，可以使用 tcpdump 抓包<br>4.1 断开airport的连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport -z</span><br></pre></td></tr></table></figure>
+
+<p>4.2 设置信道，-c和信道号之间没有空格</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo airport -c6</span></span><br><span class="line">$ sudo airport -c<span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
+
+<p>4.3 从指定AP开始抓包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;type mgt subtype beacon and ether src 98:13:33:b4:35:a4&quot; -I -c 1 -i en0 -w beacon.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;type mgt subtype beacon and ether src <span class="variable">$BSSID</span>&quot;</span> -I -c 1 -i en0 -w beacon.cap</span><br></pre></td></tr></table></figure>
+
+<p>4.4 等待WPA的握手</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;ether proto 0x888e and ether host 98:13:33:b4:35:a4&quot; -I -U -vvv -i en0 -w handshake.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;ether proto 0x888e and ether host <span class="variable">$BSSID</span>&quot;</span> -I -U -vvv -i en0 -w handshake.cap</span><br></pre></td></tr></table></figure>
+
+<p>4.5 安装wireshark，下一步会用到它的合包命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install wireshark</span><br></pre></td></tr></table></figure>
+
+<p>4.6 将2个cap文件合并成一个cap文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mergecap -a -F pcap -w capture.cap beacon.cap handshake.cap</span><br></pre></td></tr></table></figure>
+
+<p>至少要等到4.4获取到4 frames或更多的包才可以Ctrl-C终止抓包。</p>
+<p>4.7 安装 aircrack-ng</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install aircrack-ng</span><br></pre></td></tr></table></figure>
+
+<p>4.8 将 aircrack-ng 路径添加到 /etc/paths 中。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /etc/paths</span><br></pre></td></tr></table></figure>
+<p>然后将 aircrack-ng 路径添加到最后一行。</p>
+<p>4.9 查看抓到的包中是否包含握手包。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#$ aircrack-ng capture.cap</span></span><br><span class="line">Hu-YupingdeMacBook-Pro:wifi kris$ aircrack-ng capture.cap</span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">   <span class="comment">#  BSSID              ESSID                     Encryption</span></span><br><span class="line"></span><br><span class="line">   1  74:7D:24:D7:AF:DC  @PHICOMM_DA               WPA (0 handshake)</span><br><span class="line"></span><br><span class="line">Choosing first network as target.</span><br><span class="line"></span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">1 potential targets</span><br><span class="line"></span><br><span class="line">Please specify a dictionary (option -w).</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li><p>撞击密码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ aircrack-ng -w alphaDic.txt -b 98:13:33:B4:35:A4 capture1.cap</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转换包格式,如果使用上面的cap无法爆破，或者爆破比较麻烦，可以将cap包转换成hcccapx格式，然后再破解。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./cap2hccapx.bin /Users/kris/Desktop/wifi/20200208/capture.cap /Users/kris/Desktop/wifi/20200208/capture.hccapx</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<p>下面是一个破解示例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Aircrack-ng 1.5.2 </span><br><span class="line"></span><br><span class="line">      [00:03:20] 2018576/13516904 keys tested (10197.95 k/s) </span><br><span class="line"></span><br><span class="line">      Time left: 18 minutes, 47 seconds                         14.93%</span><br><span class="line"></span><br><span class="line">                          KEY FOUND! [ 19731009qiu ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      Master Key     : A8 36 07 C4 68 42 71 E0 B9 38 6E 16 B7 1B 7A 77 </span><br><span class="line">                       DA 07 E9 A1 82 CE 95 56 22 C2 76 16 93 B1 8E 9B </span><br><span class="line"></span><br><span class="line">      Transient Key  : 34 83 20 8E B0 2E F2 11 FF 5B 68 A4 A3 16 94 FE </span><br><span class="line">                       74 28 4D D9 99 BA 10 38 F4 20 6D 14 D1 47 89 C9 </span><br><span class="line">                       22 75 EB B5 29 FD CF 9B 01 32 38 B7 51 10 94 88 </span><br><span class="line">                       90 4D 52 D5 88 E4 B1 58 DA 2D DC 35 5F 61 88 92 </span><br><span class="line"></span><br><span class="line">      EAPOL HMAC     : F6 4D 5F 02 77 F9 96 8A F4 E3 C7 8C DA E4 C6 E0 </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>通用</category>
+      </categories>
+      <tags>
+        <tag>通用</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Load和initialize加载顺序</title>
     <url>/Blog/2019/06/27/Load%E5%92%8Cinitialize%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F/</url>
     <content><![CDATA[<h2 id="Load和Initialize实现原理"><a href="#Load和Initialize实现原理" class="headerlink" title="Load和Initialize实现原理"></a>Load和Initialize实现原理</h2><h3 id="Load实现原理"><a href="#Load实现原理" class="headerlink" title="+Load实现原理"></a>+Load实现原理</h3><blockquote>
@@ -1080,103 +1140,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MAC破解WiFi</title>
-    <url>/Blog/2020/03/15/MAC%E7%A0%B4%E8%A7%A3WiFi/</url>
-    <content><![CDATA[<p>1.安装airport</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport</span><br></pre></td></tr></table></figure>
-
-<p>2.扫描周围的Wifi</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport -s</span><br></pre></td></tr></table></figure>
-
-<p>3.嗅探指定的信道</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport en0 sniff <span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
-
-<p>如果出现错误，Segmentation fault: 11，可以使用 tcpdump 抓包<br>4.1 断开airport的连接</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport -z</span><br></pre></td></tr></table></figure>
-
-<p>4.2 设置信道，-c和信道号之间没有空格</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo airport -c6</span></span><br><span class="line">$ sudo airport -c<span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
-
-<p>4.3 从指定AP开始抓包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;type mgt subtype beacon and ether src 98:13:33:b4:35:a4&quot; -I -c 1 -i en0 -w beacon.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;type mgt subtype beacon and ether src <span class="variable">$BSSID</span>&quot;</span> -I -c 1 -i en0 -w beacon.cap</span><br></pre></td></tr></table></figure>
-
-<p>4.4 等待WPA的握手</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;ether proto 0x888e and ether host 98:13:33:b4:35:a4&quot; -I -U -vvv -i en0 -w handshake.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;ether proto 0x888e and ether host <span class="variable">$BSSID</span>&quot;</span> -I -U -vvv -i en0 -w handshake.cap</span><br></pre></td></tr></table></figure>
-
-<p>4.5 安装wireshark，下一步会用到它的合包命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install wireshark</span><br></pre></td></tr></table></figure>
-
-<p>4.6 将2个cap文件合并成一个cap文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mergecap -a -F pcap -w capture.cap beacon.cap handshake.cap</span><br></pre></td></tr></table></figure>
-
-<p>至少要等到4.4获取到4 frames或更多的包才可以Ctrl-C终止抓包。</p>
-<p>4.7 安装 aircrack-ng</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install aircrack-ng</span><br></pre></td></tr></table></figure>
-
-<p>4.8 将 aircrack-ng 路径添加到 /etc/paths 中。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /etc/paths</span><br></pre></td></tr></table></figure>
-<p>然后将 aircrack-ng 路径添加到最后一行。</p>
-<p>4.9 查看抓到的包中是否包含握手包。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#$ aircrack-ng capture.cap</span></span><br><span class="line">Hu-YupingdeMacBook-Pro:wifi kris$ aircrack-ng capture.cap</span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">   <span class="comment">#  BSSID              ESSID                     Encryption</span></span><br><span class="line"></span><br><span class="line">   1  74:7D:24:D7:AF:DC  @PHICOMM_DA               WPA (0 handshake)</span><br><span class="line"></span><br><span class="line">Choosing first network as target.</span><br><span class="line"></span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">1 potential targets</span><br><span class="line"></span><br><span class="line">Please specify a dictionary (option -w).</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li><p>撞击密码</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ aircrack-ng -w alphaDic.txt -b 98:13:33:B4:35:A4 capture1.cap</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>转换包格式,如果使用上面的cap无法爆破，或者爆破比较麻烦，可以将cap包转换成hcccapx格式，然后再破解。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./cap2hccapx.bin /Users/kris/Desktop/wifi/20200208/capture.cap /Users/kris/Desktop/wifi/20200208/capture.hccapx</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<p>下面是一个破解示例：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Aircrack-ng 1.5.2 </span><br><span class="line"></span><br><span class="line">      [00:03:20] 2018576/13516904 keys tested (10197.95 k/s) </span><br><span class="line"></span><br><span class="line">      Time left: 18 minutes, 47 seconds                         14.93%</span><br><span class="line"></span><br><span class="line">                          KEY FOUND! [ 19731009qiu ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      Master Key     : A8 36 07 C4 68 42 71 E0 B9 38 6E 16 B7 1B 7A 77 </span><br><span class="line">                       DA 07 E9 A1 82 CE 95 56 22 C2 76 16 93 B1 8E 9B </span><br><span class="line"></span><br><span class="line">      Transient Key  : 34 83 20 8E B0 2E F2 11 FF 5B 68 A4 A3 16 94 FE </span><br><span class="line">                       74 28 4D D9 99 BA 10 38 F4 20 6D 14 D1 47 89 C9 </span><br><span class="line">                       22 75 EB B5 29 FD CF 9B 01 32 38 B7 51 10 94 88 </span><br><span class="line">                       90 4D 52 D5 88 E4 B1 58 DA 2D DC 35 5F 61 88 92 </span><br><span class="line"></span><br><span class="line">      EAPOL HMAC     : F6 4D 5F 02 77 F9 96 8A F4 E3 C7 8C DA E4 C6 E0 </span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>通用</category>
-      </categories>
-      <tags>
-        <tag>通用</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL基本命令</title>
-    <url>/Blog/2019/07/07/MySQL%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<p>MAC OSX上安装MySQL有多种方法：</p>
-<ul>
-<li><ol>
-<li>使用DMG文件安装，安装完在系统偏好设置中有相应的管理面板可以控制MySQL服务器开启和关闭，详情可访问<a href="https://dev.mysql.com/downloads/mysql/">官网下载地址</a></li>
-</ol>
-</li>
-<li><ol start="2">
-<li>使用Homebrew安装，打开终端，输入命令<code>brew install mysql</code> ,这个安装过程中可能需要升级Homebrew，Homebrew的升级需要翻墙</li>
-</ol>
-</li>
-</ul>
-<h2 id="安装完测试MySQL需要使用的基本命令如下："><a href="#安装完测试MySQL需要使用的基本命令如下：" class="headerlink" title="安装完测试MySQL需要使用的基本命令如下："></a>安装完测试MySQL需要使用的基本命令如下：</h2><p>1.使用brew安装完MySQL时,root密码默认为空，如果要设置MySQL的相关安全策略，使用命令: <code>mysql_secure_installation</code></p>
-<p>2.打开mysql,带后台线程（电脑重启后会自己开启）:<code>brew services start mysql</code></p>
-<p>3.打开mysql，不带后台线程:<code>mysql.server start</code></p>
-<p>4.退出mysql:<code>brew services stop mysql</code></p>
-<p>5.登录MySQL:<code>mysql -u root -p</code></p>
-<p>6.查看MySQL的版本号:mysql&gt; <code>select Version();</code></p>
-<p>7.查看当前登录的MySQL运行的端口号:mysql&gt; <code>show global variables like &#39;port&#39;;</code></p>
-<p>8.显示可用的数据库:<code>SHOW DATABASES;</code></p>
-<p>9.选择数据库:mysql&gt; <code>USE crashcourse;</code></p>
-<p>10.显示数据库中所有可用的表:mysql&gt; <code>SHOW TABLES;</code></p>
-<p>11.显示表列: <code>SHOW COLUMNS FROM customers;</code> 或 <code>DESCRIBE customers;</code></p>
-<p>12.显示服务器状态信息:<code>SHOW STATUS;</code></p>
-<p>13.显示用户的安全权限:<code>SHOW GRANTS;</code></p>
-<p>14.显示服务器错误信息:<code>SHOW ERRORS;</code></p>
-<p>15.显示服务器警告信息:<code>SHOW WARNINGS;</code></p>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown语法</title>
     <url>/Blog/2020/05/23/Markdown%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h2 id="标题的使用"><a href="#标题的使用" class="headerlink" title="标题的使用"></a>标题的使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
@@ -1281,6 +1244,43 @@
       </tags>
   </entry>
   <entry>
+    <title>MySQL基本命令</title>
+    <url>/Blog/2019/07/07/MySQL%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>MAC OSX上安装MySQL有多种方法：</p>
+<ul>
+<li><ol>
+<li>使用DMG文件安装，安装完在系统偏好设置中有相应的管理面板可以控制MySQL服务器开启和关闭，详情可访问<a href="https://dev.mysql.com/downloads/mysql/">官网下载地址</a></li>
+</ol>
+</li>
+<li><ol start="2">
+<li>使用Homebrew安装，打开终端，输入命令<code>brew install mysql</code> ,这个安装过程中可能需要升级Homebrew，Homebrew的升级需要翻墙</li>
+</ol>
+</li>
+</ul>
+<h2 id="安装完测试MySQL需要使用的基本命令如下："><a href="#安装完测试MySQL需要使用的基本命令如下：" class="headerlink" title="安装完测试MySQL需要使用的基本命令如下："></a>安装完测试MySQL需要使用的基本命令如下：</h2><p>1.使用brew安装完MySQL时,root密码默认为空，如果要设置MySQL的相关安全策略，使用命令: <code>mysql_secure_installation</code></p>
+<p>2.打开mysql,带后台线程（电脑重启后会自己开启）:<code>brew services start mysql</code></p>
+<p>3.打开mysql，不带后台线程:<code>mysql.server start</code></p>
+<p>4.退出mysql:<code>brew services stop mysql</code></p>
+<p>5.登录MySQL:<code>mysql -u root -p</code></p>
+<p>6.查看MySQL的版本号:mysql&gt; <code>select Version();</code></p>
+<p>7.查看当前登录的MySQL运行的端口号:mysql&gt; <code>show global variables like &#39;port&#39;;</code></p>
+<p>8.显示可用的数据库:<code>SHOW DATABASES;</code></p>
+<p>9.选择数据库:mysql&gt; <code>USE crashcourse;</code></p>
+<p>10.显示数据库中所有可用的表:mysql&gt; <code>SHOW TABLES;</code></p>
+<p>11.显示表列: <code>SHOW COLUMNS FROM customers;</code> 或 <code>DESCRIBE customers;</code></p>
+<p>12.显示服务器状态信息:<code>SHOW STATUS;</code></p>
+<p>13.显示用户的安全权限:<code>SHOW GRANTS;</code></p>
+<p>14.显示服务器错误信息:<code>SHOW ERRORS;</code></p>
+<p>15.显示服务器警告信息:<code>SHOW WARNINGS;</code></p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NSThread介绍</title>
     <url>/Blog/2020/07/04/NSThread%E4%BB%8B%E7%BB%8D/</url>
     <content><![CDATA[<h2 id="NSThread介绍"><a href="#NSThread介绍" class="headerlink" title="NSThread介绍"></a>NSThread介绍</h2><p>NSThread 是苹果官方提供的，使用起来比 pthread 更加面向对象，简单易用，可以直接操作线程对象。不过也需要需要程序员自己管理线程的生命周期(主要是创建)，我们在开发的过程中偶尔使用 NSThread。比如我们会经常调用[NSThread currentThread]来显示当前的进程信息。</p>
@@ -1344,54 +1344,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Python学习笔记(Python3编码)</title>
-    <url>/Blog/2019/04/27/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Python3%E7%BC%96%E7%A0%81/</url>
-    <content><![CDATA[<p>Python3中的字符串是Unicode字符串而不是字节数组。这是与Python2相比最大的差别。在Python2中，我们需要区分普通的字节为单位的字符串以及Unicode字符串。</p>
-<h2 id="使用UTF-8编码和解码"><a href="#使用UTF-8编码和解码" class="headerlink" title="使用UTF-8编码和解码"></a>使用UTF-8编码和解码</h2><p>对字符串进行处理时，并不需要在意Python中Unicode字符的存储细节。当需要与外界进行数据交互时则需要完成两件事情:</p>
-<ul>
-<li>将字符串__编码__为字节</li>
-<li>将字节__解码__为字符串</li>
-</ul>
-<p>如果Unicode包含的字符种类不超过64000种，我们就可以将字符ID统一存储在2字节中。遗憾的是，Unicode所包含的字符种类远不只此。诚然，我们将字符ID统一编码在3或4字节中，但是这样会使空间开销(内存和硬盘)增加3到4倍。两位Unix开发大神设计出了UTF-8动态编码方案。这种方案会动态的为每个Unicode字符分配1到4字节不等:</p>
-<ul>
-<li>为ASCII字符分配1字节</li>
-<li>为拉丁语系(除西里尔语)的语言分配2字节</li>
-<li>为其他的位于基本多语言平面的字符分配3字节</li>
-<li>为剩下的字符集分配4字节，这包括一些亚洲语言及符号</li>
-</ul>
-<p>UTF-8是Python、Linux以及HTML的标准文本编码格式。</p>
-<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>__编码是将字符串转化为一系列字节的过程__。字符串的__encode()__函数所接收的第一个参数是编码方式。可选的编码方式见下表。</p>
-<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/04/27/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Python3%E7%BC%96%E7%A0%81/Snip20190427_1.png" class="" title="编码方式的截图"> </div>
-
-<p>下面使用代码进行说明:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义一个Unicode字符串，它含有一个中文字符</span></span><br><span class="line">name = <span class="string">&quot;中&quot;</span></span><br><span class="line"><span class="comment"># 打印字符串的类型</span></span><br><span class="line">print(<span class="built_in">type</span>(name))</span><br><span class="line"><span class="comment"># 打印字符串</span></span><br><span class="line">print(name)</span><br><span class="line"><span class="comment"># 打印字符串的长度，最后结果为1，说明len()获取的是字符串中字符的个数，不是字节长度</span></span><br><span class="line">print(<span class="built_in">len</span>(name))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将字符串编码为UTF-8的字节序列</span></span><br><span class="line">ds = name.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(<span class="string">&quot;--------&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印字节序列的类型</span></span><br><span class="line">print(<span class="built_in">type</span>(ds))</span><br><span class="line"><span class="comment"># 打印字符串编码过后的字节序列</span></span><br><span class="line">print(ds)</span><br><span class="line"><span class="comment"># 打印字节序列的长度，发现一个中文字符在UTF-8编码中占3个字节</span></span><br><span class="line">print(<span class="built_in">len</span>(ds))</span><br></pre></td></tr></table></figure>
-
-<p>程序的运行结果如下:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">str</span>&#x27;&gt;</span></span><br><span class="line"><span class="class">中</span></span><br><span class="line"><span class="class">1</span></span><br><span class="line"><span class="class">--------</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> &#x27;<span class="title">bytes</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">b</span>&#x27;\<span class="title">xe4</span>\<span class="title">xb8</span>\<span class="title">xad</span>&#x27;</span></span><br><span class="line"><span class="class">3</span></span><br></pre></td></tr></table></figure>
-<p>由上面的运行结果可以知道，单个的Unicode中文字符在UTF-8编码的格式下占用了3字节的空间。当然，你也可以使用UTF-8以外的编码方式，但该Unicode字符串可能无法被指定的编码方式处理，此时Python会抛出异常。例如将上面的Unicode中文字符编码为ascii字节，就会报错。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">name = <span class="string">&#x27;中&#x27;</span></span><br><span class="line">ds = name.encode(<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">print(ds)</span><br></pre></td></tr></table></figure>
-<p>运行结果:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;/Users/kris/PycharmProjects/pythons_demo/Python语言及其应用/第七章/test.py&quot;</span>, line <span class="number">26</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    ds = name.encode(<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">UnicodeEncodeError: <span class="string">&#x27;ascii&#x27;</span> codec can<span class="string">&#x27;t encode character &#x27;</span>\u4e2d<span class="string">&#x27; in position 0: ordinal not in range(128)</span></span><br></pre></td></tr></table></figure>
-<p>__encode()__函数可以接受额外的第二个参数来帮助你避免编码异常。它的默认值是’strict’,如上例所示,当函数检测到需要处理的字符串包含非ASCII字符时,会抛出UnicodeEncodeError异常。当然还有别的可选值,使用’ignore’会抛弃任何无法进行编码的字符;使用’replace’会将所有无法进行编码的字符替换为?;’backslashreplace’则会创建一个和Unicode-escape类似的Unicode字符串。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">name = <span class="string">&#x27;ab中cd&#x27;</span></span><br><span class="line">print(name)</span><br><span class="line">print(name.encode(<span class="string">&#x27;ascii&#x27;</span>, <span class="string">&#x27;ignore&#x27;</span>))</span><br><span class="line">print(name.encode(<span class="string">&#x27;ascii&#x27;</span>, <span class="string">&#x27;replace&#x27;</span>))</span><br><span class="line">print(name.encode(<span class="string">&#x27;ascii&#x27;</span>, <span class="string">&#x27;backslashreplace&#x27;</span>))</span><br></pre></td></tr></table></figure>
-<p>程序的运行结果:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ab中cd</span><br><span class="line"><span class="string">b&#x27;abcd&#x27;</span></span><br><span class="line"><span class="string">b&#x27;ab?cd&#x27;</span></span><br><span class="line"><span class="string">b&#x27;ab\\u4e2dcd&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="解码"><a href="#解码" class="headerlink" title="解码"></a>解码</h3><p>__解码__是将字节序列转化为Unicode字符串的过程。我们从外界文本源(文件、数据库、网站、网络API等)获得的所有文本都是经过编码的字节序列。重要的是需要知道它是以何种方式编码的，这样才能逆转编码过程以获得Unicode字符串。</p>
-<p>问题是字节序列本身不带有任何指明编码方式的信息。之前我也提到过网站随意复制粘贴文本的风险,你也可能遇到过网页乱码的情况,本应是ASCII字符的位置却被奇怪的字符占据了,这些都是编码和解码的方式不一致导致的。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">place = <span class="string">&#x27;caf\u00e9&#x27;</span></span><br><span class="line">print(place)</span><br><span class="line">print(<span class="built_in">type</span>(place))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编码</span></span><br><span class="line">place_tytes = place.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(place_tytes)</span><br><span class="line">print(<span class="built_in">type</span>(place_tytes))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解码</span></span><br><span class="line">place2 = place_tytes.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(place2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用ASCII解码,会报错</span></span><br><span class="line"><span class="comment"># place3 = place_tytes.decode(&#x27;ascii&#x27;)</span></span><br><span class="line"><span class="comment"># print(place3)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用其他编码格式解码</span></span><br><span class="line">place4 = place_tytes.decode(<span class="string">&#x27;latin_1&#x27;</span>)</span><br><span class="line">print(place4)</span><br><span class="line"></span><br><span class="line">place5 = place_tytes.decode(<span class="string">&#x27;windows-1252&#x27;</span>)</span><br><span class="line">print(place5)</span><br></pre></td></tr></table></figure>
-<p>程序的运行结果:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">café</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">str</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">b</span>&#x27;<span class="title">caf</span>\<span class="title">xc3</span>\<span class="title">xa9</span>&#x27;</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> &#x27;<span class="title">bytes</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">caf</span>é</span></span><br><span class="line"><span class="class"><span class="title">caf</span>Ã©</span></span><br><span class="line"><span class="class"><span class="title">caf</span>Ã©</span></span><br></pre></td></tr></table></figure>
-<p>上面的运行结果说明，</p>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OC对象的分类</title>
     <url>/Blog/2019/06/22/OC%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%86%E7%B1%BB/</url>
     <content><![CDATA[<h2 id="OC对象的分类"><a href="#OC对象的分类" class="headerlink" title="OC对象的分类"></a>OC对象的分类</h2><p> OC对象主要可以分为3种</p>
@@ -1441,6 +1393,54 @@
       </categories>
       <tags>
         <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python学习笔记(Python3编码)</title>
+    <url>/Blog/2019/04/27/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Python3%E7%BC%96%E7%A0%81/</url>
+    <content><![CDATA[<p>Python3中的字符串是Unicode字符串而不是字节数组。这是与Python2相比最大的差别。在Python2中，我们需要区分普通的字节为单位的字符串以及Unicode字符串。</p>
+<h2 id="使用UTF-8编码和解码"><a href="#使用UTF-8编码和解码" class="headerlink" title="使用UTF-8编码和解码"></a>使用UTF-8编码和解码</h2><p>对字符串进行处理时，并不需要在意Python中Unicode字符的存储细节。当需要与外界进行数据交互时则需要完成两件事情:</p>
+<ul>
+<li>将字符串__编码__为字节</li>
+<li>将字节__解码__为字符串</li>
+</ul>
+<p>如果Unicode包含的字符种类不超过64000种，我们就可以将字符ID统一存储在2字节中。遗憾的是，Unicode所包含的字符种类远不只此。诚然，我们将字符ID统一编码在3或4字节中，但是这样会使空间开销(内存和硬盘)增加3到4倍。两位Unix开发大神设计出了UTF-8动态编码方案。这种方案会动态的为每个Unicode字符分配1到4字节不等:</p>
+<ul>
+<li>为ASCII字符分配1字节</li>
+<li>为拉丁语系(除西里尔语)的语言分配2字节</li>
+<li>为其他的位于基本多语言平面的字符分配3字节</li>
+<li>为剩下的字符集分配4字节，这包括一些亚洲语言及符号</li>
+</ul>
+<p>UTF-8是Python、Linux以及HTML的标准文本编码格式。</p>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>__编码是将字符串转化为一系列字节的过程__。字符串的__encode()__函数所接收的第一个参数是编码方式。可选的编码方式见下表。</p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2019/04/27/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Python3%E7%BC%96%E7%A0%81/Snip20190427_1.png" class="" title="编码方式的截图"> </div>
+
+<p>下面使用代码进行说明:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义一个Unicode字符串，它含有一个中文字符</span></span><br><span class="line">name = <span class="string">&quot;中&quot;</span></span><br><span class="line"><span class="comment"># 打印字符串的类型</span></span><br><span class="line">print(<span class="built_in">type</span>(name))</span><br><span class="line"><span class="comment"># 打印字符串</span></span><br><span class="line">print(name)</span><br><span class="line"><span class="comment"># 打印字符串的长度，最后结果为1，说明len()获取的是字符串中字符的个数，不是字节长度</span></span><br><span class="line">print(<span class="built_in">len</span>(name))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将字符串编码为UTF-8的字节序列</span></span><br><span class="line">ds = name.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(<span class="string">&quot;--------&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印字节序列的类型</span></span><br><span class="line">print(<span class="built_in">type</span>(ds))</span><br><span class="line"><span class="comment"># 打印字符串编码过后的字节序列</span></span><br><span class="line">print(ds)</span><br><span class="line"><span class="comment"># 打印字节序列的长度，发现一个中文字符在UTF-8编码中占3个字节</span></span><br><span class="line">print(<span class="built_in">len</span>(ds))</span><br></pre></td></tr></table></figure>
+
+<p>程序的运行结果如下:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">str</span>&#x27;&gt;</span></span><br><span class="line"><span class="class">中</span></span><br><span class="line"><span class="class">1</span></span><br><span class="line"><span class="class">--------</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> &#x27;<span class="title">bytes</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">b</span>&#x27;\<span class="title">xe4</span>\<span class="title">xb8</span>\<span class="title">xad</span>&#x27;</span></span><br><span class="line"><span class="class">3</span></span><br></pre></td></tr></table></figure>
+<p>由上面的运行结果可以知道，单个的Unicode中文字符在UTF-8编码的格式下占用了3字节的空间。当然，你也可以使用UTF-8以外的编码方式，但该Unicode字符串可能无法被指定的编码方式处理，此时Python会抛出异常。例如将上面的Unicode中文字符编码为ascii字节，就会报错。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">name = <span class="string">&#x27;中&#x27;</span></span><br><span class="line">ds = name.encode(<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">print(ds)</span><br></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;/Users/kris/PycharmProjects/pythons_demo/Python语言及其应用/第七章/test.py&quot;</span>, line <span class="number">26</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    ds = name.encode(<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">UnicodeEncodeError: <span class="string">&#x27;ascii&#x27;</span> codec can<span class="string">&#x27;t encode character &#x27;</span>\u4e2d<span class="string">&#x27; in position 0: ordinal not in range(128)</span></span><br></pre></td></tr></table></figure>
+<p>__encode()__函数可以接受额外的第二个参数来帮助你避免编码异常。它的默认值是’strict’,如上例所示,当函数检测到需要处理的字符串包含非ASCII字符时,会抛出UnicodeEncodeError异常。当然还有别的可选值,使用’ignore’会抛弃任何无法进行编码的字符;使用’replace’会将所有无法进行编码的字符替换为?;’backslashreplace’则会创建一个和Unicode-escape类似的Unicode字符串。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">name = <span class="string">&#x27;ab中cd&#x27;</span></span><br><span class="line">print(name)</span><br><span class="line">print(name.encode(<span class="string">&#x27;ascii&#x27;</span>, <span class="string">&#x27;ignore&#x27;</span>))</span><br><span class="line">print(name.encode(<span class="string">&#x27;ascii&#x27;</span>, <span class="string">&#x27;replace&#x27;</span>))</span><br><span class="line">print(name.encode(<span class="string">&#x27;ascii&#x27;</span>, <span class="string">&#x27;backslashreplace&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<p>程序的运行结果:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ab中cd</span><br><span class="line"><span class="string">b&#x27;abcd&#x27;</span></span><br><span class="line"><span class="string">b&#x27;ab?cd&#x27;</span></span><br><span class="line"><span class="string">b&#x27;ab\\u4e2dcd&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="解码"><a href="#解码" class="headerlink" title="解码"></a>解码</h3><p>__解码__是将字节序列转化为Unicode字符串的过程。我们从外界文本源(文件、数据库、网站、网络API等)获得的所有文本都是经过编码的字节序列。重要的是需要知道它是以何种方式编码的，这样才能逆转编码过程以获得Unicode字符串。</p>
+<p>问题是字节序列本身不带有任何指明编码方式的信息。之前我也提到过网站随意复制粘贴文本的风险,你也可能遇到过网页乱码的情况,本应是ASCII字符的位置却被奇怪的字符占据了,这些都是编码和解码的方式不一致导致的。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">place = <span class="string">&#x27;caf\u00e9&#x27;</span></span><br><span class="line">print(place)</span><br><span class="line">print(<span class="built_in">type</span>(place))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编码</span></span><br><span class="line">place_tytes = place.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(place_tytes)</span><br><span class="line">print(<span class="built_in">type</span>(place_tytes))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解码</span></span><br><span class="line">place2 = place_tytes.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">print(place2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用ASCII解码,会报错</span></span><br><span class="line"><span class="comment"># place3 = place_tytes.decode(&#x27;ascii&#x27;)</span></span><br><span class="line"><span class="comment"># print(place3)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用其他编码格式解码</span></span><br><span class="line">place4 = place_tytes.decode(<span class="string">&#x27;latin_1&#x27;</span>)</span><br><span class="line">print(place4)</span><br><span class="line"></span><br><span class="line">place5 = place_tytes.decode(<span class="string">&#x27;windows-1252&#x27;</span>)</span><br><span class="line">print(place5)</span><br></pre></td></tr></table></figure>
+<p>程序的运行结果:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">café</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">str</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">b</span>&#x27;<span class="title">caf</span>\<span class="title">xc3</span>\<span class="title">xa9</span>&#x27;</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> &#x27;<span class="title">bytes</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">caf</span>é</span></span><br><span class="line"><span class="class"><span class="title">caf</span>Ã©</span></span><br><span class="line"><span class="class"><span class="title">caf</span>Ã©</span></span><br></pre></td></tr></table></figure>
+<p>上面的运行结果说明，</p>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -2632,52 +2632,6 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </tags>
   </entry>
   <entry>
-    <title>如何制作一个CocoaPods私有库</title>
-    <url>/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/</url>
-    <content><![CDATA[<h2 id="创建私有库模版"><a href="#创建私有库模版" class="headerlink" title="创建私有库模版"></a>创建私有库模版</h2><p>使用命令进入到要建立私有库工程的目录，执行以下命令，<code>CDUtils</code>是私有库项目名。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod lib create CDUtils</span><br></pre></td></tr></table></figure>
-<p>接下来终端会询问几个问题，请根据实际情况设置：</p>
-<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E6%A8%A1%E7%89%88%E9%97%AE%E9%A2%98%E6%88%AA%E5%9B%BE.png" class="" title="创建模版问题截图">
-<p>根据提示最终就会创建一个私有工程。</p>
-<h2 id="创建私有库Git地址，这里以Github为例"><a href="#创建私有库Git地址，这里以Github为例" class="headerlink" title="创建私有库Git地址，这里以Github为例"></a>创建私有库Git地址，这里以Github为例</h2><img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E5%BA%93Git%E6%88%AA%E5%9B%BE.png" class="" title="创建私有库Git截图">
-
-<h2 id="修改配置文件CDUtils-podspec"><a href="#修改配置文件CDUtils-podspec" class="headerlink" title="修改配置文件CDUtils.podspec"></a>修改配置文件CDUtils.podspec</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Be sure to run `pod lib lint CDUtils.podspec&#x27; to ensure this is a</span></span><br><span class="line"><span class="comment"># valid spec before submitting.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Any lines starting with a # are optional, but their use is encouraged</span></span><br><span class="line"><span class="comment"># To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">Pod::Spec.new <span class="keyword">do</span> |s|</span><br><span class="line">  s.name             = <span class="string">&#x27;CDUtils&#x27;</span></span><br><span class="line">  s.version          = <span class="string">&#x27;0.0.1&#x27;</span></span><br><span class="line">  s.summary          = <span class="string">&#x27;CDUtils 是一个公共方法库。&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This description is used to generate tags and improve search results.</span></span><br><span class="line"><span class="comment">#   * Think: What does it do? Why did you write it? What is the focus?</span></span><br><span class="line"><span class="comment">#   * Try to keep it short, snappy and to the point.</span></span><br><span class="line"><span class="comment">#   * Write the description between the DESC delimiters below.</span></span><br><span class="line"><span class="comment">#   * Finally, don&#x27;t worry about the indent, CocoaPods strips it!</span></span><br><span class="line"></span><br><span class="line">  s.description      = &lt;&lt;-<span class="string">DESC</span></span><br><span class="line"><span class="string">TODO: Add long description of the pod here.</span></span><br><span class="line"><span class="string">                       DESC</span></span><br><span class="line"></span><br><span class="line">  s.homepage         = <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span></span><br><span class="line">  <span class="comment"># s.screenshots     = &#x27;www.example.com/screenshots_1&#x27;, &#x27;www.example.com/screenshots_2&#x27;</span></span><br><span class="line">  s.license          = &#123; :<span class="built_in">type</span> =&gt; <span class="string">&#x27;MIT&#x27;</span>, :file =&gt; <span class="string">&#x27;LICENSE&#x27;</span> &#125;</span><br><span class="line">  s.author           = &#123; <span class="string">&#x27;1516715172@qq.com&#x27;</span> =&gt; <span class="string">&#x27;jsjhyp@gmail.com&#x27;</span> &#125;</span><br><span class="line">  s.source           = &#123; :git =&gt; <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span>, :tag =&gt; s.version.to_s &#125;</span><br><span class="line">  <span class="comment"># s.social_media_url = &#x27;https://twitter.com/&lt;TWITTER_USERNAME&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.ios.deployment_target = <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.source_files = <span class="string">&#x27;CDUtils/Classes/**/*&#x27;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># s.resource_bundles = &#123;</span></span><br><span class="line">  <span class="comment">#   &#x27;CDUtils&#x27; =&gt; [&#x27;CDUtils/Assets/*.png&#x27;]</span></span><br><span class="line">  <span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># s.public_header_files = &#x27;Pod/Classes/**/*.h&#x27;</span></span><br><span class="line">  <span class="comment"># s.frameworks = &#x27;UIKit&#x27;, &#x27;MapKit&#x27;</span></span><br><span class="line">  <span class="comment"># s.dependency &#x27;AFNetworking&#x27;, &#x27;~&gt; 2.3&#x27;</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>命令行进入私有库工程所在目录下的Example文件夹，执行<code>pod install</code>，安装依赖项。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PoetMacBook-Pro:Example kris$ pod install</span><br><span class="line">Analyzing dependencies</span><br><span class="line">Downloading dependencies</span><br><span class="line">Generating Pods project</span><br><span class="line">Integrating client project</span><br><span class="line">Pod installation complete! There is 1 dependency from the Podfile and 1 total pod installed.</span><br><span class="line">PoetMacBook-Pro:Example kris$ </span><br></pre></td></tr></table></figure>
-
-<h2 id="添加库的源代码文件"><a href="#添加库的源代码文件" class="headerlink" title="添加库的源代码文件"></a>添加库的源代码文件</h2><p>将源码文件放入<code>CDUtils/Classes</code>目录下，与podspec文件保持一致。</p>
-<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E6%B7%BB%E5%8A%A0%E5%BA%93%E7%9A%84%E6%BA%90%E7%A0%81%E6%96%87%E4%BB%B6%E6%88%AA%E5%9B%BE.png" class="" title="添加库的源码文件截图">
-
-<h2 id="验证私有库的正确性"><a href="#验证私有库的正确性" class="headerlink" title="验证私有库的正确性"></a>验证私有库的正确性</h2><p>使用命令验证私有库的正确性。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod lib lint CDUtils.podspec</span><br></pre></td></tr></table></figure>
-
-<h2 id="提交源码到github，并打Tag。"><a href="#提交源码到github，并打Tag。" class="headerlink" title="提交源码到github，并打Tag。"></a>提交源码到github，并打Tag。</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin https://github.com/DavidWanderer/CDUtils.git</span><br><span class="line"></span><br><span class="line">$ git add .</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">&quot;0.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">$ git pull origin master</span><br><span class="line"></span><br><span class="line">$ git push origin master</span><br><span class="line"></span><br><span class="line">$ git tag 0.0.1</span><br><span class="line"> </span><br><span class="line">$ git push origin 0.0.1</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建私有库的索引库"><a href="#创建私有库的索引库" class="headerlink" title="创建私有库的索引库"></a>创建私有库的索引库</h2><p>在Github上创建私有库的索引库，并进行初始化操作。</p>
-<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="创建私有索引库截图">
-
-<h2 id="将创建的索引库添加到本地cocoapods仓库"><a href="#将创建的索引库添加到本地cocoapods仓库" class="headerlink" title="将创建的索引库添加到本地cocoapods仓库"></a>将创建的索引库添加到本地cocoapods仓库</h2><ul>
-<li>在自己的私有库目录下执行命令，将创建的索引库克隆到本地的cocoapods的仓库中。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo add CDSpecs https://github.com/DavidWanderer/CDSpecs.git</span><br></pre></td></tr></table></figure></li>
-<li>cocoapods本地仓库路径为：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ~/.cocoapods/repos</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="发布私有库"><a href="#发布私有库" class="headerlink" title="发布私有库"></a>发布私有库</h2><p>在自己的私有库目录下执行命令，把当前私有库的索引同步到本地索引库，并同步给远程索引库。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo push CDUtils CDUtils.podspec</span><br></pre></td></tr></table></figure>
-<p>终端截图:</p>
-<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E7%A7%81%E6%9C%89%E5%BA%93%E7%B4%A2%E5%BC%95%E5%90%8C%E6%AD%A5%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%92%8C%E8%BF%9C%E7%A8%8B%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="私有库索引同步到本地和远程索引库截图">
-
-<h2 id="在自己的项目中引用私有库"><a href="#在自己的项目中引用私有库" class="headerlink" title="在自己的项目中引用私有库"></a>在自己的项目中引用私有库</h2><p>Podfile如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Uncomment the next line to define a global platform for your project</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/CocoaPods/Specs.git&#x27;</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/DavidWanderer/CDSpecs.git&#x27;</span></span><br><span class="line">platform :ios, <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">target <span class="string">&#x27;测试&#x27;</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Comment the next line if you don&#x27;t want to use dynamic frameworks</span></span><br><span class="line">  <span class="comment">#use_frameworks!</span></span><br><span class="line">  pod <span class="string">&#x27;CDUtils&#x27;</span>, <span class="string">&#x27;~&gt; 0.0.1&#x27;</span></span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>分类的原理</title>
     <url>/Blog/2019/06/27/%E5%88%86%E7%B1%BB%E7%9A%84%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<h2 id="分类的原理"><a href="#分类的原理" class="headerlink" title="分类的原理"></a>分类的原理</h2><p>对于分类的作用恐怕大家都是知道的吧，今天就让我们一起研究一下分类的实现原理。</p>
@@ -2720,6 +2674,78 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
 </ul>
 <img src="/Blog/2019/06/27/%E5%88%86%E7%B1%BB%E7%9A%84%E5%8E%9F%E7%90%86/%E5%88%86%E7%B1%BB.png" class="" title="分类">
 ]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>升级Big Sur后，hexo无法使用</title>
+    <url>/Blog/2021/01/03/%E5%8D%87%E7%BA%A7Big-Sur%E5%90%8E%EF%BC%8Chexo%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h1><p>元旦放假期间升级了一下macOS系统，升级到最新的<code>macOS Big Sur 版本11.1</code>之后发现在终端敲<code>hexo clean</code>报错，具体的错误信息如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % hexo clean</span><br><span class="line">zsh: <span class="built_in">command</span> not found: hexo</span><br></pre></td></tr></table></figure>
+<p>网上搜索一下，发现大家也有类似问题，但是具体的情况和我还不太一样。我的电脑上安装了nvm，升级之后发现我电脑上node默认升级到了<code>v11.15.0</code>。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % node -v</span><br><span class="line">v11.15.0</span><br></pre></td></tr></table></figure>
+<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>而每一个node版本都会维护一套自己的<code>bin</code>目录，我发现我自己的电脑上安装了3个不同的node版本，只有<code>v8.11.1</code>这个版本的<code>bin</code>目录下才有<code>hexo</code>的可执行文件。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % <span class="built_in">cd</span> /Users/poet/.nvm/versions/node/</span><br><span class="line">poet@poetdeMacBook-Pro node % ls</span><br><span class="line">v11.15.0	v7.10.0		v8.11.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在v8.11.1目录下面的bin目录查看到 hexo</span></span><br><span class="line">poet@poetdeMacBook-Pro node % <span class="built_in">cd</span> v8.11.1</span><br><span class="line">poet@poetdeMacBook-Pro v8.11.1 % ls</span><br><span class="line">CHANGELOG.md	README.md	etc		lib</span><br><span class="line">LICENSE		bin		include		share</span><br><span class="line">poet@poetdeMacBook-Pro v8.11.1 % <span class="built_in">cd</span> bin</span><br><span class="line">poet@poetdeMacBook-Pro bin % ls</span><br><span class="line">express	hexo	n	node	npm	npx	nrm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在v7.10.0目录下面的bin目录下没有查看到hexo相关的文件</span></span><br><span class="line">poet@poetdeMacBook-Pro node % <span class="built_in">cd</span> v7.10.0</span><br><span class="line">poet@poetdeMacBook-Pro v7.10.0 % ls</span><br><span class="line">CHANGELOG.md	README.md	etc		lib</span><br><span class="line">LICENSE		bin		include		share</span><br><span class="line">poet@poetdeMacBook-Pro v7.10.0 % <span class="built_in">cd</span> bin</span><br><span class="line">poet@poetdeMacBook-Pro bin % ls</span><br><span class="line">node	npm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在v11.15.0目录下面的bin目录下没有查看到hexo相关的文件</span></span><br><span class="line">poet@poetdeMacBook-Pro node % <span class="built_in">cd</span> v11.15.0</span><br><span class="line">poet@poetdeMacBook-Pro v11.15.0 % ls</span><br><span class="line">bin	include	lib	share</span><br><span class="line">poet@poetdeMacBook-Pro v11.15.0 % <span class="built_in">cd</span> bin</span><br><span class="line">poet@poetdeMacBook-Pro bin % ls</span><br><span class="line">node	npm	npx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>最终我的解决办法是，将<code>v8.11.1/bin/hexo</code>文件连接到<code>/usr/local/bin</code>目录下，在终端输入<code>hexo clean</code>命令时，系统会去<code>/usr/local/bin</code>目录中查找对应的可执行文件，找到<code>hexo</code>后，会连接到<code>v8.11.1/bin/hexo</code>目录下调用hexo可执行文件，最终执行命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro % ln -s /Users/poet/.nvm/versions/node/v8.11.1/bin/hexo /usr/<span class="built_in">local</span>/bin/</span><br></pre></td></tr></table></figure>
+
+<p>执行完成之后，验证一下最终的命令是否有效果：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % hexo</span><br><span class="line">Usage: hexo &lt;<span class="built_in">command</span>&gt;</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  <span class="built_in">help</span>     Get <span class="built_in">help</span> on a <span class="built_in">command</span>.</span><br><span class="line">  init     Create a new Hexo folder.</span><br><span class="line">  version  Display version information.</span><br><span class="line"></span><br><span class="line">Global Options:</span><br><span class="line">  --config  Specify config file instead of using _config.yml</span><br><span class="line">  --cwd     Specify the CWD</span><br><span class="line">  --debug   Display all verbose messages <span class="keyword">in</span> the terminal</span><br><span class="line">  --draft   Display draft posts</span><br><span class="line">  --safe    Disable all plugins and scripts</span><br><span class="line">  --silent  Hide output on console</span><br><span class="line"></span><br><span class="line">For more <span class="built_in">help</span>, you can use <span class="string">&#x27;hexo help [command]&#x27;</span> <span class="keyword">for</span> the detailed information</span><br><span class="line">or you can check the docs: http://hexo.io/docs/</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>ln -s 源文件 目标文件</strong> 这个语法是给源文件建立一个软连接，软连接是一个特殊的文件，它包含源文件的具体位置。类似于Windows系统的快捷方式。</p>
+</blockquote>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://ziyubiti.github.io/2019/07/16/HexoCommandNotFound/">Hexo：command not found的问题解决</a><br><a href="https://www.cnblogs.com/kex1n/p/5193826.html">linux 创建连接命令 ln -s 软链接</a></p>
+]]></content>
+      <categories>
+        <category>通用</category>
+      </categories>
+      <tags>
+        <tag>通用</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何制作一个CocoaPods私有库</title>
+    <url>/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/</url>
+    <content><![CDATA[<h2 id="创建私有库模版"><a href="#创建私有库模版" class="headerlink" title="创建私有库模版"></a>创建私有库模版</h2><p>使用命令进入到要建立私有库工程的目录，执行以下命令，<code>CDUtils</code>是私有库项目名。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod lib create CDUtils</span><br></pre></td></tr></table></figure>
+<p>接下来终端会询问几个问题，请根据实际情况设置：</p>
+<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E6%A8%A1%E7%89%88%E9%97%AE%E9%A2%98%E6%88%AA%E5%9B%BE.png" class="" title="创建模版问题截图">
+<p>根据提示最终就会创建一个私有工程。</p>
+<h2 id="创建私有库Git地址，这里以Github为例"><a href="#创建私有库Git地址，这里以Github为例" class="headerlink" title="创建私有库Git地址，这里以Github为例"></a>创建私有库Git地址，这里以Github为例</h2><img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E5%BA%93Git%E6%88%AA%E5%9B%BE.png" class="" title="创建私有库Git截图">
+
+<h2 id="修改配置文件CDUtils-podspec"><a href="#修改配置文件CDUtils-podspec" class="headerlink" title="修改配置文件CDUtils.podspec"></a>修改配置文件CDUtils.podspec</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Be sure to run `pod lib lint CDUtils.podspec&#x27; to ensure this is a</span></span><br><span class="line"><span class="comment"># valid spec before submitting.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Any lines starting with a # are optional, but their use is encouraged</span></span><br><span class="line"><span class="comment"># To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">Pod::Spec.new <span class="keyword">do</span> |s|</span><br><span class="line">  s.name             = <span class="string">&#x27;CDUtils&#x27;</span></span><br><span class="line">  s.version          = <span class="string">&#x27;0.0.1&#x27;</span></span><br><span class="line">  s.summary          = <span class="string">&#x27;CDUtils 是一个公共方法库。&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This description is used to generate tags and improve search results.</span></span><br><span class="line"><span class="comment">#   * Think: What does it do? Why did you write it? What is the focus?</span></span><br><span class="line"><span class="comment">#   * Try to keep it short, snappy and to the point.</span></span><br><span class="line"><span class="comment">#   * Write the description between the DESC delimiters below.</span></span><br><span class="line"><span class="comment">#   * Finally, don&#x27;t worry about the indent, CocoaPods strips it!</span></span><br><span class="line"></span><br><span class="line">  s.description      = &lt;&lt;-<span class="string">DESC</span></span><br><span class="line"><span class="string">TODO: Add long description of the pod here.</span></span><br><span class="line"><span class="string">                       DESC</span></span><br><span class="line"></span><br><span class="line">  s.homepage         = <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span></span><br><span class="line">  <span class="comment"># s.screenshots     = &#x27;www.example.com/screenshots_1&#x27;, &#x27;www.example.com/screenshots_2&#x27;</span></span><br><span class="line">  s.license          = &#123; :<span class="built_in">type</span> =&gt; <span class="string">&#x27;MIT&#x27;</span>, :file =&gt; <span class="string">&#x27;LICENSE&#x27;</span> &#125;</span><br><span class="line">  s.author           = &#123; <span class="string">&#x27;1516715172@qq.com&#x27;</span> =&gt; <span class="string">&#x27;jsjhyp@gmail.com&#x27;</span> &#125;</span><br><span class="line">  s.source           = &#123; :git =&gt; <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span>, :tag =&gt; s.version.to_s &#125;</span><br><span class="line">  <span class="comment"># s.social_media_url = &#x27;https://twitter.com/&lt;TWITTER_USERNAME&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.ios.deployment_target = <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.source_files = <span class="string">&#x27;CDUtils/Classes/**/*&#x27;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># s.resource_bundles = &#123;</span></span><br><span class="line">  <span class="comment">#   &#x27;CDUtils&#x27; =&gt; [&#x27;CDUtils/Assets/*.png&#x27;]</span></span><br><span class="line">  <span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># s.public_header_files = &#x27;Pod/Classes/**/*.h&#x27;</span></span><br><span class="line">  <span class="comment"># s.frameworks = &#x27;UIKit&#x27;, &#x27;MapKit&#x27;</span></span><br><span class="line">  <span class="comment"># s.dependency &#x27;AFNetworking&#x27;, &#x27;~&gt; 2.3&#x27;</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>命令行进入私有库工程所在目录下的Example文件夹，执行<code>pod install</code>，安装依赖项。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PoetMacBook-Pro:Example kris$ pod install</span><br><span class="line">Analyzing dependencies</span><br><span class="line">Downloading dependencies</span><br><span class="line">Generating Pods project</span><br><span class="line">Integrating client project</span><br><span class="line">Pod installation complete! There is 1 dependency from the Podfile and 1 total pod installed.</span><br><span class="line">PoetMacBook-Pro:Example kris$ </span><br></pre></td></tr></table></figure>
+
+<h2 id="添加库的源代码文件"><a href="#添加库的源代码文件" class="headerlink" title="添加库的源代码文件"></a>添加库的源代码文件</h2><p>将源码文件放入<code>CDUtils/Classes</code>目录下，与podspec文件保持一致。</p>
+<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E6%B7%BB%E5%8A%A0%E5%BA%93%E7%9A%84%E6%BA%90%E7%A0%81%E6%96%87%E4%BB%B6%E6%88%AA%E5%9B%BE.png" class="" title="添加库的源码文件截图">
+
+<h2 id="验证私有库的正确性"><a href="#验证私有库的正确性" class="headerlink" title="验证私有库的正确性"></a>验证私有库的正确性</h2><p>使用命令验证私有库的正确性。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod lib lint CDUtils.podspec</span><br></pre></td></tr></table></figure>
+
+<h2 id="提交源码到github，并打Tag。"><a href="#提交源码到github，并打Tag。" class="headerlink" title="提交源码到github，并打Tag。"></a>提交源码到github，并打Tag。</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin https://github.com/DavidWanderer/CDUtils.git</span><br><span class="line"></span><br><span class="line">$ git add .</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">&quot;0.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">$ git pull origin master</span><br><span class="line"></span><br><span class="line">$ git push origin master</span><br><span class="line"></span><br><span class="line">$ git tag 0.0.1</span><br><span class="line"> </span><br><span class="line">$ git push origin 0.0.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建私有库的索引库"><a href="#创建私有库的索引库" class="headerlink" title="创建私有库的索引库"></a>创建私有库的索引库</h2><p>在Github上创建私有库的索引库，并进行初始化操作。</p>
+<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="创建私有索引库截图">
+
+<h2 id="将创建的索引库添加到本地cocoapods仓库"><a href="#将创建的索引库添加到本地cocoapods仓库" class="headerlink" title="将创建的索引库添加到本地cocoapods仓库"></a>将创建的索引库添加到本地cocoapods仓库</h2><ul>
+<li>在自己的私有库目录下执行命令，将创建的索引库克隆到本地的cocoapods的仓库中。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo add CDSpecs https://github.com/DavidWanderer/CDSpecs.git</span><br></pre></td></tr></table></figure></li>
+<li>cocoapods本地仓库路径为：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ~/.cocoapods/repos</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="发布私有库"><a href="#发布私有库" class="headerlink" title="发布私有库"></a>发布私有库</h2><p>在自己的私有库目录下执行命令，把当前私有库的索引同步到本地索引库，并同步给远程索引库。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo push CDUtils CDUtils.podspec</span><br></pre></td></tr></table></figure>
+<p>终端截图:</p>
+<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E7%A7%81%E6%9C%89%E5%BA%93%E7%B4%A2%E5%BC%95%E5%90%8C%E6%AD%A5%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%92%8C%E8%BF%9C%E7%A8%8B%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="私有库索引同步到本地和远程索引库截图">
+
+<h2 id="在自己的项目中引用私有库"><a href="#在自己的项目中引用私有库" class="headerlink" title="在自己的项目中引用私有库"></a>在自己的项目中引用私有库</h2><p>Podfile如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Uncomment the next line to define a global platform for your project</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/CocoaPods/Specs.git&#x27;</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/DavidWanderer/CDSpecs.git&#x27;</span></span><br><span class="line">platform :ios, <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">target <span class="string">&#x27;测试&#x27;</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Comment the next line if you don&#x27;t want to use dynamic frameworks</span></span><br><span class="line">  <span class="comment">#use_frameworks!</span></span><br><span class="line">  pod <span class="string">&#x27;CDUtils&#x27;</span>, <span class="string">&#x27;~&gt; 0.0.1&#x27;</span></span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>iOS</category>
       </categories>
