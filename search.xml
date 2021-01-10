@@ -387,6 +387,32 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo博客添加评论功能</title>
+    <url>/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<h2 id="为什么添加gitalk评论？"><a href="#为什么添加gitalk评论？" class="headerlink" title="为什么添加gitalk评论？"></a>为什么添加gitalk评论？</h2><p>Next主题支持的评论有<code>disqus</code>、<code>disqusjs</code>、<code>changyan</code>、<code>gitalk</code>、<code>livere</code>、<code>valine</code>。前面两个都需要翻墙才可以使用；畅言需要注册；<code>valine</code>需要注册，并且绑定身份证号后才可以使用；<code>livere</code>是韩国的，注册页面没有国际化，看不懂。综合下来选了<code>gitalk</code>,<code>gitalk</code>是使用github上仓库的issue来存储用户的评论，非常方便。</p>
+<h2 id="如何给自己的博客添加gitalk评论呢？"><a href="#如何给自己的博客添加gitalk评论呢？" class="headerlink" title="如何给自己的博客添加gitalk评论呢？"></a>如何给自己的博客添加gitalk评论呢？</h2><p>参考<a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">gitalk官网</a>和<a href="https://gitalk.github.io/">gitalk的Demo</a>来尝试在Next中接入gitalk。<br>1.首先需要选择一个公共的github仓库（已存在或创建一个新的github存储库）用于存储评论。<br>2.需要创建<em>GitHub Application</em>, 如果没有<a href="https://github.com/settings/applications/new">点击这里申请</a>，Authorization callback URL填写当前博客的首页地址。</p>
+<img src="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/%E7%94%B3%E8%AF%B7GitApplicationKey%E6%88%AA%E5%9B%BE.png" class="" title="申请GitApplicationKey截图">
+<p>3.修改Next主题的<code>_config.yml</code>，开启gitalk评论。配置内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Gitalk</span></span><br><span class="line"><span class="comment"># For more information: https://gitalk.github.io, https://github.com/gitalk/gitalk</span></span><br><span class="line">gitalk:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  github_id: DavidWanderer(从博客地址中获取：https://davidwanderer.github.io/Blog/，自己的依次类推)</span><br><span class="line">  id: location.pathname</span><br><span class="line">  repo: Blog(这里只需要最终的仓库名，不需要全路径，我把评论直接存储在自己的博客仓库里)</span><br><span class="line">  client_id: ce08****8271(此id从第2步申请结果中获取)</span><br><span class="line">  client_secret: 1d47***9a608(此secret从第二步申请结果中获取)</span><br><span class="line">  admin_user: DavidWanderer(此处需要和github_id保持一致)</span><br><span class="line">  distraction_free_mode: <span class="literal">true</span> <span class="comment"># Facebook-like distraction free mode</span></span><br><span class="line">  <span class="comment"># Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span></span><br><span class="line">  <span class="comment"># If you want everyone visiting your site to see a uniform language, you can set a force language value</span></span><br><span class="line">  <span class="comment"># Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span></span><br><span class="line">  language: zh-CN</span><br></pre></td></tr></table></figure>
+
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>1.博客的评论在使用之前需要登录配置的<code>admin_user</code>进行初始化评论，包括github授权等等操作，否则会出现如下问题。</p>
+<img src="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E9%97%AE%E9%A2%98.png" class="" title="博客评论未初始化问题截图">
+
+<p>2.博客的评论有时候会出现<code>Network Error</code>的问题，一般情况下，使用自己的Github账号登录一下，就不会出现问题了。但是如果问题还是没有消除，请检查<code>Next</code>配置文件中的<code>Gitalk</code>配置中的<code>github_id</code>、<code>admin_user</code>、<code>repo</code>填写的是否正确，可以结合Chrome的网页调试工具调试查看是否是认证失败，如果是认证失败，请检查<code>Gitalk</code>配置。<br>评论Network Error截图：</p>
+<img src="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/%E8%AF%84%E8%AE%BANetworkError%E9%97%AE%E9%A2%98.png" class="" title="评论NetworkError问题截图">
+
+<p>评论接入成功后的截图：</p>
+<img src="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/%E8%AF%84%E8%AE%BA%E6%8E%A5%E5%85%A5%E6%88%90%E5%8A%9F.png" class="" title="评论接入成功的截图">
+
+]]></content>
+      <categories>
+        <category>通用</category>
+      </categories>
+      <tags>
+        <tag>通用</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>KVC</title>
     <url>/Blog/2019/06/27/KVC/</url>
     <content><![CDATA[<h2 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h2><p>KVC（Key-value coding）键值编码，指iOS的开发中，可以允许开发者通过Key名直接访问对象的属性，或者给对象的属性赋值而不需要调用明确的存取方法。</p>
@@ -475,32 +501,6 @@
       </categories>
       <tags>
         <tag>iOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客添加评论功能</title>
-    <url>/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/</url>
-    <content><![CDATA[<h2 id="为什么添加gitalk评论？"><a href="#为什么添加gitalk评论？" class="headerlink" title="为什么添加gitalk评论？"></a>为什么添加gitalk评论？</h2><p>Next主题支持的评论有<code>disqus</code>、<code>disqusjs</code>、<code>changyan</code>、<code>gitalk</code>、<code>livere</code>、<code>valine</code>。前面两个都需要翻墙才可以使用；畅言需要注册；<code>valine</code>需要注册，并且绑定身份证号后才可以使用；<code>livere</code>是韩国的，注册页面没有国际化，看不懂。综合下来选了<code>gitalk</code>,<code>gitalk</code>是使用github上仓库的issue来存储用户的评论，非常方便。</p>
-<h2 id="如何给自己的博客添加gitalk评论呢？"><a href="#如何给自己的博客添加gitalk评论呢？" class="headerlink" title="如何给自己的博客添加gitalk评论呢？"></a>如何给自己的博客添加gitalk评论呢？</h2><p>参考<a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">gitalk官网</a>和<a href="https://gitalk.github.io/">gitalk的Demo</a>来尝试在Next中接入gitalk。<br>1.首先需要选择一个公共的github仓库（已存在或创建一个新的github存储库）用于存储评论。<br>2.需要创建<em>GitHub Application</em>, 如果没有<a href="https://github.com/settings/applications/new">点击这里申请</a>，Authorization callback URL填写当前博客的首页地址。</p>
-<img src="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/%E7%94%B3%E8%AF%B7GitApplicationKey%E6%88%AA%E5%9B%BE.png" class="" title="申请GitApplicationKey截图">
-<p>3.修改Next主题的<code>_config.yml</code>，开启gitalk评论。配置内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Gitalk</span></span><br><span class="line"><span class="comment"># For more information: https://gitalk.github.io, https://github.com/gitalk/gitalk</span></span><br><span class="line">gitalk:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  github_id: DavidWanderer(从博客地址中获取：https://davidwanderer.github.io/Blog/，自己的依次类推)</span><br><span class="line">  id: location.pathname</span><br><span class="line">  repo: Blog(这里只需要最终的仓库名，不需要全路径，我把评论直接存储在自己的博客仓库里)</span><br><span class="line">  client_id: ce08****8271(此id从第2步申请结果中获取)</span><br><span class="line">  client_secret: 1d47***9a608(此secret从第二步申请结果中获取)</span><br><span class="line">  admin_user: DavidWanderer(此处需要和github_id保持一致)</span><br><span class="line">  distraction_free_mode: <span class="literal">true</span> <span class="comment"># Facebook-like distraction free mode</span></span><br><span class="line">  <span class="comment"># Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span></span><br><span class="line">  <span class="comment"># If you want everyone visiting your site to see a uniform language, you can set a force language value</span></span><br><span class="line">  <span class="comment"># Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span></span><br><span class="line">  language: zh-CN</span><br></pre></td></tr></table></figure>
-
-<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>1.博客的评论在使用之前需要登录配置的<code>admin_user</code>进行初始化评论，包括github授权等等操作，否则会出现如下问题。</p>
-<img src="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E9%97%AE%E9%A2%98.png" class="" title="博客评论未初始化问题截图">
-
-<p>2.博客的评论有时候会出现<code>Network Error</code>的问题，一般情况下，使用自己的Github账号登录一下，就不会出现问题了。但是如果问题还是没有消除，请检查<code>Next</code>配置文件中的<code>Gitalk</code>配置中的<code>github_id</code>、<code>admin_user</code>、<code>repo</code>填写的是否正确，可以结合Chrome的网页调试工具调试查看是否是认证失败，如果是认证失败，请检查<code>Gitalk</code>配置。<br>评论Network Error截图：</p>
-<img src="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/%E8%AF%84%E8%AE%BANetworkError%E9%97%AE%E9%A2%98.png" class="" title="评论NetworkError问题截图">
-
-<p>评论接入成功后的截图：</p>
-<img src="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/%E8%AF%84%E8%AE%BA%E6%8E%A5%E5%85%A5%E6%88%90%E5%8A%9F.png" class="" title="评论接入成功的截图">
-
-]]></content>
-      <categories>
-        <category>通用</category>
-      </categories>
-      <tags>
-        <tag>通用</tag>
       </tags>
   </entry>
   <entry>
@@ -1707,7 +1707,7 @@
 <h2 id="RVM常用指令"><a href="#RVM常用指令" class="headerlink" title="RVM常用指令"></a>RVM常用指令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ruby -v <span class="comment"># 查看ruby 版本</span></span><br><span class="line">$ rvm list known <span class="comment"># 列出已知的 ruby 版本</span></span><br><span class="line">$ rvm install 2.3.0 <span class="comment"># 选择指定 ruby 版本进行更新</span></span><br><span class="line">$ rvm get stable <span class="comment"># 更新 rvm</span></span><br><span class="line">$ rvm use 2.2.2 <span class="comment"># 切换到指定 ruby 版本</span></span><br><span class="line">$ rvm use 2.2.2 --default <span class="comment"># 设置指定 ruby 版本为默认版本</span></span><br><span class="line">$ rvm list <span class="comment"># 查询已安装的 ruby 版本</span></span><br><span class="line">$ rvm remove 1.9.2 <span class="comment"># 卸载移除 指定 ruby 版本</span></span><br><span class="line"></span><br><span class="line">$ curl -L https://get.rvm.io | bash -s stable <span class="comment"># 安装 rvm 环境</span></span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby <span class="comment"># 默认安装 rvm 最新版本</span></span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3.0 <span class="comment"># 安装 rvm 指定版本</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm <span class="comment"># 载入 rvm</span></span><br></pre></td></tr></table></figure>
 
 
-<h2 id="Gem常用指令"><a href="#Gem常用指令" class="headerlink" title="Gem常用指令"></a>Gem常用指令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gem -v <span class="comment"># 查看 gem 版本</span></span><br><span class="line">$ gem <span class="built_in">source</span> <span class="comment"># 查看 gem 配置源</span></span><br><span class="line">$ gem <span class="built_in">source</span> -l <span class="comment"># 查看 gem 配置源目录</span></span><br><span class="line">$ gem sources -a url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --add url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources -r url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --remove url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem update <span class="comment"># 更新 所有包</span></span><br><span class="line">$ gem update --system <span class="comment"># 更新 Ruby Gems 软件</span></span><br><span class="line"></span><br><span class="line">$ gem install rake <span class="comment"># 安装 rake，从本地或远程服务器</span></span><br><span class="line">$ gem install rake --remote <span class="comment"># 安装 rake，从远程服务器</span></span><br><span class="line">$ gem install watir -v 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem install watir --version 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem uninstall rake <span class="comment"># 卸载 rake 包</span></span><br><span class="line">$ gem list d <span class="comment"># 列出 本地以 d 打头的包</span></span><br><span class="line">$ gem query -n <span class="string">&#x27;&#x27;</span>[0-9]<span class="string">&#x27;&#x27;</span> --<span class="built_in">local</span> <span class="comment"># 查找 本地含有数字的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --both <span class="comment"># 查找 从本地和远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --remoter <span class="comment"># 查找 只从远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search -r <span class="built_in">log</span> <span class="comment"># 查找 只从远程服务器上查找含有log字符串的包</span></span><br><span class="line"></span><br><span class="line">$ gem <span class="built_in">help</span> <span class="comment"># 提醒式的帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> install <span class="comment"># 列出 install 命令 帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> examples <span class="comment"># 列出 gem 命令使用一些例子</span></span><br><span class="line">$ gem build rake.gemspec <span class="comment"># 把 rake.gemspec 编译成 rake.gem</span></span><br><span class="line">$ gem check -v pkg/rake-0.4.0.gem <span class="comment"># 检测 rake 是否有效</span></span><br><span class="line">$ gem cleanup <span class="comment"># 清除 所有包旧版本，保留最新版本</span></span><br><span class="line">$ gem contents rake <span class="comment"># 显示 rake 包中所包含的文件</span></span><br><span class="line">$ gem dependency rails -v 0.10.1 <span class="comment"># 列出 与 rails 相互依赖的包</span></span><br><span class="line">$ gem environment <span class="comment"># 查看 gem 的环境</span></span><br><span class="line"></span><br><span class="line">$ sudo gem -v <span class="comment"># 查看 gem 版本（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoa pods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods --pre <span class="comment"># 安装 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods -v 1.4.0 <span class="comment"># 安装 CocoaPods 指定版本（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods <span class="comment"># 更新 CocoaPods 至最新版（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods --pre <span class="comment"># 更新 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem uninstall cocoapods -v 1.4.0 <span class="comment"># 移除 CocoaPods 指定版本（以管理员权限）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在Catalina系统上执行上述命令会报无权限访问错误，需要使用下面的命令</span></span><br><span class="line">$ sudo gem install -n /usr/<span class="built_in">local</span>/bin cocoapods -v 1.9.1</span><br></pre></td></tr></table></figure>
+<h2 id="Gem常用指令"><a href="#Gem常用指令" class="headerlink" title="Gem常用指令"></a>Gem常用指令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gem -v <span class="comment"># 查看 gem 版本</span></span><br><span class="line">$ gem <span class="built_in">source</span> <span class="comment"># 查看 gem 配置源</span></span><br><span class="line">$ gem <span class="built_in">source</span> -l <span class="comment"># 查看 gem 配置源目录</span></span><br><span class="line">$ gem sources -a url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --add url <span class="comment"># 添加 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources -r url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem sources --remove url <span class="comment"># 删除 gem 配置源（url 需换成网址）</span></span><br><span class="line">$ gem update <span class="comment"># 更新 所有包</span></span><br><span class="line">$ gem update --system <span class="comment"># 更新 Ruby Gems 软件</span></span><br><span class="line"></span><br><span class="line">$ gem install rake <span class="comment"># 安装 rake，从本地或远程服务器</span></span><br><span class="line">$ gem install rake --remote <span class="comment"># 安装 rake，从远程服务器</span></span><br><span class="line">$ gem install watir -v 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem install watir --version 1.6.2 <span class="comment"># 安装 指定版本的 watir</span></span><br><span class="line">$ gem uninstall rake <span class="comment"># 卸载 rake 包</span></span><br><span class="line">$ gem list d <span class="comment"># 列出 本地以 d 打头的包</span></span><br><span class="line">$ gem query -n <span class="string">&#x27;&#x27;</span>[0-9]<span class="string">&#x27;&#x27;</span> --<span class="built_in">local</span> <span class="comment"># 查找 本地含有数字的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --both <span class="comment"># 查找 从本地和远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search <span class="built_in">log</span> --remoter <span class="comment"># 查找 只从远程服务器上查找含有 log 字符串的包</span></span><br><span class="line">$ gem search -r <span class="built_in">log</span> <span class="comment"># 查找 只从远程服务器上查找含有log字符串的包</span></span><br><span class="line"></span><br><span class="line">$ gem <span class="built_in">help</span> <span class="comment"># 提醒式的帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> install <span class="comment"># 列出 install 命令 帮助</span></span><br><span class="line">$ gem <span class="built_in">help</span> examples <span class="comment"># 列出 gem 命令使用一些例子</span></span><br><span class="line">$ gem build rake.gemspec <span class="comment"># 把 rake.gemspec 编译成 rake.gem</span></span><br><span class="line">$ gem check -v pkg/rake-0.4.0.gem <span class="comment"># 检测 rake 是否有效</span></span><br><span class="line">$ gem cleanup <span class="comment"># 清除 所有包旧版本，保留最新版本</span></span><br><span class="line">$ gem contents rake <span class="comment"># 显示 rake 包中所包含的文件</span></span><br><span class="line">$ gem dependency rails -v 0.10.1 <span class="comment"># 列出 与 rails 相互依赖的包</span></span><br><span class="line">$ gem environment <span class="comment"># 查看 gem 的环境</span></span><br><span class="line"></span><br><span class="line">$ sudo gem -v <span class="comment"># 查看 gem 版本（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoa pods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods <span class="comment"># 安装 CocoaPods（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods --pre <span class="comment"># 安装 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem install cocoapods -v 1.4.0 <span class="comment"># 安装 CocoaPods 指定版本（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods <span class="comment"># 更新 CocoaPods 至最新版（以管理员权限）</span></span><br><span class="line">$ sudo gem update cocoapods --pre <span class="comment"># 更新 CocoaPods 至预览版（以管理员权限）</span></span><br><span class="line">$ sudo gem uninstall cocoapods -v 1.4.0 <span class="comment"># 移除 CocoaPods 指定版本（以管理员权限）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在Catalina系统上执行上述命令会报无权限访问错误，需要使用下面的命令</span></span><br><span class="line">$ sudo gem install -n /usr/<span class="built_in">local</span>/bin cocoapods -v 1.9.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果安装失败的话，可以把需要安装的gem文件下载到本地然后在本地安装，使用命令</span></span><br><span class="line">$ sudo gem install -n /usr/<span class="built_in">local</span>/bin ~/Downloads/cocoapods-1.9.1.gem</span><br></pre></td></tr></table></figure>
 
 <p>如果命令无法修改Gem源，可以手动修改Gem源，Gem的配置文件位置在<code>~/.gemrc</code>，编辑<code>~/.gemrc</code>文件，在:sources:配置行下添加<code>https://gems.ruby-china.com/</code>，这样就配置了ruby-china的Gem源。最终的配置文件如下:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">:backtrace: <span class="literal">false</span></span><br><span class="line">:bulk_threshold: 1000</span><br><span class="line">:sources:</span><br><span class="line">- https://gems.ruby-china.com</span><br><span class="line">:update_sources: <span class="literal">true</span></span><br><span class="line">:verbose: <span class="literal">true</span></span><br><span class="line">:ssl_verify_mode: 0</span><br><span class="line">concurrent_downloads: 8</span><br></pre></td></tr></table></figure>
@@ -2218,47 +2218,6 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </tags>
   </entry>
   <entry>
-    <title>iOS 12越狱</title>
-    <url>/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/</url>
-    <content><![CDATA[<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul>
-<li>1.一台iPhone6 Plus设备，系统版本：iOS 12.4.8。</li>
-<li>2.一台MAC电脑，并且已经安装Xcode或者iTools。</li>
-</ul>
-<h1 id="越狱步骤"><a href="#越狱步骤" class="headerlink" title="越狱步骤"></a>越狱步骤</h1><p>第一步，下载uncOver最新版本ipa文件，前往<a href="https://unc0ver.dev/">官网下载</a>。uncOver是一个越狱工具，首先在手机上安装这个App，然后打开App，进行越狱。</p>
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/1.png" class="" title="uncOver官网截图">
-
-<p>第二步，下载App重签名工具，前往<a href="https://dantheman827.github.io/ios-app-signer/">Github下载</a>。</p>
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/2.jpeg" class="" title="AppSigner下载截图">
-
-<p>第三步，根据uncOver官网提示，对第一步下载的ipa文件进行重签名，目的是重签名过后可以直接安装到我们自己的手机里。</p>
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/4.jpg" class="" title="官网破解步骤截图">
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/3.jpg" class="" title="重签名截图">
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/5.jpg" class="" title="重签名完成后的ipa截图">
-
-<p>第四步，将重签名过后的ipa文件安装到手机上，官网建议通过Xcode安装，我使用电脑上的iTools Pro安装，最终安装完成截图如下。</p>
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/6.png" class="" title="安装uncOver截图">
-
-<p>第五步，打开uncOver App，点击<code>Jailbreak</code>按钮，开始越狱。在越狱过程中，可能会提示越狱失败，请重新打开App再次尝试越狱。如果一直重启手机无法继续越狱，请尝试在飞行模式下点击<code>Jailbreak</code>按钮。如果中途弹框提示购买手机壳，请不要理会，越狱程序会一直在操作，不会因为你不购买手机壳就停止越狱哦。如果一直越狱失败，请多多尝试几次。</p>
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/11.png" class="" title="开启uncOver的截图">
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/12.png" class="" title="uncOver破解中的截图">
-
-<p>第六步，越狱完成，会弹出重启手机的Alert。在越狱过程中也可能会多次重启手机。最终破解完成后，手机桌面会出现<code>Cydia</code>App。再次打开uncOver App，原本显示<code>Jailbreak</code>的按钮现在显示<code>Re-Jailbreak</code>。</p>
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/13.png" class="" title="越狱完成后弹框提示重启手机的截图">
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/7.png" class="" title="越狱完成重启手机后的截图">
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/8.png" class="" title="Cydia的截图">
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/9.png" class="" title="UncOver显示“Re-Jailbreak”的截图">
-
-
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://unc0ver.dev/">unc0ver官网</a><br><a href="https://dantheman827.github.io/ios-app-signer/">iOS App Signer官网</a><br><a href="https://mrmad.com.tw/unc0ver-ios12">越獄教學</a><br><a href="https://jingyan.baidu.com/article/a948d651b8edaa4b2ccd2e78.html">unc0ver闪退解决方法</a></p>
-]]></content>
-      <categories>
-        <category>iOS越狱</category>
-      </categories>
-      <tags>
-        <tag>iOS越狱</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>iOS使用SVG和PDF图片</title>
     <url>/Blog/2019/11/07/iOS%E4%BD%BF%E7%94%A8SVG%E5%92%8CPDF%E5%9B%BE%E7%89%87/</url>
     <content><![CDATA[<h2 id="什么是SVG"><a href="#什么是SVG" class="headerlink" title="什么是SVG?"></a>什么是SVG?</h2><p>SVG是一种用XML定义的语言，用来描述二维矢量及矢量/栅格图形。</p>
@@ -2749,6 +2708,52 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </tags>
   </entry>
   <entry>
+    <title>如何制作一个CocoaPods私有库</title>
+    <url>/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/</url>
+    <content><![CDATA[<h2 id="创建私有库模版"><a href="#创建私有库模版" class="headerlink" title="创建私有库模版"></a>创建私有库模版</h2><p>使用命令进入到要建立私有库工程的目录，执行以下命令，<code>CDUtils</code>是私有库项目名。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod lib create CDUtils</span><br></pre></td></tr></table></figure>
+<p>接下来终端会询问几个问题，请根据实际情况设置：</p>
+<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E6%A8%A1%E7%89%88%E9%97%AE%E9%A2%98%E6%88%AA%E5%9B%BE.png" class="" title="创建模版问题截图">
+<p>根据提示最终就会创建一个私有工程。</p>
+<h2 id="创建私有库Git地址，这里以Github为例"><a href="#创建私有库Git地址，这里以Github为例" class="headerlink" title="创建私有库Git地址，这里以Github为例"></a>创建私有库Git地址，这里以Github为例</h2><img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E5%BA%93Git%E6%88%AA%E5%9B%BE.png" class="" title="创建私有库Git截图">
+
+<h2 id="修改配置文件CDUtils-podspec"><a href="#修改配置文件CDUtils-podspec" class="headerlink" title="修改配置文件CDUtils.podspec"></a>修改配置文件CDUtils.podspec</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Be sure to run `pod lib lint CDUtils.podspec&#x27; to ensure this is a</span></span><br><span class="line"><span class="comment"># valid spec before submitting.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Any lines starting with a # are optional, but their use is encouraged</span></span><br><span class="line"><span class="comment"># To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">Pod::Spec.new <span class="keyword">do</span> |s|</span><br><span class="line">  s.name             = <span class="string">&#x27;CDUtils&#x27;</span></span><br><span class="line">  s.version          = <span class="string">&#x27;0.0.1&#x27;</span></span><br><span class="line">  s.summary          = <span class="string">&#x27;CDUtils 是一个公共方法库。&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This description is used to generate tags and improve search results.</span></span><br><span class="line"><span class="comment">#   * Think: What does it do? Why did you write it? What is the focus?</span></span><br><span class="line"><span class="comment">#   * Try to keep it short, snappy and to the point.</span></span><br><span class="line"><span class="comment">#   * Write the description between the DESC delimiters below.</span></span><br><span class="line"><span class="comment">#   * Finally, don&#x27;t worry about the indent, CocoaPods strips it!</span></span><br><span class="line"></span><br><span class="line">  s.description      = &lt;&lt;-<span class="string">DESC</span></span><br><span class="line"><span class="string">TODO: Add long description of the pod here.</span></span><br><span class="line"><span class="string">                       DESC</span></span><br><span class="line"></span><br><span class="line">  s.homepage         = <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span></span><br><span class="line">  <span class="comment"># s.screenshots     = &#x27;www.example.com/screenshots_1&#x27;, &#x27;www.example.com/screenshots_2&#x27;</span></span><br><span class="line">  s.license          = &#123; :<span class="built_in">type</span> =&gt; <span class="string">&#x27;MIT&#x27;</span>, :file =&gt; <span class="string">&#x27;LICENSE&#x27;</span> &#125;</span><br><span class="line">  s.author           = &#123; <span class="string">&#x27;1516715172@qq.com&#x27;</span> =&gt; <span class="string">&#x27;jsjhyp@gmail.com&#x27;</span> &#125;</span><br><span class="line">  s.source           = &#123; :git =&gt; <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span>, :tag =&gt; s.version.to_s &#125;</span><br><span class="line">  <span class="comment"># s.social_media_url = &#x27;https://twitter.com/&lt;TWITTER_USERNAME&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.ios.deployment_target = <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.source_files = <span class="string">&#x27;CDUtils/Classes/**/*&#x27;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># s.resource_bundles = &#123;</span></span><br><span class="line">  <span class="comment">#   &#x27;CDUtils&#x27; =&gt; [&#x27;CDUtils/Assets/*.png&#x27;]</span></span><br><span class="line">  <span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># s.public_header_files = &#x27;Pod/Classes/**/*.h&#x27;</span></span><br><span class="line">  <span class="comment"># s.frameworks = &#x27;UIKit&#x27;, &#x27;MapKit&#x27;</span></span><br><span class="line">  <span class="comment"># s.dependency &#x27;AFNetworking&#x27;, &#x27;~&gt; 2.3&#x27;</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>命令行进入私有库工程所在目录下的Example文件夹，执行<code>pod install</code>，安装依赖项。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PoetMacBook-Pro:Example kris$ pod install</span><br><span class="line">Analyzing dependencies</span><br><span class="line">Downloading dependencies</span><br><span class="line">Generating Pods project</span><br><span class="line">Integrating client project</span><br><span class="line">Pod installation complete! There is 1 dependency from the Podfile and 1 total pod installed.</span><br><span class="line">PoetMacBook-Pro:Example kris$ </span><br></pre></td></tr></table></figure>
+
+<h2 id="添加库的源代码文件"><a href="#添加库的源代码文件" class="headerlink" title="添加库的源代码文件"></a>添加库的源代码文件</h2><p>将源码文件放入<code>CDUtils/Classes</code>目录下，与podspec文件保持一致。</p>
+<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E6%B7%BB%E5%8A%A0%E5%BA%93%E7%9A%84%E6%BA%90%E7%A0%81%E6%96%87%E4%BB%B6%E6%88%AA%E5%9B%BE.png" class="" title="添加库的源码文件截图">
+
+<h2 id="验证私有库的正确性"><a href="#验证私有库的正确性" class="headerlink" title="验证私有库的正确性"></a>验证私有库的正确性</h2><p>使用命令验证私有库的正确性。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod lib lint CDUtils.podspec</span><br></pre></td></tr></table></figure>
+
+<h2 id="提交源码到github，并打Tag。"><a href="#提交源码到github，并打Tag。" class="headerlink" title="提交源码到github，并打Tag。"></a>提交源码到github，并打Tag。</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin https://github.com/DavidWanderer/CDUtils.git</span><br><span class="line"></span><br><span class="line">$ git add .</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">&quot;0.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">$ git pull origin master</span><br><span class="line"></span><br><span class="line">$ git push origin master</span><br><span class="line"></span><br><span class="line">$ git tag 0.0.1</span><br><span class="line"> </span><br><span class="line">$ git push origin 0.0.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建私有库的索引库"><a href="#创建私有库的索引库" class="headerlink" title="创建私有库的索引库"></a>创建私有库的索引库</h2><p>在Github上创建私有库的索引库，并进行初始化操作。</p>
+<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="创建私有索引库截图">
+
+<h2 id="将创建的索引库添加到本地cocoapods仓库"><a href="#将创建的索引库添加到本地cocoapods仓库" class="headerlink" title="将创建的索引库添加到本地cocoapods仓库"></a>将创建的索引库添加到本地cocoapods仓库</h2><ul>
+<li>在自己的私有库目录下执行命令，将创建的索引库克隆到本地的cocoapods的仓库中。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo add CDSpecs https://github.com/DavidWanderer/CDSpecs.git</span><br></pre></td></tr></table></figure></li>
+<li>cocoapods本地仓库路径为：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ~/.cocoapods/repos</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="发布私有库"><a href="#发布私有库" class="headerlink" title="发布私有库"></a>发布私有库</h2><p>在自己的私有库目录下执行命令，把当前私有库的索引同步到本地索引库，并同步给远程索引库。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo push CDUtils CDUtils.podspec</span><br></pre></td></tr></table></figure>
+<p>终端截图:</p>
+<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E7%A7%81%E6%9C%89%E5%BA%93%E7%B4%A2%E5%BC%95%E5%90%8C%E6%AD%A5%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%92%8C%E8%BF%9C%E7%A8%8B%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="私有库索引同步到本地和远程索引库截图">
+
+<h2 id="在自己的项目中引用私有库"><a href="#在自己的项目中引用私有库" class="headerlink" title="在自己的项目中引用私有库"></a>在自己的项目中引用私有库</h2><p>Podfile如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Uncomment the next line to define a global platform for your project</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/CocoaPods/Specs.git&#x27;</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/DavidWanderer/CDSpecs.git&#x27;</span></span><br><span class="line">platform :ios, <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">target <span class="string">&#x27;测试&#x27;</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Comment the next line if you don&#x27;t want to use dynamic frameworks</span></span><br><span class="line">  <span class="comment">#use_frameworks!</span></span><br><span class="line">  pod <span class="string">&#x27;CDUtils&#x27;</span>, <span class="string">&#x27;~&gt; 0.0.1&#x27;</span></span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何在Github上搭建博客</title>
     <url>/Blog/2019/03/16/%E5%A6%82%E4%BD%95%E5%9C%A8Github%E4%B8%8A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><ul>
@@ -2809,49 +2814,44 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </tags>
   </entry>
   <entry>
-    <title>如何制作一个CocoaPods私有库</title>
-    <url>/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/</url>
-    <content><![CDATA[<h2 id="创建私有库模版"><a href="#创建私有库模版" class="headerlink" title="创建私有库模版"></a>创建私有库模版</h2><p>使用命令进入到要建立私有库工程的目录，执行以下命令，<code>CDUtils</code>是私有库项目名。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod lib create CDUtils</span><br></pre></td></tr></table></figure>
-<p>接下来终端会询问几个问题，请根据实际情况设置：</p>
-<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E6%A8%A1%E7%89%88%E9%97%AE%E9%A2%98%E6%88%AA%E5%9B%BE.png" class="" title="创建模版问题截图">
-<p>根据提示最终就会创建一个私有工程。</p>
-<h2 id="创建私有库Git地址，这里以Github为例"><a href="#创建私有库Git地址，这里以Github为例" class="headerlink" title="创建私有库Git地址，这里以Github为例"></a>创建私有库Git地址，这里以Github为例</h2><img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E5%BA%93Git%E6%88%AA%E5%9B%BE.png" class="" title="创建私有库Git截图">
-
-<h2 id="修改配置文件CDUtils-podspec"><a href="#修改配置文件CDUtils-podspec" class="headerlink" title="修改配置文件CDUtils.podspec"></a>修改配置文件CDUtils.podspec</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Be sure to run `pod lib lint CDUtils.podspec&#x27; to ensure this is a</span></span><br><span class="line"><span class="comment"># valid spec before submitting.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Any lines starting with a # are optional, but their use is encouraged</span></span><br><span class="line"><span class="comment"># To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">Pod::Spec.new <span class="keyword">do</span> |s|</span><br><span class="line">  s.name             = <span class="string">&#x27;CDUtils&#x27;</span></span><br><span class="line">  s.version          = <span class="string">&#x27;0.0.1&#x27;</span></span><br><span class="line">  s.summary          = <span class="string">&#x27;CDUtils 是一个公共方法库。&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This description is used to generate tags and improve search results.</span></span><br><span class="line"><span class="comment">#   * Think: What does it do? Why did you write it? What is the focus?</span></span><br><span class="line"><span class="comment">#   * Try to keep it short, snappy and to the point.</span></span><br><span class="line"><span class="comment">#   * Write the description between the DESC delimiters below.</span></span><br><span class="line"><span class="comment">#   * Finally, don&#x27;t worry about the indent, CocoaPods strips it!</span></span><br><span class="line"></span><br><span class="line">  s.description      = &lt;&lt;-<span class="string">DESC</span></span><br><span class="line"><span class="string">TODO: Add long description of the pod here.</span></span><br><span class="line"><span class="string">                       DESC</span></span><br><span class="line"></span><br><span class="line">  s.homepage         = <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span></span><br><span class="line">  <span class="comment"># s.screenshots     = &#x27;www.example.com/screenshots_1&#x27;, &#x27;www.example.com/screenshots_2&#x27;</span></span><br><span class="line">  s.license          = &#123; :<span class="built_in">type</span> =&gt; <span class="string">&#x27;MIT&#x27;</span>, :file =&gt; <span class="string">&#x27;LICENSE&#x27;</span> &#125;</span><br><span class="line">  s.author           = &#123; <span class="string">&#x27;1516715172@qq.com&#x27;</span> =&gt; <span class="string">&#x27;jsjhyp@gmail.com&#x27;</span> &#125;</span><br><span class="line">  s.source           = &#123; :git =&gt; <span class="string">&#x27;https://github.com/DavidWanderer/CDUtils.git&#x27;</span>, :tag =&gt; s.version.to_s &#125;</span><br><span class="line">  <span class="comment"># s.social_media_url = &#x27;https://twitter.com/&lt;TWITTER_USERNAME&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.ios.deployment_target = <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.source_files = <span class="string">&#x27;CDUtils/Classes/**/*&#x27;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># s.resource_bundles = &#123;</span></span><br><span class="line">  <span class="comment">#   &#x27;CDUtils&#x27; =&gt; [&#x27;CDUtils/Assets/*.png&#x27;]</span></span><br><span class="line">  <span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># s.public_header_files = &#x27;Pod/Classes/**/*.h&#x27;</span></span><br><span class="line">  <span class="comment"># s.frameworks = &#x27;UIKit&#x27;, &#x27;MapKit&#x27;</span></span><br><span class="line">  <span class="comment"># s.dependency &#x27;AFNetworking&#x27;, &#x27;~&gt; 2.3&#x27;</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>命令行进入私有库工程所在目录下的Example文件夹，执行<code>pod install</code>，安装依赖项。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PoetMacBook-Pro:Example kris$ pod install</span><br><span class="line">Analyzing dependencies</span><br><span class="line">Downloading dependencies</span><br><span class="line">Generating Pods project</span><br><span class="line">Integrating client project</span><br><span class="line">Pod installation complete! There is 1 dependency from the Podfile and 1 total pod installed.</span><br><span class="line">PoetMacBook-Pro:Example kris$ </span><br></pre></td></tr></table></figure>
-
-<h2 id="添加库的源代码文件"><a href="#添加库的源代码文件" class="headerlink" title="添加库的源代码文件"></a>添加库的源代码文件</h2><p>将源码文件放入<code>CDUtils/Classes</code>目录下，与podspec文件保持一致。</p>
-<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E6%B7%BB%E5%8A%A0%E5%BA%93%E7%9A%84%E6%BA%90%E7%A0%81%E6%96%87%E4%BB%B6%E6%88%AA%E5%9B%BE.png" class="" title="添加库的源码文件截图">
-
-<h2 id="验证私有库的正确性"><a href="#验证私有库的正确性" class="headerlink" title="验证私有库的正确性"></a>验证私有库的正确性</h2><p>使用命令验证私有库的正确性。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod lib lint CDUtils.podspec</span><br></pre></td></tr></table></figure>
-
-<h2 id="提交源码到github，并打Tag。"><a href="#提交源码到github，并打Tag。" class="headerlink" title="提交源码到github，并打Tag。"></a>提交源码到github，并打Tag。</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin https://github.com/DavidWanderer/CDUtils.git</span><br><span class="line"></span><br><span class="line">$ git add .</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">&quot;0.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">$ git pull origin master</span><br><span class="line"></span><br><span class="line">$ git push origin master</span><br><span class="line"></span><br><span class="line">$ git tag 0.0.1</span><br><span class="line"> </span><br><span class="line">$ git push origin 0.0.1</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建私有库的索引库"><a href="#创建私有库的索引库" class="headerlink" title="创建私有库的索引库"></a>创建私有库的索引库</h2><p>在Github上创建私有库的索引库，并进行初始化操作。</p>
-<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="创建私有索引库截图">
-
-<h2 id="将创建的索引库添加到本地cocoapods仓库"><a href="#将创建的索引库添加到本地cocoapods仓库" class="headerlink" title="将创建的索引库添加到本地cocoapods仓库"></a>将创建的索引库添加到本地cocoapods仓库</h2><ul>
-<li>在自己的私有库目录下执行命令，将创建的索引库克隆到本地的cocoapods的仓库中。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo add CDSpecs https://github.com/DavidWanderer/CDSpecs.git</span><br></pre></td></tr></table></figure></li>
-<li>cocoapods本地仓库路径为：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ~/.cocoapods/repos</span><br></pre></td></tr></table></figure>
-
-</li>
+    <title>iOS 12越狱</title>
+    <url>/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/</url>
+    <content><![CDATA[<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul>
+<li>1.一台iPhone6 Plus设备，系统版本：iOS 12.4.8。</li>
+<li>2.一台MAC电脑，并且已经安装Xcode或者iTools。</li>
 </ul>
-<h2 id="发布私有库"><a href="#发布私有库" class="headerlink" title="发布私有库"></a>发布私有库</h2><p>在自己的私有库目录下执行命令，把当前私有库的索引同步到本地索引库，并同步给远程索引库。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo push CDUtils CDUtils.podspec</span><br></pre></td></tr></table></figure>
-<p>终端截图:</p>
-<img src="/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/%E7%A7%81%E6%9C%89%E5%BA%93%E7%B4%A2%E5%BC%95%E5%90%8C%E6%AD%A5%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%92%8C%E8%BF%9C%E7%A8%8B%E7%B4%A2%E5%BC%95%E5%BA%93.png" class="" title="私有库索引同步到本地和远程索引库截图">
+<h1 id="越狱步骤"><a href="#越狱步骤" class="headerlink" title="越狱步骤"></a>越狱步骤</h1><p>第一步，下载uncOver最新版本ipa文件，前往<a href="https://unc0ver.dev/">官网下载</a>。uncOver是一个越狱工具，首先在手机上安装这个App，然后打开App，进行越狱。</p>
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/1.png" class="" title="uncOver官网截图">
 
-<h2 id="在自己的项目中引用私有库"><a href="#在自己的项目中引用私有库" class="headerlink" title="在自己的项目中引用私有库"></a>在自己的项目中引用私有库</h2><p>Podfile如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Uncomment the next line to define a global platform for your project</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/CocoaPods/Specs.git&#x27;</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">&#x27;https://github.com/DavidWanderer/CDSpecs.git&#x27;</span></span><br><span class="line">platform :ios, <span class="string">&#x27;8.0&#x27;</span></span><br><span class="line"></span><br><span class="line">target <span class="string">&#x27;测试&#x27;</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Comment the next line if you don&#x27;t want to use dynamic frameworks</span></span><br><span class="line">  <span class="comment">#use_frameworks!</span></span><br><span class="line">  pod <span class="string">&#x27;CDUtils&#x27;</span>, <span class="string">&#x27;~&gt; 0.0.1&#x27;</span></span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>]]></content>
+<p>第二步，下载App重签名工具，前往<a href="https://dantheman827.github.io/ios-app-signer/">Github下载</a>。</p>
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/2.jpeg" class="" title="AppSigner下载截图">
+
+<p>第三步，根据uncOver官网提示，对第一步下载的ipa文件进行重签名，目的是重签名过后可以直接安装到我们自己的手机里。</p>
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/4.jpg" class="" title="官网破解步骤截图">
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/3.jpg" class="" title="重签名截图">
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/5.jpg" class="" title="重签名完成后的ipa截图">
+
+<p>第四步，将重签名过后的ipa文件安装到手机上，官网建议通过Xcode安装，我使用电脑上的iTools Pro安装，最终安装完成截图如下。</p>
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/6.png" class="" title="安装uncOver截图">
+
+<p>第五步，打开uncOver App，点击<code>Jailbreak</code>按钮，开始越狱。在越狱过程中，可能会提示越狱失败，请重新打开App再次尝试越狱。如果一直重启手机无法继续越狱，请尝试在飞行模式下点击<code>Jailbreak</code>按钮。如果中途弹框提示购买手机壳，请不要理会，越狱程序会一直在操作，不会因为你不购买手机壳就停止越狱哦。如果一直越狱失败，请多多尝试几次。</p>
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/11.png" class="" title="开启uncOver的截图">
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/12.png" class="" title="uncOver破解中的截图">
+
+<p>第六步，越狱完成，会弹出重启手机的Alert。在越狱过程中也可能会多次重启手机。最终破解完成后，手机桌面会出现<code>Cydia</code>App。再次打开uncOver App，原本显示<code>Jailbreak</code>的按钮现在显示<code>Re-Jailbreak</code>。</p>
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/13.png" class="" title="越狱完成后弹框提示重启手机的截图">
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/7.png" class="" title="越狱完成重启手机后的截图">
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/8.png" class="" title="Cydia的截图">
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/9.png" class="" title="UncOver显示“Re-Jailbreak”的截图">
+
+
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://unc0ver.dev/">unc0ver官网</a><br><a href="https://dantheman827.github.io/ios-app-signer/">iOS App Signer官网</a><br><a href="https://mrmad.com.tw/unc0ver-ios12">越獄教學</a><br><a href="https://jingyan.baidu.com/article/a948d651b8edaa4b2ccd2e78.html">unc0ver闪退解决方法</a></p>
+]]></content>
       <categories>
-        <category>iOS</category>
+        <category>iOS越狱</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
+        <tag>iOS越狱</tag>
       </tags>
   </entry>
   <entry>
