@@ -186,6 +186,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/" class="post-title-link" itemprop="url">记一次重签名错误</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-10 09:33:19" itemprop="dateCreated datePublished" datetime="2021-01-10T09:33:19+08:00">2021-01-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS%E8%B6%8A%E7%8B%B1/" itemprop="url" rel="index"><span itemprop="name">iOS越狱</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="什么问题？"><a href="#什么问题？" class="headerlink" title="什么问题？"></a>什么问题？</h1><p>最近打开Cydia就闪退，我就重新去下载了uncOver，打算重新越狱一下，但是在重签名的时候一直失败，提示”No codesigning certificates found”的错误。</p>
+<img src="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/1.png" class="" title="重签名失败的错误">
+
+<h1 id="什么原因导致？"><a href="#什么原因导致？" class="headerlink" title="什么原因导致？"></a>什么原因导致？</h1><p>由于我之前使用”iOS App Signer”这个MAC软件一直没有问题，今天遇到这个问题，我就想去github把源码克隆到本地，然后调试一下，看看具体是什么原因导致。<br>打开源码直接搜索”No codesigning”发现，这个错误是一个Alert弹框，和我们遇到的弹框信息一致。</p>
+<img src="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/2.png" class="" title="搜索错误提示的截图">
+
+<p>最终调试发现，在程序调用<code>/usr/bin/security find-identity -v -p codesigning</code>命令时由于返回值为空，才触发错误弹框。</p>
+<img src="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/3.png" class="" title="源码执行命令的截图">
+
+<p>我把命令拷贝到终端执行，发现返回有效的identity的数量是0:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/security find-identity -v -p codesigning</span><br><span class="line">     0 valid identities found</span><br></pre></td></tr></table></figure>
+
+<p>此处的命令的意思是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/security:</span><br><span class="line">A simple <span class="built_in">command</span> line interface <span class="built_in">which</span> lets you administer keychains, </span><br><span class="line">manipulate keys and certificates, and <span class="keyword">do</span> just about anything the </span><br><span class="line">Security framework is capable of from the <span class="built_in">command</span> line.</span><br><span class="line">(是一个管理钥匙串、keys和证书的命令行接口)</span><br><span class="line"></span><br><span class="line">find-identify:</span><br><span class="line">查找证书和私钥key的命令</span><br><span class="line"></span><br><span class="line">-v: 只显示有效的证书，默认显示所有的证书</span><br><span class="line"></span><br><span class="line">-p: 指定策略</span><br></pre></td></tr></table></figure>
+
+<p>具体的命令行的文档查看一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/security find-identity --<span class="built_in">help</span></span><br><span class="line">find-identity: illegal option -- -</span><br><span class="line">Usage: find-identity [-p policy] [-s string] [-v] [keychain...]</span><br><span class="line">    -p  Specify policy to evaluate (multiple -p options are allowed)</span><br><span class="line">        Supported policies: basic, ssl-client, ssl-server, smime, eap,</span><br><span class="line">        ipsec, ichat, codesigning, sys-default, sys-kerberos-kdc, macappstore, appleID</span><br><span class="line">    -s  Specify optional policy-specific string (e.g. DNS hostname <span class="keyword">for</span> SSL,</span><br><span class="line">        or RFC822 email address <span class="keyword">for</span> S/MIME)</span><br><span class="line">    -v  Show valid identities only (default is to show all identities)</span><br><span class="line">If no keychains are specified to search, the default search list is used.</span><br><span class="line">        Find an identity (certificate + private key).</span><br></pre></td></tr></table></figure>
+
+<h1 id="怎么解决？"><a href="#怎么解决？" class="headerlink" title="怎么解决？"></a>怎么解决？</h1><p>由于使用<code>/usr/bin/security find-identity -v -p codesigning</code>命令无法查询本地有效的重签名证书，我首先想到的就是更换查询策略，根据命令行文档可以看出，策略有很多种，包括<code>basic, ssl-client ssl-server, smime, eap,ipsec, ichat, codesigning, sys-default, sys-kerberos-kdc, macappstore, appleID</code>。经过尝试，发现策略改成<code>appleID</code>的时候是可以查询到有效证书的。但是这两个命令是有区别的。具体的区别如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % /usr/bin/security find-identity -v -p codesigning</span><br><span class="line">  1) C766972EC48052D14E3A2D715F03960E10B4XXXX <span class="string">&quot;Apple Development: Zhang San (MGRQJNV411)&quot;</span></span><br><span class="line">  2) 8EA5E415105CEE96F75EAFA443B6AC992FC9CCCC <span class="string">&quot;Apple Development: Li Si (SB6BFS5U22)&quot;</span></span><br><span class="line">  3) AEF5450BA48F61EE1B5A718B7563D855E306DDDD <span class="string">&quot;iPhone Developer: Zhang San (MGRQJNV433)&quot;</span></span><br><span class="line">     3 valid identities found</span><br><span class="line">poet@poetdeMacBook-Pro ~ % /usr/bin/security find-identity -v -p appleID    </span><br><span class="line">1.2.840.113635.78.1.30</span><br><span class="line">  1) F87912EA9F939D6F044F1B86A165C5D8AC8CAAAA <span class="string">&quot;com.apple.idms.appleid.prd.5675685073322f516b6a565a55775471374c72424b671234&quot;</span> (CSSMERR_TP_CERT_EXPIRED)</span><br><span class="line">  2) 8751799A43C85FEF3914DE664E2A05251F40BBBB <span class="string">&quot;Mac Developer: Lao Wang (H2C8DTYK00)&quot;</span> (CSSMERR_TP_CERT_EXPIRED)</span><br><span class="line">  3) C766972EC48052D14E3A2D715F03960E10B4CCCC <span class="string">&quot;Apple Development: Zhang San (MGRQJNV411)&quot;</span> (Missing required extension)</span><br><span class="line">  4) 8EA5E415105CEE96F75EAFA443B6AC992FC9DDDD <span class="string">&quot;Apple Development: Li Si (SB6BFS5U22)&quot;</span> (Missing required extension)</span><br><span class="line">  5) AEF5450BA48F61EE1B5A718B7563D855E306EEEE <span class="string">&quot;iPhone Developer: Zhang San (MGRQJNV433)&quot;</span> (Missing required extension)</span><br><span class="line">     5 valid identities found</span><br></pre></td></tr></table></figure>
+<p>经过上面的对比，发现策略是<code>codesigning</code>的时候查询出来的是所有有效的重签名的证书，不包含其他的证书（比如：苹果的官方证书、MAC电脑的证书等），但是策略是<code>appleID</code>的时候查询出来的证书一定包含策略<code>codesigning</code>查询出来的证书。所以，当使用策略<code>codesigning</code>无法查询出证书情况的时候，可以考虑把策略换成<code>appleID</code>来查询。所以解决办法就是将<code>codesigning</code>策略换成<code>appleID</code>的策略。</p>
+<h1 id="提交Pull-Request"><a href="#提交Pull-Request" class="headerlink" title="提交Pull Request"></a>提交Pull Request</h1><p>解决这个问题之后，我去github仓库的issue里面看，发现很多人也有类似的问题，我就自己尝试提交了一个<code>Pull Request</code>到作者的仓库，虽然作者很久没有更新了，但是如果后续还有人碰到此问题可以通过类似的办法解决。如何提交<code>Pull Request</code>，我是参考github上的一个帖子，具体步骤如下：</p>
+<h2 id="如何在别人的开源项目中提交自己的Pull-Request"><a href="#如何在别人的开源项目中提交自己的Pull-Request" class="headerlink" title="如何在别人的开源项目中提交自己的Pull Request ?"></a>如何在别人的开源项目中提交自己的Pull Request ?</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1.先在本地创建一个空文件夹,里面准备放克隆过来的代码. --&gt; 我在本地Downloads文件夹下创建了一个名为 gitMessagekit 的文件夹.</span><br><span class="line">2.在<span class="string">&quot;终端&quot;</span>中通过<span class="built_in">cd</span>命令进入到gitMessagekit文件夹下(将<span class="string">&quot;自己电脑的用户名&quot;</span>换成你自己的电脑的用户名). --&gt; <span class="built_in">cd</span> /Users/自己电脑的用户名/3.Downloads/gitMessagekit</span><br><span class="line">3.在<span class="string">&quot;终端&quot;</span>输入克隆命令 git <span class="built_in">clone</span> 开源项目源代码的url. --&gt; git <span class="built_in">clone</span> https://github.com/MessageKit/MessageKit.git</span><br><span class="line">4.进入到克隆所在的文件夹. --&gt; <span class="built_in">cd</span> /Users/自己电脑的用户名/Downloads/gitMessagekit/MessageKit</span><br><span class="line">5.用查看命令查看一下开源项目都有多少个分支. --&gt; git branch -a</span><br><span class="line">6.找到自己要切换的分支,准备切换分支,在这里我要切换到3.0.0-beta分支. --&gt; git checkout remotes/origin/3.0.0-beta</span><br><span class="line">7.基于远程分支新建本地分支(3.0.0-beta),2条命令. --&gt; git branch 3.0.0-beta git checkout 3.0.0-beta</span><br><span class="line">8.打开/Users/自己电脑的用户名/Downloads/gitMessagekit/MessageKit该路径下的代码,对代码进行修改.</span><br><span class="line">9.添加修改. --&gt; git add 你修改的文件</span><br><span class="line">10.提交修改. --&gt; git commit -m <span class="string">&quot;fix 某某问题&quot;</span></span><br><span class="line">11.去自己的git仓库,准备fork一下开源项目MessageKit到自己的仓库(repository)中.</span><br><span class="line">12.即将关联自己fork过的项目. --&gt; git remote add upstream git@github.com:xxjldh/MessageKit.git</span><br><span class="line">13.推送本地的分支(3.0.0-beta)到自己fork过的仓库中,2条命令. --&gt; git fetch origin git merge origin/3.0.0-beta</span><br><span class="line">14.在即将提交时出现这样一个错误,git@github.com: Permission denied (publickey).解决办法(https://www.jianshu.com/p/f22d02c7d943)</span><br><span class="line">15.最后push自己的分支到自己fork过的仓库中. --&gt; git push upstream 3.0.0-beta</span><br><span class="line">16.在开源项目https://github.com/MessageKit/MessageKit.git的pull request中添加自己刚修改过的文件, 点<span class="string">&quot;comment pull request&quot;</span>即可.</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pixy/p/4817579.html">Mac Security工具使用总结</a><br><a target="_blank" rel="noopener" href="http://blog.fpliu.com/it/os/macOS/software/security">security命令</a><br><a target="_blank" rel="noopener" href="https://gist.github.com/zxhfighter/62847a087a2a8031fbdf">如何给开源项目贡献代码</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1295,119 +1400,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/" class="post-title-link" itemprop="url">iOS安装包瘦身</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-01 16:18:39" itemprop="dateCreated datePublished" datetime="2020-08-01T16:18:39+08:00">2020-08-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>815</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB.png" class="" title="iOS安装包瘦身思维导图">
-
-<h2 id="iPA解压排查"><a href="#iPA解压排查" class="headerlink" title="iPA解压排查"></a>iPA解压排查</h2><p>iOS安装包瘦身时，最直接的办法就是，解压打包完的iPA，查找大文件，优化对应的大文件。</p>
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/ipa.png" class="" title="iPA解压后内部截图">
-
-<ul>
-<li><p>_CodeSignature：文件hash列表。里面有一个属性列表文件CodeResources，包含.app中所有文件的列表，里面是一个字典，key是文件名，value通常是Base64格式的散列值。它的作用是用来判断应用程序是否完好无损，防止资源文件修改损坏。</p>
-</li>
-<li><p>Assets.car：由.xcassets统一打包生成。包含所有.xcassets下的资源文件.xcassets可以存放图片资源，组织清晰，便于管理，Xcode也会对一些资源做优化处理。如果直接放在Xcode工程目录下，打包后这些资源会在包的根目录下面展示。Assets.car可以通过Asset Catalog Tinkerer软件打开，并导出相关资源。</p>
-</li>
-<li><p>embedded.mobileprovision：描述文件</p>
-</li>
-<li><p>Info.plist：工程信息配置文件</p>
-</li>
-<li><p>YXTDemo：与工程同名的可执行文件。可以通过file命令查看类型。</p>
-</li>
-</ul>
-<h2 id="图片资源优化"><a href="#图片资源优化" class="headerlink" title="图片资源优化"></a>图片资源优化</h2><h3 id="删除未使用的图片资源"><a href="#删除未使用的图片资源" class="headerlink" title="删除未使用的图片资源"></a>删除未使用的图片资源</h3><p>可以使用工具LSUnusedResources工具查找未使用的图片资源，工具下载地址：<a href="https://github.com/tinymind/LSUnusedResources%E3%80%82">https://github.com/tinymind/LSUnusedResources。</a></p>
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/lsunusedresources.png" class="" title="查找未使用的图片的截图1">
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/lsunusedresources2.png" class="" title="查找未使用的图片的截图2">
-
-<h3 id="压缩图标和图片"><a href="#压缩图标和图片" class="headerlink" title="压缩图标和图片"></a>压缩图标和图片</h3><p>对于一些较大的图标和图片可以使用工具ImageOptim压缩一下。</p>
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/imageoptim1.png" class="" title="图片压缩工具截图">
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/imageoptim2.png" class="" title="图片压缩工具截图">
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/imageoptim3.png" class="" title="图片压缩工具截图">
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/imageoptim4.png" class="" title="图片压缩工具截图">
-
-<h3 id="特殊大图放工程目录下"><a href="#特殊大图放工程目录下" class="headerlink" title="特殊大图放工程目录下"></a>特殊大图放工程目录下</h3><p>大图(例如游戏界面背景图)若放在.xcassets文件夹中，工程打包后大图的尺寸会变大，因此建议特定大图不要放在.xcassets中，放在工程目录下即可。</p>
-<h2 id="删除冗余代码"><a href="#删除冗余代码" class="headerlink" title="删除冗余代码"></a>删除冗余代码</h2><h3 id="删除未使用的类文件"><a href="#删除未使用的类文件" class="headerlink" title="删除未使用的类文件"></a>删除未使用的类文件</h3><p>使用CATClearProjectTool工具查找未使用的类，删除即可。</p>
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/catclearprojecttool1.png" class="" title="查找未使用的类">
-<img src="/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/catclearprojecttool2.png" class="" title="查找未使用的类">
-
-<h3 id="使用LinkMap分析类文件和静态库的大小"><a href="#使用LinkMap分析类文件和静态库的大小" class="headerlink" title="使用LinkMap分析类文件和静态库的大小"></a>使用LinkMap分析类文件和静态库的大小</h3><p>使用LinkMap工具可以分析具体类文件和静态库大小，工具下载地址：<a href="https://github.com/huanxsd/LinkMap%E3%80%82">https://github.com/huanxsd/LinkMap。</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1477,7 +1469,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1526,12 +1518,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">218k</span>
+    <span title="站点总字数">222k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:18</span>
+    <span title="站点阅读时长">3:22</span>
 </div>
 
         
