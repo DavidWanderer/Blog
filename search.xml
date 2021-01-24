@@ -413,6 +413,39 @@
       </tags>
   </entry>
   <entry>
+    <title>Jenkins问题汇总</title>
+    <url>/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<h1 id="Jenkins执行Shell脚本，控制台出现中文乱码怎么办？"><a href="#Jenkins执行Shell脚本，控制台出现中文乱码怎么办？" class="headerlink" title="Jenkins执行Shell脚本，控制台出现中文乱码怎么办？"></a>Jenkins执行Shell脚本，控制台出现中文乱码怎么办？</h1><p>使用Jenkins执行Shell脚本，默认的情况下，Jenkins的控制台展示的中文会出现部分乱码，如下图所示：</p>
+<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2.jpg" class="" title="Jenkins部分中文乱码问题截图">
+<p>解决办法：</p>
+<ul>
+<li>1.在<code>系统管理-&gt;系统配置-&gt;全局属性</code>添加一个键值对，键的名称<code>LANG</code>，值的名称<code>zh.CH.UTF-8</code>，然后划到网页的底部保存并应用。</li>
+<li>2.并且在Shell脚本的最开始添加<code>#!/bin/bash</code>来指定使用系统的Shell命令来执行。<br>截图1:<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/3.jpg" class="" title="解决Jenkins终端乱码问题-添加全局属性">
+截图2:<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/4.jpg" class="" title="解决Jenkins终端乱码问题-指定使用系统的Shell来执行命令">
+解决完乱码之后的截图：<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/6.jpg" class="" title="解决完Jenkins乱码的截图">
+
+</li>
+</ul>
+<h1 id="Jenkins提示invalid-byte-sequence-in-US-ASCII怎么办"><a href="#Jenkins提示invalid-byte-sequence-in-US-ASCII怎么办" class="headerlink" title="Jenkins提示invalid byte sequence in US-ASCII怎么办?"></a>Jenkins提示<code>invalid byte sequence in US-ASCII</code>怎么办?</h1><p>使用Jenkins执行Shell脚本的时候，出现了这个提示，截图如下：</p>
+<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1.jpeg" class="" title="invalid byte sequence in US-ASCII问题截图">
+<p>解决办法：<br>在<code>系统管理-&gt;系统配置-&gt;全局属性</code>添加一个键值对，键的名称<code>LC_ALL</code>，值的名称<code>en_US.UTF-8</code>，然后划到网页的底部保存并应用。</p>
+<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/5.jpg" class="" title="解决Jenkins提示字符无效的问题">
+<p>解决完乱码之后的截图：</p>
+<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/7.jpg" class="" title="解决完Jenkins提示字符无效问题的截图">
+
+<h1 id="如果Jenkins控制台提示无权限访问文件或路径怎么办？"><a href="#如果Jenkins控制台提示无权限访问文件或路径怎么办？" class="headerlink" title="如果Jenkins控制台提示无权限访问文件或路径怎么办？"></a>如果Jenkins控制台提示无权限访问文件或路径怎么办？</h1><p>解决办法：<br>需要找到Jenkins的配置文件，我的Jenkins是使用<code>Homebrew</code>安装的，配置文件路径是<code>/Library/LaunchDaemons/org.jenkins-ci.plist</code>。<br>找到这个文件之后，修改<code>GroupName</code>和<code>UserName</code>，让这两个值和电脑登录的组名和用户名保持一致。</p>
+<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/8.png" class="" title="修改Jenkins执行的组名和用户名">
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.jianshu.com/p/fa546f723724">Jenkins执行脚本提示没有权限的解决办法</a><br><a href="http://www.voidcn.com/article/p-oybichjy-bep.html">Jenkins上，xcpretty编译报错：invalid byte sequence in US-ASCII</a></p>
+]]></content>
+      <categories>
+        <category>Jenkins</category>
+      </categories>
+      <tags>
+        <tag>Jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>KVC</title>
     <url>/Blog/2019/06/27/KVC/</url>
     <content><![CDATA[<h2 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h2><p>KVC（Key-value coding）键值编码，指iOS的开发中，可以允许开发者通过Key名直接访问对象的属性，或者给对象的属性赋值而不需要调用明确的存取方法。</p>
