@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://github.com/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block12.png">
 <meta property="og:image" content="https://github.com/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block13.png">
 <meta property="article:published_time" content="2019-06-27T09:12:09.000Z">
-<meta property="article:modified_time" content="2020-06-27T12:59:54.000Z">
+<meta property="article:modified_time" content="2021-02-22T12:38:59.469Z">
 <meta property="article:author" content="David的博客">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
@@ -426,7 +426,7 @@
 <ul>
 <li>1、在ARC环境下，Block被引用的时候，会被Copy一次，由栈区copy到了堆。</li>
 <li>2、在Block被copy的时候，Block内部被引用的<code>变量</code>也同样被copy一份到了堆上面。</li>
-<li>3、被__Block修饰的变量，在被Block引用的时候，会变成结构体也就是OC对象，里面的<code>__forwarding</code>也会由栈copy道对上面。</li>
+<li>3、被__Block修饰的变量，在被Block引用的时候，会变成结构体也就是OC对象，里面的<code>__forwarding</code>也会由栈copy到堆上面。</li>
 <li>4、栈上__block变量结构体中<code>__forwarding</code>的指针指向堆上面__block变量结构体，堆上__block变量结构体中<code>__forwarding</code>指针指向自己。</li>
 <li>5、当block从堆中移除时，会调用block内部的dispose函数，dispose函数内部会调用_Block_object_dispose函数，_Block_object_dispose函数会自动释放引用的__block变量（release)。</li>
 </ul>
