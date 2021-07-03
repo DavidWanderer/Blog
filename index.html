@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Your dreams don&#39;t work unless you do.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stay hungry, Stay foolish.">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/index.html">
+<meta property="og:site_name" content="Stay hungry, Stay foolish.">
+<meta property="og:description" content="Your dreams don&#39;t work unless you do.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="David的博客">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/DavidWanderer/Blog/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Stay hungry, Stay foolish.</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Stay hungry, Stay foolish.</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/Blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/Blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">VPS搭建v2ray服务器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-30 13:15:21" itemprop="dateCreated datePublished" datetime="2021-06-30T13:15:21+08:00">2021-06-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="自建v2Ray教程，总共分为4步"><a href="#自建v2Ray教程，总共分为4步" class="headerlink" title="自建v2Ray教程，总共分为4步"></a>自建v2Ray教程，总共分为4步</h2><p>第一步：购买VPS服务器<br>第二步：购买免费域名并绑定VPS服务器<br>第三步：一键部署v2ray脚本<br>第四步：一键加速VPS服务器（五合一的TCP网络加速脚本）<br>第五步：修改服务器时区</p>
+<h2 id="购买VPS服务器"><a href="#购买VPS服务器" class="headerlink" title="购买VPS服务器"></a>购买VPS服务器</h2><p>本篇采用的VPS是一家加拿大VPS服务提供商。这家提供商共有3个机房位置，拉斯维加斯、纽约、卢森堡。这次使用的服务器位于拉斯维加斯，延时在200m左右。购买地址：<a target="_blank" rel="noopener" href="https://my.frantech.ca/cart.php">https://my.frantech.ca/cart.php</a></p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/vps.png" class="" title="vps官网截图"> </div>
+
+<h2 id="购买免费域名并绑定VPS服务器"><a href="#购买免费域名并绑定VPS服务器" class="headerlink" title="购买免费域名并绑定VPS服务器"></a>购买免费域名并绑定VPS服务器</h2><p><a target="_blank" rel="noopener" href="https://my.freenom.com/">freenom</a> 提供了tk、ml、ga、cf、gq 这几类后缀的免费域名。tk域名，意为 Talker（说话的人）。.tk域名是南太平洋岛国托克劳的顶级域名, .ml 是非洲国家马里的后缀, .ga 域名为加蓬国家顶级域名后缀, .cf 是中非共和国的后缀, .gq域名是赤道几内亚国家地区顶级域名。</p>
+<h3 id="申请freenom免费域名"><a href="#申请freenom免费域名" class="headerlink" title="申请freenom免费域名"></a>申请freenom免费域名</h3><p>访问 freenom 官方网站:<a target="_blank" rel="noopener" href="http://www.freenom.com/zh/index.html,%E7%84%B6%E5%90%8E%E7%9B%B4%E6%8E%A5%E5%9C%A8%E6%90%9C%E7%B4%A2%E6%A1%86%E9%87%8C%E9%9D%A2%E8%BE%93%E5%85%A5%E4%BD%A0%E6%83%B3%E7%94%B3%E8%AF%B7%E7%9A%84%E5%9F%9F%E5%90%8D%E7%B1%BB%E5%9E%8B%EF%BC%8C%E6%AF%94%E5%A6%82%EF%BC%9Afreedo.ga%EF%BC%8C%E4%B8%8D%E6%98%AF%E6%89%80%E6%9C%89%E4%B8%8A%E9%9D%A2%E4%BB%8B%E7%BB%8D%E7%9A%84%E5%87%A0%E4%B8%AA%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%9F%9F%E5%90%8D%E5%90%8E%E7%BC%80%E9%83%BD%E6%98%AF%E5%85%8D%E8%B4%B9%E7%9A%84%EF%BC%8C%E7%B3%BB%E7%BB%9F%E4%BC%9A%E8%87%AA%E5%8A%A8%E6%A3%80%E6%9F%A5%E5%9F%9F%E5%90%8D%E6%98%AF%E5%90%A6%E5%85%8D%E8%B4%B9%EF%BC%8C%E6%AF%94%E5%A6%82%EF%BC%9A">http://www.freenom.com/zh/index.html,然后直接在搜索框里面输入你想申请的域名类型，比如：freedo.ga，不是所有上面介绍的几个类型的域名后缀都是免费的，系统会自动检查域名是否免费，比如：</a></p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/freenom1.png" class="" title="申请freedom免费域名的截图"> </div>
+
+<p>上面显示申请 freedo.ga 这个域名是免费的，那么你就可以直接选择完成进入下一步。进入下一步后，在域名选项的最右侧有个 period 选项，你可以在它的列表里选择你想申请免费的时间，比如，我想免费申请一年，那么我选择 12 months free 这个选项：</p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/freenom2.png" class="" title="申请freedom免费域名的截图"> </div>
+
+<p>你也可以在这一步直接设置域名解析，把你的域名直接指向你的 ip，也可以跳过，在后面进行解析。 如：</p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/freenom3.png" class="" title="域名购买过程中解析域名的截图"> </div>
+
+<h3 id="freenom域名解析"><a href="#freenom域名解析" class="headerlink" title="freenom域名解析"></a>freenom域名解析</h3><p>首先登录自己的账号，然后选择<code>Services-&gt;My Domains</code>,如下截图：</p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/freenom6.png" class="" title="我的域名的截图"> </div>
+
+<p>选择最右侧的<code>Manage Domains</code>(域名管理选项)，点击该选项，就可以进入域名管理界面：</p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/freenom7.png" class="" title="域名管理的截图"> </div>
+
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/freenom8.png" class="" title="域名管理的截图"> </div>
+
+<p>在<code>Management Tools</code>选项下选择<code>namesservers</code>，系统默认使用的是freenom自己默认的dns服务器。你可以设定其他的dns服务器。这里我使用默认的dns服务器，先不做修改。然后点击右侧的<code>Manage Freenom DNS</code>选项，给自己的域名绑定ip 比如：</p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/freenom9.png" class="" title="域名管理的截图"> </div>
+
+<p>在 target 选项输入你域名要绑定的 ip ，在 Name 选项输入 www 或其它子域名，type 你可以根据需要进行选择。当保存成功后，你就可以直接输入域名访问你的站点了。 由于 freenom 的 dns 解析对国内可能会比较不友好，你可以修改域名默认的 dns 解析服务，把 dns解析服务修改为国内的 dns 服务，比如 CloudXNS 或者 DNSPod 。</p>
+<h2 id="一键部署v2ray脚本"><a href="#一键部署v2ray脚本" class="headerlink" title="一键部署v2ray脚本"></a>一键部署v2ray脚本</h2><p>当封锁特别厉害的时候，常规的v2ray配置可能已经无法满足需求，这个时候我们可以搭建VLESS+TCP+TLS/VLESS+TCP+XTLS/VLESS+WS+TLS/VMess+TCP+TLS/VMess+WS+TLS，搭建脚本需要购买域名。(<a target="_blank" rel="noopener" href="https://my.freenom.com/">免费域名</a>)<br>（VLESS+TCP+TLS/VLESS+TCP+XTLS/VLESS+WS+TLS/VMess+TCP+TLS/VMess+WS+TLS/Trojan/Trojan-Go WS）+伪装站点、七合一共存脚本，支持多内核安装，支持系统Debian 8+ / Ubuntu 16.04+ / Centos7</p>
+<p>脚本安装命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate <span class="string">&quot;https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh&quot;</span> &amp;&amp; chmod 700 install.sh &amp;&amp; ./install.sh</span><br></pre></td></tr></table></figure>
+
+<p>脚本执行结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">==============================================================</span><br><span class="line">作者：mack-a</span><br><span class="line">当前版本：v2.5.12</span><br><span class="line">Github：https://github.com/mack-a/v2ray-agent</span><br><span class="line">描述：八合一共存脚本</span><br><span class="line">==============================================================</span><br><span class="line">1.安装</span><br><span class="line">2.任意组合安装</span><br><span class="line">-------------------------工具管理-----------------------------</span><br><span class="line">3.账号管理</span><br><span class="line">4.更换伪装站</span><br><span class="line">5.更新证书</span><br><span class="line">6.更换CDN节点</span><br><span class="line">7.IPv6分流</span><br><span class="line">8.WARP分流</span><br><span class="line">9.流媒体工具</span><br><span class="line">10.添加新端口</span><br><span class="line">-------------------------版本管理-----------------------------</span><br><span class="line">11.core管理</span><br><span class="line">12.更新脚本</span><br><span class="line">13.安装BBR、DD脚本</span><br><span class="line">-------------------------脚本管理-----------------------------</span><br><span class="line">14.查看日志</span><br><span class="line">15.卸载脚本</span><br><span class="line">==============================================================</span><br><span class="line">请选择:1</span><br><span class="line"></span><br><span class="line">功能 1/1 : 选择核心安装</span><br><span class="line"></span><br><span class="line">==============================================================</span><br><span class="line">1.Xray-core</span><br><span class="line">2.v2ray-core</span><br><span class="line">==============================================================</span><br><span class="line">请选择：2</span><br><span class="line">安装工具</span><br><span class="line"></span><br><span class="line">进度  2/17 : 安装工具</span><br><span class="line"> ---&gt; 检查、安装更新【新机器会很慢，如长时间无反应，请手动停止后重新执行】</span><br><span class="line"> ---&gt; 安装socat</span><br><span class="line"> ---&gt; 安装crontabs</span><br><span class="line"> ---&gt; 安装jq</span><br><span class="line"> ---&gt; 安装binutils</span><br><span class="line"> ---&gt; 安装qrencode</span><br><span class="line"> ---&gt; 安装lsb-release</span><br><span class="line"> ---&gt; 安装nginx</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/nginx.service to /usr/lib/systemd/system/nginx.service.</span><br><span class="line"> ---&gt; 安装semanage</span><br><span class="line"> ---&gt; 安装acme.sh</span><br><span class="line"></span><br><span class="line">进度  3/17 : 初始化Nginx申请证书配置</span><br><span class="line"></span><br><span class="line">请输入要配置的域名 例：www.v2ray-agent.com ---&gt;</span><br><span class="line">域名:www.tingyue.tk</span><br><span class="line"></span><br><span class="line"> ---&gt; 配置Nginx</span><br><span class="line"></span><br><span class="line">检查IP是否设置为当前VPS</span><br><span class="line"> ---&gt; 检查ipv4中</span><br><span class="line"></span><br><span class="line">当前域名的IP为 [209.141.56.47]，是否正确[y/n]？y</span><br><span class="line"></span><br><span class="line"> ---&gt; IP确认完成</span><br><span class="line"></span><br><span class="line">检查Nginx是否正常访问</span><br><span class="line"></span><br><span class="line"> ---&gt; Nginx配置成功</span><br><span class="line"></span><br><span class="line">进度  4/17 : 申请TLS证书</span><br><span class="line"></span><br><span class="line"> ---&gt; 安装TLS证书</span><br><span class="line"> ---&gt; TLS生成成功</span><br><span class="line"></span><br><span class="line">进度  5/17 : 配置Nginx</span><br><span class="line"></span><br><span class="line">进度  6/17 : 生成随机路径</span><br><span class="line">请输入自定义路径[例: alone]，不需要斜杠，[回车]随机路径</span><br><span class="line">路径:</span><br><span class="line">path：bqri</span><br><span class="line"></span><br><span class="line">----------------------------</span><br><span class="line"></span><br><span class="line">进度  7/17 : 安装V2Ray</span><br><span class="line"> ---&gt; v2ray-core版本:v4.41.0</span><br><span class="line"></span><br><span class="line">进度  8/17 : 配置V2Ray开机自启</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/v2ray.service to /etc/systemd/system/v2ray.service.</span><br><span class="line"> ---&gt; 配置V2Ray开机自启成功</span><br><span class="line"></span><br><span class="line">进度 11/17 : 添加DNS智能解析</span><br><span class="line"></span><br><span class="line">如对Cloudflare自选ip不了解，请选择[n]</span><br><span class="line"></span><br><span class="line"> 移动:104.16.123.96</span><br><span class="line"> 联通:hostmonit.com</span><br><span class="line"> 电信:www.digitalocean.com</span><br><span class="line">----------------------------</span><br><span class="line">是否使用？[y/n]:n</span><br><span class="line"></span><br><span class="line">进度 12/17 : 初始化V2Ray配置</span><br><span class="line"></span><br><span class="line">是否自定义UUID ？[y/n]:n</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">进度 14/17 : 添加定时维护证书</span><br><span class="line"></span><br><span class="line"> ---&gt; 添加定时维护证书成功</span><br><span class="line"></span><br><span class="line">进度 15/17 : 添加伪装站点</span><br><span class="line"> ---&gt; 添加伪装站点成功</span><br><span class="line"> ---&gt; V2Ray关闭成功</span><br><span class="line"> ---&gt; V2Ray启动成功</span><br><span class="line"></span><br><span class="line">进度 16/17 : 验证服务启动状态</span><br><span class="line"> ---&gt; 服务启动成功</span><br><span class="line"></span><br><span class="line">进度 17/17 : 账号</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="一键加速VPS服务器（五合一的TCP网络加速脚本）"><a href="#一键加速VPS服务器（五合一的TCP网络加速脚本）" class="headerlink" title="一键加速VPS服务器（五合一的TCP网络加速脚本）"></a>一键加速VPS服务器（五合一的TCP网络加速脚本）</h2><p>五合一的TCP网络加速脚本，包括了BBR原版、BBR魔改版、暴力BBR魔改版、BBR plus（首选）、Lotsever(锐速)安装脚本。可用于KVMXen架构，不兼容OpenVZ（OVZ）。支持Centos 6+ / Debian 7+ / Ubuntu 14+，BBR魔改版不支持Debian 8。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate <span class="string">&quot;https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh&quot;</span></span><br><span class="line"></span><br><span class="line">chmod +x tcp.sh</span><br><span class="line"></span><br><span class="line">./tcp.sh</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果提示 wget: command not found 的错误，这是你的系统精简的太干净了，wget都没有安装，所以需要安装wget。CentOS系统安装wget命令： yum install -y wget <br/><br>Debian/Ubuntu系统安装wget命令：apt-get install -y wget</p>
+</blockquote>
+<p>安装完成后，脚本管理命令为：<code>./tcp.sh</code></p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/bbr%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85.jpeg" class="" title="bbr脚本安装的截图"> </div>
+
+
+<p>操作方法：先安装内核，重启vps让内核生效，再启动对应的加速即可。数字1的BBR/BBR魔改内核对应数字4、5、6的BBR加速、BBR魔改加速和暴力BBR魔改版加速。数字2的BBRplus内核对应数字7的BBRplus加速。数字3的锐速加速内核对应数字8的锐速加速。</p>
+<p>以安装暴力BBR魔改版加速为例，我们先安装对应的内核，输入数字1</p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/bbr%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%851.jpeg" class="" title="bbr脚本安装的截图"> </div>
+
+<p>内核安装完成后，输入y进行重启，重启才能让内核生效</p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/bbr%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%852.jpeg" class="" title="bbr脚本安装的截图"> </div>
+
+<p>重启完成后，输入数字6来启动暴力BBR魔改版加速</p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/bbr%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%853.jpeg" class="" title="bbr脚本安装的截图"> </div>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/bbr%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%854.jpeg" class="" title="bbr脚本安装的截图"> </div>
+<br/>
+输入./tcp.sh查看最终是否启动成功。
+
+<p>如果想换一个加速，输入数字9进行卸载加速，然后进行同样的操作，安装内核再安装对应内核的加速即可。<br/><br><b>注意：如果在安装内核环节出现这样一张图，注意选择NO</b></p>
+<div style="width:400px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/bbr%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%855.jpeg" class="" title="bbr脚本安装的截图"> </div>
+<br/>
+
+<h2 id="修改服务器时区"><a href="#修改服务器时区" class="headerlink" title="修改服务器时区"></a>修改服务器时区</h2><p>a.一般国外的VPS的镜像都是默认的国外时区，使用起来不是很方便。可以把它修改成北京时间，就会方便很多。 修改中国时区代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
+
+<p>b.利用NTP同步时间协议 <br/><br>CentOS系统先安装NTP：<code>yum install ntp ntpdate -y</code></p>
+<blockquote>
+<p>如果是Ubuntu/Debian系统执行下面2条命令来安装NTP <br/></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install ntp ntpdate -y</span><br></pre></td></tr></table></figure>
+
+<p>安装NTP后，按照顺序依次执行以下3条命令，分别是停止NTP服务、同步NTP时间、启动NTP服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">service ntpd stop</span><br><span class="line"></span><br><span class="line">ntpdate us.pool.ntp.org</span><br><span class="line"></span><br><span class="line">service ntpd start</span><br></pre></td></tr></table></figure>
+<p>执行完成后，VPS上就是相对精确的时间设置了。很多依赖于系统时间的应用程序也就能正常工作了。注意：当vps重启后输入date来检查下时间，如果时间不是最新的，再执行以上3条命令即可。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://my.frantech.ca/cart.php">VPS官网</a><br><a target="_blank" rel="noopener" href="https://my.freenom.com/clientarea.php?action=domains">免费域名</a><br><a target="_blank" rel="noopener" href="https://coderschool.cn/2197.html">免费域名解析</a><br><a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B">自建V2Ray教程</a><br><a href="https://github.com/yanue/V2rayU">V2Ray客户端下载地址</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/03/30/security%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2021/03/30/security%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">security相关命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-30 19:04:50" itemprop="dateCreated datePublished" datetime="2021-03-30T19:04:50+08:00">2021-03-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/%E8%87%AA%E5%8A%A8%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">自动化</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>767</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="security相关命令"><a href="#security相关命令" class="headerlink" title="security相关命令"></a>security相关命令</h1><h2 id="证书导入命令"><a href="#证书导入命令" class="headerlink" title="证书导入命令"></a>证书导入命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ security import /Users/kris/Desktop/<span class="built_in">test</span>/distribution.p12 -k ~/Library/Keychains/login.keychain -P 证书安装密码 -T /usr/bin/codesign -T /usr/bin/security</span><br><span class="line"></span><br><span class="line">$ security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k 电脑密码 ~/Library/Keychains/login.keychain</span><br></pre></td></tr></table></figure>
+<p>使用上述两条命令导入证书后，可以避免打包的时候弹出系统的鉴权弹框，在一些完全命令行自动化的场景下，这些鉴权的输入框无法展示，所以建议使用以上两条命令来导入证书。</p>
+<h2 id="删除证书命令"><a href="#删除证书命令" class="headerlink" title="删除证书命令"></a>删除证书命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ security delete-identity -c <span class="string">&quot;iPhone Distribution: XXXXX Management Co., Ltd.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="解锁钥匙串"><a href="#解锁钥匙串" class="headerlink" title="解锁钥匙串"></a>解锁钥匙串</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ security unlock-keychain -p 电脑密码 ~/Library/Keychains/login.keychain</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看默认钥匙串"><a href="#查看默认钥匙串" class="headerlink" title="查看默认钥匙串"></a>查看默认钥匙串</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ security default-keychain</span><br></pre></td></tr></table></figure>
+
+<h2 id="列出机器上所有的钥匙串"><a href="#列出机器上所有的钥匙串" class="headerlink" title="列出机器上所有的钥匙串"></a>列出机器上所有的钥匙串</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ security list-keychains</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看security命令手册"><a href="#查看security命令手册" class="headerlink" title="查看security命令手册"></a>查看security命令手册</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ man security</span><br></pre></td></tr></table></figure>
+<h2 id="查看security-delete-identity命令用法"><a href="#查看security-delete-identity命令用法" class="headerlink" title="查看security delete-identity命令用法"></a>查看security delete-identity命令用法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ security delete-identity <span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="附上man命令的快捷操作"><a href="#附上man命令的快捷操作" class="headerlink" title="附上man命令的快捷操作"></a>附上man命令的快捷操作</h2><table>
+<thead>
+<tr>
+<th align="center">按键</th>
+<th align="center">实现功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">空格键</td>
+<td align="center">向下翻一页</td>
+</tr>
+<tr>
+<td align="center">Pg Dn</td>
+<td align="center">向下翻一页</td>
+</tr>
+<tr>
+<td align="center">Pg Up</td>
+<td align="center">向上翻一页</td>
+</tr>
+<tr>
+<td align="center">Home</td>
+<td align="center">去到第一页</td>
+</tr>
+<tr>
+<td align="center">End</td>
+<td align="center">去到最后一页</td>
+</tr>
+<tr>
+<td align="center">/string</td>
+<td align="center">向下搜索string这个字符串</td>
+</tr>
+<tr>
+<td align="center">?string</td>
+<td align="center">向上搜索string这个字符串</td>
+</tr>
+<tr>
+<td align="center">q</td>
+<td align="center">结束这次的手册页</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">Jenkins问题汇总</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-24 16:39:57" itemprop="dateCreated datePublished" datetime="2021-01-24T16:39:57+08:00">2021-01-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/Jenkins/" itemprop="url" rel="index"><span itemprop="name">Jenkins</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>651</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Jenkins执行Shell脚本，控制台出现中文乱码怎么办？"><a href="#Jenkins执行Shell脚本，控制台出现中文乱码怎么办？" class="headerlink" title="Jenkins执行Shell脚本，控制台出现中文乱码怎么办？"></a>Jenkins执行Shell脚本，控制台出现中文乱码怎么办？</h1><p>使用Jenkins执行Shell脚本，默认的情况下，Jenkins的控制台展示的中文会出现部分乱码，如下图所示：</p>
+<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2.jpg" class="" title="Jenkins部分中文乱码问题截图">
+<p>解决办法：</p>
+<ul>
+<li>1.在<code>系统管理-&gt;系统配置-&gt;全局属性</code>添加一个键值对，键的名称<code>LANG</code>，值的名称<code>zh.CH.UTF-8</code>，然后划到网页的底部保存并应用。</li>
+<li>2.并且在Shell脚本的最开始添加<code>#!/bin/bash</code>来指定使用系统的Shell命令来执行。<br>截图1:<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/3.jpg" class="" title="解决Jenkins终端乱码问题-添加全局属性">
+截图2:<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/4.jpg" class="" title="解决Jenkins终端乱码问题-指定使用系统的Shell来执行命令">
+解决完乱码之后的截图：<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/6.jpg" class="" title="解决完Jenkins乱码的截图">
+
+</li>
+</ul>
+<h1 id="Jenkins提示invalid-byte-sequence-in-US-ASCII怎么办"><a href="#Jenkins提示invalid-byte-sequence-in-US-ASCII怎么办" class="headerlink" title="Jenkins提示invalid byte sequence in US-ASCII怎么办?"></a>Jenkins提示<code>invalid byte sequence in US-ASCII</code>怎么办?</h1><p>使用Jenkins执行Shell脚本的时候，出现了这个提示，截图如下：</p>
+<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1.jpeg" class="" title="invalid byte sequence in US-ASCII问题截图">
+<p>解决办法：<br>在<code>系统管理-&gt;系统配置-&gt;全局属性</code>添加一个键值对，键的名称<code>LC_ALL</code>，值的名称<code>en_US.UTF-8</code>，然后划到网页的底部保存并应用。</p>
+<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/5.jpg" class="" title="解决Jenkins提示字符无效的问题">
+<p>解决完乱码之后的截图：</p>
+<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/7.jpg" class="" title="解决完Jenkins提示字符无效问题的截图">
+
+<h1 id="如果Jenkins控制台提示无权限访问文件或路径怎么办？"><a href="#如果Jenkins控制台提示无权限访问文件或路径怎么办？" class="headerlink" title="如果Jenkins控制台提示无权限访问文件或路径怎么办？"></a>如果Jenkins控制台提示无权限访问文件或路径怎么办？</h1><p>解决办法：<br>需要找到Jenkins的配置文件，我的Jenkins是使用<code>Homebrew</code>安装的，配置文件路径是<code>/Library/LaunchDaemons/org.jenkins-ci.plist</code>。<br>找到这个文件之后，修改<code>GroupName</code>和<code>UserName</code>，让这两个值和电脑登录的组名和用户名保持一致。</p>
+<img src="/Blog/2021/01/24/Jenkins%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/8.png" class="" title="修改Jenkins执行的组名和用户名">
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/fa546f723724">Jenkins执行脚本提示没有权限的解决办法</a><br><a target="_blank" rel="noopener" href="http://www.voidcn.com/article/p-oybichjy-bep.html">Jenkins上，xcpretty编译报错：invalid byte sequence in US-ASCII</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/" class="post-title-link" itemprop="url">记一次重签名错误</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-10 11:25:26" itemprop="dateCreated datePublished" datetime="2021-01-10T11:25:26+08:00">2021-01-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS%E8%B6%8A%E7%8B%B1/" itemprop="url" rel="index"><span itemprop="name">iOS越狱</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="什么问题？"><a href="#什么问题？" class="headerlink" title="什么问题？"></a>什么问题？</h1><p>最近打开Cydia就闪退，我就重新去下载了uncOver，打算重新越狱一下，但是在重签名的时候一直失败，提示”No codesigning certificates found”的错误。</p>
+<img src="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/1.png" class="" title="重签名失败的错误截图">
+
+<h1 id="什么原因导致？"><a href="#什么原因导致？" class="headerlink" title="什么原因导致？"></a>什么原因导致？</h1><p>由于我之前使用<code>iOS App Signer</code>这个MAC软件一直没有问题，今天遇到这个问题，我就想去github把源码克隆到本地，然后调试一下，看看具体是什么原因导致。<br>打开源码直接搜索<code>No codesigning</code>发现，这个错误是一个Alert弹框，和我们遇到的弹框信息一致。</p>
+<img src="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/2.png" class="" title="搜索错误提示的截图">
+
+<p>最终调试发现，在程序调用<code>/usr/bin/security find-identity -v -p codesigning</code>命令时由于返回值为空，才触发错误弹框。</p>
+<img src="/Blog/2021/01/10/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%87%8D%E7%AD%BE%E5%90%8D%E9%94%99%E8%AF%AF/3.png" class="" title="源码执行命令的截图">
+
+<p>我把命令拷贝到终端执行，发现返回有效的identity的数量是0:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/security find-identity -v -p codesigning</span><br><span class="line">     0 valid identities found</span><br></pre></td></tr></table></figure>
+
+<p>此处的命令的意思是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/security:</span><br><span class="line">A simple <span class="built_in">command</span> line interface <span class="built_in">which</span> lets you administer keychains, </span><br><span class="line">manipulate keys and certificates, and <span class="keyword">do</span> just about anything the </span><br><span class="line">Security framework is capable of from the <span class="built_in">command</span> line.</span><br><span class="line">(是一个管理钥匙串、keys和证书的命令行接口)</span><br><span class="line"></span><br><span class="line">find-identify:</span><br><span class="line">查找证书和私钥key的命令</span><br><span class="line"></span><br><span class="line">-v: 只显示有效的证书，默认显示所有的证书</span><br><span class="line"></span><br><span class="line">-p: 指定策略</span><br></pre></td></tr></table></figure>
+
+<p>具体的命令行的文档查看一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/security find-identity --<span class="built_in">help</span></span><br><span class="line">find-identity: illegal option -- -</span><br><span class="line">Usage: find-identity [-p policy] [-s string] [-v] [keychain...]</span><br><span class="line">    -p  Specify policy to evaluate (multiple -p options are allowed)</span><br><span class="line">        Supported policies: basic, ssl-client, ssl-server, smime, eap,</span><br><span class="line">        ipsec, ichat, codesigning, sys-default, sys-kerberos-kdc, macappstore, appleID</span><br><span class="line">    -s  Specify optional policy-specific string (e.g. DNS hostname <span class="keyword">for</span> SSL,</span><br><span class="line">        or RFC822 email address <span class="keyword">for</span> S/MIME)</span><br><span class="line">    -v  Show valid identities only (default is to show all identities)</span><br><span class="line">If no keychains are specified to search, the default search list is used.</span><br><span class="line">        Find an identity (certificate + private key).</span><br></pre></td></tr></table></figure>
+
+<h1 id="怎么解决？"><a href="#怎么解决？" class="headerlink" title="怎么解决？"></a>怎么解决？</h1><p>由于使用<code>/usr/bin/security find-identity -v -p codesigning</code>命令无法查询本地有效的重签名证书，我首先想到的就是更换查询策略，根据命令行文档可以看出，策略有很多种，包括<code>basic, ssl-client ssl-server, smime, eap,ipsec, ichat, codesigning, sys-default, sys-kerberos-kdc, macappstore, appleID</code>。经过尝试，发现策略改成<code>appleID</code>的时候是可以查询到有效证书的。但是这两个命令是有区别的。具体的区别如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % /usr/bin/security find-identity -v -p codesigning</span><br><span class="line">  1) C766972EC48052D14E3A2D715F03960E10B4XXXX <span class="string">&quot;Apple Development: Zhang San (MGRQJNV411)&quot;</span></span><br><span class="line">  2) 8EA5E415105CEE96F75EAFA443B6AC992FC9CCCC <span class="string">&quot;Apple Development: Li Si (SB6BFS5U22)&quot;</span></span><br><span class="line">  3) AEF5450BA48F61EE1B5A718B7563D855E306DDDD <span class="string">&quot;iPhone Developer: Zhang San (MGRQJNV433)&quot;</span></span><br><span class="line">     3 valid identities found</span><br><span class="line">poet@poetdeMacBook-Pro ~ % /usr/bin/security find-identity -v -p appleID    </span><br><span class="line">1.2.840.113635.78.1.30</span><br><span class="line">  1) F87912EA9F939D6F044F1B86A165C5D8AC8CAAAA <span class="string">&quot;com.apple.idms.appleid.prd.5675685073322f516b6a565a55775471374c72424b671234&quot;</span> (CSSMERR_TP_CERT_EXPIRED)</span><br><span class="line">  2) 8751799A43C85FEF3914DE664E2A05251F40BBBB <span class="string">&quot;Mac Developer: Lao Wang (H2C8DTYK00)&quot;</span> (CSSMERR_TP_CERT_EXPIRED)</span><br><span class="line">  3) C766972EC48052D14E3A2D715F03960E10B4CCCC <span class="string">&quot;Apple Development: Zhang San (MGRQJNV411)&quot;</span> (Missing required extension)</span><br><span class="line">  4) 8EA5E415105CEE96F75EAFA443B6AC992FC9DDDD <span class="string">&quot;Apple Development: Li Si (SB6BFS5U22)&quot;</span> (Missing required extension)</span><br><span class="line">  5) AEF5450BA48F61EE1B5A718B7563D855E306EEEE <span class="string">&quot;iPhone Developer: Zhang San (MGRQJNV433)&quot;</span> (Missing required extension)</span><br><span class="line">     5 valid identities found</span><br></pre></td></tr></table></figure>
+<p>经过上面的对比，发现策略是<code>codesigning</code>的时候查询出来的是所有有效的重签名的证书，不包含其他的证书（比如：苹果的idms官方证书、MAC电脑的证书等），但是策略是<code>appleID</code>的时候查询出来的证书一定包含策略<code>codesigning</code>查询出来的证书。所以，当使用策略<code>codesigning</code>无法查询出证书情况的时候，可以考虑把策略换成<code>appleID</code>来查询。所以解决办法就是将<code>codesigning</code>策略换成<code>appleID</code>的策略。</p>
+<h1 id="提交Pull-Request"><a href="#提交Pull-Request" class="headerlink" title="提交Pull Request"></a>提交Pull Request</h1><p>解决这个问题之后，我去github仓库的issue里面看，发现很多人也有类似的问题，我就自己尝试提交了一个<code>Pull Request</code>到作者的仓库，虽然作者很久没有更新了，但是如果后续还有人碰到此问题可以通过类似的办法解决。如何提交<code>Pull Request</code>，我是参考github上的一个帖子，具体步骤如下：</p>
+<h2 id="如何在别人的开源项目中提交自己的Pull-Request"><a href="#如何在别人的开源项目中提交自己的Pull-Request" class="headerlink" title="如何在别人的开源项目中提交自己的Pull Request ?"></a>如何在别人的开源项目中提交自己的Pull Request ?</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1.先在本地创建一个空文件夹,里面准备放克隆过来的代码. --&gt; 我在本地Downloads文件夹下创建了一个名为 gitMessagekit 的文件夹.</span><br><span class="line">2.在<span class="string">&quot;终端&quot;</span>中通过<span class="built_in">cd</span>命令进入到gitMessagekit文件夹下(将<span class="string">&quot;自己电脑的用户名&quot;</span>换成你自己的电脑的用户名). --&gt; <span class="built_in">cd</span> /Users/自己电脑的用户名/3.Downloads/gitMessagekit</span><br><span class="line">3.在<span class="string">&quot;终端&quot;</span>输入克隆命令 git <span class="built_in">clone</span> 开源项目源代码的url. --&gt; git <span class="built_in">clone</span> https://github.com/MessageKit/MessageKit.git</span><br><span class="line">4.进入到克隆所在的文件夹. --&gt; <span class="built_in">cd</span> /Users/自己电脑的用户名/Downloads/gitMessagekit/MessageKit</span><br><span class="line">5.用查看命令查看一下开源项目都有多少个分支. --&gt; git branch -a</span><br><span class="line">6.找到自己要切换的分支,准备切换分支,在这里我要切换到3.0.0-beta分支. --&gt; git checkout remotes/origin/3.0.0-beta</span><br><span class="line">7.基于远程分支新建本地分支(3.0.0-beta),2条命令. --&gt; git branch 3.0.0-beta git checkout 3.0.0-beta</span><br><span class="line">8.打开/Users/自己电脑的用户名/Downloads/gitMessagekit/MessageKit该路径下的代码,对代码进行修改.</span><br><span class="line">9.添加修改. --&gt; git add 你修改的文件</span><br><span class="line">10.提交修改. --&gt; git commit -m <span class="string">&quot;fix 某某问题&quot;</span></span><br><span class="line">11.去自己的git仓库,准备fork一下开源项目MessageKit到自己的仓库(repository)中.</span><br><span class="line">12.即将关联自己fork过的项目. --&gt; git remote add upstream git@github.com:xxjldh/MessageKit.git</span><br><span class="line">13.推送本地的分支(3.0.0-beta)到自己fork过的仓库中,2条命令. --&gt; git fetch origin git merge origin/3.0.0-beta</span><br><span class="line">14.在即将提交时出现这样一个错误,git@github.com: Permission denied (publickey).解决办法(https://www.jianshu.com/p/f22d02c7d943)</span><br><span class="line">15.最后push自己的分支到自己fork过的仓库中. --&gt; git push upstream 3.0.0-beta</span><br><span class="line">16.在开源项目https://github.com/MessageKit/MessageKit.git的pull request中添加自己刚修改过的文件, 点<span class="string">&quot;comment pull request&quot;</span>即可.</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><a href="https://github.com/DavidWanderer/Blog/releases/tag/1.0.0">下载App重签名工具</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pixy/p/4817579.html">Mac Security工具使用总结</a><br><a target="_blank" rel="noopener" href="http://blog.fpliu.com/it/os/macOS/software/security">security命令</a><br><a target="_blank" rel="noopener" href="https://gist.github.com/zxhfighter/62847a087a2a8031fbdf">如何给开源项目贡献代码</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/" class="post-title-link" itemprop="url">iOS 12越狱</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-03 21:25:04" itemprop="dateCreated datePublished" datetime="2021-01-03T21:25:04+08:00">2021-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS%E8%B6%8A%E7%8B%B1/" itemprop="url" rel="index"><span itemprop="name">iOS越狱</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>624</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul>
+<li>1.一台iPhone6 Plus设备，系统版本：iOS 12.4.8。</li>
+<li>2.一台MAC电脑，并且已经安装Xcode或者iTools。</li>
+</ul>
+<h1 id="越狱步骤"><a href="#越狱步骤" class="headerlink" title="越狱步骤"></a>越狱步骤</h1><p>第一步，下载uncOver最新版本ipa文件，前往<a target="_blank" rel="noopener" href="https://unc0ver.dev/">官网下载</a>。uncOver是一个越狱工具，首先在手机上安装这个App，然后打开App，进行越狱。</p>
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/1.png" class="" title="uncOver官网截图">
+
+<p>第二步，下载App重签名工具，前往<a target="_blank" rel="noopener" href="https://dantheman827.github.io/ios-app-signer/">Github下载</a>。</p>
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/2.jpeg" class="" title="AppSigner下载截图">
+
+<p>第三步，根据uncOver官网提示，对第一步下载的ipa文件进行重签名，目的是重签名过后可以直接安装到我们自己的手机里。</p>
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/4.jpg" class="" title="官网破解步骤截图">
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/3.jpg" class="" title="重签名截图">
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/5.jpg" class="" title="重签名完成后的ipa截图">
+
+<p>第四步，将重签名过后的ipa文件安装到手机上，官网建议通过Xcode安装，我使用电脑上的iTools Pro安装，最终安装完成截图如下。</p>
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/6.png" class="" title="安装uncOver截图">
+
+<p>第五步，打开uncOver App，点击<code>Jailbreak</code>按钮，开始越狱。在越狱过程中，可能会提示越狱失败，请重新打开App再次尝试越狱。如果一直重启手机无法继续越狱，请尝试在飞行模式下点击<code>Jailbreak</code>按钮。如果中途弹框提示购买手机壳，请不要理会，越狱程序会一直在操作，不会因为你不购买手机壳就停止越狱哦。如果一直越狱失败，请多多尝试几次。</p>
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/11.png" class="" title="开启uncOver的截图">
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/12.png" class="" title="uncOver破解中的截图">
+
+<p>第六步，越狱完成，会弹出重启手机的Alert。在越狱过程中也可能会多次重启手机。最终破解完成后，手机桌面会出现<code>Cydia</code>App。再次打开uncOver App，原本显示<code>Jailbreak</code>的按钮现在显示<code>Re-Jailbreak</code>。</p>
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/13.png" class="" title="越狱完成后弹框提示重启手机的截图">
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/7.png" class="" title="越狱完成重启手机后的截图">
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/8.png" class="" title="Cydia的截图">
+<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/9.png" class="" title="UncOver显示“Re-Jailbreak”的截图">
+
+
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a target="_blank" rel="noopener" href="https://unc0ver.dev/">unc0ver官网</a><br><a target="_blank" rel="noopener" href="https://dantheman827.github.io/ios-app-signer/">iOS App Signer官网</a><br><a target="_blank" rel="noopener" href="https://mrmad.com.tw/unc0ver-ios12">越獄教學</a><br><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/a948d651b8edaa4b2ccd2e78.html">unc0ver闪退解决方法</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/01/03/%E5%8D%87%E7%BA%A7Big-Sur%E5%90%8E%EF%BC%8Chexo%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2021/01/03/%E5%8D%87%E7%BA%A7Big-Sur%E5%90%8E%EF%BC%8Chexo%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">升级Big Sur后，hexo无法使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-03 15:35:48" itemprop="dateCreated datePublished" datetime="2021-01-03T15:35:48+08:00">2021-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/%E9%80%9A%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">通用</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h1><p>元旦放假期间升级了一下macOS系统，升级到最新的<code>macOS Big Sur 版本11.1</code>之后发现在终端敲<code>hexo clean</code>报错，具体的错误信息如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % hexo clean</span><br><span class="line">zsh: <span class="built_in">command</span> not found: hexo</span><br></pre></td></tr></table></figure>
+<p>网上搜索一下，发现大家也有类似问题，但是具体的情况和我还不太一样。我的电脑上安装了nvm，升级之后发现我电脑上node默认升级到了<code>v11.15.0</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % node -v</span><br><span class="line">v11.15.0</span><br></pre></td></tr></table></figure>
+<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>而每一个node版本都会维护一套自己的<code>bin</code>目录，我发现我自己的电脑上安装了3个不同的node版本，只有<code>v8.11.1</code>这个版本的<code>bin</code>目录下才有<code>hexo</code>的可执行文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % <span class="built_in">cd</span> /Users/poet/.nvm/versions/node/</span><br><span class="line">poet@poetdeMacBook-Pro node % ls</span><br><span class="line">v11.15.0	v7.10.0		v8.11.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在v8.11.1目录下面的bin目录查看到 hexo</span></span><br><span class="line">poet@poetdeMacBook-Pro node % <span class="built_in">cd</span> v8.11.1</span><br><span class="line">poet@poetdeMacBook-Pro v8.11.1 % ls</span><br><span class="line">CHANGELOG.md	README.md	etc		lib</span><br><span class="line">LICENSE		bin		include		share</span><br><span class="line">poet@poetdeMacBook-Pro v8.11.1 % <span class="built_in">cd</span> bin</span><br><span class="line">poet@poetdeMacBook-Pro bin % ls</span><br><span class="line">express	hexo	n	node	npm	npx	nrm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在v7.10.0目录下面的bin目录下没有查看到hexo相关的文件</span></span><br><span class="line">poet@poetdeMacBook-Pro node % <span class="built_in">cd</span> v7.10.0</span><br><span class="line">poet@poetdeMacBook-Pro v7.10.0 % ls</span><br><span class="line">CHANGELOG.md	README.md	etc		lib</span><br><span class="line">LICENSE		bin		include		share</span><br><span class="line">poet@poetdeMacBook-Pro v7.10.0 % <span class="built_in">cd</span> bin</span><br><span class="line">poet@poetdeMacBook-Pro bin % ls</span><br><span class="line">node	npm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在v11.15.0目录下面的bin目录下没有查看到hexo相关的文件</span></span><br><span class="line">poet@poetdeMacBook-Pro node % <span class="built_in">cd</span> v11.15.0</span><br><span class="line">poet@poetdeMacBook-Pro v11.15.0 % ls</span><br><span class="line">bin	include	lib	share</span><br><span class="line">poet@poetdeMacBook-Pro v11.15.0 % <span class="built_in">cd</span> bin</span><br><span class="line">poet@poetdeMacBook-Pro bin % ls</span><br><span class="line">node	npm	npx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>最终我的解决办法是，将<code>v8.11.1/bin/hexo</code>文件连接到<code>/usr/local/bin</code>目录下，在终端输入<code>hexo clean</code>命令时，系统会去<code>/usr/local/bin</code>目录中查找对应的可执行文件，找到<code>hexo</code>后，会连接到<code>v8.11.1/bin/hexo</code>目录下调用hexo可执行文件，最终执行命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro % ln -s /Users/poet/.nvm/versions/node/v8.11.1/bin/hexo /usr/<span class="built_in">local</span>/bin/</span><br></pre></td></tr></table></figure>
+
+<p>执行完成之后，验证一下最终的命令是否有效果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % hexo</span><br><span class="line">Usage: hexo &lt;<span class="built_in">command</span>&gt;</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  <span class="built_in">help</span>     Get <span class="built_in">help</span> on a <span class="built_in">command</span>.</span><br><span class="line">  init     Create a new Hexo folder.</span><br><span class="line">  version  Display version information.</span><br><span class="line"></span><br><span class="line">Global Options:</span><br><span class="line">  --config  Specify config file instead of using _config.yml</span><br><span class="line">  --cwd     Specify the CWD</span><br><span class="line">  --debug   Display all verbose messages <span class="keyword">in</span> the terminal</span><br><span class="line">  --draft   Display draft posts</span><br><span class="line">  --safe    Disable all plugins and scripts</span><br><span class="line">  --silent  Hide output on console</span><br><span class="line"></span><br><span class="line">For more <span class="built_in">help</span>, you can use <span class="string">&#x27;hexo help [command]&#x27;</span> <span class="keyword">for</span> the detailed information</span><br><span class="line">or you can check the docs: http://hexo.io/docs/</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>ln -s 源文件 目标文件</strong> 这个语法是给源文件建立一个软连接，软连接是一个特殊的文件，它包含源文件的具体位置。类似于Windows系统的快捷方式。</p>
+</blockquote>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://ziyubiti.github.io/2019/07/16/HexoCommandNotFound/">Hexo：command not found的问题解决</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kex1n/p/5193826.html">linux 创建连接命令 ln -s 软链接</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/12/03/Transporter%E5%8D%A1%E4%BD%8F%E6%97%A0%E6%B3%95%E4%B8%8A%E4%BC%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/12/03/Transporter%E5%8D%A1%E4%BD%8F%E6%97%A0%E6%B3%95%E4%B8%8A%E4%BC%A0/" class="post-title-link" itemprop="url">Transporter卡住无法上传</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-03 12:16:09" itemprop="dateCreated datePublished" datetime="2020-12-03T12:16:09+08:00">2020-12-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近遇到Transporter上传ipa文件到AppStore Connect的时候一直卡在<strong>正在验证APP - 正在通过App Store进行认证</strong>状态。</p>
+<img src="/Blog/2020/12/03/Transporter%E5%8D%A1%E4%BD%8F%E6%97%A0%E6%B3%95%E4%B8%8A%E4%BC%A0/%E6%AD%A3%E5%9C%A8%E9%AA%8C%E8%AF%81APP.jpg" class="" title="正在验证App截图">
+
+<p>解决办法：<br>1.删除Transporter的缓存目录，具体的目录路径在：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Users/kris/Library/Caches/com.apple.amp.itmstransporter</span><br></pre></td></tr></table></figure>
+
+<p>2.使用命令行进入Transporter目录，执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /Applications/Transporter.app/Contents/itms/bin</span><br><span class="line">$ ./iTMSTransporter</span><br></pre></td></tr></table></figure>
+
+<p>3.当命令行出现以下内容，重新再打开Transporter交付App就可以了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[2020-12-03 12:55:39 CST] &lt;main&gt; DEBUG: Saving configuration to <span class="built_in">local</span> path: /Users/kris/Library/Caches/com.apple.amp.itmstransporter/Defaults.properties</span><br><span class="line">usage: iTMSTransporter [-<span class="built_in">help</span> &lt;arg&gt; | -info | -m &lt;arg&gt; | -version]   [-o &lt;arg&gt;] [-v</span><br><span class="line">       &lt;arg&gt;]  [-WONoPause &lt;arg&gt;] [-Xmx4096m]</span><br><span class="line">iTMSTransporter : iTunes Store Transporter 2.1.0</span><br><span class="line"> -<span class="built_in">help</span> &lt;arg&gt;        Show this <span class="built_in">help</span>.  If a mode value is specified, show <span class="built_in">help</span> specific</span><br><span class="line">                    to that mode.</span><br><span class="line"> -info              The -info option should be used by itself and returns the</span><br><span class="line">                    copyright notice and acknowledgements.</span><br><span class="line"> -m &lt;arg&gt;           The -m option specifies the tool<span class="string">&#x27;s mode.  The valid values are:</span></span><br><span class="line"><span class="string">                    verify, upload, provider, diagnostic, lookupMetadata,</span></span><br><span class="line"><span class="string">                    createArtist, lookupArtist, status, statusAll,</span></span><br><span class="line"><span class="string">                    createMetadataTicket, queryTickets, generateSchema, transferTest,</span></span><br><span class="line"><span class="string">                    downloadMetadataGuides, listReports, requestReport</span></span><br><span class="line"><span class="string"> -o &lt;arg&gt;           The -o option specifies the directory and filename you want to use</span></span><br><span class="line"><span class="string">                    to log output information.  By default, Transporter logs output</span></span><br><span class="line"><span class="string">                    information to standard out. If you specify a filename,</span></span><br><span class="line"><span class="string">                    Transporter logs the output to the specified file, as well as to</span></span><br><span class="line"><span class="string">                    standard out.</span></span><br><span class="line"><span class="string"> -v &lt;arg&gt;           The -v option specifies the level of logging.  The five values</span></span><br><span class="line"><span class="string">                    are: off, detailed, informational, critical, eXtreme.</span></span><br><span class="line"><span class="string"> -version           The -version option should be used by itself and returns the</span></span><br><span class="line"><span class="string">                    version of the tool.</span></span><br><span class="line"><span class="string"> -WONoPause &lt;arg&gt;   The -WONoPause option is only valid on Windows and its value can</span></span><br><span class="line"><span class="string">                    be &#x27;</span><span class="literal">true</span><span class="string">&#x27; or &#x27;</span><span class="literal">false</span><span class="string">&#x27;.  If an error occurs during script execution,</span></span><br><span class="line"><span class="string">                    the process idles because the message &#x27;</span>Press any key...<span class="string">&#x27; is</span></span><br><span class="line"><span class="string">                    displayed on the console and the system awaits a keypress. To</span></span><br><span class="line"><span class="string">                    avoid this behavior, set this property to true</span></span><br><span class="line"><span class="string"> -Xmx4096m          Specifies that you want to change the Java Virtual Machine&#x27;</span>s (JVM)</span><br><span class="line">                    allocated memory by increasing the JVM heap size.  By default,</span><br><span class="line">                    Transporter uses a 2048MB heap size. You can use the -Xmx4096m</span><br><span class="line">                    option to specify a 4-gigabyte (GB) heap size. Apple recommends,</span><br><span class="line">                    <span class="keyword">if</span> needed, increasing the heap size to 4096MB by specifying the</span><br><span class="line">                    -Xmx4096m (or -Xmx4g) option and adjusting as needed.</span><br><span class="line">[2020-12-03 12:55:39 CST] &lt;main&gt; DBG-X: Returning 0</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/" class="post-title-link" itemprop="url">GCD什么情况下会死锁?</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-05 17:22:10" itemprop="dateCreated datePublished" datetime="2020-11-05T17:22:10+08:00">2020-11-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/GCD%E6%AD%BB%E9%94%81.png" class="" title="GCD死锁情景分析图">
+
+<blockquote>
+<p>A serial dispatch queue runs only one task at a time, waiting until that task is complete before dequeuing and starting a new one. By contrast, a concurrent dispatch queue starts as many tasks as it can without waiting for already started tasks to finish.</p>
+</blockquote>
+<h2 id="串行队列-同步-同步"><a href="#串行队列-同步-同步" class="headerlink" title="串行队列-同步-同步"></a>串行队列-同步-同步</h2><p>运行结果：死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：串行队列，同步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod2 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11&quot;</span>);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22&quot;</span>);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/1.png" class="" title="串行队列-同步-同步执行截图">
+
+<h2 id="串行队列-同步-异步"><a href="#串行队列-同步-异步" class="headerlink" title="串行队列-同步-异步"></a>串行队列-同步-异步</h2><p>运行结果：不死锁，同步操作在主线程中执行，异步操作在子线程执行。为什么第一个同步操作没有死锁，因为第一个同步操作在“com.serial”这个队列里，而testMethod10在主队列里，虽然是同步操作，但是二者不属于同一个队列，不会互相阻塞。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：串行队列，同步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod10 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/2.png" class="" title="串行队列-同步-异步执行截图">
+
+<h2 id="串行队列-异步-同步"><a href="#串行队列-异步-同步" class="headerlink" title="串行队列-异步-同步"></a>串行队列-异步-同步</h2><p>运行结果：死锁。打印“22”、“44”的操作已经在串行队列上执行了，此时要求插入打印“33”的操作，这个同步操作造成“com.serial”串行队列死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：串行队列，异步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod5 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/3.png" class="" title="串行队列-异步-同步执行截图">
+
+<h2 id="串行队列-异步-异步"><a href="#串行队列-异步-异步" class="headerlink" title="串行队列-异步-异步"></a>串行队列-异步-异步</h2><p>运行结果：不死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：串行队列，异步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">线程：创建了一个线程。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod8 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/4.png" class="" title="串行队列-异步-异步执行截图">
+
+<h2 id="并发队列-同步-同步"><a href="#并发队列-同步-同步" class="headerlink" title="并发队列-同步-同步"></a>并发队列-同步-同步</h2><p>运行结果：不死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：并发队列，同步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod3 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial.11&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/5.png" class="" title="并发队列-同步-同步执行截图">
+
+<h2 id="并发队列-同步-异步"><a href="#并发队列-同步-异步" class="headerlink" title="并发队列-同步-异步"></a>并发队列-同步-异步</h2><p>运行结果：不死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：并发队列，同步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod11 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial.11&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/6.png" class="" title="并发队列-同步-异步执行截图">
+
+<h2 id="并发队列-异步-同步"><a href="#并发队列-异步-同步" class="headerlink" title="并发队列-异步-同步"></a>并发队列-异步-同步</h2><p>运行结果：不死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：并发队列，异步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod6 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial.11&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/7.png" class="" title="并发队列-异步-同步执行截图">
+
+<h2 id="并发队列-异步-异步"><a href="#并发队列-异步-异步" class="headerlink" title="并发队列-异步-异步"></a>并发队列-异步-异步</h2><p>运行结果：不死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：并发队列，异步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">线程：创建了一个线程。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod9 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial.11&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/8.png" class="" title="并发队列-异步-异步执行截图">
+
+<h2 id="主队列-同步-同步"><a href="#主队列-同步-同步" class="headerlink" title="主队列-同步-同步"></a>主队列-同步-同步</h2><p>运行结果：死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 条件：主队列，同步执行，同步执行。</span></span><br><span class="line"><span class="comment"> 结果：死锁。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod1 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/9.png" class="" title="主队列-同步-同步执行截图">
+
+<h2 id="主队列-同步-异步"><a href="#主队列-同步-异步" class="headerlink" title="主队列-同步-异步"></a>主队列-同步-异步</h2><p>运行结果：死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：主队列，同步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod12 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/10.png" class="" title="主队列-同步-异步执行截图">
+
+<h2 id="主队列-异步-同步"><a href="#主队列-异步-同步" class="headerlink" title="主队列-异步-同步"></a>主队列-异步-同步</h2><p>运行结果：死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：主队列，异步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod4 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/11.png" class="" title="主队列-异步-同步执行截图">
+
+<h2 id="主队列-异步-异步"><a href="#主队列-异步-异步" class="headerlink" title="主队列-异步-异步"></a>主队列-异步-异步</h2><p>运行结果：不死锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：主队列，异步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">线程：主线程执行。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod7 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行截图：</p>
+<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/12.png" class="" title="主队列-异步-异步执行截图">
+
+<p>总结：在并发队列上，无论是同步还是异步都不会发生死锁；主队列上只有异步执行的时候才不会发生死锁；串行队列是否发生死锁需要具体分析。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html">官方文档</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/" class="post-title-link" itemprop="url">SourceTree 回滚项目(本地回滚和远程回滚)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-22 12:23:48" itemprop="dateCreated datePublished" datetime="2020-10-22T12:23:48+08:00">2020-10-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在使用SourceTree来管理Git项目的时候，有时需要回滚项目，具体的回滚操作包含本地回滚和远程回滚。<strong>建议回滚前先做好代码备份。</strong></p>
+<h2 id="本地回滚"><a href="#本地回滚" class="headerlink" title="本地回滚"></a>本地回滚</h2><p>使用命令<code>git reset</code>进行本地回滚操作，本地回滚操作一步即可完成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 回退到指定的提交版本，22f8aae 为某次提交的提交号。</span></span><br><span class="line">$ git reset --hard   22f8aae  </span><br><span class="line"></span><br><span class="line"><span class="comment">#（回退3次提交）</span></span><br><span class="line">$ git reset --hard HEAD~3 //（回退3次提交）</span><br></pre></td></tr></table></figure>
+<p>–hard：本地的源码和本地未提交的源码都会回退到某个版本，包括commit内容，和git自己对代码的索引都会回退到某个版本，any local changes will be lost。<br>–soft：保留源码，只能回退到commit信息到某个版本，不涉及到index的回退，如果还需要提交，直接commit即可。比如我选择soft方式来进行回退，我的本地代码和本地新添加的尚未commit的代码都没有改变。<br>–mixed：会保留源码，只是将git commit和index信息回退到某个版本。</p>
+<h2 id="远程回滚"><a href="#远程回滚" class="headerlink" title="远程回滚"></a>远程回滚</h2><p>远程回滚的操作流程是，先回滚本地操作，然后将本地的修改强行push到远程仓库。具体操作分为以下2步：</p>
+<p>1.在需要回滚的提交记录上<code>右键</code>选择<code>将master重置到这次提交</code>，选择重置（强行合并）到需要回滚的历史节点。</p>
+<img src="/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/1.png" class="" title="回滚本地操作截图">
+
+<p>2.打开终端，cd到项目目录，执行<code>git push origin master -f</code>，即可。<br>origin：远程仓库名<br>master：分支名称<br>-f：force，意为强制、强行</p>
+<p>3.如果出现<code> ! [remote rejected]   master -&gt; master (pre-receive hook declined)</code>错误，需要去gitlab网站去除master分支保护，才可以强制推送。<br>具体错误信息如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master -f</span><br><span class="line">总共 0 （差异 0），复用 0 （差异 0）</span><br><span class="line">remote: GitLab: You are not allowed to force push code to a protected branch on this project.</span><br><span class="line">To https://test.com.cn/test.git</span><br><span class="line"> ! [remote rejected]   master -&gt; master (pre-receive hook declined)</span><br><span class="line">error: 推送一些引用到 <span class="string">&#x27;https://test.com.cn/test.git&#x27;</span> 失败</span><br></pre></td></tr></table></figure>
+<p>需要去到gitlab的网站上去除master分支保护。</p>
+<img src="/Blog/2020/10/22/SourceTree-%E5%9B%9E%E6%BB%9A%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E6%BB%9A%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%9B%9E%E6%BB%9A/2.png" class="" title="去除master分支保护截图">
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lovesummerforever/article/details/71526900">git 远程代码回滚master</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012373815/article/details/78142806">使用sourceTree回滚git代码到历史节点</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/09/23/iOS%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/09/23/iOS%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">iOS定时器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-23 23:02:50" itemprop="dateCreated datePublished" datetime="2020-09-23T23:02:50+08:00">2020-09-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="NSTimer如何使用"><a href="#NSTimer如何使用" class="headerlink" title="NSTimer如何使用"></a>NSTimer如何使用</h2><blockquote>
+<p>方法1: Creates a timer and schedules it on the current run loop in the default mode.</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSTimer</span> *)scheduledTimerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)ti </span><br><span class="line">                                     target:(<span class="keyword">id</span>)aTarget </span><br><span class="line">                                   selector:(SEL)aSelector </span><br><span class="line">                                   userInfo:(<span class="keyword">id</span>)userInfo </span><br><span class="line">                                    repeats:(<span class="built_in">BOOL</span>)yesOrNo;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>方法2: Initializes a timer object with the specified object and selector.</p>
+</blockquote>
+<blockquote>
+<p>You must add the new timer to a run loop, using <strong>addTimer:forMode:</strong>. Then, after ti seconds have elapsed, the timer fires, sending the message aSelector to target. (If the timer is configured to repeat, there is no need to subsequently re-add the timer to the run loop.)</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSTimer</span> *)timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)ti </span><br><span class="line">                            target:(<span class="keyword">id</span>)aTarget </span><br><span class="line">                          selector:(SEL)aSelector </span><br><span class="line">                          userInfo:(<span class="keyword">id</span>)userInfo </span><br><span class="line">                           repeats:(<span class="built_in">BOOL</span>)yesOrNo;</span><br><span class="line"></span><br><span class="line">[[<span class="built_in">NSRunLoop</span> mainRunLoop] addTimer:<span class="keyword">self</span>.timer forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</span><br></pre></td></tr></table></figure>
+
+<p>这两个方法是等价的，区别是第一个方法默认创建了一个NSTimer并自动添加到了当前线程的Runloop中去，第二个需要我们手动添加。如果当前线程是主线程的话，某些UI事件，比如UIScrollView的拖拽操作，会将Runloop切换成UITrackingRunLoopMode,这时候，默认的NSDefaultRunLoopMode模式中注册的事件是不会被执行的。所以为了设置一个不会被UI干扰的Timer，我们需要手动将timer的当前RunloopMode设置为NSRunLoopCommonModes，这个模式等效于NSDefaultRunLoopMode和UITrackingRunLoopMode的结合。</p>
+<p>由于NSTimer会强引用Target，RunLoop会强引用NSTimer，若ViewController再强引用NSTimer，NSTimer找不到合适的时机释放的时候，很容易造成内存泄漏，这个问题如何解决？</p>
+<h2 id="如何解决NSTimer找不到释放时机的问题？"><a href="#如何解决NSTimer找不到释放时机的问题？" class="headerlink" title="如何解决NSTimer找不到释放时机的问题？"></a>如何解决NSTimer找不到释放时机的问题？</h2><h2 id="方案1，使用官方API带Block的方式来创建NSTimer"><a href="#方案1，使用官方API带Block的方式来创建NSTimer" class="headerlink" title="方案1，使用官方API带Block的方式来创建NSTimer"></a>方案1，使用官方API带Block的方式来创建NSTimer</h2><p>具体的创建方法如下，但是仅支持iOS 10以上的系统。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSTimer</span> *)timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)interval repeats:(<span class="built_in">BOOL</span>)repeats block:(<span class="keyword">void</span> (^)(<span class="built_in">NSTimer</span> *timer))block API_AVAILABLE(macosx(<span class="number">10.12</span>), ios(<span class="number">10.0</span>), watchos(<span class="number">3.0</span>), tvos(<span class="number">10.0</span>));</span><br></pre></td></tr></table></figure>
+
+<p>在ViewController中的使用方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>)weakSelf = <span class="keyword">self</span>;</span><br><span class="line"><span class="keyword">self</span>.timer = [<span class="built_in">NSTimer</span> timerWithTimeInterval:<span class="number">1.0</span> repeats:<span class="literal">YES</span> block:^(<span class="built_in">NSTimer</span> * _Nonnull timer) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;第%ld次执行&quot;</span>, (<span class="keyword">long</span>)weakSelf.count);</span><br><span class="line">    weakSelf.count ++;</span><br><span class="line">&#125;];</span><br><span class="line">[[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:<span class="keyword">self</span>.timer forMode:<span class="built_in">NSRunLoopCommonModes</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案2，使用Block的方式来创建NSTimer"><a href="#方案2，使用Block的方式来创建NSTimer" class="headerlink" title="方案2，使用Block的方式来创建NSTimer"></a>方案2，使用Block的方式来创建NSTimer</h2><p>具体实现方式是，需要创建一个NSTimer的分类，让外部传入一个Block，NSTimer每次到时间就执行传入进来的Block。新建一个分类：<br>NSTimer+BlockSupport.h </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSTimer</span> (<span class="title">BlockSupport</span>)</span></span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSTimer</span> *)cd_timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)interval</span><br><span class="line">                                       repeats:(<span class="built_in">BOOL</span>)repeats</span><br><span class="line">                                         block:(<span class="keyword">void</span>(^)(<span class="keyword">void</span>))block;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+
+<p>NSTimer+BlockSupport.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;NSTimer+BlockSupport.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSTimer</span> (<span class="title">BlockSupport</span>)</span></span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSTimer</span> *)cd_timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)interval</span><br><span class="line">                              repeats:(<span class="built_in">BOOL</span>)repeats</span><br><span class="line">                                block:(<span class="keyword">void</span>(^)(<span class="keyword">void</span>))block &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> scheduledTimerWithTimeInterval:interval</span><br><span class="line">                                         target:<span class="keyword">self</span></span><br><span class="line">                                       selector:<span class="keyword">@selector</span>(cd_blockInvoke:)</span><br><span class="line">                                       userInfo:[block <span class="keyword">copy</span>]</span><br><span class="line">                                        repeats:repeats];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">void</span>)cd_blockInvoke:(<span class="built_in">NSTimer</span> *)timer &#123;</span><br><span class="line">    <span class="keyword">void</span> (^block)(<span class="keyword">void</span>) = timer.userInfo;</span><br><span class="line">    <span class="keyword">if</span>(block) &#123;</span><br><span class="line">        block();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>在ViewController中使用方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>)weakSelf = <span class="keyword">self</span>;</span><br><span class="line"><span class="keyword">self</span>.timer = [<span class="built_in">NSTimer</span> cd_timerWithTimeInterval:<span class="number">1.0</span> repeats:<span class="literal">YES</span> block:^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;第%ld次执行&quot;</span>, (<span class="keyword">long</span>)weakSelf.count);</span><br><span class="line">    weakSelf.count ++;</span><br><span class="line">&#125;];</span><br><span class="line">[[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:<span class="keyword">self</span>.timer forMode:<span class="built_in">NSRunLoopCommonModes</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案3，自定义NSTimer的Target"><a href="#方案3，自定义NSTimer的Target" class="headerlink" title="方案3，自定义NSTimer的Target"></a>方案3，自定义NSTimer的Target</h2><p>封装自定义NSTimer的Target和NSTimer的工具类，让NSTimer在合适的时机释放。<br>CDTimerTarget.h</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CDTimerTarget</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 目标对象</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">weak</span>) <span class="keyword">id</span> target;</span><br><span class="line"><span class="comment">// 目标方法</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) SEL selector;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+
+<p>CDTimerTarget.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;CDTimerTarget.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">CDTimerTarget</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)fire:(<span class="built_in">NSTimer</span> *)timer &#123;</span><br><span class="line">    <span class="comment">// target为弱引用,所以当target对象销毁时,target 为nil</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.target) &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic push</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic ignored <span class="meta-string">&quot;-Warc-performSelector-leaks&quot;</span></span></span><br><span class="line">        [<span class="keyword">self</span>.target performSelector:<span class="keyword">self</span>.selector withObject:timer.userInfo];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic pop</span></span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        [timer invalidate];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>CDTimer.h</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CDTimer</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSTimer</span> *)scheduleTimerWithTimerInterval:(<span class="built_in">NSTimeInterval</span>)interval</span><br><span class="line">                                     target:(<span class="keyword">id</span>)aTarget</span><br><span class="line">                                   selector:(SEL)aSelector</span><br><span class="line">                                   userInfo:(<span class="keyword">id</span>)userInfo</span><br><span class="line">                                    repeats:(<span class="built_in">BOOL</span>)repeats;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+
+<p>CDTimer.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;CDTimer.h&quot;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&quot;CDTimerTarget.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">CDTimer</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSTimer</span> *)scheduleTimerWithTimerInterval:(<span class="built_in">NSTimeInterval</span>)interval</span><br><span class="line">                                     target:(<span class="keyword">id</span>)aTarget</span><br><span class="line">                                   selector:(SEL)aSelector</span><br><span class="line">                                   userInfo:(<span class="keyword">id</span>)userInfo</span><br><span class="line">                                    repeats:(<span class="built_in">BOOL</span>)repeats &#123;</span><br><span class="line">    </span><br><span class="line">    CDTimerTarget *timerTarget = [[CDTimerTarget alloc]init];</span><br><span class="line">    timerTarget.target = aTarget;</span><br><span class="line">    timerTarget.selector = aSelector;</span><br><span class="line">    <span class="built_in">NSTimer</span> *timer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:interval</span><br><span class="line">                                                      target:timerTarget</span><br><span class="line">                                                    selector:<span class="keyword">@selector</span>(fire:)</span><br><span class="line">                                                    userInfo:userInfo</span><br><span class="line">                                                     repeats:repeats];</span><br><span class="line">    <span class="keyword">return</span> timer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>在ViewController中的用法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.timer = [CDTimer scheduleTimerWithTimerInterval:<span class="number">1.0</span> target:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(repeatAction) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案4，自定义NSProxy子类，作为NSTimer的Target"><a href="#方案4，自定义NSProxy子类，作为NSTimer的Target" class="headerlink" title="方案4，自定义NSProxy子类，作为NSTimer的Target"></a>方案4，自定义NSProxy子类，作为NSTimer的Target</h2><img src="/Blog/2020/09/23/iOS%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9B%B8%E5%85%B3/1.png" class="" title="NSProxy原理图">
+
+<p>TargetProxy.h</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TargetProxy</span> : <span class="title">NSProxy</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)proxyWithTarget:(<span class="keyword">id</span>)target;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+
+<p>TargetProxy.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;TargetProxy.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TargetProxy</span>()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//target, 这里必须要用weak, 因为某个对象会强引TimeProxy对象, TimeProxy对象不能再强引target, 否则会形成循环引用</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>)<span class="keyword">id</span> target;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">TargetProxy</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)proxyWithTarget:(<span class="keyword">id</span>)target &#123;</span><br><span class="line">    TargetProxy *proxy = [[<span class="keyword">self</span> <span class="keyword">class</span>] alloc];</span><br><span class="line">    proxy.target = target;</span><br><span class="line">    <span class="keyword">return</span> proxy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取target类中的sel方法的方法签名</span></span><br><span class="line">- (<span class="built_in">NSMethodSignature</span> *)methodSignatureForSelector:(SEL)sel &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span>.target methodSignatureForSelector:sel];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)forwardInvocation:(<span class="built_in">NSInvocation</span> *)invocation &#123;</span><br><span class="line">    <span class="comment">//判断target是否实现了该方法</span></span><br><span class="line">    <span class="keyword">if</span> ([<span class="keyword">self</span>.target respondsToSelector:invocation.selector]) &#123;</span><br><span class="line">        <span class="comment">//让target调用该方法</span></span><br><span class="line">        [invocation invokeWithTarget:<span class="keyword">self</span>.target];</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//找不到该方法</span></span><br><span class="line">        [invocation doesNotRecognizeSelector:invocation.selector];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>在ViewController中的使用方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.timer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">1.0</span> target:[TargetProxy proxyWithTarget:<span class="keyword">self</span>] selector:<span class="keyword">@selector</span>(repeatAction) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/foundation/nstimer">NSTimer</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/73cd476ec3f0">NSProxy解决NSTimer和CADisplayLink的循环引用</a></p>
+<p>《Effective Objective-C 2.0 编写高质量iOS与OS X代码的52个有效方法》</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/Blog/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/Blog/page/6/">6</a><a class="extend next" rel="next" href="/Blog/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">David的博客</p>
+  <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives/">
+        
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/Blog/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/Blog/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">David的博客</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">240k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:38</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  
+<script src="/Blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  
+
+  <script async src="/Blog/js/cursor/love.min.js"></script>
+
+</body>
+</html>

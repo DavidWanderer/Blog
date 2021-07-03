@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1.什么是vsftpdvsftpd是一款在Linux发行版中最受推崇的FTP服务器程序。特点是小巧轻快，安全易用。vsftpd 的名字代表”very secure FTP daemon”, 安全是它的开发者 Chris Evans 考虑的首要问题之一。在这个 FTP 服务器设计开发的最开始的时候，高安全性就是一个目标。 2.查看当前服务器是否安装过1$ rpm -qa|grep vsftp 如果显">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下安装FTP">
+<meta property="og:url" content="https://github.com/DavidWanderer/Blog/2019/08/24/Linux%E4%B8%8B%E5%AE%89%E8%A3%85FTP/index.html">
+<meta property="og:site_name" content="Stay hungry, Stay foolish.">
+<meta property="og:description" content="1.什么是vsftpdvsftpd是一款在Linux发行版中最受推崇的FTP服务器程序。特点是小巧轻快，安全易用。vsftpd 的名字代表”very secure FTP daemon”, 安全是它的开发者 Chris Evans 考虑的首要问题之一。在这个 FTP 服务器设计开发的最开始的时候，高安全性就是一个目标。 2.查看当前服务器是否安装过1$ rpm -qa|grep vsftp 如果显">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-24T08:25:29.000Z">
+<meta property="article:modified_time" content="2021-04-15T16:09:02.779Z">
+<meta property="article:author" content="David的博客">
+<meta property="article:tag" content="FTP">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/DavidWanderer/Blog/2019/08/24/Linux%E4%B8%8B%E5%AE%89%E8%A3%85FTP/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Linux下安装FTP | Stay hungry, Stay foolish.</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Stay hungry, Stay foolish.</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/Blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/Blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/08/24/Linux%E4%B8%8B%E5%AE%89%E8%A3%85FTP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux下安装FTP
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-24 16:25:29" itemprop="dateCreated datePublished" datetime="2019-08-24T16:25:29+08:00">2019-08-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/FTP/" itemprop="url" rel="index"><span itemprop="name">FTP</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-什么是vsftpd"><a href="#1-什么是vsftpd" class="headerlink" title="1.什么是vsftpd"></a>1.什么是vsftpd</h2><p>vsftpd是一款在Linux发行版中最受推崇的FTP服务器程序。特点是小巧轻快，安全易用。<br>vsftpd 的名字代表”very secure FTP daemon”, 安全是它的开发者 Chris Evans 考虑的首要问题之一。在这个 FTP 服务器设计开发的最开始的时候，高安全性就是一个目标。</p>
+<h2 id="2-查看当前服务器是否安装过"><a href="#2-查看当前服务器是否安装过" class="headerlink" title="2.查看当前服务器是否安装过"></a>2.查看当前服务器是否安装过</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rpm -qa|grep vsftp</span><br></pre></td></tr></table></figure>
+<p>如果显示版本号，说明安装成功，如果没有安装文件，什么都不显示，说明没有安装或者其他情况。也可以通过which vsftp检查是否有ftp的安装文件。</p>
+<h2 id="3-安装FTP"><a href="#3-安装FTP" class="headerlink" title="3.安装FTP"></a>3.安装FTP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum -y install vsftpd</span><br></pre></td></tr></table></figure>
+<p>安装完后，有/etc/vsftpd/vsftpd.conf 文件，是vsftp的配置文件。还新建了一个ftp用户和ftp的组，指向home目录为/var/ftp,默认是nologin（不能登录系统）。可以用cat /etc/passwd 命令查看用户。</p>
+<h2 id="4-启动ftp，执行命令"><a href="#4-启动ftp，执行命令" class="headerlink" title="4.启动ftp，执行命令"></a>4.启动ftp，执行命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service vsftpd start</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="5-查看ftp的状态"><a href="#5-查看ftp的状态" class="headerlink" title="5.查看ftp的状态"></a>5.查看ftp的状态</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service vsftpd status</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="6-安装ftp客户端组件（用来验证登录vsftpd）"><a href="#6-安装ftp客户端组件（用来验证登录vsftpd）" class="headerlink" title="6.安装ftp客户端组件（用来验证登录vsftpd）"></a>6.安装ftp客户端组件（用来验证登录vsftpd）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum -y install ftp</span></span><br></pre></td></tr></table></figure>
+<p>执行命令尝试登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ftp localhost</span></span><br></pre></td></tr></table></figure>
+<p>输入用户名ftp，密码随便（因为默认是允许匿名的）<br>登录成功，就代表ftp服务可用了。<br>但是，外网是访问不了的，所以还要继续配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ftp localhost</span></span><br><span class="line">Trying ::1...</span><br><span class="line">ftp: connect to address ::1拒绝连接</span><br><span class="line">Trying 127.0.0.1...</span><br><span class="line">Connected to localhost (127.0.0.1).</span><br><span class="line">220 (vsFTPd 2.2.2)</span><br><span class="line">Name (localhost:root): ftp</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system <span class="built_in">type</span> is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line">ftp&gt; ls</span><br><span class="line">227 Entering Passive Mode (127,0,0,1,177,184).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">drwxr-xr-x    2 0        0            4096 Mar 22  2017 pub</span><br><span class="line">226 Directory send OK.</span><br><span class="line">ftp&gt; </span><br></pre></td></tr></table></figure>
+
+
+<h2 id="7-添加一个ftp用户"><a href="#7-添加一个ftp用户" class="headerlink" title="7.添加一个ftp用户"></a>7.添加一个ftp用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># useradd ftpuser</span></span><br></pre></td></tr></table></figure>
+<p>此用户就是用来登录ftp服务器用的。<br>这样一个用户建完，可以用这个登录，记得用普通登录不要用匿名了。登录后默认的路径为 /home/ftpuser.</p>
+<h2 id="8-给ftp用户添加密码"><a href="#8-给ftp用户添加密码" class="headerlink" title="8.给ftp用户添加密码"></a>8.给ftp用户添加密码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># passwd ftpuser</span></span><br></pre></td></tr></table></figure>
+<p>输入两次密码后修改密码。</p>
+<h2 id="9-关闭匿名登录"><a href="#9-关闭匿名登录" class="headerlink" title="9.关闭匿名登录"></a>9.关闭匿名登录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure>
+<p>设置anonymous_enable=NO。</p>
+<h2 id="10-重启ftp服务"><a href="#10-重启ftp服务" class="headerlink" title="10.重启ftp服务"></a>10.重启ftp服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># service vsftpd restart</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="11-开启passive模式"><a href="#11-开启passive模式" class="headerlink" title="11.开启passive模式"></a>11.开启passive模式</h2><p>默认是开启的，但是要指定一个端口范围，打开vsftpd.conf文件，在后面加上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pasv_min_port=30000   </span><br><span class="line">pasv_max_port=30999  </span><br></pre></td></tr></table></figure>
+<p>表示端口范围为30000~30999，这个可以随意改。改完重启一下vsftpd。</p>
+<h2 id="12-修改ftp默认的端口号"><a href="#12-修改ftp默认的端口号" class="headerlink" title="12.修改ftp默认的端口号"></a>12.修改ftp默认的端口号</h2><p>常规下21端口容易遭到别人的扫描、带来了一定程度的不安全。所以，最好的就是把21端口修改掉。默认修改为6069。</p>
+<h2 id="12-1-修改vsftp的配置文件"><a href="#12-1-修改vsftp的配置文件" class="headerlink" title="12.1 修改vsftp的配置文件"></a>12.1 修改vsftp的配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure>
+<p>在原来的基础上加上：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">listen_port=6069</span><br><span class="line"></span><br><span class="line">pasv_enable=YES</span><br><span class="line"></span><br><span class="line">pasv_min_port=30000</span><br><span class="line"></span><br><span class="line">pasv_max_port=30999</span><br><span class="line"></span><br><span class="line">pasv_promiscuous=YES</span><br><span class="line"></span><br><span class="line">ftpd_banner=Welcome to Wander FTP service</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-2-修改-etc-services"><a href="#12-2-修改-etc-services" class="headerlink" title="12.2 修改/etc/services"></a>12.2 修改/etc/services</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/services</span><br></pre></td></tr></table></figure>
+<p>修改成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ftp             6069/tcp</span><br><span class="line">ftp             6069/udp</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-3-修改防火墙规则"><a href="#12-3-修改防火墙规则" class="headerlink" title="12.3 修改防火墙规则"></a>12.3 修改防火墙规则</h2><p>如果防火墙开启、并且做了端口限制、请添加相应的规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 30000:30999 -j ACCEPT</span><br><span class="line">-A INPUT -p udp -m state --state NEW -m udp --dport 6069 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 6069 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-4-重启服务"><a href="#12-4-重启服务" class="headerlink" title="12.4 重启服务"></a>12.4 重启服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># service iptables restart</span></span><br><span class="line"><span class="comment"># service vsftpd restart</span></span><br></pre></td></tr></table></figure>
+<p>然后就可以通过客户端6069端口连接ftp（选择被动模式连接）。</p>
+<h2 id="13-配置-vsftpd-使用-SSL-TLS"><a href="#13-配置-vsftpd-使用-SSL-TLS" class="headerlink" title="13.配置 vsftpd 使用 SSL / TLS"></a>13.配置 vsftpd 使用 SSL / TLS</h2><h2 id="13-1-检查-vsftpd-是否支持-ssl-模块"><a href="#13-1-检查-vsftpd-是否支持-ssl-模块" class="headerlink" title="13.1 检查 vsftpd 是否支持 ssl 模块"></a>13.1 检查 vsftpd 是否支持 ssl 模块</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ldd $(which vsftpd) | grep ssl</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-2-建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方-etc-pki-tls-certs-。"><a href="#13-2-建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方-etc-pki-tls-certs-。" class="headerlink" title="13.2 建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方/etc/pki/tls/certs/。"></a>13.2 建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方/etc/pki/tls/certs/。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd /etc/pki/tls/certs</span></span><br></pre></td></tr></table></figure>
+<p>生成密钥文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make vsftpd.pem</span></span><br></pre></td></tr></table></figure>
+<p>复制证书到vsftpd目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cp -a vsftpd.pem /etc/vsftpd/</span></span><br><span class="line"><span class="comment"># ll /etc/vsftpd/vsftpd.pem</span></span><br></pre></td></tr></table></figure>
+
+<p>证书配置解析：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Country Name (2 letter code) [XX]:CN                            国家名称(2个字母代码)[XX]:CN</span><br><span class="line">State or Province Name (full name) []:CHINA                     国家或省名(全称)[]:中国</span><br><span class="line">Locality Name (eg, city) [Default City]:CHINA                   地名(如城市)[默认城市]:中国</span><br><span class="line">Organization Name (eg, company) [Default Company Ltd]:ORG       组织名称(如公司)[默认公司有限公司]:ORG</span><br><span class="line">Organizational Unit Name (eg, section) []:ORG                   组织单元名称(例如，节)[]:ORG</span><br><span class="line">Common Name (eg, your name or your server<span class="string">&#x27;s hostname) []:NAME   常用名称(例如，您的名称或服务器的主机名)[]:Name</span></span><br><span class="line"><span class="string">Email Address []:EMAIL@163.com                                  电子邮件地址[]:EMAIL@163.com</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-3-修改-vsftpd-conf-配置文件"><a href="#13-3-修改-vsftpd-conf-配置文件" class="headerlink" title="13.3 修改 vsftpd.conf 配置文件"></a>13.3 修改 vsftpd.conf 配置文件</h2><p>停止服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># service vsftpd stop</span></span><br></pre></td></tr></table></figure>
+<p>在最后加上以下配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ssl_enable=YES</span><br><span class="line">allow_anon_ssl=YES</span><br><span class="line">force_anon_data_ssl=YES</span><br><span class="line">force_anon_logins_ssl=YES</span><br><span class="line">force_local_data_ssl=YES</span><br><span class="line">force_local_logins_ssl=YES</span><br><span class="line">ssl_tlsv1=YES</span><br><span class="line">rsa_cert_file=/etc/vsftpd/vsftpd.pem</span><br></pre></td></tr></table></figure>
+
+<p>配置解析：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###SSL#####</span></span><br><span class="line"><span class="comment"># 是否启用SSL，默认值：NO</span></span><br><span class="line">ssl_enable=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 活动。如果设置为YES，匿名用户将被允许使用安全的SSL连接</span></span><br><span class="line">默认值：NO</span><br><span class="line">allow_anon_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有匿名登录将被强制使用安全的SSL连接，以便在数据连接上发送和接收数据。默认值：NO</span></span><br><span class="line">force_anon_data_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有匿名登录将被强制使用安全的SSL连接以发送密码。默认值：NO</span></span><br><span class="line">force_anon_logins_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有非匿名登录将被强制使用安全的SSL连接，以便在数据连接上发送和接收数据。默认值：YES</span></span><br><span class="line">force_local_data_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果激活，所有非匿名登录将被强制使用安全的SSL连接以发送密码。默认值：YES</span></span><br><span class="line">force_local_logins_ssl=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许TLS v1协议连接。TLS v1连接是首选。默认值：YES</span></span><br><span class="line">ssl_tlsv1=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许SSL v2协议连接。TLS v1连接是首选。默认值：NO</span></span><br><span class="line"><span class="comment">#ssl_sslv2=NO</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 仅适用于 ssl_enable 激活。如果启用，此选项将允许SSL v3协议连接。TLS v1连接是首选。默认值：NO</span></span><br><span class="line"><span class="comment">#ssl_sslv3=NO</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 选项指定用于SSL加密连接的RSA证书的位置。默认值：/usr/share/ssl/certs/vsftpd.pem</span></span><br><span class="line">rsa_cert_file=/etc/vsftpd/vsftpd.pem</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-4-最后保存，重启服务就OK了"><a href="#13-4-最后保存，重启服务就OK了" class="headerlink" title="13.4 最后保存，重启服务就OK了"></a>13.4 最后保存，重启服务就OK了</h2><p>启动服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd start</span><br></pre></td></tr></table></figure>
+<p>重启服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-5-连接-Vsftpd"><a href="#13-5-连接-Vsftpd" class="headerlink" title="13.5 连接 Vsftpd"></a>13.5 连接 Vsftpd</h2><p>在连接的时候勾选信任证书就行。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/csdn_lqr/article/details/53333946">Linux安装ftp组件(8步完成)</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/lizexing1/article/details/79308961">小白教程：linux下安装FTP的过程和使用的整体过程</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chenmh/p/5365274.html">Linux 搭建FTP服务器</a><br><a target="_blank" rel="noopener" href="https://www.kancloud.cn/chandler/bc-linux/52710">centos启用ftp功能</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/caihuashen/article/details/80306131">修改ftp默认端口</a><br><a target="_blank" rel="noopener" href="https://blog.51cto.com/13481789/2366720">”不安全的服务器，不支持 FTP over TLS“ 配置 vsftpd 使用 SSL / TLS</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/FTP/" rel="tag"># FTP</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/2019/08/24/Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/" rel="prev" title="Git服务器搭建">
+      <i class="fa fa-chevron-left"></i> Git服务器搭建
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Blog/2019/11/07/iOS%E4%BD%BF%E7%94%A8SVG%E5%92%8CPDF%E5%9B%BE%E7%89%87/" rel="next" title="iOS使用SVG和PDF图片">
+      iOS使用SVG和PDF图片 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFvsftpd"><span class="nav-number">1.</span> <span class="nav-text">1.什么是vsftpd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E8%BF%87"><span class="nav-number">2.</span> <span class="nav-text">2.查看当前服务器是否安装过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85FTP"><span class="nav-number">3.</span> <span class="nav-text">3.安装FTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%90%AF%E5%8A%A8ftp%EF%BC%8C%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">4.启动ftp，执行命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%9F%A5%E7%9C%8Bftp%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">5.</span> <span class="nav-text">5.查看ftp的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%AE%89%E8%A3%85ftp%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BB%84%E4%BB%B6%EF%BC%88%E7%94%A8%E6%9D%A5%E9%AA%8C%E8%AF%81%E7%99%BB%E5%BD%95vsftpd%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">6.安装ftp客户端组件（用来验证登录vsftpd）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AAftp%E7%94%A8%E6%88%B7"><span class="nav-number">7.</span> <span class="nav-text">7.添加一个ftp用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E7%BB%99ftp%E7%94%A8%E6%88%B7%E6%B7%BB%E5%8A%A0%E5%AF%86%E7%A0%81"><span class="nav-number">8.</span> <span class="nav-text">8.给ftp用户添加密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E5%85%B3%E9%97%AD%E5%8C%BF%E5%90%8D%E7%99%BB%E5%BD%95"><span class="nav-number">9.</span> <span class="nav-text">9.关闭匿名登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E9%87%8D%E5%90%AFftp%E6%9C%8D%E5%8A%A1"><span class="nav-number">10.</span> <span class="nav-text">10.重启ftp服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%BC%80%E5%90%AFpassive%E6%A8%A1%E5%BC%8F"><span class="nav-number">11.</span> <span class="nav-text">11.开启passive模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E4%BF%AE%E6%94%B9ftp%E9%BB%98%E8%AE%A4%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="nav-number">12.</span> <span class="nav-text">12.修改ftp默认的端口号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-1-%E4%BF%AE%E6%94%B9vsftp%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">13.</span> <span class="nav-text">12.1 修改vsftp的配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-2-%E4%BF%AE%E6%94%B9-etc-services"><span class="nav-number">14.</span> <span class="nav-text">12.2 修改&#x2F;etc&#x2F;services</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-3-%E4%BF%AE%E6%94%B9%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99"><span class="nav-number">15.</span> <span class="nav-text">12.3 修改防火墙规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-4-%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1"><span class="nav-number">16.</span> <span class="nav-text">12.4 重启服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E9%85%8D%E7%BD%AE-vsftpd-%E4%BD%BF%E7%94%A8-SSL-TLS"><span class="nav-number">17.</span> <span class="nav-text">13.配置 vsftpd 使用 SSL &#x2F; TLS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-1-%E6%A3%80%E6%9F%A5-vsftpd-%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81-ssl-%E6%A8%A1%E5%9D%97"><span class="nav-number">18.</span> <span class="nav-text">13.1 检查 vsftpd 是否支持 ssl 模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-2-%E5%BB%BA%E7%AB%8B%E4%B8%93%E9%97%A8%E7%BB%99vsftpd%E4%BD%BF%E7%94%A8%E7%9A%84%E5%87%AD%E8%AF%81%E6%95%B0%E6%8D%AE%E3%80%82CentOS%E6%9C%89%E4%B8%80%E4%B8%AA%E5%BB%BA%E7%AB%8B%E5%87%AD%E8%AF%81%E7%9A%84%E5%9C%B0%E6%96%B9-etc-pki-tls-certs-%E3%80%82"><span class="nav-number">19.</span> <span class="nav-text">13.2 建立专门给vsftpd使用的凭证数据。CentOS有一个建立凭证的地方&#x2F;etc&#x2F;pki&#x2F;tls&#x2F;certs&#x2F;。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-3-%E4%BF%AE%E6%94%B9-vsftpd-conf-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">20.</span> <span class="nav-text">13.3 修改 vsftpd.conf 配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-4-%E6%9C%80%E5%90%8E%E4%BF%9D%E5%AD%98%EF%BC%8C%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1%E5%B0%B1OK%E4%BA%86"><span class="nav-number">21.</span> <span class="nav-text">13.4 最后保存，重启服务就OK了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-5-%E8%BF%9E%E6%8E%A5-Vsftpd"><span class="nav-number">22.</span> <span class="nav-text">13.5 连接 Vsftpd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">23.</span> <span class="nav-text">参考链接:</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">David的博客</p>
+  <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives/">
+        
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/Blog/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/Blog/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">David的博客</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">240k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:38</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  
+<script src="/Blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ce086645462b7a1b8271',
+      clientSecret: '1d47ffa5ff3b39018245b87fd35ce20630d9a608',
+      repo        : 'Blog',
+      owner       : 'DavidWanderer',
+      admin       : ['DavidWanderer'],
+      id          : 'ce1f8936dc7bc864c284874809683868',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+
+  
+
+  <script async src="/Blog/js/cursor/love.min.js"></script>
+
+</body>
+</html>
