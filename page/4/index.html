@@ -186,6 +186,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/19/Vue%E6%89%93%E5%8C%85%E6%8A%A5%E9%94%99Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/03/19/Vue%E6%89%93%E5%8C%85%E6%8A%A5%E9%94%99Error-webpack-optimize-UglifyJsPlugin-has-been-removed-please-use-config-optimization-minimize-instead/" class="post-title-link" itemprop="url">Vue打包报错Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-19 13:43:16" itemprop="dateCreated datePublished" datetime="2020-03-19T13:43:16+08:00">2020-03-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用命令<code>npm run build</code>进行生产构建时，报错<code>Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</code>，详细的错误信息如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">^CHu-YupingdeMacBook-Pro:demo2 kris$ npm run build</span><br><span class="line"></span><br><span class="line">&gt; demo2@1.0.0 build /Users/kris/Documents/VueDemo/chapter4/demo2</span><br><span class="line">&gt; cross-env NODE_ENV=production webpack --progress --hide-modules</span><br><span class="line"></span><br><span class="line">/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:93</span><br><span class="line">				throw err;</span><br><span class="line">				^</span><br><span class="line"></span><br><span class="line">Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.</span><br><span class="line">    at Object.get [as UglifyJsPlugin] (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack/lib/webpack.js:189:10)</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter4/demo2/webpack.config.js:68:26)</span><br><span class="line">    at Module._compile (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)</span><br><span class="line">    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)</span><br><span class="line">    at Module.load (internal/modules/cjs/loader.js:600:32)</span><br><span class="line">    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)</span><br><span class="line">    at Function.Module._load (internal/modules/cjs/loader.js:531:3)</span><br><span class="line">    at Module.require (internal/modules/cjs/loader.js:637:17)</span><br><span class="line">    at require (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)</span><br><span class="line">    at WEBPACK_OPTIONS (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:114:13)</span><br><span class="line">    at requireConfig (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:116:6)</span><br><span class="line">    at /Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:123:17</span><br><span class="line">    at Array.forEach (&lt;anonymous&gt;)</span><br><span class="line">    at module.exports (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/utils/convert-argv.js:121:15)</span><br><span class="line">    at yargs.parse (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:71:45)</span><br><span class="line">    at Object.parse (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/yargs/yargs.js:567:18)</span><br><span class="line">    at /Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:49:8</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack-cli/bin/cli.js:366:3)</span><br><span class="line">    at Module._compile (internal/modules/cjs/loader.js:701:30)</span><br><span class="line">    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)</span><br><span class="line">    at Module.load (internal/modules/cjs/loader.js:600:32)</span><br><span class="line">    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)</span><br><span class="line">    at Function.Module._load (internal/modules/cjs/loader.js:531:3)</span><br><span class="line">    at Module.require (internal/modules/cjs/loader.js:637:17)</span><br><span class="line">    at require (internal/modules/cjs/helpers.js:22:18)</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/kris/Documents/VueDemo/chapter4/demo2/node_modules/webpack/bin/webpack.js:156:2)</span><br><span class="line">    at Module._compile (internal/modules/cjs/loader.js:701:30)</span><br><span class="line">    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)</span><br><span class="line">    at Module.load (internal/modules/cjs/loader.js:600:32)</span><br><span class="line">    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)</span><br><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno 1</span><br><span class="line">npm ERR! demo2@1.0.0 build: `cross-env NODE_ENV=production webpack --progress --hide-modules`</span><br><span class="line">npm ERR! Exit status 1</span><br><span class="line">npm ERR! </span><br><span class="line">npm ERR! Failed at the demo2@1.0.0 build script.</span><br><span class="line">npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</span><br><span class="line"></span><br><span class="line">npm ERR! A complete <span class="built_in">log</span> of this run can be found <span class="keyword">in</span>:</span><br><span class="line">npm ERR!     /Users/kris/.npm/_logs/2020-03-19T04_56_08_555Z-debug.log</span><br></pre></td></tr></table></figure>
+
+<p>查资料发现webpack4已经不支持在plugins里面操作<code>UglifyJsPlugin</code>，需要将<code>UglifyJsPlugin</code>放到<code>optimization</code>里面进行配置。打开<code>webpack.config.js</code>文件，发现老的配置如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">var path = require(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">var webpack = require(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: <span class="string">&#x27;./src/main.js&#x27;</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    publicPath: <span class="string">&#x27;/dist/&#x27;</span>,</span><br><span class="line">    filename: <span class="string">&#x27;build.js&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.css$/,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">&#x27;vue-style-loader&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;css-loader&#x27;</span></span><br><span class="line">        ],</span><br><span class="line">      &#125;,      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.vue$/,</span><br><span class="line">        loader: <span class="string">&#x27;vue-loader&#x27;</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          loaders: &#123;</span><br><span class="line">          &#125;</span><br><span class="line">          // other vue-loader options go here</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.js$/,</span><br><span class="line">        loader: <span class="string">&#x27;babel-loader&#x27;</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.(png|jpg|gif|svg)$/,</span><br><span class="line">        loader: <span class="string">&#x27;file-loader&#x27;</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          name: <span class="string">&#x27;[name].[ext]?[hash]&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    <span class="built_in">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    extensions: [<span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    noInfo: <span class="literal">true</span>,</span><br><span class="line">    overlay: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  performance: &#123;</span><br><span class="line">    hints: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">&#x27;#eval-source-map&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">  module.exports.devtool = <span class="string">&#x27;#source-map&#x27;</span></span><br><span class="line">  // http://vue-loader.vuejs.org/en/workflow/production.html</span><br><span class="line">  module.exports.plugins = (module.exports.plugins || []).concat([</span><br><span class="line">    new webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">&#x27;process.env&#x27;</span>: &#123;</span><br><span class="line">        NODE_ENV: <span class="string">&#x27;&quot;production&quot;&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">      sourceMap: <span class="literal">true</span>,</span><br><span class="line">      compress: &#123;</span><br><span class="line">        warnings: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.LoaderOptionsPlugin(&#123;</span><br><span class="line">      minimize: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改完的<code>webpack.config.js</code>文件内容如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">var path = require(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">var webpack = require(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"><span class="built_in">let</span> UglifyJsPlugin = require(<span class="string">&#x27;uglifyjs-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: <span class="string">&#x27;./src/main.js&#x27;</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    publicPath: <span class="string">&#x27;/dist/&#x27;</span>,</span><br><span class="line">    filename: <span class="string">&#x27;build.js&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.css$/,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">&#x27;vue-style-loader&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;css-loader&#x27;</span></span><br><span class="line">        ],</span><br><span class="line">      &#125;,      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.vue$/,</span><br><span class="line">        loader: <span class="string">&#x27;vue-loader&#x27;</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          loaders: &#123;</span><br><span class="line">          &#125;</span><br><span class="line">          // other vue-loader options go here</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.js$/,</span><br><span class="line">        loader: <span class="string">&#x27;babel-loader&#x27;</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.(png|jpg|gif|svg)$/,</span><br><span class="line">        loader: <span class="string">&#x27;file-loader&#x27;</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          name: <span class="string">&#x27;[name].[ext]?[hash]&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    <span class="built_in">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    extensions: [<span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    noInfo: <span class="literal">true</span>,</span><br><span class="line">    overlay: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  performance: &#123;</span><br><span class="line">    hints: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimizer: [</span><br><span class="line">      new UglifyJsPlugin(&#123;</span><br><span class="line">        uglifyOptions: &#123;</span><br><span class="line">          compress: <span class="literal">false</span>,</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">&#x27;#eval-source-map&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">  module.exports.devtool = <span class="string">&#x27;#source-map&#x27;</span></span><br><span class="line">  // http://vue-loader.vuejs.org/en/workflow/production.html</span><br><span class="line">  module.exports.plugins = (module.exports.plugins || []).concat([</span><br><span class="line">    new webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">&#x27;process.env&#x27;</span>: &#123;</span><br><span class="line">        NODE_ENV: <span class="string">&#x27;&quot;production&quot;&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    new webpack.LoaderOptionsPlugin(&#123;</span><br><span class="line">      minimize: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改动之处有2处，第一处，把<code>UglifyJsPlugin</code>放到上面的exports的<code>optimization</code>中；第二处，在文件开头之处导入<code>UglifyJsPlugin</code>。</p>
+<p>改完之后执行<code>npm run dev</code>，效果如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:demo2 kris$ npm run dev</span><br><span class="line"></span><br><span class="line">&gt; demo2@1.0.0 dev /Users/kris/Documents/VueDemo/chapter4/demo2</span><br><span class="line">&gt; cross-env NODE_ENV=development webpack-dev-server --open --hot</span><br></pre></td></tr></table></figure>
+
+<p>改完之后执行<code>npm run build</code>，效果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">^CHu-YupingdeMacBook-Pro:demo2 kris$ npm run build</span><br><span class="line"></span><br><span class="line">&gt; demo2@1.0.0 build /Users/kris/Documents/VueDemo/chapter4/demo2</span><br><span class="line">&gt; cross-env NODE_ENV=production webpack --progress --hide-modules</span><br><span class="line"></span><br><span class="line">Hash: e1e94d754213e6db3b2c</span><br><span class="line">Version: webpack 4.42.0</span><br><span class="line">Time: 1996ms</span><br><span class="line">Built at: 2020-03-19 13:51:57</span><br><span class="line">   Asset     Size  Chunks             Chunk Names</span><br><span class="line">build.js  213 KiB       0  [emitted]  main</span><br><span class="line">Entrypoint main = build.js</span><br><span class="line"></span><br><span class="line">WARNING <span class="keyword">in</span> configuration</span><br><span class="line">The <span class="string">&#x27;mode&#x27;</span> option has not been <span class="built_in">set</span>, webpack will fallback to <span class="string">&#x27;production&#x27;</span> <span class="keyword">for</span> this value. Set <span class="string">&#x27;mode&#x27;</span> option to <span class="string">&#x27;development&#x27;</span> or <span class="string">&#x27;production&#x27;</span> to <span class="built_in">enable</span> defaults <span class="keyword">for</span> each environment.</span><br><span class="line">You can also <span class="built_in">set</span> it to <span class="string">&#x27;none&#x27;</span> to <span class="built_in">disable</span> any default behavior. Learn more: https://webpack.js.org/configuration/mode/</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ceaf950a027b">webpack踩坑之路</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/18/Vue%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Error-Cannot-find-module-webpack-bin-config-yargs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1330,150 +1429,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/11/17/VPS%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/11/17/VPS%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="post-title-link" itemprop="url">VPS使用心得</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-17 19:47:16" itemprop="dateCreated datePublished" datetime="2019-11-17T19:47:16+08:00">2019-11-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="什么是VPS"><a href="#什么是VPS" class="headerlink" title="什么是VPS?"></a>什么是VPS?</h2><p>Virtual Private Server简称VPS。是在一台真实服务器上使用虚拟机技术虚拟成多个小主机，用VZ或VM在一台服务器上虚拟出多个类似独立服务器的部分，每个部分都可以做单独的操作系统，管理方法同服务器一样。通俗讲就是物理机上开出的虚拟机。</p>
-<h2 id="什么是虚拟主机？"><a href="#什么是虚拟主机？" class="headerlink" title="什么是虚拟主机？"></a>什么是虚拟主机？</h2><p>Virtual hosts （Vhost）虚拟主机是通过物理服务器，VPS或者云服务器中划分出来的一个小空间，不管是独立服务器还是VPS或者云服务器都可以做为虚拟主机的母体。但一般不选择VPS作为虚拟主机的服务器。</p>
-<h2 id="VPS和虚拟主机有什么区别？"><a href="#VPS和虚拟主机有什么区别？" class="headerlink" title="VPS和虚拟主机有什么区别？"></a>VPS和虚拟主机有什么区别？</h2><p>1.使用方式不同。VPS一般通过网站的控制台或者SSH远程登录操作，而虚拟主机只能通过FTP上传的方式或网站控制台来操作。因为使用方式的不同，用户只能在特定的虚拟空间里面操作，使用方式比较简单，但是也相对局限。<br>2.适用人群不同。VPS一般适用于网站的站长，搭建博客、网站、或CMS等。而VPS则适用于相对专业的人员，VPS可以自己安装操作系统、自己配置环境，操作起来比较灵活，也比较复杂。</p>
-<h2 id="VPS虚拟化的分类"><a href="#VPS虚拟化的分类" class="headerlink" title="VPS虚拟化的分类"></a>VPS虚拟化的分类</h2><p>目前市场上的虚拟化技术主要分为4类:</p>
-<h3 id="1-XEN"><a href="#1-XEN" class="headerlink" title="1.XEN"></a>1.XEN</h3><p>XEN的典型代表是早期的AWS和老牌VPS服务商Linode,不过这两家都迁移到了KVM。目前主流服务商已经全面放弃XEN。</p>
-<h3 id="2-KVM"><a href="#2-KVM" class="headerlink" title="2.KVM"></a>2.KVM</h3><p>目前的主流全虚拟化技术,全面替代了XEN。XEN算是Linux的一个应用,而KVM是Linux的一个模块。</p>
-<h3 id="3-Hyper-V"><a href="#3-Hyper-V" class="headerlink" title="3.Hyper-V"></a>3.Hyper-V</h3><p>微软自家虚拟技术,Windows专享。</p>
-<h3 id="4-OpenVZ"><a href="#4-OpenVZ" class="headerlink" title="4.OpenVZ"></a>4.OpenVZ</h3><p>OpenVZ本质上并不是虚拟化,而是容器。相对于XEN和KVM而言它的性能损失是最小的(几乎可以忽略不计),并且内存/CPU/硬盘伸缩不用重启(XEN和KVM是需要重启后才能正确配置的)。<br>而OpenVZ最大的缺点在于虚拟隔离化非常低,并且硬件层面权限较低甚至不能拥有自己的独立Linux内核。<br>同时OpenVZ最大的问题并不在于技术层面,而在于绝大部分服务商使用OpenVZ的目的是内存可以超售。超售是什么概念呢?简单说一台32G内存的物理机可以开出64台内存1G的VPS。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>除了上面说到的以外还有一些非主流的虚拟技术,比如VMWare这种商业解决方案。</p>
-<h2 id="VPS可以做哪些事情？"><a href="#VPS可以做哪些事情？" class="headerlink" title="VPS可以做哪些事情？"></a>VPS可以做哪些事情？</h2><p>1.搭建Shadowsocks服务器，科学上网。<br>2.建立自己的博客站点，绑定免费的域名，使用免费的Cloudfare进行CDN加速，实现自己的博客站点。<br>3.建立下载服务器。<br>4.搭建自己的服务器，比如FTP服务器，Git服务器等等，自己托管自己的私有库代码。<br>5.注册美版Apple ID，下载美区的App。<br>6.搭建Google镜像代理网站，方便资料查选和Bug修复。</p>
-<h2 id="如何选购VPS？"><a href="#如何选购VPS？" class="headerlink" title="如何选购VPS？"></a>如何选购VPS？</h2><p>1.支付方式，尽量支持支付宝或微信，国外很多VPS已经支持支付宝支付了，但是更多的是只支持信用卡或者Paypal，由于很多是信用卡直接续费的，所以尽量不要选择信用卡支付，或者设定好闹钟，提醒自己解绑。<br>2.是否支持退款，购买国外的VPS，要注意商家是否支持退款，很多商家都是支持的。因为如果分到的VPS的IP已经被国家防火墙收录，这个VPS基本就失去意义了，这时候如果有退款保障可以申请退款，重新购买。<br>3.是否支持换IP，由于国家防火墙会不断的收录新的IP，如果IP不幸被墙，若支持换IP，那就太好了。<br>4.是否支持月付，一般的VPS商家都是支持月付的。如果你无法肯定VPS的稳定性，可以先用月付，购买一个短期的服务。<br>5.购买之前请先搜一下优惠码，很多网站都有优惠码，很容易就找到。</p>
-<h2 id="使用心得"><a href="#使用心得" class="headerlink" title="使用心得"></a>使用心得</h2><ol>
-<li>我使用过Vultr的VPS，网上查询Vultr的VPS是按小时收费的，只要你的机器存在一小时，就按1小时扣费，所以如果你不用的话，请立即删掉你的机器。并且Vultr需要充值，充值后才能使用，这个有点坑。我只记得我充了5美元，半个月就没了。可能操作失误，但是这个扣费确实很快，使用下来，费用高昂。</li>
-<li>搬瓦工19.9美元一年的VPS刚停一个多月，因为无法续费了，搬瓦工发邮件给我，说19.9美元一年的VPS的架构是OpenVZ的，现在已经被淘汰了，多给我半个月的时间让我备份数据，然而我只想续费。等再去搬瓦工官网去看的时候，只剩49.9美元一年的VPS了，可见搬瓦工的价格也上涨了。</li>
-<li>综合筛选发现，全球看下来，美国的服务器会相对便宜一些，香港的、台湾的、 欧洲的、韩国的、日本的都不便宜。</li>
-</ol>
-<h2 id="推荐服务器"><a href="#推荐服务器" class="headerlink" title="推荐服务器"></a>推荐服务器</h2><h3 id="Virmach-–-廉价入门"><a href="#Virmach-–-廉价入门" class="headerlink" title="Virmach – 廉价入门"></a><a target="_blank" rel="noopener" href="https://www.gubo.org/best-vps-for-newbies/">Virmach – 廉价入门</a></h3><h3 id="低价VPS"><a href="#低价VPS" class="headerlink" title="低价VPS"></a><a target="_blank" rel="noopener" href="https://www.vpscang.com/low-end-vps/">低价VPS</a></h3><h3 id="50KVM-–-靠谱国人商家"><a href="#50KVM-–-靠谱国人商家" class="headerlink" title="50KVM – 靠谱国人商家"></a><a target="_blank" rel="noopener" href="https://www.vpscang.com/?=50kvm">50KVM – 靠谱国人商家</a></h3><h3 id="搬瓦工"><a href="#搬瓦工" class="headerlink" title="搬瓦工"></a><a target="_blank" rel="noopener" href="https://www.vpscang.com/?=bandwagonhost">搬瓦工</a></h3><h2 id="经济实惠的个人VPS"><a href="#经济实惠的个人VPS" class="headerlink" title="经济实惠的个人VPS"></a>经济实惠的个人VPS</h2><p>下面列出的VPS非常便宜，而且性能稳定，但是，最好只将他们作为研究学习使用，而不要拿来建设网站。</p>
-<table>
-<thead>
-<tr>
-<th align="center">VPS品牌</th>
-<th align="center">价格/年</th>
-<th align="center">CPU</th>
-<th align="center">内存</th>
-<th align="center">硬盘</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><a target="_blank" rel="noopener" href="https://www.racknerd.com/">RackNerd</a></td>
-<td align="center">$22.99</td>
-<td align="center">1核</td>
-<td align="center">512M</td>
-<td align="center">30G</td>
-</tr>
-<tr>
-<td align="center"><a target="_blank" rel="noopener" href="https://my.frantech.ca/">BuyVM</a></td>
-<td align="center">$20.00</td>
-<td align="center">1核</td>
-<td align="center">512M</td>
-<td align="center">10G</td>
-</tr>
-<tr>
-<td align="center"><a target="_blank" rel="noopener" href="https://hostodo.com/portal/">Hostodo</a></td>
-<td align="center">$19.99</td>
-<td align="center">1核</td>
-<td align="center">512M</td>
-<td align="center">8G</td>
-</tr>
-<tr>
-<td align="center"><a target="_blank" rel="noopener" href="https://www.hostflyte.com/">HostFlyte</a></td>
-<td align="center">$12</td>
-<td align="center">1核</td>
-<td align="center">512M</td>
-<td align="center">10G</td>
-</tr>
-<tr>
-<td align="center"><a target="_blank" rel="noopener" href="https://virmach.com/">VirMach</a></td>
-<td align="center">$12</td>
-<td align="center">共享</td>
-<td align="center">384M</td>
-<td align="center">10G</td>
-</tr>
-</tbody></table>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h3><p><a target="_blank" rel="noopener" href="https://vps.zzidc.com/VPSjianjie/2176.html">3分钟看懂vps、虚拟空间、服务器之间的区别</a><br><a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/226730?spm=a2c4e.11153940.0.0.56349a16YI8ZKd">阿里云服务器与VPS和虚拟主机有什么区别？</a><br><a target="_blank" rel="noopener" href="https://moonagic.com/how-to-buy-vps/">如何选购VPS</a><br><a target="_blank" rel="noopener" href="https://www.gubo.org/best-vps-for-newbies/">适合新手入门的VPS机器</a><br><a target="_blank" rel="noopener" href="https://www.vultrer.com/427.html">vultr收费方式是怎么样的？vultr是怎么计费的？vultr扣费模式解析</a><br><a target="_blank" rel="noopener" href="https://pa.ci/20.html">VPS选购指南及其他</a><br><a target="_blank" rel="noopener" href="https://www.xooof.com/">xooof风云博客</a><br><a target="_blank" rel="noopener" href="https://www.10besty.com/best-vps-hosting-services/">VPS评测</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1543,7 +1498,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
