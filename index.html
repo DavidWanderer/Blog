@@ -228,7 +228,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>616</span>
+              <span>621</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -247,15 +247,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>有时候测试同学提供的release包的崩溃日志过来，直接提供的是ips文件，如何将ips文件解析成带符号的崩溃日志呢？<br>1.在桌面新建test1文件夹，将ips文件拷贝进去，重命名为”xxx.crash”文件。<br>2.找到对应版本的dSYM文件，拷贝至test1目录下。<br>3.前往路径”/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/symbolicatecrash”，将文件”symbolicatecrash”拷贝至test1目录。<br>4.执行命令<code>./symbolicatecrash ./xxx-2021-07-14-204056.crash ./xxx.dSYM &gt; log.crash</code>，如果没报错，在test1目录下就会生成一个log.crash文件，里面是符号化过的，可以看见部分具体的函数和库名。<br>5.如果出现报错”Error: “DEVELOPER_DIR” is not defined at ./symbolicatecrash line 69.”，请执行一下命令<code>export DEVELOPER_DIR=&quot;/Applications/Xcode.app/Contents/Developer&quot;</code>，然后再执行第4步的命令即可。</p>
+          <p>有时候测试同学提供的release包的崩溃日志过来，直接提供的是ips文件，如何将ips文件解析成带符号的崩溃日志呢？<br>1.在桌面新建test1文件夹，将ips文件拷贝进去，重命名为<code>xxx.crash</code>文件。<br>2.找到对应版本的dSYM文件，拷贝至test1目录下。<br>3.前往路径<code>/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/symbolicatecrash</code>，将文件<code>symbolicatecrash</code>拷贝至test1目录。<br>4.执行命令<code>./symbolicatecrash ./xxx-2021-07-14-204056.crash ./xxx.dSYM &gt; log.crash</code>，如果没报错，在test1目录下就会生成一个log.crash文件，里面是符号化过的，可以看见部分具体的函数和库名。<br>5.如果出现报错<code>Error: &quot;DEVELOPER_DIR&quot; is not defined at ./symbolicatecrash line 69.</code>，请执行一下命令<code>export DEVELOPER_DIR=&quot;/Applications/Xcode.app/Contents/Developer&quot;</code>，然后再执行第4步的命令即可。</p>
 <p>最终的文件目录为：</p>
 <img src="/Blog/2021/07/14/iOS%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97ips%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/1.png" class="" title="文件目录截图">
 
-<p>未转化的ips文件截图：</p>
-<img src="/Blog/2021/07/14/iOS%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97ips%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/3.png" class="" title="未转化的ips文件截图">
+<p>未符号转化的ips文件截图：</p>
+<img src="/Blog/2021/07/14/iOS%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97ips%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/3.png" class="" title="未符号转化的ips文件截图">
 
-<p>转化后的文件截图为：</p>
-<img src="/Blog/2021/07/14/iOS%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97ips%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/2.png" class="" title="转化后的文件截图">
+<p>符号化后的文件截图为：</p>
+<img src="/Blog/2021/07/14/iOS%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97ips%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/2.png" class="" title="符号化后的文件截图">
       
     </div>
 

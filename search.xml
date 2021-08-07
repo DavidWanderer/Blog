@@ -1510,6 +1510,110 @@
       </tags>
   </entry>
   <entry>
+    <title>Markdown语法</title>
+    <url>/Blog/2020/05/23/Markdown%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="标题的使用"><a href="#标题的使用" class="headerlink" title="标题的使用"></a>标题的使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="无序列表使用"><a href="#无序列表使用" class="headerlink" title="无序列表使用"></a>无序列表使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> 无序列表1</span><br><span class="line"><span class="bullet">-</span> 无序列表2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>无序列表1</li>
+<li>无序列表2</li>
+</ul>
+<h2 id="有序列表使用"><a href="#有序列表使用" class="headerlink" title="有序列表使用"></a>有序列表使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span> 有序列表1</span><br><span class="line"><span class="bullet">2.</span> 有序列表2</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>有序列表1</li>
+<li>有序列表2</li>
+</ol>
+<h2 id="引用使用"><a href="#引用使用" class="headerlink" title="引用使用"></a>引用使用</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; 注意不同的Xcode版本，打的iPA大小不同。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意不同的Xcode版本，打的iPA大小不同。</p>
+</blockquote>
+<h2 id="表格使用"><a href="#表格使用" class="headerlink" title="表格使用"></a>表格使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|ID|姓名|年龄|</span><br><span class="line">|---|---|---|</span><br><span class="line">|1|小明|18|</span><br><span class="line">|2|小李|25|</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>姓名</th>
+<th>年龄</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>小明</td>
+<td>18</td>
+</tr>
+<tr>
+<td>2</td>
+<td>小李</td>
+<td>25</td>
+</tr>
+</tbody></table>
+<h3 id="表格居中对齐"><a href="#表格居中对齐" class="headerlink" title="表格居中对齐"></a>表格居中对齐</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|ID|姓名|年龄|</span><br><span class="line">|:---:|:---:|:---:|</span><br><span class="line">|1|小明|18|</span><br><span class="line">|2|小李|25|</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">姓名</th>
+<th align="center">年龄</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">小明</td>
+<td align="center">18</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">小李</td>
+<td align="center">25</td>
+</tr>
+</tbody></table>
+<h3 id="表格右对齐"><a href="#表格右对齐" class="headerlink" title="表格右对齐"></a>表格右对齐</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|ID|姓名|年龄|</span><br><span class="line">|---:|---:|---:|</span><br><span class="line">|1|小明|18|</span><br><span class="line">|2|小李|25|</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="right">ID</th>
+<th align="right">姓名</th>
+<th align="right">年龄</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td align="right">小明</td>
+<td align="right">18</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">小李</td>
+<td align="right">25</td>
+</tr>
+</tbody></table>
+<h2 id="链接使用"><a href="#链接使用" class="headerlink" title="链接使用"></a>链接使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">百度</span>](<span class="link">https://www.baidu.com</span>)</span><br><span class="line">[<span class="string">谷歌</span>](<span class="link">https://www.google.com</span>)</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.baidu.com/">百度</a><br><a href="https://www.google.com/">谷歌</a></p>
+<h2 id="图片使用"><a href="#图片使用" class="headerlink" title="图片使用"></a>图片使用</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">![]()</span><br><span class="line">![]()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="HEXO图片引用"><a href="#HEXO图片引用" class="headerlink" title="HEXO图片引用"></a>HEXO图片引用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&#123;% asset<span class="emphasis">_image 1.png 截图注释 %&#125;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Markdown</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL基本命令</title>
     <url>/Blog/2019/07/07/MySQL%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>MAC OSX上安装MySQL有多种方法：</p>
@@ -1729,110 +1833,6 @@
       </categories>
       <tags>
         <tag>iOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown语法</title>
-    <url>/Blog/2020/05/23/Markdown%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="标题的使用"><a href="#标题的使用" class="headerlink" title="标题的使用"></a>标题的使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="无序列表使用"><a href="#无序列表使用" class="headerlink" title="无序列表使用"></a>无序列表使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> 无序列表1</span><br><span class="line"><span class="bullet">-</span> 无序列表2</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>无序列表1</li>
-<li>无序列表2</li>
-</ul>
-<h2 id="有序列表使用"><a href="#有序列表使用" class="headerlink" title="有序列表使用"></a>有序列表使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span> 有序列表1</span><br><span class="line"><span class="bullet">2.</span> 有序列表2</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>有序列表1</li>
-<li>有序列表2</li>
-</ol>
-<h2 id="引用使用"><a href="#引用使用" class="headerlink" title="引用使用"></a>引用使用</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; 注意不同的Xcode版本，打的iPA大小不同。</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意不同的Xcode版本，打的iPA大小不同。</p>
-</blockquote>
-<h2 id="表格使用"><a href="#表格使用" class="headerlink" title="表格使用"></a>表格使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|ID|姓名|年龄|</span><br><span class="line">|---|---|---|</span><br><span class="line">|1|小明|18|</span><br><span class="line">|2|小李|25|</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>ID</th>
-<th>姓名</th>
-<th>年龄</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>小明</td>
-<td>18</td>
-</tr>
-<tr>
-<td>2</td>
-<td>小李</td>
-<td>25</td>
-</tr>
-</tbody></table>
-<h3 id="表格居中对齐"><a href="#表格居中对齐" class="headerlink" title="表格居中对齐"></a>表格居中对齐</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|ID|姓名|年龄|</span><br><span class="line">|:---:|:---:|:---:|</span><br><span class="line">|1|小明|18|</span><br><span class="line">|2|小李|25|</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="center">ID</th>
-<th align="center">姓名</th>
-<th align="center">年龄</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">1</td>
-<td align="center">小明</td>
-<td align="center">18</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">小李</td>
-<td align="center">25</td>
-</tr>
-</tbody></table>
-<h3 id="表格右对齐"><a href="#表格右对齐" class="headerlink" title="表格右对齐"></a>表格右对齐</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|ID|姓名|年龄|</span><br><span class="line">|---:|---:|---:|</span><br><span class="line">|1|小明|18|</span><br><span class="line">|2|小李|25|</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="right">ID</th>
-<th align="right">姓名</th>
-<th align="right">年龄</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="right">1</td>
-<td align="right">小明</td>
-<td align="right">18</td>
-</tr>
-<tr>
-<td align="right">2</td>
-<td align="right">小李</td>
-<td align="right">25</td>
-</tr>
-</tbody></table>
-<h2 id="链接使用"><a href="#链接使用" class="headerlink" title="链接使用"></a>链接使用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">百度</span>](<span class="link">https://www.baidu.com</span>)</span><br><span class="line">[<span class="string">谷歌</span>](<span class="link">https://www.google.com</span>)</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://www.baidu.com/">百度</a><br><a href="https://www.google.com/">谷歌</a></p>
-<h2 id="图片使用"><a href="#图片使用" class="headerlink" title="图片使用"></a>图片使用</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">![]()</span><br><span class="line">![]()</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="HEXO图片引用"><a href="#HEXO图片引用" class="headerlink" title="HEXO图片引用"></a>HEXO图片引用</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&#123;% asset<span class="emphasis">_image 1.png 截图注释 %&#125;</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Markdown</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -3384,15 +3384,15 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
   <entry>
     <title>iOS崩溃日志ips文件解析</title>
     <url>/Blog/2021/07/14/iOS%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97ips%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/</url>
-    <content><![CDATA[<p>有时候测试同学提供的release包的崩溃日志过来，直接提供的是ips文件，如何将ips文件解析成带符号的崩溃日志呢？<br>1.在桌面新建test1文件夹，将ips文件拷贝进去，重命名为”xxx.crash”文件。<br>2.找到对应版本的dSYM文件，拷贝至test1目录下。<br>3.前往路径”/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/symbolicatecrash”，将文件”symbolicatecrash”拷贝至test1目录。<br>4.执行命令<code>./symbolicatecrash ./xxx-2021-07-14-204056.crash ./xxx.dSYM &gt; log.crash</code>，如果没报错，在test1目录下就会生成一个log.crash文件，里面是符号化过的，可以看见部分具体的函数和库名。<br>5.如果出现报错”Error: “DEVELOPER_DIR” is not defined at ./symbolicatecrash line 69.”，请执行一下命令<code>export DEVELOPER_DIR=&quot;/Applications/Xcode.app/Contents/Developer&quot;</code>，然后再执行第4步的命令即可。</p>
+    <content><![CDATA[<p>有时候测试同学提供的release包的崩溃日志过来，直接提供的是ips文件，如何将ips文件解析成带符号的崩溃日志呢？<br>1.在桌面新建test1文件夹，将ips文件拷贝进去，重命名为<code>xxx.crash</code>文件。<br>2.找到对应版本的dSYM文件，拷贝至test1目录下。<br>3.前往路径<code>/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/symbolicatecrash</code>，将文件<code>symbolicatecrash</code>拷贝至test1目录。<br>4.执行命令<code>./symbolicatecrash ./xxx-2021-07-14-204056.crash ./xxx.dSYM &gt; log.crash</code>，如果没报错，在test1目录下就会生成一个log.crash文件，里面是符号化过的，可以看见部分具体的函数和库名。<br>5.如果出现报错<code>Error: &quot;DEVELOPER_DIR&quot; is not defined at ./symbolicatecrash line 69.</code>，请执行一下命令<code>export DEVELOPER_DIR=&quot;/Applications/Xcode.app/Contents/Developer&quot;</code>，然后再执行第4步的命令即可。</p>
 <p>最终的文件目录为：</p>
 <img src="/Blog/2021/07/14/iOS%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97ips%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/1.png" class="" title="文件目录截图">
 
-<p>未转化的ips文件截图：</p>
-<img src="/Blog/2021/07/14/iOS%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97ips%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/3.png" class="" title="未转化的ips文件截图">
+<p>未符号转化的ips文件截图：</p>
+<img src="/Blog/2021/07/14/iOS%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97ips%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/3.png" class="" title="未符号转化的ips文件截图">
 
-<p>转化后的文件截图为：</p>
-<img src="/Blog/2021/07/14/iOS%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97ips%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/2.png" class="" title="转化后的文件截图">]]></content>
+<p>符号化后的文件截图为：</p>
+<img src="/Blog/2021/07/14/iOS%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97ips%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/2.png" class="" title="符号化后的文件截图">]]></content>
       <categories>
         <category>iOS</category>
       </categories>
@@ -4018,8 +4018,9 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
 <p><a href="https://www.quzhuanpan.com/">https://www.quzhuanpan.com/</a> 去转盘 （最新的电影，综艺）</p>
 <p><a href="https://search.chongbuluo.com/">https://search.chongbuluo.com/</a> 虫部落  （整理非常好的搜索站）</p>
 <p><a href="http://www.torrent.org.cn/">http://www.torrent.org.cn</a> (种子和磁链互相转换的网站)</p>
-<p><a href="http://www.btbtt10.com/">BT之家</a></p>
-<p><a href="http://www.btbtt20.com/">BT之家</a></p>
+<p><a href="http://btbtt11.com/">BT之家</a></p>
+<p><a href="http://btbtt12.com/">BT之家</a></p>
+<p><a href="http://btbtt13.com/">BT之家</a></p>
 <p><a href="https://video.bqrdh.com/">不求人导航</a></p>
 <h2 id="资源下载："><a href="#资源下载：" class="headerlink" title="资源下载："></a>资源下载：</h2><p>Aria2c </p>
 <p>bt-tracker数据:<a href="https://github.com/ngosang/trackerslist/blob/master/trackers_all_udp.txt">https://github.com/ngosang/trackerslist/blob/master/trackers_all_udp.txt</a></p>
