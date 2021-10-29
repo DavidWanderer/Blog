@@ -4209,4 +4209,17 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
         <tag>iOS越狱</tag>
       </tags>
   </entry>
+  <entry>
+    <title>约束相关</title>
+    <url>/Blog/2021/10/29/%E7%BA%A6%E6%9D%9F%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<p>问题1：The safe area layout guide is the space available to our view, excluding rounded corners and notches.<br>答案：All important content should lie inside the safe area, or you risk it being obscured.</p>
+<p>问题2：<code>layoutMarginsGuide</code> and <code>safeAreaLayoutGuide</code> are the same thing.<br>答案：Not quite: <code>layoutMarginsGuide</code> is inside the <code>safeAreaLayoutGuide</code>, so it will be slightly smaller.</p>
+]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+      </tags>
+  </entry>
 </search>
