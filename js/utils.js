@@ -238,9 +238,7 @@ NexT.utils = {
       // TOC item animation navigate.
       link.addEventListener('click', event => {
         event.preventDefault();
-        var encodeTarget = event.currentTarget.getAttribute('href').replace('#', '');
-        var decodeTarget = decodeURI(encodeTarget);
-        var target = document.getElementById(decodeTarget);
+        var target = document.getElementById(event.currentTarget.getAttribute('href').replace('#', ''));
         var offset = target.getBoundingClientRect().top + window.scrollY;
         window.anime({
           targets  : document.scrollingElement,
