@@ -186,6 +186,121 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/" class="post-title-link" itemprop="url">如何添加CloudFlare免费CDN加速</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-14 15:40:10" itemprop="dateCreated datePublished" datetime="2021-12-14T15:40:10+08:00">2021-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Cloudflare 是一家国外的 CDN 加速服务商，还是很有名气的。提供免费和付费的加速和网站保护服务。百度云加速的国外节点就是和 Cloudflare 合作使用的 Cloudflare 的节点。Cloudflare 提供了不同类型的套餐，即使是免费用户，Cloudflare 提供的功能也是很全面的。对于访客来自于国外的网站很不错；对于访客来自于国内的网站加速效果有限，有些甚至会变慢，不过其安全防护功能也很不错。</p>
+<h1 id="为什么需要使用Cloudflare？"><a href="#为什么需要使用Cloudflare？" class="headerlink" title="为什么需要使用Cloudflare？"></a>为什么需要使用Cloudflare？</h1><ul>
+<li>保护VPS的真实IP，避免IP被封，或者提高IP查询的难度。使用Cloudflare后，ping域名，返回的是Cloudflare的CDN服务器IP，真实的IP会被保护起来。</li>
+<li>加速国外网站的访问速度。</li>
+</ul>
+<h1 id="如何配置？"><a href="#如何配置？" class="headerlink" title="如何配置？"></a>如何配置？</h1><p>官网： <a target="_blank" rel="noopener" href="http://www.cloudflare.com/">www.cloudflare.com</a><br>使用邮箱注册，注册完后自动进入添加网站界面。添加网站分为四步：添加网站域名、选择方案、添加DNS记录、更新域名服务器。</p>
+<div style="width:600px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/1.jpeg" class="" title="配置的整体逻辑截图"> </div>
+
+<h2 id="添加网站域名"><a href="#添加网站域名" class="headerlink" title="添加网站域名"></a>添加网站域名</h2><p>进入后台首页，点击“Add a site”，输入要解析的域名</p>
+<div style="width:600px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/2.png" class="" title="添加网站域名截图"> </div>
+
+<h2 id="选择方案"><a href="#选择方案" class="headerlink" title="选择方案"></a>选择方案</h2><p>一般来说我们选择免费方案即可（Free），如果觉得不差钱也可以选择付费，但是付费方案和免费方案的 DNS 解析功能是一样的，可用的 CDN 节点也是一样的。</p>
+<div style="width:600px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/3.png" class="" title="选择方案截图"> </div>
+
+<h2 id="添加DNS记录"><a href="#添加DNS记录" class="headerlink" title="添加DNS记录"></a>添加DNS记录</h2><ul>
+<li>1.选择记录类型，一般默认 A 记录即可，如图所示。</li>
+<li>2.输入要解析的域名，比如 example.com（此时只需要输入 @ 即可），或者 <a target="_blank" rel="noopener" href="http://www.example.com(此时只需要输入/">www.example.com（此时只需要输入</a> www 即可）。</li>
+<li>3.填写 IP 地址，也就是你 VPS 的 IP 地址。</li>
+<li>4.TTL 默认即可，不用改。</li>
+<li>5.黄色云朵表示该解析通过 CDN 访问，灰色云朵表示不通过 CDN 访问，点击云朵可以切换状态。这里如果选择不走 CDN 的话，相当于只使用 Cloudflare 的 DNS 功能。这里建议全部调为黄色云朵走 CDN 访问，隐藏网站真实 IP 地址。全站通过 CDN 访问可以有效防止网站真实IP泄漏，保护原站安全。</li>
+<li>6.点击 Add Record 添加记录。</li>
+<li>7.所有要添加的记录都添加完之后，点击 Continue 进入下一个页面。<div style="width:600px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/4.png" class="" title="添加DNS记录截图"> </div>
+
+</li>
+</ul>
+<h2 id="更新域名服务器"><a href="#更新域名服务器" class="headerlink" title="更新域名服务器"></a>更新域名服务器</h2><p>域名解析添加完成后，此时会显示你分配到的 Cloudflare 的 DNS 服务器，每个人都不一样，大家看一下自己的，然后去域名注册商处修改 Name Server，即可完成解析。</p>
+<div style="width:600px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/5.png" class="" title="更新域名服务器截图"> </div>
+
+<p>登录域名注册商后台，然后进入对应的域名管理，找到“DNS 服务器”、“Name Server” 或者类似的字眼，然后把默认的 DNS 服务器修改成 Cloudflare 提供的 DNS 服务器即可。</p>
+<div style="width:600px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/6.png" class="" title="更新域名服务器截图"> </div>
+
+<p>等待大概1个多小时，ping一下域名，发现DNS解析返回的是Cloudflare的IP，这样就成功配置完成了。</p>
+<div style="width:800px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/7.png" class="" title="查询服务器IP截图"> </div>
+
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a target="_blank" rel="noopener" href="https://www.bandwagonhost.net/5986.html">使用 Cloudflare 免费 DNS 服务器解析域名到搬瓦工 VPS 主机建站教程</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29891330">CloudFlare免费CDN加速使用方法</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/10/29/%E7%BA%A6%E6%9D%9F%E7%9B%B8%E5%85%B3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -228,7 +343,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>310</span>
+              <span>647</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -249,6 +364,8 @@
       
           <p>问题1：The safe area layout guide is the space available to our view, excluding rounded corners and notches.<br>答案：All important content should lie inside the safe area, or you risk it being obscured.</p>
 <p>问题2：<code>layoutMarginsGuide</code> and <code>safeAreaLayoutGuide</code> are the same thing.<br>答案：Not quite: <code>layoutMarginsGuide</code> is inside the <code>safeAreaLayoutGuide</code>, so it will be slightly smaller.</p>
+<p>问题3: Activating multiple constraints at once is faster than modifying isActive for each one.<br>答案：Apple explicitly recommends using activate() for this purpose.</p>
+<p>问题4: Content hugging priority controls how likely Auto Layout is to make a view smaller than its intrinsic content size.<br>答案：Content hugging priority controls how likely Auto Layout is to make a view larger than its intrinsic content size.</p>
 
       
     </div>
@@ -1143,157 +1260,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/" class="post-title-link" itemprop="url">GCD什么情况下会死锁?</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-05 17:22:10" itemprop="dateCreated datePublished" datetime="2020-11-05T17:22:10+08:00">2020-11-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>6.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/GCD%E6%AD%BB%E9%94%81.png" class="" title="GCD死锁情景分析图">
-
-<blockquote>
-<p>A serial dispatch queue runs only one task at a time, waiting until that task is complete before dequeuing and starting a new one. By contrast, a concurrent dispatch queue starts as many tasks as it can without waiting for already started tasks to finish.</p>
-</blockquote>
-<h2 id="串行队列-同步-同步"><a href="#串行队列-同步-同步" class="headerlink" title="串行队列-同步-同步"></a>串行队列-同步-同步</h2><p>运行结果：死锁。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：串行队列，同步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod2 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11&quot;</span>);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22&quot;</span>);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图：</p>
-<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/1.png" class="" title="串行队列-同步-同步执行截图">
-
-<h2 id="串行队列-同步-异步"><a href="#串行队列-同步-异步" class="headerlink" title="串行队列-同步-异步"></a>串行队列-同步-异步</h2><p>运行结果：不死锁，同步操作在主线程中执行，异步操作在子线程执行。为什么第一个同步操作没有死锁，因为第一个同步操作在“com.serial”这个队列里，而testMethod10在主队列里，虽然是同步操作，但是二者不属于同一个队列，不会互相阻塞。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：串行队列，同步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod10 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图：</p>
-<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/2.png" class="" title="串行队列-同步-异步执行截图">
-
-<h2 id="串行队列-异步-同步"><a href="#串行队列-异步-同步" class="headerlink" title="串行队列-异步-同步"></a>串行队列-异步-同步</h2><p>运行结果：死锁。打印“22”、“44”的操作已经在串行队列上执行了，此时要求插入打印“33”的操作，这个同步操作造成“com.serial”串行队列死锁。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：串行队列，异步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod5 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图：</p>
-<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/3.png" class="" title="串行队列-异步-同步执行截图">
-
-<h2 id="串行队列-异步-异步"><a href="#串行队列-异步-异步" class="headerlink" title="串行队列-异步-异步"></a>串行队列-异步-异步</h2><p>运行结果：不死锁。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：串行队列，异步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">线程：创建了一个线程。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod8 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图：</p>
-<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/4.png" class="" title="串行队列-异步-异步执行截图">
-
-<h2 id="并发队列-同步-同步"><a href="#并发队列-同步-同步" class="headerlink" title="并发队列-同步-同步"></a>并发队列-同步-同步</h2><p>运行结果：不死锁。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：并发队列，同步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod3 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial.11&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图：</p>
-<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/5.png" class="" title="并发队列-同步-同步执行截图">
-
-<h2 id="并发队列-同步-异步"><a href="#并发队列-同步-异步" class="headerlink" title="并发队列-同步-异步"></a>并发队列-同步-异步</h2><p>运行结果：不死锁。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：并发队列，同步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod11 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial.11&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图：</p>
-<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/6.png" class="" title="并发队列-同步-异步执行截图">
-
-<h2 id="并发队列-异步-同步"><a href="#并发队列-异步-同步" class="headerlink" title="并发队列-异步-同步"></a>并发队列-异步-同步</h2><p>运行结果：不死锁。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：并发队列，异步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod6 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial.11&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图：</p>
-<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/7.png" class="" title="并发队列-异步-同步执行截图">
-
-<h2 id="并发队列-异步-异步"><a href="#并发队列-异步-异步" class="headerlink" title="并发队列-异步-异步"></a>并发队列-异步-异步</h2><p>运行结果：不死锁。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：并发队列，异步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">线程：创建了一个线程。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod9 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;com.serial.11&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图：</p>
-<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/8.png" class="" title="并发队列-异步-异步执行截图">
-
-<h2 id="主队列-同步-同步"><a href="#主队列-同步-同步" class="headerlink" title="主队列-同步-同步"></a>主队列-同步-同步</h2><p>运行结果：死锁。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 条件：主队列，同步执行，同步执行。</span></span><br><span class="line"><span class="comment"> 结果：死锁。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod1 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图：</p>
-<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/9.png" class="" title="主队列-同步-同步执行截图">
-
-<h2 id="主队列-同步-异步"><a href="#主队列-同步-异步" class="headerlink" title="主队列-同步-异步"></a>主队列-同步-异步</h2><p>运行结果：死锁。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：主队列，同步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod12 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图：</p>
-<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/10.png" class="" title="主队列-同步-异步执行截图">
-
-<h2 id="主队列-异步-同步"><a href="#主队列-异步-同步" class="headerlink" title="主队列-异步-同步"></a>主队列-异步-同步</h2><p>运行结果：死锁。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：主队列，异步执行，同步执行。</span></span><br><span class="line"><span class="comment">结果：死锁。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod4 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图：</p>
-<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/11.png" class="" title="主队列-异步-同步执行截图">
-
-<h2 id="主队列-异步-异步"><a href="#主队列-异步-异步" class="headerlink" title="主队列-异步-异步"></a>主队列-异步-异步</h2><p>运行结果：不死锁。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">条件：主队列，异步执行，异步执行。</span></span><br><span class="line"><span class="comment">结果：不死锁。</span></span><br><span class="line"><span class="comment">线程：主线程执行。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) testMethod7 &#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;11, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;22, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">           <span class="built_in">NSLog</span>(<span class="string">@&quot;33, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;44, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;55, %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行截图：</p>
-<img src="/Blog/2020/11/05/GCD%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%AD%BB%E9%94%81/12.png" class="" title="主队列-异步-异步执行截图">
-
-<p>总结：在并发队列上，无论是同步还是异步都不会发生死锁；主队列上只有异步执行的时候才不会发生死锁；串行队列是否发生死锁需要具体分析。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html">官方文档</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/Blog/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/Blog/page/6/">6</a><a class="extend next" rel="next" href="/Blog/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/Blog/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/Blog/page/7/">7</a><a class="extend next" rel="next" href="/Blog/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1359,7 +1329,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1408,12 +1378,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">242k</span>
+    <span title="站点总字数">243k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:40</span>
+    <span title="站点阅读时长">3:41</span>
 </div>
 
         

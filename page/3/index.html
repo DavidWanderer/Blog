@@ -186,6 +186,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/07/04/NSThread%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/07/04/NSThread%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">NSThread介绍</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-04 08:27:38" itemprop="dateCreated datePublished" datetime="2020-07-04T08:27:38+08:00">2020-07-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="NSThread介绍"><a href="#NSThread介绍" class="headerlink" title="NSThread介绍"></a>NSThread介绍</h2><p>NSThread 是苹果官方提供的，使用起来比 pthread 更加面向对象，简单易用，可以直接操作线程对象。不过也需要需要程序员自己管理线程的生命周期(主要是创建)，我们在开发的过程中偶尔使用 NSThread。比如我们会经常调用[NSThread currentThread]来显示当前的进程信息。</p>
+<h4 id="NSThread的创建与运行"><a href="#NSThread的创建与运行" class="headerlink" title="NSThread的创建与运行"></a>NSThread的创建与运行</h4> <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//使用target对象的selector作为线程的任务执行体，该selector方法最多可以接收一个参数，该参数即为argument</span></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithTarget:(<span class="keyword">id</span>)target selector:(SEL)selector object:(<span class="keyword">nullable</span> <span class="keyword">id</span>)argument</span><br><span class="line"> </span><br><span class="line"> <span class="comment">//使用block作为线程的任务执行体</span></span><br><span class="line"> - (<span class="keyword">instancetype</span>)initWithBlock:(<span class="keyword">void</span> (^)(<span class="keyword">void</span>))block</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> <span class="comment">/*</span></span><br><span class="line"><span class="comment"> 类方法，返回值为void</span></span><br><span class="line"><span class="comment"> 使用一个block作为线程的执行体，并直接启动线程</span></span><br><span class="line"><span class="comment"> 上面的实例方法返回NSThread对象需要手动调用start方法来启动线程执行任务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> + (<span class="keyword">void</span>)detachNewThreadWithBlock:(<span class="keyword">void</span> (^)(<span class="keyword">void</span>))block</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> <span class="comment">/*</span></span><br><span class="line"><span class="comment"> 类方法，返回值为void</span></span><br><span class="line"><span class="comment"> 使用target对象的selector作为线程的任务执行体，该selector方法最多接收一个参数，该参数即为argument</span></span><br><span class="line"><span class="comment"> 同样的，该方法创建完县城后会自动启动线程不需要手动触发</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> + (<span class="keyword">void</span>)detachNewThreadSelector:(SEL)selector toTarget:(<span class="keyword">id</span>)target withObject:(<span class="keyword">nullable</span> <span class="keyword">id</span>)argument</span><br></pre></td></tr></table></figure>
+<p>简单运用:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">  [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">  <span class="built_in">NSThread</span> *thread = [[<span class="built_in">NSThread</span> alloc] initWithTarget:<span class="keyword">self</span></span><br><span class="line">                      selector:<span class="keyword">@selector</span>(firstThread:) object:<span class="string">@&quot;Hello, World&quot;</span>];</span><br><span class="line">  <span class="comment">//设置线程的名字，方便查看</span></span><br><span class="line">  [thread setName:<span class="string">@&quot;firstThread&quot;</span>];</span><br><span class="line">  <span class="comment">//启动线程</span></span><br><span class="line">  [thread start];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//线程的任务执行体并接收一个参数arg</span></span><br><span class="line">- (<span class="keyword">void</span>)firstThread:(<span class="keyword">id</span>)arg &#123;</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;Task %@ %@&quot;</span>, [<span class="built_in">NSThread</span> currentThread], arg);</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;Thread Task Complete&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/Blog/2020/07/04/NSThread%E4%BB%8B%E7%BB%8D/NSThread1.png" class="" title="NSThread">
+
+
+<h4 id="常见API"><a href="#常见API" class="headerlink" title="常见API"></a>常见API</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获得主线程</span></span><br><span class="line">+ (<span class="built_in">NSThread</span> *)mainThread;    </span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断是否为主线程(对象方法)</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)isMainThread;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断是否为主线程(类方法)</span></span><br><span class="line">+ (<span class="built_in">BOOL</span>)isMainThread;    </span><br><span class="line"></span><br><span class="line"><span class="comment">// 获得当前线程</span></span><br><span class="line"><span class="built_in">NSThread</span> *current = [<span class="built_in">NSThread</span> currentThread];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 线程的名字——setter方法</span></span><br><span class="line">- (<span class="keyword">void</span>)setName:(<span class="built_in">NSString</span> *)n;    </span><br><span class="line"></span><br><span class="line"><span class="comment">// 线程的名字——getter方法</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)name;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="线程状态控制方法"><a href="#线程状态控制方法" class="headerlink" title="线程状态控制方法"></a>线程状态控制方法</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 线程进入就绪状态 -&gt; 运行状态。当线程任务执行完毕，自动进入死亡状态</span></span><br><span class="line">- (<span class="keyword">void</span>)start;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 线程进入阻塞状态</span></span><br><span class="line">+ (<span class="keyword">void</span>)sleepUntilDate:(<span class="built_in">NSDate</span> *)date;</span><br><span class="line">+ (<span class="keyword">void</span>)sleepForTimeInterval:(<span class="built_in">NSTimeInterval</span>)ti;</span><br><span class="line"></span><br><span class="line"><span class="comment">//强制停止线程  线程进入死亡状态</span></span><br><span class="line">+ (<span class="keyword">void</span>)exit;</span><br></pre></td></tr></table></figure>
+
+<h4 id="线程之间的通信"><a href="#线程之间的通信" class="headerlink" title="线程之间的通信"></a>线程之间的通信</h4><p>在开发中，我们经常会在子线程进行耗时操作，操作结束后再回到主线程去刷新 UI。这就涉及到了子线程和主线程之间的通信。我们先来了解一下官方关于 NSThread 的线程间通信的方法。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在主线程上执行操作</span></span><br><span class="line">- (<span class="keyword">void</span>)performSelectorOnMainThread:(SEL)aSelector withObject:(<span class="keyword">id</span>)arg waitUntilDone:(<span class="built_in">BOOL</span>)wait;</span><br><span class="line">- (<span class="keyword">void</span>)performSelectorOnMainThread:(SEL)aSelector withObject:(<span class="keyword">id</span>)arg waitUntilDone:(<span class="built_in">BOOL</span>)wait modes:(<span class="built_in">NSArray</span>&lt;<span class="built_in">NSString</span> *&gt; *)array;</span><br><span class="line"><span class="comment">// equivalent to the first method with kCFRunLoopCommonModes</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在指定线程上执行操作</span></span><br><span class="line">- (<span class="keyword">void</span>)performSelector:(SEL)aSelector onThread:(<span class="built_in">NSThread</span> *)thr withObject:(<span class="keyword">id</span>)arg waitUntilDone:(<span class="built_in">BOOL</span>)wait modes:(<span class="built_in">NSArray</span> *)array <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_5, <span class="number">2</span>_0);</span><br><span class="line">- (<span class="keyword">void</span>)performSelector:(SEL)aSelector onThread:(<span class="built_in">NSThread</span> *)thr withObject:(<span class="keyword">id</span>)arg waitUntilDone:(<span class="built_in">BOOL</span>)wait <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_5, <span class="number">2</span>_0);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在当前线程上执行操作，调用 NSObject 的 performSelector:相关方法</span></span><br><span class="line">- (<span class="keyword">id</span>)performSelector:(SEL)aSelector;</span><br><span class="line">- (<span class="keyword">id</span>)performSelector:(SEL)aSelector withObject:(<span class="keyword">id</span>)object;</span><br><span class="line">- (<span class="keyword">id</span>)performSelector:(SEL)aSelector withObject:(<span class="keyword">id</span>)object1 withObject:(<span class="keyword">id</span>)object2;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="线程的状态转换"><a href="#线程的状态转换" class="headerlink" title="线程的状态转换"></a>线程的状态转换</h3><p>当我们新建一条线程NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];，在内存中的表现为：</p>
+<img src="/Blog/2020/07/04/NSThread%E4%BB%8B%E7%BB%8D/NSThread2.png" class="" title="NSThread">
+
+<p>当调用[thread start];后，系统把线程对象放入可调度线程池中，线程对象进入就绪状态，如下图所示。</p>
+<img src="/Blog/2020/07/04/NSThread%E4%BB%8B%E7%BB%8D/NSThread3.png" class="" title="NSThread">
+
+<ul>
+<li>如果CPU现在调度当前线程对象，则当前线程对象进入运行状态，如果CPU调度其他线程对象，则当前线程对象回到就绪状态。</li>
+<li>如果CPU在运行当前线程对象的时候调用了sleep方法\等待同步锁，则当前线程对象就进入了阻塞状态，等到sleep到时\得到同步锁，则回到就绪状态。</li>
+<li>如果CPU在运行当前线程对象的时候线程任务执行完毕\异常强制退出，则当前线程对象进入死亡状态。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1608,109 +1716,10 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/21/%E4%BD%BF%E7%94%A8vue-cli%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/03/21/%E4%BD%BF%E7%94%A8vue-cli%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">使用vue-cli创建项目</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-21 14:32:04" itemprop="dateCreated datePublished" datetime="2020-03-21T14:32:04+08:00">2020-03-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1.执行命令创建项目。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack-simple demo4</span><br></pre></td></tr></table></figure>
-
-<p>2.回答vue-cli的问题。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">? Project name demo4</span><br><span class="line">? Project description A Vue.js project</span><br><span class="line">? Author Hu, Yuping &lt;huyp@yxt.com&gt;</span><br><span class="line">? License MIT</span><br><span class="line">? Use sass? No</span><br></pre></td></tr></table></figure>
-
-<p>3.vue-cli会创建文件夹，并打印提示命令。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vue-cli · Generated <span class="string">&quot;demo4&quot;</span>.</span><br><span class="line"></span><br><span class="line">   To get started:</span><br><span class="line">   </span><br><span class="line">     <span class="built_in">cd</span> demo4</span><br><span class="line">     npm install</span><br><span class="line">     npm run dev</span><br></pre></td></tr></table></figure>
-
-<p>其中第一条命令的可以提供不同的模版。命令全称如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init &lt;template-name&gt; &lt;project-name&gt;</span><br></pre></td></tr></table></figure>
-
-<p>具体解释如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">init：表示我要用vue-cli来初始化项目</span><br><span class="line"></span><br><span class="line">&lt;template-name&gt;：表示模板名称，vue-cli官方为我们提供了5种模板，</span><br><span class="line"></span><br><span class="line">webpack-一个全面的webpack+vue-loader的模板，功能包括热加载，linting,检测和CSS扩展。</span><br><span class="line"></span><br><span class="line">webpack-simple-一个简单webpack+vue-loader的模板，不包含其他功能，让你快速的搭建vue的开发环境。</span><br><span class="line"></span><br><span class="line">browserify-一个全面的Browserify+vueify 的模板，功能包括热加载，linting,单元检测。</span><br><span class="line"></span><br><span class="line">browserify-simple-一个简单Browserify+vueify的模板，不包含其他功能，让你快速的搭建vue的开发环境。</span><br><span class="line"></span><br><span class="line">simple-一个最简单的单页应用模板。</span><br><span class="line"></span><br><span class="line">&lt;project-name&gt;：标识项目名称，这个你可以根据自己的项目来起名字。</span><br></pre></td></tr></table></figure>
-
-<p>创建完项目，执行<code>npm run dev</code>，控制台会打印消息，可以预览当前的自动生成的页面。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Hu-YupingdeMacBook-Pro:demo4 kris$ npm run dev</span><br><span class="line"></span><br><span class="line">&gt; demo4@1.0.0 dev /Users/kris/Documents/VueDemo/chapter4/demo4</span><br><span class="line">&gt; cross-env NODE_ENV=development webpack-dev-server --open --hot</span><br><span class="line"></span><br><span class="line">Project is running at http://localhost:8081/</span><br><span class="line">webpack output is served from /dist/</span><br><span class="line">404s will fallback to /index.html</span><br><span class="line">&#123; parser: <span class="string">&quot;babylon&quot;</span> &#125; is deprecated; we now treat it as &#123; parser: <span class="string">&quot;babel&quot;</span> &#125;.</span><br></pre></td></tr></table></figure>
-
-<p>浏览器中的预览页面如下:</p>
-<img src="/Blog/2020/03/21/%E4%BD%BF%E7%94%A8vue-cli%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE/1.png" class="" title="demo项目运行的截图">
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/Blog/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/Blog/">1</a><a class="page-number" href="/Blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/Blog/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/Blog/page/6/">6</a><a class="extend next" rel="next" href="/Blog/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/Blog/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/Blog/">1</a><a class="page-number" href="/Blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/Blog/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/Blog/page/7/">7</a><a class="extend next" rel="next" href="/Blog/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1776,7 +1785,7 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1825,12 +1834,12 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">242k</span>
+    <span title="站点总字数">243k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:40</span>
+    <span title="站点阅读时长">3:41</span>
 </div>
 
         

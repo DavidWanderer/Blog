@@ -28,7 +28,7 @@
 <meta property="og:description" content="问题1：The safe area layout guide is the space available to our view, excluding rounded corners and notches.答案：All important content should lie inside the safe area, or you risk it being obscured. 问题2：la">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-29T00:29:46.000Z">
-<meta property="article:modified_time" content="2021-10-29T00:35:03.064Z">
+<meta property="article:modified_time" content="2021-10-29T00:41:29.644Z">
 <meta property="article:author" content="David的博客">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
@@ -238,7 +238,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>310</span>
+              <span>647</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -259,6 +259,8 @@
       
         <p>问题1：The safe area layout guide is the space available to our view, excluding rounded corners and notches.<br>答案：All important content should lie inside the safe area, or you risk it being obscured.</p>
 <p>问题2：<code>layoutMarginsGuide</code> and <code>safeAreaLayoutGuide</code> are the same thing.<br>答案：Not quite: <code>layoutMarginsGuide</code> is inside the <code>safeAreaLayoutGuide</code>, so it will be slightly smaller.</p>
+<p>问题3: Activating multiple constraints at once is faster than modifying isActive for each one.<br>答案：Apple explicitly recommends using activate() for this purpose.</p>
+<p>问题4: Content hugging priority controls how likely Auto Layout is to make a view smaller than its intrinsic content size.<br>答案：Content hugging priority controls how likely Auto Layout is to make a view larger than its intrinsic content size.</p>
 
     </div>
 
@@ -280,7 +282,10 @@
     <a href="/Blog/2021/07/14/iOS%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97ips%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" rel="prev" title="iOS崩溃日志ips文件解析">
       <i class="fa fa-chevron-left"></i> iOS崩溃日志ips文件解析
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/" rel="next" title="如何添加CloudFlare免费CDN加速">
+      如何添加CloudFlare免费CDN加速 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -353,7 +358,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -402,12 +407,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">242k</span>
+    <span title="站点总字数">243k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:40</span>
+    <span title="站点阅读时长">3:41</span>
 </div>
 
         
