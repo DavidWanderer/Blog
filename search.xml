@@ -3043,6 +3043,25 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
 <p>安装NTP后，按照顺序依次执行以下3条命令，分别是停止NTP服务、同步NTP时间、启动NTP服务：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service ntpd stop</span><br><span class="line"></span><br><span class="line">ntpdate us.pool.ntp.org</span><br><span class="line"></span><br><span class="line">service ntpd start</span><br></pre></td></tr></table></figure>
 <p>执行完成后，VPS上就是相对精确的时间设置了。很多依赖于系统时间的应用程序也就能正常工作了。注意：当vps重启后输入date来检查下时间，如果时间不是最新的，再执行以上3条命令即可。</p>
+<h2 id="服务器查看回程"><a href="#服务器查看回程" class="headerlink" title="服务器查看回程"></a>服务器查看回程</h2><ul>
+<li><p>先查明自己本地IP，使用命令行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ curl -s http://myip.ipip.net</span><br><span class="line">当前 IP：27.115.6.196  来自于：中国 上海 上海  联通</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>远程登录VPS，下载查看回程的脚本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># wget https://cdn.ipip.net/17mon/besttrace4linux.zip</span></span><br><span class="line"><span class="comment"># unzip besttrace*</span></span><br><span class="line"><span class="comment"># chmod +x besttrace</span></span><br><span class="line"><span class="comment"># ./besttrace 27.115.6.196</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="客户端查看去程"><a href="#客户端查看去程" class="headerlink" title="客户端查看去程"></a>客户端查看去程</h2><ul>
+<li>MAC电脑去AppStore下载“BestTrace”软件</li>
+<li>输入VPS的IP地址，回车即可在地图上展示网络去程路线<div style="width:736px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/06/30/VPS%E6%90%AD%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8/vps_net.png" class="" title="客户端查看去程网络路线"> </div>
+
+
+</li>
+</ul>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li>免费ssl证书只能使用3个月，到期后需要手动更换证书</li>
+</ul>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://my.frantech.ca/cart.php">VPS官网</a><br><a href="https://my.freenom.com/clientarea.php?action=domains">免费域名</a><br><a href="https://coderschool.cn/2197.html">免费域名解析</a><br><a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAv2ray%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B">自建V2Ray教程</a><br><a href="https://github.com/yanue/V2rayU">V2Ray客户端下载地址</a><br><a href="https://www.namesilo.com/">低价域名</a></p>
 ]]></content>
       <categories>
@@ -4054,6 +4073,9 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
 <p><a href="http://daily.zhihu.com/story/3877456">http://daily.zhihu.com/story/3877456</a> （安全网站列表）</p>
 <h2 id="社区："><a href="#社区：" class="headerlink" title="社区："></a>社区：</h2><p>伯乐在线 （<a href="https://github.com/jobbole%EF%BC%89">https://github.com/jobbole）</a></p>
 <p><a href="https://www.v2ex.com/go/idev">https://www.v2ex.com/go/idev</a></p>
+<h2 id="临时手机号接码网站汇总"><a href="#临时手机号接码网站汇总" class="headerlink" title="临时手机号接码网站汇总"></a>临时手机号接码网站汇总</h2><p><a href="https://www.receiveasms.com/">https://www.receiveasms.com/</a><br><a href="https://smsreceivefree.com/">https://smsreceivefree.com/</a><br><a href="https://getfreesmsnumber.com/">https://getfreesmsnumber.com/</a><br><a href="https://sms-online.co/receive-free-sms">https://sms-online.co/receive-free-sms</a><br><a href="http://sms-receive.net/">http://sms-receive.net/</a><br><a href="https://www.receivesmsonline.net/">https://www.receivesmsonline.net/</a><br><a href="http://7sim.net/">http://7sim.net/</a><br><a href="http://receivefreesms.com/">http://receivefreesms.com/</a><br><a href="https://receivefreesms.net/">https://receivefreesms.net/</a><br><a href="https://receivesmsonline.in/">https://receivesmsonline.in/</a><br><a href="https://receive-sms-online.com/">https://receive-sms-online.com/</a><br><a href="https://www.smsver.com/">https://www.smsver.com/</a><br><a href="http://sms.sellaite.com/">http://sms.sellaite.com/</a><br><a href="https://www.freeonlinephone.org/">https://www.freeonlinephone.org/</a><br><a href="https://smsget.net/free/">https://smsget.net/free/</a><br><a href="http://freereceivesmsonline.com/">http://freereceivesmsonline.com/</a><br><a href="https://es.mytrashmobile.com/numeros">https://es.mytrashmobile.com/numeros</a><br><a href="https://sms24.me/">https://sms24.me</a></p>
+<h2 id="临时邮箱"><a href="#临时邮箱" class="headerlink" title="临时邮箱"></a>临时邮箱</h2><p>用于网站以及app注册，薅羊毛等，免费功能足够日常使用，其中有一些邮箱提供更高级功能，在这里分两类：<br>第一类为可自定义邮箱前后缀，有七个：<br><a href="https://temp-mail.io/zh">https://temp-mail.io/zh</a> (提供邮件转发服务、查看邮件历史记录)<br><a href="https://mail.td/">https://mail.td</a> (提供邮件转发服务)<br><a href="http://24mail.chacuo.net/">http://24mail.chacuo.net</a> (提供邮件转发服务、伪造邮件地址、邮箱真实性检测、邮件ip查询等)<br><a href="https://temp-mail.org/">https://temp-mail.org</a> (高级会员可修改后缀、自定义后缀)<br><a href="https://linshiyouxiang.net/">https://linshiyouxiang.net</a><br><a href="https://www.guerrillamail.com/zh">https://www.guerrillamail.com/zh</a><br><a href="https://www.moakt.com/zh">https://www.moakt.com/zh</a></p>
+<p>第二类为只能自定义邮箱前缀，有三个：<br><a href="https://yopmail.com/zh">https://yopmail.com/zh</a> (可以使用系统自动分配的电子邮件别名)<br><a href="https://mail.mjj.edu.ge/">https://mail.mjj.edu.ge</a> (可以获得部分教育优惠)<br><a href="https://www.linshi-email.com/">https://www.linshi-email.com</a></p>
 ]]></content>
       <categories>
         <category>通用</category>
