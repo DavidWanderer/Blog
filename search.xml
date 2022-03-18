@@ -4292,4 +4292,23 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
         <tag>VPS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>OpenGL相关概念</title>
+    <url>/Blog/2022/03/18/OpenGL%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[<h1 id="OpenGL相关概念"><a href="#OpenGL相关概念" class="headerlink" title="OpenGL相关概念"></a>OpenGL相关概念</h1><h2 id="OpenGL是什么？"><a href="#OpenGL是什么？" class="headerlink" title="OpenGL是什么？"></a>OpenGL是什么？</h2><ul>
+<li>OpenGL是一个规范，由Khronos组织制定并维护。</li>
+<li>OpenGL规范严格规定了每个函数如何执行，以及它的输出值，没有规定实现细节。</li>
+<li>OpenGL库的开发者通常是显卡的生产商，不同显卡对应的OpenGL库实现细节可能不同，但是他们的功能和结果都遵循OpenGL规范。</li>
+</ul>
+<h2 id="核心模式和立即渲染模式"><a href="#核心模式和立即渲染模式" class="headerlink" title="核心模式和立即渲染模式"></a>核心模式和立即渲染模式</h2><ul>
+<li>立即渲染模式（Immediate mode）：早期OpenGL使用，也就是&lt;span style:”color:red;”&gt;固定渲染管线</span>，</li>
+</ul>
+]]></content>
+      <categories>
+        <category>OpenGL</category>
+      </categories>
+      <tags>
+        <tag>OpenGL</tag>
+      </tags>
+  </entry>
 </search>
