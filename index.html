@@ -228,14 +228,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>237</span>
+              <span>2.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -247,14 +247,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="OpenGL相关概念"><a href="#OpenGL相关概念" class="headerlink" title="OpenGL相关概念"></a>OpenGL相关概念</h1><h2 id="OpenGL是什么？"><a href="#OpenGL是什么？" class="headerlink" title="OpenGL是什么？"></a>OpenGL是什么？</h2><ul>
-<li>OpenGL是一个规范，由Khronos组织制定并维护。</li>
+          <img src="/Blog/2022/03/18/OpenGL%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/top.jpeg" class="">
+
+<h2 id="OpenGL是什么？"><a href="#OpenGL是什么？" class="headerlink" title="OpenGL是什么？"></a>OpenGL是什么？</h2><ul>
+<li>OpenGL是一个图形API规范，由Khronos组织制定并维护。</li>
 <li>OpenGL规范严格规定了每个函数如何执行，以及它的输出值，没有规定实现细节。</li>
 <li>OpenGL库的开发者通常是显卡的生产商，不同显卡对应的OpenGL库实现细节可能不同，但是他们的功能和结果都遵循OpenGL规范。</li>
 </ul>
 <h2 id="核心模式和立即渲染模式"><a href="#核心模式和立即渲染模式" class="headerlink" title="核心模式和立即渲染模式"></a>核心模式和立即渲染模式</h2><ul>
-<li>立即渲染模式（Immediate mode）：早期OpenGL使用，也就是&lt;span style:”color:red;”&gt;固定渲染管线</span>，</li>
+<li><b>立即渲染模式</b>（Immediate mode）：早期OpenGL使用，也就是<span style="color:red;">固定渲染管线</span>（Fixed Pipeline），这个模式下绘制图形很方便。OpenGL的大多数功能都被库隐藏起来，开发者很少有控制OpenGL如何进行计算的自由。</li>
+<li><b>核心模式</b>（Core-Profile）：也称为<span style="color:red;">可编程渲染管线</span>（Programmable Pipline）。OpenGL3.2开始废弃立即渲染模式，并鼓励开发者在OpenGL的核心模式下进行开发。从OpenGL3.3开始，新版本都在此基础上引入了额外的功能，核心架构并没有改动。</li>
 </ul>
+<h2 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h2><ul>
+<li>OpenGL自身是一个巨大的状态机（State Machine）：一系列的变量描述OpenGL此刻应当如何运行。OpenGL的状态通常被称为OpenGL上下文。我们通常使用如下途径去更改OpenGL状态：设置选项，操作缓冲。最后，我们使用当前的OpenGL上下文渲染。</li>
+<li>当使用OpenGL的时候，我们会遇到一些状态设置函数(例如：<code>glClearColor(0.2f, 0.3f, 0.3f, 1.0f);</code>)，这类函数将会改变上下文。也会遇到状态使用函数(例如：<code>glClear(GL_COLOR_BUFFER_BIT);</code>)，这类函数会根据当前OpenGL的状态执行一些操作。</li>
+</ul>
+<h2 id="图形渲染管线"><a href="#图形渲染管线" class="headerlink" title="图形渲染管线"></a>图形渲染管线</h2><p>在OpenGL中，任何事物都在3D空间中，而屏幕和窗口确是2D像素数组，这导致OpenGL的大部分工作都是把3D坐标转变为适应屏幕的2D像素。3D坐标转为2D像素的处理过程是由OpenGL的图形渲染管线（Graphics Pipeline）管理的。图形渲染管线可以被划分为两个主要部分：第一部分把你的3D坐标转换为2D坐标，第二部分是把2D坐标转变为实际的有颜色的像素。</p>
+<img src="/Blog/2022/03/18/OpenGL%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/graphics_pipeline.png" class="" title="图形渲染管线流程图">
+
+<ul>
+<li>顶点着色器(Vertex Shader)：图形渲染管线的第一部分是顶点着色器，他作用于每一个顶点，将输入的3分量向量坐标转换成4分量的向量坐标，生成每个顶点的最终位置，存储在gl_Position中。每个顶点执行一次。</li>
+<li>图元装配(Primitive Assembly)：将顶点着色器输出的所有顶点作为输入，并将所有的点装配成指定图元的形状。</li>
+<li>几何着色器(Geometry Shader)：图元装配阶段的输出会传递给几何着色器。几何着色器把图元形式的一系列顶点的集合作为输入，它可以通过产生新的顶点构造出新的图元来生成其他形状。</li>
+<li>光栅化(Rasterization Stage)：在这个阶段里把图元映射为最终屏幕上相应的像素，生成片段(Fragment)，供片段着色器(Fragment Shader)使用。在片段着色器运行之前会执行裁切(Clipping),裁切会丢弃超出你的视图以外的所有像素，用来提升效率。<blockquote>
+<p>OpenGL中的一个片段是OpenGL渲染一个像素所需的所有数据。</p>
+</blockquote>
+</li>
+<li>片段着色器(Fragment Shader)：主要目的是计算一个像素的最终颜色，这也是OpenGL高级效果产生的地方。通常，片段着色器包含3D场景的数据（比如光照、阴影、光的颜色等等），这些数据可以被用来计算最终像素的颜色。</li>
+<li>测试与混合：在所有颜色确定以后，最终的对象会被传到测试和混合(Blending)阶段。这个阶段检测片段的对应深度和模板值，通过深度来判断像素是否被遮挡，是否应该丢弃。这个阶段也会检查alpha值，并对物体颜色进行混合。</li>
+</ul>
+<blockquote>
+<p>大多数场合只需配置顶点和片段着色器就行，几何着色器是可选的，通常使用默认的几何着色器就行了。我们必须定义至少一个顶点着色器和一个片段着色器(因为GPU中没有默认的顶点/片段着色器)。</p>
+</blockquote>
+<h2 id="词汇表"><a href="#词汇表" class="headerlink" title="词汇表"></a>词汇表</h2><ul>
+<li><b>GLAD</b>: 一个拓展加载库，用来为我们加载并设定所有OpenGL函数指针，从而让我们能够使用所有（现代）OpenGL函数。</li>
+<li><b>视口(Viewport)</b>: 我们需要渲染的窗口。</li>
+<li><b>图形管线(Graphics Pipeline)</b>:一个顶点在呈现为像素之前经过的全部过程。</li>
+<li><b>着色器(Shader)</b>: 一个运行在显卡上的小型程序。很多阶段的图形管道都可以使用自定义的着色器来代替原有的功能。</li>
+<li><b>标准化设备坐标(Normalized Device Coordinates，NDC)</b>: 顶点在通过裁剪坐标系中裁剪与透视除法后最终呈现的坐标系。所有位置在NDC下-1.0到1.0的顶点将不会被丢弃并且可见。</li>
+<li><b>顶点缓冲对象(Vertex Buffer Object)</b>: 一个调用显存并存储所有顶点数据供显卡使用的缓冲对象。</li>
+<li><b>顶点数组对象(Vertex Array Object)</b>: 存储缓冲区和顶点属性状态。</li>
+<li><b>索引缓冲对象(Element Buffer Object)</b>: 一个存储索引供索引化绘制的使用的缓冲对象。</li>
+<li><b>Uniform</b>: 一个特殊类型的GLSL变量。它是全局的（在一个着色器程序中每一个着色器都能够访问uniform变量），并且只需要被设定一次。</li>
+<li><b>纹理(Texture)</b>: 一种包裹着物体的特殊类型的图像，给物体精细的视觉效果。</li>
+<li><b>纹理缠绕(Texture Wrapping)</b>: 定义一种当纹理顶点超出范围(0, 1)时，指定OpenGL如何采样纹理的模式。</li>
+<li><b>纹理过滤(Texture Filtering)</b>: 定义一种当有多种文素选择时指定OpenGL如何采样纹理的模式。这通常在纹理被放大情况下发生。</li>
+<li><b>多级渐远纹理(Mipmaps)</b>: 被存储的材质的一些缩小版本，根据观察者的距离会使用材质的合适大小。</li>
+<li><b>纹理单元(Texture Units)</b>: 通过绑定纹理到不同纹理单元从而允许多个纹理在同一对象上渲染。</li>
+<li><b>向量(Vector)</b>: 一个定义了在空间中方向或位置的数学实体。</li>
+<li><b>矩阵(Matrix)</b>: 一个矩形阵列的数学表达式。</li>
+<li><b>GLM</b>: 一个为OpenGL打造的数学库。</li>
+<li><b>局部空间(Local Space)</b>: 一个物体的初始空间。所有的坐标都是相对于物体原点的。</li>
+<li><b>世界空间(World Space)</b>: 所有坐标都是相对于全局原点的。</li>
+<li><b>观察空间(View Space)</b>: 所有的坐标都是从摄像机的视角观察的。</li>
+<li><b>裁剪空间(Clip Space)</b>: 所有的坐标都是从摄像机视角观察的，但是该空间应用了投影。这个空间应该是一个顶点坐标最终的空间，作为顶点着色器的输出。OpenGL负责处理剩下的事情（裁剪/透视除法）。</li>
+<li><b>屏幕空间(Screen Space)</b>: 所有的坐标都由屏幕视角来观察，坐标的范围是从0到屏幕的宽/高。</li>
+<li><b>LookAt矩阵</b>: 一种特殊类型的观察矩阵，它创建了一个坐标系，其中所有的坐标都根据从一个位置观察目标用户的旋转或平移。</li>
+<li><b>欧拉角(Euler Angles)</b>: 被定义为偏航角(Yaw)，俯仰角(Pitch)和滚转角(Roll)从而允许我们通过这三个值构造任何3D方向。</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/01%20Getting%20started/04%20Hello%20Triangle/">你好，三角形</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/455759091">Shader知识普及之：顶点着色器</a><br><a target="_blank" rel="noopener" href="http://imgtec.eetrend.com/blog/2019/100045068.html">顶点着色器、片段着色器、uniform变量</a></p>
 
       
     </div>
@@ -1395,12 +1446,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">245k</span>
+    <span title="站点总字数">247k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:45</span>
 </div>
 
         
