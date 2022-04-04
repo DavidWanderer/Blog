@@ -186,6 +186,311 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/01/31/GCD%E6%A6%82%E8%A6%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/01/31/GCD%E6%A6%82%E8%A6%81/" class="post-title-link" itemprop="url">GCD概要</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-31 12:44:51" itemprop="dateCreated datePublished" datetime="2020-01-31T12:44:51+08:00">2020-01-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>18k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>16 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="什么是GCD"><a href="#什么是GCD" class="headerlink" title="什么是GCD"></a>什么是GCD</h2><p>Grand Central Dispatch（GCD）是异步执行任务的技术之一。一般将应用程序中记述的线程管理用的代码在系统级中实现。开发者只需要定义想要执行的任务并追加到适当的 Dispatch Queue 中，GCD 就能生成必要的线程并计划执行任务。由于线程管理是作为系统的一部分来实现的，因此可统一管理，也可执行任务，这样就比以前的线程更有效率。</p>
+<p>在导入GCD之前，Cocoa 框架提供了 NSObject 类的 performSelectorInBackground:withObject 实例方法和 performSelectorOnMainThread 实例方法等简单的多线程编程技术。</p>
+<h3 id="dispatch-after-用法"><a href="#dispatch-after-用法" class="headerlink" title="dispatch_after 用法"></a>dispatch_after 用法</h3><p>在3秒后将指定的 Block 追加到 Main Dispatch Queue 中的源代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">NSLog(@&quot;begin...&quot;);</span><br><span class="line">    </span><br><span class="line">&#x2F;**</span><br><span class="line"> 因为 Main Dispatch Queue 在主线程的 RunLoop 中执行，所以在比如每隔1&#x2F;60秒执行的 RunLoop 中，Block 最快在3秒后执行，最慢在3秒+1&#x2F;60秒后执行，</span><br><span class="line"> 并且在 Main Dispatch Queue 有大量处理追加或主线程的处理本身有延迟时，这个时间会更长。虽然在有严格时间的要求下使用会出现问题，但在想大致延迟执行处</span><br><span class="line"> 理时，该函数是非常有效的。</span><br><span class="line"> *&#x2F;</span><br><span class="line">dispatch_time_t time &#x3D; dispatch_time(DISPATCH_TIME_NOW, 3ull * NSEC_PER_SEC);</span><br><span class="line">dispatch_after(time, dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    NSLog(@&quot;waited at least three seconds.&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;end...&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>第一个参数是指定时间用的 dispatch_time_t 类型的值。该值使用 dispatch_time 函数或 dispatch_walltime 函数生成。</p>
+<p>dispatch_time 函数能够获取从第一个参数 dispatch_time_t 类型值中指定的时间开始，到第二个参数指定的毫微秒单位时间后的时间。第一个参数经常使用的值是之前源代码中出现的DISPATCH_TIME_NOW。这表示现在的时间。即以下源代码可得到表示从现在开始1秒后的 dispatch_time_t 类型的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_time_t time &#x3D; dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC);</span><br></pre></td></tr></table></figure>
+
+<p>数值和 NSEC_PER_SEC 的乘积得到单位为毫微秒的数值。“ull”是C语言的数值字面量，是显示表明类型时使用的字符串（表示“unsigned long long”）。如果使用 NSEC_PER_MSEC 则可以以毫秒为单位计算。以下源代码获取表示从现在开始150毫秒后时间的值。TI</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_time_t time &#x3D; dispatch_time(DISPATCH_TIME_NOW, 150ull * NSEC_PER_MSEC);</span><br></pre></td></tr></table></figure>
+
+<p>dispatch_walltime 函数由 POSIX 中使用的 struct timespec 类型的时间得到 dispatch_time_t 类型的值。dispatch_time 函数通常用于计算时间，而 dispatch_walltime 函数用于计算绝对时间。例如在 dispatch_after 函数中想指定 2020年01月01日01时01分01秒这一绝对时间的情况，这可以作为粗略的闹钟功能使用。</p>
+<p>struct timespec 类型的时间可以很轻松的通过 NSDate 类对象生成。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">dispatch_time_t getDispatchTimeByDate(NSDate *date) &#123;</span><br><span class="line">    NSTimeInterval interval;</span><br><span class="line">    double second, subsecond;</span><br><span class="line">    struct timespec time;</span><br><span class="line">    dispatch_time_t milestone;</span><br><span class="line">    </span><br><span class="line">    interval &#x3D; [date timeIntervalSince1970];</span><br><span class="line">    subsecond &#x3D; modf(interval, &amp;second);</span><br><span class="line">    time.tv_sec &#x3D; second;</span><br><span class="line">    time.tv_nsec &#x3D; subsecond * NSEC_PER_SEC;</span><br><span class="line">    milestone &#x3D; dispatch_walltime(&amp;time, 0);</span><br><span class="line">    </span><br><span class="line">    return milestone;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的源代码可由 NSDate 类对象获取能传递给 dispatch_after 函数的 dispatch_time_t 类型的值。</p>
+<h3 id="dispatch-group-t-用法"><a href="#dispatch-group-t-用法" class="headerlink" title="dispatch_group_t 用法"></a>dispatch_group_t 用法</h3><p>在追加到 Dispatch Queue 中的多个处理全部结束后想执行结束处理，这种情况会经常出现。</p>
+<p>例如下面代码：追加3个 Block 到 Global Dispatch Queue，这些 Block 如果全部执行完毕，就会执行 Main Dispatch Queue 中结束处理用的 Block。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (void)testDispatchGroupNotify &#123;</span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">    dispatch_group_t group &#x3D; dispatch_group_create();</span><br><span class="line">    </span><br><span class="line">    dispatch_group_async(group, queue, ^&#123;NSLog(@&quot;blk0&quot;);&#125;);</span><br><span class="line">    dispatch_group_async(group, queue, ^&#123;NSLog(@&quot;blk2&quot;);&#125;);</span><br><span class="line">    dispatch_group_async(group, queue, ^&#123;NSLog(@&quot;blk3&quot;);&#125;);</span><br><span class="line">    </span><br><span class="line">    dispatch_group_notify(group, dispatch_get_main_queue(), ^&#123;NSLog(@&quot;done&quot;);&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>无论向什么样的 Dispatch Queue 中追加处理，使用 Dispatch Queue 都可以监视这些处理执行的结束。一旦检测到所有的处理执行结束，就可以将结束的处理追加到 Dispatch Queue 中。这就是使用</p>
+<p>Dispatch Group 的原因。</p>
+<p>在Dispatch Group中也可以使用 dispatch_group_wait 函数仅等待全部处理执行结束。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (void)testDispatchGroupWait1 &#123;</span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">    dispatch_group_t group &#x3D; dispatch_group_create();</span><br><span class="line">    </span><br><span class="line">    dispatch_group_async(group, queue, ^&#123;NSLog(@&quot;blk0&quot;);&#125;);</span><br><span class="line">    dispatch_group_async(group, queue, ^&#123;NSLog(@&quot;blk1&quot;);&#125;);</span><br><span class="line">    dispatch_group_async(group, queue, ^&#123;NSLog(@&quot;blk2&quot;);&#125;);</span><br><span class="line">    </span><br><span class="line">    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;done.&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>dispatch_group_wait 函数的第二个参数指定为等待时间（超时）。它属于 dispatch_time_t 类型的值。该源代码使用 DISPATCH_DISPATCH_TIME_FOREVER，意味着永久等待。只要属于Dispatch Group 的处理尚未结束，就会一直等待，中途不能取消。</p>
+<p>如同 dispatch_after 函数说明的那样，指定等待间隔为1秒时应做如下处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (void)testDispatchGroupWait2 &#123;</span><br><span class="line">    dispatch_time_t time &#x3D; dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC);</span><br><span class="line">    dispatch_group_t group &#x3D; dispatch_group_create();</span><br><span class="line">    long result &#x3D; dispatch_group_wait(group, time);</span><br><span class="line">    if (result &#x3D;&#x3D; 0) &#123;</span><br><span class="line">        &#x2F;**</span><br><span class="line">         属于 Dispatch Group 的全部处理执行结束</span><br><span class="line">         *&#x2F;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        &#x2F;**</span><br><span class="line">         属于 Dispatch Group 的某一个处理还在执行中</span><br><span class="line">         *&#x2F;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果 dispatch_group_wait 函数的返回值不为0，就意味着虽然经过了指定的时间，但属于 Dispatch Group 的某一个处理还在执行中。如果返回值为0，那么全部处理执行结束。当等待时间为 DISPATCH_TIME_FOREVER，由 dispatch_group_wait 函数返回时，由于属于 Dispatch Group 的处理必定全部执行结束，因此返回值恒为0。</p>
+<p>这里的“等待”是什么意思呢？这意味着一旦调用 dispatch_group_wait 函数，该函数就处于调用的状态而不返回。即执行 dispatch_group_wait 函数的所在的线程停止。在经过 dispatch_group_wait 函数中指定的时间或属于指定 Dispatch Group 的处理全部执行结束之前，执行该函数的线程停止。</p>
+<h3 id="dispatch-barrier-async-用法"><a href="#dispatch-barrier-async-用法" class="headerlink" title="dispatch_barrier_async 用法"></a>dispatch_barrier_async 用法</h3><p>如果像下面这样简单地在 dispatch_async 函数中加入写入处理，那么根据 Concurrent Dispatch Queue 的性质，就有可能在写入处理前面的读取处理中读取到与期待不符的数据，还可能因非法访问导致应用程序异常结束。如果追加多个写入处理，则可能发生更多的问题，比如数据竞争等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- (void)testReadAndWrite &#123;</span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_queue_create(&quot;com.gcd.barrier&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    </span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk0_for_reading&quot;);&#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk1_for_reading&quot;);&#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk2_for_reading&quot;);&#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk3_for_reading&quot;);&#125;);</span><br><span class="line">    </span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk_for_writing&quot;);&#125;);</span><br><span class="line">    </span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk4_for_reading&quot;);&#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk5_for_reading&quot;);&#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk6_for_reading&quot;);&#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk7_for_reading&quot;);&#125;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序运行的结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">2020-02-01 10:33:21.908239+0800 GCD_Demo[1852:30606] blk0_for_reading</span><br><span class="line">2020-02-01 10:33:21.908272+0800 GCD_Demo[1852:30354] blk1_for_reading</span><br><span class="line">2020-02-01 10:33:21.908349+0800 GCD_Demo[1852:30705] blk2_for_reading</span><br><span class="line">2020-02-01 10:33:21.908409+0800 GCD_Demo[1852:30706] blk3_for_reading</span><br><span class="line">2020-02-01 10:33:21.908446+0800 GCD_Demo[1852:30606] blk4_for_reading</span><br><span class="line">2020-02-01 10:33:21.908464+0800 GCD_Demo[1852:30354] blk5_for_reading</span><br><span class="line">2020-02-01 10:33:21.908466+0800 GCD_Demo[1852:30707] blk_for_writing</span><br><span class="line">2020-02-01 10:33:21.908490+0800 GCD_Demo[1852:30705] blk6_for_reading</span><br><span class="line">2020-02-01 10:33:21.908498+0800 GCD_Demo[1852:30708] blk7_for_reading</span><br></pre></td></tr></table></figure>
+
+<p>因此我们要使用 dispatch_barrier_async 函数。dispatch_barrier_async 函数会等待追加到 Concurrent Dispatch Queue 上的并行执行的处理全部结束之后，再将指定的处理追加到该 Concurrent Dispatch Queue 中。然后在由 dispatch_barrier_async 函数追加的处理执行完毕后，Concurrent Dispatch Queue 才恢复为一般的动作，追加到该 Concurrent Dispatch Queue 的处理又开始并行执行。</p>
+<p>使用 dispatch_barrier_async 的代码示例如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (void)testReadAndWrite2 &#123;</span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_queue_create(&quot;com.gcd.barrier&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    </span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk0_for_reading&quot;);&#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk1_for_reading&quot;);&#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk2_for_reading&quot;);&#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk3_for_reading&quot;);&#125;);</span><br><span class="line">    </span><br><span class="line">    dispatch_barrier_async(queue, ^&#123;NSLog(@&quot;blk_for_writing&quot;);&#125;);</span><br><span class="line">    </span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk4_for_reading&quot;);&#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk5_for_reading&quot;);&#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk6_for_reading&quot;);&#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;NSLog(@&quot;blk7_for_reading&quot;);&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序运行的结果如下:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2020</span><span class="number">-02</span><span class="number">-01</span> <span class="number">10</span>:<span class="number">52</span>:<span class="number">59.739217</span>+<span class="number">0800</span> GCD_Demo[<span class="number">2063</span>:<span class="number">43192</span>] blk0_for_reading</span><br><span class="line"><span class="number">2020</span><span class="number">-02</span><span class="number">-01</span> <span class="number">10</span>:<span class="number">52</span>:<span class="number">59.739225</span>+<span class="number">0800</span> GCD_Demo[<span class="number">2063</span>:<span class="number">43191</span>] blk1_for_reading</span><br><span class="line"><span class="number">2020</span><span class="number">-02</span><span class="number">-01</span> <span class="number">10</span>:<span class="number">52</span>:<span class="number">59.739240</span>+<span class="number">0800</span> GCD_Demo[<span class="number">2063</span>:<span class="number">42655</span>] blk2_for_reading</span><br><span class="line"><span class="number">2020</span><span class="number">-02</span><span class="number">-01</span> <span class="number">10</span>:<span class="number">52</span>:<span class="number">59.739244</span>+<span class="number">0800</span> GCD_Demo[<span class="number">2063</span>:<span class="number">43193</span>] blk3_for_reading</span><br><span class="line"><span class="number">2020</span><span class="number">-02</span><span class="number">-01</span> <span class="number">10</span>:<span class="number">52</span>:<span class="number">59.739375</span>+<span class="number">0800</span> GCD_Demo[<span class="number">2063</span>:<span class="number">43193</span>] blk_for_writing</span><br><span class="line"><span class="number">2020</span><span class="number">-02</span><span class="number">-01</span> <span class="number">10</span>:<span class="number">52</span>:<span class="number">59.739480</span>+<span class="number">0800</span> GCD_Demo[<span class="number">2063</span>:<span class="number">42655</span>] blk5_for_reading</span><br><span class="line"><span class="number">2020</span><span class="number">-02</span><span class="number">-01</span> <span class="number">10</span>:<span class="number">52</span>:<span class="number">59.739483</span>+<span class="number">0800</span> GCD_Demo[<span class="number">2063</span>:<span class="number">43193</span>] blk4_for_reading</span><br><span class="line"><span class="number">2020</span><span class="number">-02</span><span class="number">-01</span> <span class="number">10</span>:<span class="number">52</span>:<span class="number">59.739503</span>+<span class="number">0800</span> GCD_Demo[<span class="number">2063</span>:<span class="number">43191</span>] blk6_for_reading</span><br><span class="line"><span class="number">2020</span><span class="number">-02</span><span class="number">-01</span> <span class="number">10</span>:<span class="number">52</span>:<span class="number">59.739510</span>+<span class="number">0800</span> GCD_Demo[<span class="number">2063</span>:<span class="number">43192</span>] blk7_for_reading</span><br></pre></td></tr></table></figure>
+
+<p>使用 Concurrent Dispatch Queue 和 dispatch_barrier_async 函数可实现高效率的数据库访问和文件访问。</p>
+<p>dispatch_barrier_async 函数的处理流程图：</p>
+<img src="/Blog/2020/01/31/GCD%E6%A6%82%E8%A6%81/snip1.png" class="" title="dispatch_barrier_async函数处理流程图">
+
+<h3 id="dispatch-sync-用法"><a href="#dispatch-sync-用法" class="headerlink" title="dispatch_sync 用法"></a>dispatch_sync 用法</h3><p>dispatch_async 函数，就是将指定的Block“非同步”地追加到指定的 Dispatch Queue 中，dispatch_async 函数不做任何等待。</p>
+<img src="/Blog/2020/01/31/GCD%E6%A6%82%E8%A6%81/snip2.png" class="" title="dispatch_async 函数的处理流程">
+
+<p>dispatch_sync 函数，就是将指定的Block“同步”地追加到指定的 Dispatch Queue 中。在追加的Block结束之前，dispatch_sync 函数会一直等待。如 dispatch_group_wait 函数一样，“等待”意味着当前线程停止。</p>
+<img src="/Blog/2020/01/31/GCD%E6%A6%82%E8%A6%81/snip3.png" class="" title="dispatch_sync 函数的处理流程">
+
+<p>我们先假设这样一种情况，执行 Main Dispatch Queue 时，使用另外的线程 Global Dispatch Queue 进行处理，处理结束后立即使用所得到的结果。在这种情况下就要使用 dispatch_sync 函数。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">dispatch_sync</span>(queue, ^&#123;<span class="comment">/* 处理 */</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>一旦调用 dispatch_sync 函数，那么在指定的处理执行结束之前，该函数不会返回。dispatch_sync 函数可简化源代码，也可说是简易版的 dispatch_group_wait 函数。正因为 dispatch_sync 函数使用简单，所以也容易引起问题，即死锁。</p>
+<p>例如如果在主线程中执行以下源代码就会死锁。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (void)testDispatchSync1 &#123;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;begin...&quot;);</span><br><span class="line">    </span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_get_main_queue();</span><br><span class="line">    dispatch_sync(queue, ^&#123;</span><br><span class="line">        NSLog(@&quot;Hello&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;end...&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该源代码在 Main Dispatch Queue 即主线程中执行指定的Block，并等待其执行结束。而其实在主线程中正在执行这些源代码，所以无法执行追加到 Main Dispatch Queue 的Block。下面的例子也一样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (void)testDispatchSync2 &#123;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;begin...&quot;);</span><br><span class="line">    </span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_get_main_queue();</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        dispatch_sync(queue, ^&#123;NSLog(@&quot;Hello&quot;);&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;end...&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Main Dispatch Queue 中执行的Block等待 Main Dispatch Queue 中要执行的Block 执行结束。这样的死锁就像在画像上画画一样。</p>
+<p>当然 Serial Dispatch Queue 也会引起相同的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (void)testDispatchSync3 &#123;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;begin...&quot;);</span><br><span class="line">    </span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_queue_create(&quot;com.gcd.mySerialDispatchQueue&quot;, NULL);</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        dispatch_sync(queue, ^&#123;NSLog(@&quot;Hello&quot;);&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;end...&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由 dispatch_barrier_async 函数中含有 async 可推测出，相应的也有 dispatch_barrier_sync 函数。dispatch_barrier_async 函数的作用是在等待追加的处理全部执行结束后，再追加处理到 Dispatch Queue 中，此外，它还与 dispatch_sync 函数相同，会等待追加处理的执行结束。</p>
+<h3 id="dispatch-apply-用法"><a href="#dispatch-apply-用法" class="headerlink" title="dispatch_apply 用法"></a>dispatch_apply 用法</h3><p>dispatch_apply 函数是 dispatch_sync 函数和 Dispatch Group 的关联 API。该函数按指定的次数将指定的Block追加到指定的 Dispatch Queue中，并等待全部处理执行结束。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (void)testDispatchApply1 &#123;</span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">    dispatch_apply(10, queue, ^(size_t index) &#123;</span><br><span class="line">        NSLog(@&quot;blk %zu&quot;, index);</span><br><span class="line">    &#125;);</span><br><span class="line">    NSLog(@&quot;done&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序的输出结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2020-02-01 12:40:31.343067+0800 GCD_Demo[3361:105895] blk 1</span><br><span class="line">2020-02-01 12:40:31.343067+0800 GCD_Demo[3361:105839] blk 2</span><br><span class="line">2020-02-01 12:40:31.343074+0800 GCD_Demo[3361:105885] blk 0</span><br><span class="line">2020-02-01 12:40:31.343078+0800 GCD_Demo[3361:105940] blk 4</span><br><span class="line">2020-02-01 12:40:31.343079+0800 GCD_Demo[3361:105941] blk 7</span><br><span class="line">2020-02-01 12:40:31.343078+0800 GCD_Demo[3361:105939] blk 3</span><br><span class="line">2020-02-01 12:40:31.343085+0800 GCD_Demo[3361:105894] blk 5</span><br><span class="line">2020-02-01 12:40:31.343085+0800 GCD_Demo[3361:105938] blk 6</span><br><span class="line">2020-02-01 12:40:31.343224+0800 GCD_Demo[3361:105895] blk 8</span><br><span class="line">2020-02-01 12:40:31.343235+0800 GCD_Demo[3361:105839] blk 9</span><br><span class="line">2020-02-01 12:40:31.343787+0800 GCD_Demo[3361:105839] done</span><br></pre></td></tr></table></figure>
+
+<p>因为在 Global Dispatch Queue 中执行处理，所以各个处理的执行时间不定。但是输出结果中最后的 done 必定在最后的位置上。这是因为 dispatch_apply 函数会等待全部处理执行结束。</p>
+<p>第一个参数为重复次数，第二个参数为追加对象的 Dispatch Queue，第三个参数为追加的处理。与到目前为止所出现的例子不同，第三个参数的Block为带有参数的Block。这是为了按第一个参数重复追加Block并区分各个Block而使用。例如要对 NSArray 类对象的所有元素执行处理时，不必一个一个编写 for 循环部分。</p>
+<p>另外，由于 dispatch_apply 函数也与 dispatch_sync 函数相同，会等待处理执行结束，因此推荐在 dispatch_async 函数中非同步地执行 dispatch_apply 函数。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">- (void)testDispatchApply2 &#123;</span><br><span class="line">    </span><br><span class="line">    NSArray *array &#x3D; [NSArray arrayWithObjects:@&quot;obj1&quot;, @&quot;obj2&quot;, @&quot;obj3&quot;, @&quot;obj4&quot;, @&quot;obj5&quot;, @&quot;obj6&quot;, nil];</span><br><span class="line">    </span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">    &#x2F;** 在 Global Dispatch Queue 中非同步执行 *&#x2F;</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">       </span><br><span class="line">        &#x2F;**</span><br><span class="line">         Global Dispatch Queue</span><br><span class="line">         等待 dispatch_apply 函数中全部处理执行结束</span><br><span class="line">         *&#x2F;</span><br><span class="line">        dispatch_apply([array count], queue, ^(size_t index) &#123;</span><br><span class="line">            &#x2F;**</span><br><span class="line">             并列处理包含在 NSArray 对象的全部对象</span><br><span class="line">             *&#x2F;</span><br><span class="line">            NSLog(@&quot;%zu: %@&quot;, index, [array objectAtIndex:index]);</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        &#x2F;**</span><br><span class="line">         dispatch_apply 函数中的处理全部执行结束</span><br><span class="line">         *&#x2F;</span><br><span class="line">        </span><br><span class="line">        &#x2F;**</span><br><span class="line">         在 Main Dispatch Queue 中非同步执行</span><br><span class="line">         *&#x2F;</span><br><span class="line">        dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">            &#x2F;**</span><br><span class="line">             在 Main Dispatch Queue 中执行处理</span><br><span class="line">             用户界面更新等</span><br><span class="line">             *&#x2F;</span><br><span class="line">            NSLog(@&quot;done&quot;);</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序执行结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">2020-02-01 13:17:57.785290+0800 GCD_Demo[3821:122905] 4: obj5</span><br><span class="line">2020-02-01 13:17:57.785285+0800 GCD_Demo[3821:122911] 5: obj6</span><br><span class="line">2020-02-01 13:17:57.785283+0800 GCD_Demo[3821:122895] 3: obj4</span><br><span class="line">2020-02-01 13:17:57.785283+0800 GCD_Demo[3821:122896] 0: obj1</span><br><span class="line">2020-02-01 13:17:57.785283+0800 GCD_Demo[3821:122897] 2: obj3</span><br><span class="line">2020-02-01 13:17:57.785283+0800 GCD_Demo[3821:122894] 1: obj2</span><br><span class="line">2020-02-01 13:17:57.811750+0800 GCD_Demo[3821:122848] done</span><br></pre></td></tr></table></figure>
+
+<h3 id="dispatch-suspend-dispatch-resume-用法"><a href="#dispatch-suspend-dispatch-resume-用法" class="headerlink" title="dispatch_suspend / dispatch_resume 用法"></a>dispatch_suspend / dispatch_resume 用法</h3><p>当追加大量处理到 Dispatch Queue 时，在追加处理的过程中，有时希望不执行已追加的处理。例如演算结果被Block截获时，一些处理会对这个演算结果造成影响。在这种情况下，只要挂起 Dispatch Queue 即可。当可以执行时再恢复。</p>
+<p>dispatch_suspend 函数挂起指定的 Dispatch Queue。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_suspend(queue);</span><br></pre></td></tr></table></figure>
+
+<p>Dispatch_resume 函数恢复指定的 Dispatch Queue。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_resume(queue);</span><br></pre></td></tr></table></figure>
+
+<p>这些函数对已经执行的处理没有影响。挂起后，追加到 Dispatch Queue 中但尚未执行的处理在此之后停止执行。而恢复则使得这些处理能够继续执行。</p>
+<h3 id="Dispatch-Semaphore-用法"><a href="#Dispatch-Semaphore-用法" class="headerlink" title="Dispatch Semaphore 用法"></a>Dispatch Semaphore 用法</h3><p>如前所述，当并行执行的处理更新数据时，会产生数据不一致的情况，有时应用程序还会异常结束。虽然使用 Serial Dispatch Queue 和 dispatch_barrier_async 函数可避免这类问题，但有必要进行更细粒度的排他控制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (void)testDispatchSemaphore1 &#123;</span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">    </span><br><span class="line">    NSMutableArray *array &#x3D; [[NSMutableArray alloc] init];</span><br><span class="line">    </span><br><span class="line">    for (int i&#x3D;0; i &lt; 10000; ++i) &#123;</span><br><span class="line">        dispatch_async(queue, ^&#123;</span><br><span class="line">            [array addObject:[NSNumber numberWithInt:i]];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为该源代码使用 Global Dispatch Queue 更新 NSMutableArray 类对象，所以执行后由内存错误导致应用程序异常结束的概率很高。此时应使用 Dispatch Semephore。</p>
+<p>Dispatch Semaphore 是持有计数的信号，该计数是多线程编程中的计数类型信号。所谓信号，类似于过马路时常用的手旗。可以通过时举起手旗，不可通过时放下手旗。而在Dispatch Semaphore中，使用计数来实现该功能。计数为0时等待，计数为1或大于1时，减去1而不等待。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_semaphore_t semaphore &#x3D; dispatch_semaphore_create(1);</span><br></pre></td></tr></table></figure>
+
+<p>参数表示计数的初始值。本例将计数值初始化为“1”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br></pre></td></tr></table></figure>
+
+<p>dispatch_semaphore_wait 函数等待 Dispatch Semaphore 的计数值达到大于或等于 1。当计数值大于等于1，或者在待机中计数值大于等于1时，对该计数进行减法并从 dispatch_semaphore_wait 函数返回。第二个参数与 dispatch_group_wait 函数等相同，由 dispatch_time_t 类型值指定等待时间。该例的参数意味着永久等待。另外，dispatch_semaphore_wait 函数的返回值也与 dispatch_group_wait 函数相同。可像以下源代码这样通过返回值进行分支处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">dispatch_time_t time &#x3D; dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC);</span><br><span class="line"></span><br><span class="line">long result &#x3D; dispatch_semaphore_wait(semaphore, time);</span><br><span class="line"></span><br><span class="line">if (result &#x3D;&#x3D; 0) &#123;</span><br><span class="line">	&#x2F;**</span><br><span class="line">	由于 Dispatch Semaphore 的计数值达到大于等于 1</span><br><span class="line">	或者在待机中指定的时间内</span><br><span class="line">	Dispatch Semaphore 的计数值达到大于等于 1</span><br><span class="line">	所以 Dispatch Semaphore 的计数值减去 1。</span><br><span class="line">	</span><br><span class="line">	可执行需要进行排他控制的处理</span><br><span class="line">	*&#x2F;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  &#x2F;**</span><br><span class="line">  由于 Dispatch Semaphore 的计数值为0</span><br><span class="line">  因此在达到指定时间为止待机</span><br><span class="line">  *&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>dispatch_semaphore_wait 函数返回0时，可安全地执行需要进行排他控制的处理。该处理结束时通过 dispatch_semaphore_signal 函数将 Dispatch Semaphore 的计数值加1。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">- (void)testDispatchSemaphore2 &#123;</span><br><span class="line">    </span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">    </span><br><span class="line">    &#x2F;**</span><br><span class="line">     生成 Dispatch Semaphore</span><br><span class="line">     Dispatch Semaphore 的计数初始值设定为 “1”。</span><br><span class="line">     保证可访问 NSMutableArray 类对象的线程同时只能有1个。</span><br><span class="line">     *&#x2F;</span><br><span class="line">    dispatch_semaphore_t semaphore &#x3D; dispatch_semaphore_create(1);</span><br><span class="line">    </span><br><span class="line">    NSMutableArray *array &#x3D; [[NSMutableArray alloc] init];</span><br><span class="line">    </span><br><span class="line">    for (int i &#x3D; 0; i &lt; 100000; i++) &#123;</span><br><span class="line">        dispatch_async(queue, ^&#123;</span><br><span class="line">           &#x2F;**</span><br><span class="line">            等待 Dispatch Semaphore</span><br><span class="line">            一直等待，直到 Dispatch Semaphore 的计数值达到大于等于1。</span><br><span class="line">            *&#x2F;</span><br><span class="line">            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">            </span><br><span class="line">            &#x2F;**</span><br><span class="line">             由于Dispatch Semaphore 的计数值达到大于等于1</span><br><span class="line">             所以将 Dispatch Semaphore 的计数值减去 1，</span><br><span class="line">             dispatch_semaphore_wait 函数执行返回。</span><br><span class="line"></span><br><span class="line">             即执行到此时的 Dispatch Semaphore 的计数值恒为 0。</span><br><span class="line">             </span><br><span class="line">             由于可访问 NSmutableArray 类对象的线程只有1个，因此可以安全的进行更新。</span><br><span class="line">             *&#x2F;</span><br><span class="line">            [array addObject:[NSNumber numberWithInt:i]];</span><br><span class="line">            </span><br><span class="line">            &#x2F;**</span><br><span class="line">             排他控制处理结束，所以通过 dispatch_semaphore_signal 函数</span><br><span class="line">             将 Dispatch Semaphore 的计数值加1。</span><br><span class="line">             如果有通过 dispatch_semaphore_wait 函数</span><br><span class="line">             等待 Dispatch Semaphore 的计数值增加的线程，</span><br><span class="line">             就由最先等待的线程执行。</span><br><span class="line">             *&#x2F;</span><br><span class="line">            dispatch_semaphore_signal(semaphore);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="dispatch-once-用法"><a href="#dispatch-once-用法" class="headerlink" title="dispatch_once 用法"></a>dispatch_once 用法</h3><p>dispatch_once 函数是保证在应用程序中只执行一次指定处理的API。如果使用 dispatch_once 函数，源代码为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (void)testDispatchOnce &#123;</span><br><span class="line">    </span><br><span class="line">    static dispatch_once_t onceToken;</span><br><span class="line">    dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">        &#x2F;**</span><br><span class="line">         初始化</span><br><span class="line">         *&#x2F;</span><br><span class="line">        NSLog(@&quot;当前初始化代码只会执行一次&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过 dispatch_once 函数，该源代码即使在多线程环境下执行，也可保证百分之百安全。在生成单例对象时使用。</p>
+<h3 id="Dispatch-I-O-用法"><a href="#Dispatch-I-O-用法" class="headerlink" title="Dispatch I/O 用法"></a>Dispatch I/O 用法</h3><p>Dispatch I/O 和 Dispatch Data，可以做到一次使用多个线程更快地并列读取。dispatch_io_create 函数生成 Dispatch I/O，并指定发生错误时用来执行处理的Block，以及执行该Block的 Dispatch Queue。如果想提高文件读取速度，可以尝试使用 Dispatch I/O。</p>
+<h3 id="Dispatch-Source-用法"><a href="#Dispatch-Source-用法" class="headerlink" title="Dispatch Source 用法"></a>Dispatch Source 用法</h3><p>GCD中除了主要的 Dispatch Queue 外，还有不太引人注目的 Dispatch Source。下面展示一个使用 DISPATCH_SOURCE_TYPE_TIMER 的定时器的例子。在网络编程的通信超时等情况下可使用该例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">- (void) testDispatchSource &#123;</span><br><span class="line">    </span><br><span class="line">    dispatch_source_t timer &#x3D; dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());</span><br><span class="line">    </span><br><span class="line">    &#x2F;**</span><br><span class="line">     将定时器设定为 15 秒后。</span><br><span class="line">     不指定为重复。</span><br><span class="line">     允许延迟 1 秒。</span><br><span class="line">     *&#x2F;</span><br><span class="line">    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, 15ull * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 1ull * NSEC_PER_SEC);</span><br><span class="line">    </span><br><span class="line">    &#x2F;** 指定定时器指定时间内执行的处理 *&#x2F;</span><br><span class="line">    dispatch_source_set_event_handler(timer, ^&#123;</span><br><span class="line">        NSLog(@&quot;wakeup!&quot;);</span><br><span class="line">        </span><br><span class="line">        &#x2F;** 取消 Dispatch Source 时的处理 *&#x2F;</span><br><span class="line">        dispatch_source_cancel(timer);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    &#x2F;** 指定取消 Dispatch Source 时的处理 *&#x2F;</span><br><span class="line">    dispatch_source_set_cancel_handler(timer, ^&#123;</span><br><span class="line">        NSLog(@&quot;canceled&quot;);</span><br><span class="line">        </span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    &#x2F;** 启动 Dispatch Source *&#x2F;</span><br><span class="line">    dispatch_resume(timer);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码在15秒之后会执行“wakeup!”打印，打印完就取消当前的定时器。实际上 Dispatch Queue 没有“取消”这一概念。一旦将处理追加到 Dispatch Queue 中，就没有方法将该处理去除，也没有方法可在执行中取消处理。编程人员要么在处理中导入取消这一概念，要么放弃取消，或者使用 NSOperationQueue 等其他方法。</p>
+<p>Dispatch Source 与 Dispatch Queue 不同，是可以取消的。而且取消时必须执行的处理可以指定为回调的Block形式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">- (void)testDownloadImg &#123;</span><br><span class="line">    </span><br><span class="line">    NSString *url &#x3D; @&quot;http:&#x2F;&#x2F;images.apple.com&#x2F;jp&#x2F;iphone&#x2F;features&#x2F;includes&#x2F;camera-gallery&#x2F;03-20100607.jpg&quot;;</span><br><span class="line">    </span><br><span class="line">    [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) &#123;</span><br><span class="line">        </span><br><span class="line">        dispatch_queue_t queue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">        dispatch_async(queue, ^&#123;</span><br><span class="line">            </span><br><span class="line">            if (!error) &#123;</span><br><span class="line">                </span><br><span class="line">                &#x2F;**</span><br><span class="line">                 在 Global Dispatch Queue 中对下载的数据进行解析处理，</span><br><span class="line">                 不妨碍主线程可长时间处理。</span><br><span class="line">                 *&#x2F;</span><br><span class="line">                </span><br><span class="line">                dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">                    &#x2F;**</span><br><span class="line">                     在 Main Dispatch Queue 中使用解析结果，</span><br><span class="line">                     对用户界面尽心刷新处理。</span><br><span class="line">                     *&#x2F;</span><br><span class="line">                &#125;);</span><br><span class="line">                </span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                &#x2F;** 发生错误 *&#x2F;</span><br><span class="line">                NSLog(@&quot;error:%@&quot;, error);</span><br><span class="line">            &#125;</span><br><span class="line">    </span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了不妨碍主线程的运行，在另外的线程中解析下载的数据。实现数据解析的就是通过 dispatch_get_global_queue 函数得到的一般优先级的 Global Dispatch Queue 和在 Global Dispatch Queue 中执行解析处理的 dispatch_async 函数。解析处理后为了反映到用户界面，需要在主线程中进行用户界面的更新。通过 dispatch_get_main_queue 函数得到的 Main Dispatch Queue 和在 Main Dispatch Queue 中使该处理执行的 dispatch_async 函数实现了此处理。</p>
+<p>那么为了不妨碍主线程的运行，网络下载处理也是使用GCD的线程更好吗？答案是否定的。网络编程强烈推荐使用异步 API。如果在网络编程中使用线程，就很可能会产生大量使用线程的倾向，会引发很多问题。例如每个连接都使用线程，很快就会用尽线程栈内存等。因为Cocoa框架提供了用于异步网络通信的API，所以在网络编程中不可使用线程。务必使用用于异步网络通信的API。</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p>《iOS与OS X多线程和内存管理》</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/01/27/%E6%9F%A5%E7%9C%8Bautoreleasepool%E7%9A%84%E7%8A%B6%E6%80%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/01/27/%E6%9F%A5%E7%9C%8Bautoreleasepool%E7%9A%84%E7%8A%B6%E6%80%81/" class="post-title-link" itemprop="url">查看autoreleasepool的状态</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-27 18:28:04" itemprop="dateCreated datePublished" datetime="2020-01-27T18:28:04+08:00">2020-01-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>22k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>20 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>查看NSAutoreleasePool 中 autorelease对象的状况，可以使用运行时系统中的函数<code>(lldb)po _objc_autoreleasePoolPrint();</code>。</p>
+<p>测试的源代码如下:</p>
+<img src="/Blog/2020/01/27/%E6%9F%A5%E7%9C%8Bautoreleasepool%E7%9A%84%E7%8A%B6%E6%80%81/snip1.png" class="" title="源代码截图">
+
+<p>执行断点1处的代码，日志如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">2020-01-27 19:22:37.241288+0800 NSAutoReleasePool测试[7028:191376] 执行断点1处的代码。</span><br><span class="line">(lldb) po _objc_autoreleasePoolPrint();</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">objc[7028]: AUTORELEASE POOLS for thread 0x11a0615c0</span><br><span class="line">objc[7028]: 86 releases pending.</span><br><span class="line">objc[7028]: [0x7ff577009000]  ................  PAGE  (hot) (cold)</span><br><span class="line">objc[7028]: [0x7ff577009038]  ################  POOL 0x7ff577009038</span><br><span class="line">objc[7028]: [0x7ff577009040]    0x60800002d3a0  __NSCFString</span><br><span class="line">objc[7028]: [0x7ff577009048]  ################  POOL 0x7ff577009048</span><br><span class="line">objc[7028]: [0x7ff577009050]  ################  POOL 0x7ff577009050</span><br><span class="line">objc[7028]: [0x7ff577009058]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009060]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009068]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009070]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009078]    0x604000028d20  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009080]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009088]    0x604000071c40  __NSCFDictionary</span><br><span class="line">objc[7028]: [0x7ff577009090]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009098]    0x604000049e40  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770090a8]    0x7ff576604080  UIStatusBarWindow</span><br><span class="line">objc[7028]: [0x7ff5770090b0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090b8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090c0]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090c8]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090d0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090d8]    0x604000048970  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090e0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090e8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090f0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770090f8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009100]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009108]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009110]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009118]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009120]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009128]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009130]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009138]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009140]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009148]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009150]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009158]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009160]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009168]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009170]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009178]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009180]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009188]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009190]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009198]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091a0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091a8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091b0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091b8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091d0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091d8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770091f0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091f8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009200]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009208]    0x7ff578800540  UITouch</span><br><span class="line">objc[7028]: [0x7ff577009210]    0x604000049420  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff577009218]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009220]    0x60400008de80  __NSMallocBlock__</span><br><span class="line">objc[7028]: [0x7ff577009228]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009230]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009238]    0x60800010ee80  NSXPCConnection</span><br><span class="line">objc[7028]: [0x7ff577009240]    0x60400008de30  __NSXPCInterfaceProxy__UIKeyboardArbitration</span><br><span class="line">objc[7028]: [0x7ff577009248]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009250]       0x10ecc4a58  __NSGlobalBlock__</span><br><span class="line">objc[7028]: [0x7ff577009258]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009260]    0x60800002ef60  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009268]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009270]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009278]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009280]    0x6040000130f0  __NSDate</span><br><span class="line">objc[7028]: [0x7ff577009288]    0x604000360cc0  __NSCFTimer</span><br><span class="line">objc[7028]: [0x7ff577009290]    0x604000029440  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009298]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b8]    0x60400002abc0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c0]    0x60400002aaa0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c8]    0x6040000132d0  __NSSingleObjectArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092d0]    0x60800010edf0  UITouchesEvent</span><br><span class="line">objc[7028]: [0x7ff5770092d8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092e0]    0x604000026f00  AppDelegate</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">0x75269231ba3900d2</span><br></pre></td></tr></table></figure>
+
+<p>执行断点2处的代码，日志如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">2020-01-27 19:24:29.654753+0800 NSAutoReleasePool测试[7028:191376] 执行断点2处的代码。</span><br><span class="line">2020-01-27 19:24:29.654806+0800 NSAutoReleasePool测试[7028:191487] XPC connection interrupted</span><br><span class="line">(lldb) po _objc_autoreleasePoolPrint();</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">objc[7028]: AUTORELEASE POOLS for thread 0x11a0615c0</span><br><span class="line">objc[7028]: 87 releases pending.</span><br><span class="line">objc[7028]: [0x7ff577009000]  ................  PAGE  (hot) (cold)</span><br><span class="line">objc[7028]: [0x7ff577009038]  ################  POOL 0x7ff577009038</span><br><span class="line">objc[7028]: [0x7ff577009040]    0x60800002d3a0  __NSCFString</span><br><span class="line">objc[7028]: [0x7ff577009048]  ################  POOL 0x7ff577009048</span><br><span class="line">objc[7028]: [0x7ff577009050]  ################  POOL 0x7ff577009050</span><br><span class="line">objc[7028]: [0x7ff577009058]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009060]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009068]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009070]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009078]    0x604000028d20  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009080]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009088]    0x604000071c40  __NSCFDictionary</span><br><span class="line">objc[7028]: [0x7ff577009090]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009098]    0x604000049e40  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770090a8]    0x7ff576604080  UIStatusBarWindow</span><br><span class="line">objc[7028]: [0x7ff5770090b0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090b8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090c0]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090c8]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090d0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090d8]    0x604000048970  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090e0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090e8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090f0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770090f8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009100]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009108]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009110]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009118]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009120]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009128]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009130]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009138]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009140]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009148]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009150]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009158]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009160]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009168]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009170]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009178]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009180]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009188]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009190]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009198]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091a0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091a8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091b0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091b8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091d0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091d8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770091f0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091f8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009200]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009208]    0x7ff578800540  UITouch</span><br><span class="line">objc[7028]: [0x7ff577009210]    0x604000049420  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff577009218]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009220]    0x60400008de80  __NSMallocBlock__</span><br><span class="line">objc[7028]: [0x7ff577009228]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009230]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009238]    0x60800010ee80  NSXPCConnection</span><br><span class="line">objc[7028]: [0x7ff577009240]    0x60400008de30  __NSXPCInterfaceProxy__UIKeyboardArbitration</span><br><span class="line">objc[7028]: [0x7ff577009248]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009250]       0x10ecc4a58  __NSGlobalBlock__</span><br><span class="line">objc[7028]: [0x7ff577009258]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009260]    0x60800002ef60  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009268]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009270]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009278]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009280]    0x6040000130f0  __NSDate</span><br><span class="line">objc[7028]: [0x7ff577009288]    0x604000360cc0  __NSCFTimer</span><br><span class="line">objc[7028]: [0x7ff577009290]    0x604000029440  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009298]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b8]    0x60400002abc0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c0]    0x60400002aaa0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c8]    0x6040000132d0  __NSSingleObjectArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092d0]    0x60800010edf0  UITouchesEvent</span><br><span class="line">objc[7028]: [0x7ff5770092d8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092e0]    0x604000026f00  AppDelegate</span><br><span class="line">objc[7028]: [0x7ff5770092e8]  ################  POOL 0x7ff5770092e8</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">0x75269231ba3900d2</span><br></pre></td></tr></table></figure>
+
+<p>执行断点3处的代码，日志如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">2020-01-27 19:27:07.529438+0800 NSAutoReleasePool测试[7028:191376] 执行断点3处的代码。</span><br><span class="line">(lldb) po _objc_autoreleasePoolPrint();</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">objc[7028]: AUTORELEASE POOLS for thread 0x11a0615c0</span><br><span class="line">objc[7028]: 88 releases pending.</span><br><span class="line">objc[7028]: [0x7ff577009000]  ................  PAGE  (hot) (cold)</span><br><span class="line">objc[7028]: [0x7ff577009038]  ################  POOL 0x7ff577009038</span><br><span class="line">objc[7028]: [0x7ff577009040]    0x60800002d3a0  __NSCFString</span><br><span class="line">objc[7028]: [0x7ff577009048]  ################  POOL 0x7ff577009048</span><br><span class="line">objc[7028]: [0x7ff577009050]  ################  POOL 0x7ff577009050</span><br><span class="line">objc[7028]: [0x7ff577009058]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009060]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009068]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009070]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009078]    0x604000028d20  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009080]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009088]    0x604000071c40  __NSCFDictionary</span><br><span class="line">objc[7028]: [0x7ff577009090]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009098]    0x604000049e40  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770090a8]    0x7ff576604080  UIStatusBarWindow</span><br><span class="line">objc[7028]: [0x7ff5770090b0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090b8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090c0]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090c8]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090d0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090d8]    0x604000048970  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090e0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090e8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090f0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770090f8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009100]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009108]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009110]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009118]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009120]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009128]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009130]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009138]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009140]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009148]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009150]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009158]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009160]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009168]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009170]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009178]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009180]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009188]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009190]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009198]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091a0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091a8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091b0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091b8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091d0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091d8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770091f0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091f8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009200]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009208]    0x7ff578800540  UITouch</span><br><span class="line">objc[7028]: [0x7ff577009210]    0x604000049420  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff577009218]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009220]    0x60400008de80  __NSMallocBlock__</span><br><span class="line">objc[7028]: [0x7ff577009228]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009230]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009238]    0x60800010ee80  NSXPCConnection</span><br><span class="line">objc[7028]: [0x7ff577009240]    0x60400008de30  __NSXPCInterfaceProxy__UIKeyboardArbitration</span><br><span class="line">objc[7028]: [0x7ff577009248]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009250]       0x10ecc4a58  __NSGlobalBlock__</span><br><span class="line">objc[7028]: [0x7ff577009258]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009260]    0x60800002ef60  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009268]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009270]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009278]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009280]    0x6040000130f0  __NSDate</span><br><span class="line">objc[7028]: [0x7ff577009288]    0x604000360cc0  __NSCFTimer</span><br><span class="line">objc[7028]: [0x7ff577009290]    0x604000029440  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009298]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b8]    0x60400002abc0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c0]    0x60400002aaa0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c8]    0x6040000132d0  __NSSingleObjectArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092d0]    0x60800010edf0  UITouchesEvent</span><br><span class="line">objc[7028]: [0x7ff5770092d8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092e0]    0x604000026f00  AppDelegate</span><br><span class="line">objc[7028]: [0x7ff5770092e8]  ################  POOL 0x7ff5770092e8</span><br><span class="line">objc[7028]: [0x7ff5770092f0]    0x60400004a770  __NSArrayI</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">0x75269231ba3900d2</span><br></pre></td></tr></table></figure>
+
+<p>执行断点4处的代码，日志如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">2020-01-27 19:28:45.777438+0800 NSAutoReleasePool测试[7028:191376] 执行断点4处的代码。</span><br><span class="line">(lldb) po _objc_autoreleasePoolPrint();</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">objc[7028]: AUTORELEASE POOLS for thread 0x11a0615c0</span><br><span class="line">objc[7028]: 86 releases pending.</span><br><span class="line">objc[7028]: [0x7ff577009000]  ................  PAGE  (hot) (cold)</span><br><span class="line">objc[7028]: [0x7ff577009038]  ################  POOL 0x7ff577009038</span><br><span class="line">objc[7028]: [0x7ff577009040]    0x60800002d3a0  __NSCFString</span><br><span class="line">objc[7028]: [0x7ff577009048]  ################  POOL 0x7ff577009048</span><br><span class="line">objc[7028]: [0x7ff577009050]  ################  POOL 0x7ff577009050</span><br><span class="line">objc[7028]: [0x7ff577009058]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009060]    0x60800023fca0  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009068]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009070]    0x604000027500  CAContextImpl</span><br><span class="line">objc[7028]: [0x7ff577009078]    0x604000028d20  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009080]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009088]    0x604000071c40  __NSCFDictionary</span><br><span class="line">objc[7028]: [0x7ff577009090]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009098]    0x604000049e40  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770090a8]    0x7ff576604080  UIStatusBarWindow</span><br><span class="line">objc[7028]: [0x7ff5770090b0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090b8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090c0]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090c8]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff5770090d0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090d8]    0x604000048970  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770090e0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090e8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770090f0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770090f8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009100]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009108]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009110]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009118]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009120]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009128]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009130]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009138]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009140]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009148]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009150]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009158]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009160]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009168]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009170]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009178]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff577009180]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009188]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009190]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009198]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091a0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091a8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091b0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091b8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091c8]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091d0]    0x60c0000f7e00  _UIApplicationCanvas</span><br><span class="line">objc[7028]: [0x7ff5770091d8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e0]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff5770091e8]    0x604000046990  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff5770091f0]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff5770091f8]    0x60c0000cbb40  UIApplicationSceneSettings</span><br><span class="line">objc[7028]: [0x7ff577009200]    0x7ff578801260  UIScreen</span><br><span class="line">objc[7028]: [0x7ff577009208]    0x7ff578800540  UITouch</span><br><span class="line">objc[7028]: [0x7ff577009210]    0x604000049420  __NSArrayM</span><br><span class="line">objc[7028]: [0x7ff577009218]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009220]    0x60400008de80  __NSMallocBlock__</span><br><span class="line">objc[7028]: [0x7ff577009228]    0x604000013130  __NSSingleObjectSetI</span><br><span class="line">objc[7028]: [0x7ff577009230]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009238]    0x60800010ee80  NSXPCConnection</span><br><span class="line">objc[7028]: [0x7ff577009240]    0x60400008de30  __NSXPCInterfaceProxy__UIKeyboardArbitration</span><br><span class="line">objc[7028]: [0x7ff577009248]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009250]       0x10ecc4a58  __NSGlobalBlock__</span><br><span class="line">objc[7028]: [0x7ff577009258]    0x60800002ea80  NSXPCInterface</span><br><span class="line">objc[7028]: [0x7ff577009260]    0x60800002ef60  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009268]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009270]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff577009278]    0x7ff57880aeb0  UIView</span><br><span class="line">objc[7028]: [0x7ff577009280]    0x6040000130f0  __NSDate</span><br><span class="line">objc[7028]: [0x7ff577009288]    0x604000360cc0  __NSCFTimer</span><br><span class="line">objc[7028]: [0x7ff577009290]    0x604000029440  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff577009298]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092a8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b0]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092b8]    0x60400002abc0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c0]    0x60400002aaa0  __NSArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092c8]    0x6040000132d0  __NSSingleObjectArrayI</span><br><span class="line">objc[7028]: [0x7ff5770092d0]    0x60800010edf0  UITouchesEvent</span><br><span class="line">objc[7028]: [0x7ff5770092d8]    0x7ff578808a50  UIWindow</span><br><span class="line">objc[7028]: [0x7ff5770092e0]    0x604000026f00  AppDelegate</span><br><span class="line">objc[7028]: ##############</span><br><span class="line">0x75269231ba3900d2</span><br></pre></td></tr></table></figure>
+
+<p>由以上日志可见，断点1处时<code>objc[7028]: 86 releases pending.</code>，有86个autorelease对象等待释放；然后新建一个autoreleasepool，到断点2处时<code>objc[7028]: 87 releases pending.</code>，有87个autorelease对象等待释放；然后创建一个NSArray对象并注册到autoreleasepool，到断点3处时<code>objc[7028]: 88 releases pending.</code>，有88个对象等待释放；最后出autoreleasepool的范围，新建的NSArray对象和autoreleasepool对象都被释放了，又恢复到最初时候<code>objc[7028]: 86 releases pending.</code>，仍然只有86个对象等待释放。整个的过程可以判断出autoreleasepool的内存管理方式。注意在autoreleasepool中包裹的部分，只有通过类方法，并且不是 alloc/init/copy/mutableCopy 获取到的对象才会注册到当前的autoreleasepool中，才可以使用以上方式查找内存的详细情况。</p>
+<p>如果autorelease NSAutoreleasePool对象会如何?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSAutoreleasePool *pool &#x3D; [[NSAutoreleasePool alloc] init];</span><br><span class="line">[pool autorelease];</span><br></pre></td></tr></table></figure>
+
+<p>回答：发生异常，通常在使用Objective-C，也就是Foundation框架时，无论调用哪一个对象的 autorelease 实例方法，实现上调用的都是 NSObject 类的 autorelease 实例方法。但是对于 NSAutoreleasePool类，autorelease 实例方法已被该类重载，因此运行时就会报错。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>《iOS与OS X多线程和内存管理》</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/12/30/%E8%87%AA%E5%8A%A8%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1233,539 +1538,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">Block解析</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-27 17:12:09" itemprop="dateCreated datePublished" datetime="2019-06-27T17:12:09+08:00">2019-06-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>8.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Block底层解密"><a href="#Block底层解密" class="headerlink" title="Block底层解密"></a>Block底层解密</h2><p>block想必做过一段iOS开发的同学都用过吧，但是大部分人都是仅仅会用，不怎么理解他是怎么实现的，今天就让我们来一步一步的分析一下底层是怎么实现的吧。</p>
-<h3 id="查看源码"><a href="#查看源码" class="headerlink" title="查看源码"></a>查看源码</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (^block)(<span class="keyword">void</span>) =  ^()&#123;</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;this is a block!&quot;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>这样一个简单的<code>block</code>块大家都应该知道吧，但是这个<code>block</code>块是怎么实现的呢？</p>
-<p>想要了解OC对象主要是基于C/C++的什么数据结构实现的，我们首先要做的就是将Object-C代码转化为C/C++代码，这样我们才能清楚的看清是怎么实现的</p>
-<p>然后我们打开终端，在命令行找到cd到文件目录，然后中输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcrun  -sdk  iphoneos  clang  -arch  arm64  -rewrite-objc main.m</span><br></pre></td></tr></table></figure>
-<p>执行结束以后，会生成<code>main.cpp</code>文件，我们打开<code>main.cpp</code>文件，拉到最下边就是我们的<code>main</code>函数实现的。</p>
-<p>我们得到c++代码的block实现</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (*block)(<span class="keyword">void</span>) = ((<span class="keyword">void</span> (*)())&amp;__main_block_impl_0((<span class="keyword">void</span> *)__main_block_func_0, &amp;__main_block_desc_0_DATA));</span><br></pre></td></tr></table></figure>
-
-<p>我们知道<code>(void *)</code>这种类型的都是类型的强制转换，为了更好的识别我们的这个Block代码，我们把类型转化去掉</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (*block)(<span class="keyword">void</span>) = &amp;__main_block_impl_0(__main_block_func_0,</span><br><span class="line">&amp;__main_block_desc_0_DATA));</span><br></pre></td></tr></table></figure>
-
-<p>我们在分别查询<code>__main_block_impl_0</code>,<code>__main_block_func_0</code>,<code>__main_block_desc_0_DATA</code>代表什么意思</p>
-<p><strong>__main_block_impl_0</strong></p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> __main_block_impl_0 &#123;</span><br><span class="line">  <span class="keyword">struct</span> __block_impl impl;</span><br><span class="line">  <span class="keyword">struct</span> __main_block_desc_0* Desc;</span><br><span class="line">  <span class="comment">// 构造函数（类似于OC的init方法），返回结构体对象</span></span><br><span class="line">  __main_block_impl_0(<span class="keyword">void</span> *fp, <span class="keyword">struct</span> __main_block_desc_0 *desc, <span class="keyword">int</span> flags=<span class="number">0</span>) &#123;</span><br><span class="line">    impl.isa = &amp;_NSConcreteStackBlock;</span><br><span class="line">    impl.Flags = flags;</span><br><span class="line">    impl.FuncPtr = fp;</span><br><span class="line">    Desc = desc;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>我们查看一下<code>__block_impl</code>里面是什么</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> __block_impl &#123;</span><br><span class="line">  <span class="keyword">void</span> *isa;</span><br><span class="line">  <span class="keyword">int</span> Flags;</span><br><span class="line">  <span class="keyword">int</span> Reserved;</span><br><span class="line">  <span class="keyword">void</span> *FuncPtr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>__main_block_func_0</strong></p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 封装了block执行逻辑的函数</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> __main_block_func_0(<span class="keyword">struct</span> __main_block_impl_0 *__cself) &#123;</span><br><span class="line">  <span class="built_in">NSLog</span>((<span class="built_in">NSString</span> *)&amp;__NSConstantStringImpl__var_folders_2r__m13fp2x2n9dvlr8d68yry500000gn_T_main_c60393_mi_0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>__main_block_desc_0_DATA</strong></p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">struct</span> __main_block_desc_0 &#123;</span><br><span class="line">  size_t reserved;</span><br><span class="line">  size_t Block_size;<span class="comment">//内存大小描述</span></span><br><span class="line">&#125; __main_block_desc_0_DATA</span><br></pre></td></tr></table></figure>
-
-
-<p>所以我们可以总结</p>
-<ul>
-<li>1、<code>__main_block_impl_0</code>中<code>__block_impl</code>存放的是一些变量信息，其中存在<code>isa</code>，所以可以判断block的本质其实就是OC对象</li>
-<li>2、初始化<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__main_block_impl_0(<span class="keyword">void</span> *fp, <span class="keyword">struct</span> __main_block_desc_0 *desc, <span class="keyword">int</span> flags=<span class="number">0</span>) &#123;</span><br><span class="line">  impl.isa = &amp;_NSConcreteStackBlock;</span><br><span class="line">  impl.Flags = flags;</span><br><span class="line">  impl.FuncPtr = fp;</span><br><span class="line">  Desc = desc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-我们在来查看Block方法<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (*block)(<span class="keyword">void</span>) = &amp;__main_block_impl_0(__main_block_func_0,</span><br><span class="line">&amp;__main_block_desc_0_DATA));</span><br></pre></td></tr></table></figure>
-对应上面的初始化我们可以看出第一个参数传递的是<code>执行方法</code>，第二个参数为<code>描述信息</code></li>
-</ul>
-<p><strong>Block底层结构图</strong></p>
-<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block1.png" class="" title="Block截图">
-
-
-<h3 id="成员变量的捕获"><a href="#成员变量的捕获" class="headerlink" title="成员变量的捕获"></a>成员变量的捕获</h3><p>为了保证block内部能够正常的访问外部变量，block有个变量捕获机制,这里我们先说结果，然后在进行证明</p>
-<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block2.png" class="" title="Block截图">
-
-<p>我们在<code>main</code>函数写下这些代码，然后在把<code>main</code>函数生成c++代码</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> height = <span class="number">180</span>;</span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">  <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">    <span class="keyword">int</span> age = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> weight = <span class="number">65</span>;</span><br><span class="line">    <span class="keyword">void</span> (^block)(<span class="keyword">void</span>) =  ^()&#123;</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;age---------%d&quot;</span>,age);</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;weight---------%d&quot;</span>,weight);</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;height---------%d&quot;</span>,height);</span><br><span class="line">    &#125;;</span><br><span class="line">    block();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们直接找到c++代码里面存放变量的结构体<code>__main_block_impl_0</code></p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> __main_block_impl_0 &#123;</span><br><span class="line">  <span class="keyword">struct</span> __block_impl impl;</span><br><span class="line">  <span class="keyword">struct</span> __main_block_desc_0* Desc;</span><br><span class="line">  <span class="keyword">int</span> age;</span><br><span class="line">  <span class="keyword">int</span> *weight;</span><br><span class="line">  __main_block_impl_0(<span class="keyword">void</span> *fp, <span class="keyword">struct</span> __main_block_desc_0 *desc, <span class="keyword">int</span> _age, <span class="keyword">int</span> *_weight, <span class="keyword">int</span> flags=<span class="number">0</span>) : age(_age), weight(_weight) &#123;</span><br><span class="line">    impl.isa = &amp;_NSConcreteStackBlock;</span><br><span class="line">    impl.Flags = flags;</span><br><span class="line">    impl.FuncPtr = fp;</span><br><span class="line">    Desc = desc;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到变量捕获为<code>age</code>,<code>*weight</code>,但是没有捕获到全局变量<code>height</code>。为了方便的理解，我们先来了解一些内存空间的分配。</p>
-<ul>
-<li>1、栈区(stack) 由编译器自动分配并释放，存放函数的参数值，局部变量等。栈空间分静态分配 和动态分配两种。静态分配是编译器完成的，比如自动变量(auto)的分配。动态分配由alloca函数完成。</li>
-<li>2、堆区(heap) 由程序员分配和释放，如果程序员不释放，程序结束时，可能会由操作系统回收 ，比如在ios 中 alloc 都是存放在堆中。</li>
-<li>3、全局区(静态区) (static) 全局变量和静态变量的存储是放在一起的，初始化的全局变量和静态变量存放在一块区域，未初始化的全局变量和静态变量在相邻的另一块区域，程序结束后有系统释放。</li>
-<li>4、程序代码区 存放函数的二进制代码</li>
-</ul>
-<p>总结：</p>
-<ul>
-<li>1、因为自动变量(auto)分配的内存空间在<code>栈区(stack)</code>，编译器会自动帮我们释放，如果我们把block写在另外一个方法中调用，自动变量<code>age</code>就会被释放，block在使用的时候就已经被释放了，所以需要重新copy一下</li>
-<li>2、静态变量在程序结束后有系统释放，所以不需要担心被释放，block只需要知道他的内存地址就行</li>
-<li>3、对于全局变量，任何时候都可以直接访问，所以根本就不需要捕获</li>
-</ul>
-<h3 id="Block类型"><a href="#Block类型" class="headerlink" title="Block类型"></a>Block类型</h3><p>block有3种类型，可以通过调用class方法或者isa指针查看具体的类型，但是最终都是继承者NSBlock类型</p>
-<ul>
-<li>1、__NSGlobalBlock__，没有访问auto变量</li>
-<li>2、__NSStackBlock__，访问了auto变量</li>
-<li>3、__NSMallocBlock__，__NSStackBlock__调用了copy方法</li>
-</ul>
-<p>她们的内存分配：</p>
-<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block3.png" class="" title="Block截图">
-
-
-<p>每一种类型的Block调用copy后的结果</p>
-<ul>
-<li>1、__NSStackBlock__原来在栈区，copy以后从栈复制到堆</li>
-<li>2、__NSGlobalBlock__原来在程序的数据段，copy以后什么也不做</li>
-<li>3、__NSMallocBlock__原来在堆区，复制以后引用计数加1<br>我们来写一小段代码证明一下<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (^block1)(<span class="keyword">void</span>) =  ^()&#123;</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;block1&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> age = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">void</span> (^block2)(<span class="keyword">void</span>) =  ^()&#123;</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;block2&quot;</span>);</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;age---------%d&quot;</span>,age);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">void</span> (^block3)(<span class="keyword">void</span>) = [ ^()&#123;</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;block3&quot;</span>);</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;age---------%d&quot;</span>,age);</span><br><span class="line">&#125; <span class="keyword">copy</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;block1:%@----&gt;block2:%@-----&gt;block3:%@&quot;</span>,[block1 <span class="keyword">class</span>],[block2 <span class="keyword">class</span>],[block3 <span class="keyword">class</span>]);</span><br></pre></td></tr></table></figure>
-打印结果为：<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block4.png" class="" title="Block截图">
-
-</li>
-</ul>
-<p>为什么<code>block2</code>打印类型为<code>__NSMallocBlock__</code>,而不是<code>__NSStackBlock__</code>，因为ARC环境导致了，ARC会自动帮我们copy了一下<code>__NSStackBlock__</code>。</p>
-<h3 id="auto变量修饰符-weak"><a href="#auto变量修饰符-weak" class="headerlink" title="auto变量修饰符__weak"></a>auto变量修饰符__weak</h3><p>在开始之前，我先说一下结论，然后我们在去印证</p>
-<ul>
-<li>1、当Block内部访问了auto变量时，如果block是在栈上，将不会对auto变量产生强引用。</li>
-<li>2、如果block被拷贝到堆上，会根据auto变量的修饰符（__strong，__weak，__unsafe_unretained），对auto变量进行强引用或者弱引用。</li>
-<li>3、如果block从堆上移除的时候，会调用block内部的dispose函数，该函数自动释放auto变量。</li>
-<li>4、在多个block相互嵌套的时候，auto属性的释放取决于最后的那个强引用什么时候释放。</li>
-</ul>
-<p>下面我们把ARC环境变成MRC环境，同时稍微修改一下代码，我们在看看<code>dealloc</code>什么时候打印<br><code>选择项目 Target -&gt; Build Sttings -&gt; All -&gt; 搜索‘automatic’ -&gt; 把 Objective-C Automatic Reference Counting 设置为 NO</code></p>
-<p>我们写一个<code>Person</code>类，在MRC环境，重写<code>dealloc</code>方法</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)dealloc&#123;</span><br><span class="line">  [<span class="keyword">super</span> dealloc];</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;person---&gt;dealloc&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们在<code>main</code>函数里面写下这个方法</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  Person *p = [[Person alloc] init];</span><br><span class="line">  [p release];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;--------&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>我们肯定都知道打印结果吧：先打印<code>person---&gt;dealloc</code>，然后打印<code>--------</code></p>
-<p>如果我们添加一个Block呢,</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> (^Block)(<span class="keyword">void</span>);</span><br><span class="line">Block block;</span><br><span class="line">&#123;</span><br><span class="line">  Person *p = [[Person alloc] init];</span><br><span class="line">  block = ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;%@&quot;</span>,p);</span><br><span class="line">  &#125;;</span><br><span class="line">  [p release];</span><br><span class="line">&#125;</span><br><span class="line">block();</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;--------&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>打印结果为：</p>
-<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block5.png" class="" title="Block截图">
-
-
-<p>在ARC环境下，代码稍微的改变一下</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Block block;</span><br><span class="line">&#123;</span><br><span class="line">  Person *p = [[Person alloc] init];</span><br><span class="line">  block = ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;%@&quot;</span>,p);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">block();</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;--------&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>打印结果为：</p>
-<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block6.png" class="" title="Block截图">
-
-<p><strong>注意打印顺序：</strong></p>
-<ul>
-<li>MRC环境下，是先打印<code>dealloc</code>，然后在打印<code>p</code>的</li>
-<li>ARC环境下，是先打印<code>p</code>，然后在打印<code>dealloc</code>的</li>
-</ul>
-<p><code>当Block内部访问了auto变量时，如果block是在栈上，将不会对auto变量产生强引用,因为当Block在栈上的时候，他自己都不能保证自己什么时候被释放，所以block也就不会对自动变量进行强引用了</code></p>
-<p>在ARC环境下如果我们对自动变量进行一些修饰符，那么block对auto变量是进行怎么引用呢<br>我们还是老方法，把main文件转化为c++文件，我们找到<code>__main_block_func_0</code>执行函数，</p>
-<ul>
-<li>当不用修饰符修饰的时：<code>Person *p = __cself-&gt;p; // bound by copy</code></li>
-<li>当使用<code>__strong</code>修饰时：<code>Person *strongP = __cself-&gt;strongP; // bound by copy</code></li>
-<li>当使用<code>__weak</code>修饰的时:<code>Person *__weak weakP = __cself-&gt;weakP; // bound by copy</code><br>我们运行<code> xcrun  -sdk  iphoneos  clang  -arch  arm64  -rewrite-objc main.m</code>出错了，我们需要支持ARC，指定运行时系统版本，<code>xcrun -sdk iphoneos clang -arch arm64 -rewrite-objc -fobjc-arc -fobjc-runtime=ios-8.0.0 main.m </code></li>
-</ul>
-<p><strong><em><code>Block会自动copy自动变量的修饰属性</code></em></strong></p>
-<h3 id="Block修饰"><a href="#Block修饰" class="headerlink" title="__Block修饰"></a>__Block修饰</h3><p>我们都知道想要修改Block外边的变量，我们都会用<code>__Block</code>来修饰自动变量，但是为什么使用<code>__Block</code>修饰就可以在Block内部来更改自动变量了呢。</p>
-<p>我们先写一小段代码</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">__block <span class="keyword">int</span> age = <span class="number">10</span>;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;block前age地址1：%p&quot;</span>,&amp;age);</span><br><span class="line">Block block = ^&#123;</span><br><span class="line">  age = <span class="number">20</span>;</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;block内%d--&gt;age地址2：%p&quot;</span>,age,&amp;age);</span><br><span class="line">&#125;;</span><br><span class="line">block();</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;block后%d--&gt;age地址3：%p&quot;</span>,age,&amp;age);</span><br></pre></td></tr></table></figure>
-
-<p>打印结果为：</p>
-<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block7.png" class="" title="Block截图">
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">根据内存地址变化可见，__block所起到的作用就是只要观察到该变量被 block 所持有，就将“外部变量”在栈中的内存地址放到了堆中。</span><br></pre></td></tr></table></figure>
-
-<p>我们把<code>main</code>函数转化为C++代码，然后在age使用<code>__Block</code>前后，对Block结构体进行分析</p>
-<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block8.png" class="" title="Block截图">
-
-<p>在<code>__Block</code>所起到的作用就是只要观察到该变量被 block 所持有之后，<code>age</code>其实变成了OC对象，里面含有<code>isa</code>指针</p>
-<p><strong>__Block的内存管理原则</strong></p>
-<ul>
-<li>1、当Block在栈上的时候，并不会对<code>__Block</code>变量进行强引用</li>
-<li>2、当block被copy到堆时,会调用block内部的copy函数,copy函数内部会调用_Block_object_assign函数,_Block_object_assign函数会对__block变量形成强引用（retain）</li>
-<li>3、当block从堆中移除时，会调用block内部的dispose函数，dispose函数内部会调用_Block_object_dispose函数，_Block_object_dispose函数会自动释放引用的__block变量（release)</li>
-</ul>
-<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block9.png" class="" title="Block截图">
-
-<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block10.png" class="" title="Block截图">
-
-<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block11.png" class="" title="Block截图">
-
-
-<p>我们先看到了结果，这里我们在来分析一下源码<br><code>__block int age = 10;</code>转化为C++代码，会变成这样</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">__attribute__((__blocks__(<span class="keyword">byref</span>))) __Block_byref_age_0 age = &#123;(<span class="keyword">void</span>*)<span class="number">0</span>,(__Block_byref_age_0 *)&amp;age, <span class="number">0</span>, <span class="keyword">sizeof</span>(__Block_byref_age_0), <span class="number">10</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//为了便于观察，我们可以将强制转化去掉</span></span><br><span class="line">__Block_byref_age_0 age = &#123;<span class="number">0</span>, &amp;age, <span class="number">0</span>, <span class="keyword">sizeof</span>(__Block_byref_age_0), <span class="number">10</span>&#125;;</span><br></pre></td></tr></table></figure>
-<p>唯一我们不太清楚的就是<code>__Block_byref_age_0</code>了，我们查找一下发现</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> (*Block)(<span class="keyword">void</span>);</span><br><span class="line"><span class="keyword">struct</span> __Block_byref_age_0 &#123;</span><br><span class="line">  <span class="keyword">void</span> *__isa;</span><br><span class="line">  __Block_byref_age_0 *__forwarding;</span><br><span class="line">  <span class="keyword">int</span> __flags;</span><br><span class="line">  <span class="keyword">int</span> __size;</span><br><span class="line">  <span class="keyword">int</span> age;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>然后我们在来查找Block实现代码：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> __main_block_func_0(<span class="keyword">struct</span> __main_block_impl_0 *__cself) &#123;</span><br><span class="line">  __Block_byref_age_0 *age = __cself-&gt;age; <span class="comment">// bound by ref</span></span><br><span class="line">  (age-&gt;__forwarding-&gt;age) = <span class="number">20</span>;</span><br><span class="line">  <span class="built_in">NSLog</span>((<span class="built_in">NSString</span>*)&amp;__NSConstantStringImpl__var_folders_nb_9qtf99yd2qlbx2m97hdjf2yr0000gn_T_main_1757f5_mi_0,(age-&gt;__forwarding-&gt;age));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们来查看一下age是怎么变成20的<code>(age-&gt;__forwarding-&gt;age) = 20;</code>，先是找到<code>__forwarding</code>结构体，然后在找到结构体里面的<code>age</code>。</p>
-<p><strong>总结</strong></p>
-<ul>
-<li>1、在ARC环境下，Block被引用的时候，会被Copy一次，由栈区copy到了堆。</li>
-<li>2、在Block被copy的时候，Block内部被引用的<code>变量</code>也同样被copy一份到了堆上面。</li>
-<li>3、被__Block修饰的变量，在被Block引用的时候，会变成结构体也就是OC对象，里面的<code>__forwarding</code>也会由栈copy到堆上面。</li>
-<li>4、栈上__block变量结构体中<code>__forwarding</code>的指针指向堆上面__block变量结构体，堆上__block变量结构体中<code>__forwarding</code>指针指向自己。</li>
-<li>5、当block从堆中移除时，会调用block内部的dispose函数，dispose函数内部会调用_Block_object_dispose函数，_Block_object_dispose函数会自动释放引用的__block变量（release)。</li>
-</ul>
-<h3 id="解决循环引用"><a href="#解决循环引用" class="headerlink" title="解决循环引用"></a>解决循环引用</h3><p>我们看了那么长时间的源码了，一定还记得在auto变量为OC对象的时候，在没有修饰符修饰的时候Block内部会强引用OC对象，而对象如果也持有Block的时候就会造成相互引用，也就是循环引用的问题。</p>
-<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block12.png" class="" title="Block截图">
-
-<p>我们也只能在Block持有OC对象的时候，给OC对象添加弱引用修饰符才比较合适，有两个弱引用修饰符<code>__weak</code>和<code>__unsafe_unretained</code></p>
-<ul>
-<li>1、 __weak：不会产生强引用，指向的对象销毁时，会自动让指针置为nil</li>
-<li>2、__unsafe_unretained：不会产生强引用，不安全，指向的对象销毁时，指针存储的地址值不变</li>
-</ul>
-<p>其实还有一种解决方法，那就是使用<code>__Block</code>,需要在Block内部把OC对象设置为nil</p>
-<img src="/Blog/2019/06/27/Block%E8%A7%A3%E6%9E%90/Block13.png" class="" title="Block截图">
-
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">__block <span class="keyword">id</span> weakSelf = <span class="keyword">self</span>;</span><br><span class="line"><span class="keyword">self</span>.block = ^&#123;</span><br><span class="line">  weakSelf = <span class="literal">nil</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">self</span>.block();</span><br></pre></td></tr></table></figure>
-<p>使用<code>__Block</code>解决必须调用Block</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/06/27/Load%E5%92%8Cinitialize%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/06/27/Load%E5%92%8Cinitialize%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F/" class="post-title-link" itemprop="url">Load和initialize加载顺序</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-27 16:25:18" itemprop="dateCreated datePublished" datetime="2019-06-27T16:25:18+08:00">2019-06-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>8.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Load和Initialize实现原理"><a href="#Load和Initialize实现原理" class="headerlink" title="Load和Initialize实现原理"></a>Load和Initialize实现原理</h2><h3 id="Load实现原理"><a href="#Load实现原理" class="headerlink" title="+Load实现原理"></a>+Load实现原理</h3><blockquote>
-<p>+load方法会在<code>runtime</code>加载<code>类</code>、<code>分类</code>时调用</p>
-</blockquote>
-<blockquote>
-<p>每个类、分类的+load，在程序运行过程中<code>只调用一次</code></p>
-</blockquote>
-<blockquote>
-<p>+load方法是根据方法<code>地址</code>直接调用，并不是经过objc_msgSend函数调用</p>
-</blockquote>
-<p><strong>调用顺序</strong></p>
-<ul>
-<li>1、先调用类的+load<ul>
-<li>按照编译先后顺序调用（先编译，先调用）</li>
-<li>调用子类的+load之前会先调用父类的+load</li>
-</ul>
-</li>
-<li>2、再调用分类的+load<ul>
-<li>按照编译先后顺序调用（先编译，先调用）</li>
-</ul>
-</li>
-</ul>
-<p><strong>objc4源码解读过程</strong><br>objc-os.mm 文件</p>
-<ul>
-<li>_objc_init</li>
-<li>load_images</li>
-<li>prepare_load_methods<ul>
-<li>schedule_class_load</li>
-<li>add_class_to_loadable_list</li>
-<li>add_category_to_loadable_list</li>
-</ul>
-</li>
-<li>call_load_methods<ul>
-<li>call_class_loads</li>
-<li>call_category_loads</li>
-</ul>
-</li>
-</ul>
-<p><code>_objc_init</code>方法是RunTime运行的入口</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> _objc_init(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">bool</span> initialized = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (initialized) <span class="keyword">return</span>;</span><br><span class="line">    initialized = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// fixme defer initialization until an objc-using image is found?</span></span><br><span class="line">    environ_init();</span><br><span class="line">    tls_init();</span><br><span class="line">    static_init();</span><br><span class="line">    lock_init();</span><br><span class="line">    exception_init();</span><br><span class="line"></span><br><span class="line">    _dyld_objc_notify_register(&amp;map_images, load_images, unmap_image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>小知识：<code>images</code>是镜像的意思</p>
-</blockquote>
-<p>我们在<code>_objc_init</code>方法中找到<code>load_images</code>，<code>load_images</code>是Load加载镜像的意思，所有我们可以猜测这个里面应该有我们load的加载方法的相关实现</p>
-<p>我们点击进入<code>load_images</code>方法</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">load_images(<span class="keyword">const</span> <span class="keyword">char</span> *path __unused, <span class="keyword">const</span> struct mach_header *mh)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Return without taking locks if there are no +load methods here.</span></span><br><span class="line">    <span class="keyword">if</span> (!hasLoadMethods((<span class="keyword">const</span> headerType *)mh)) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">recursive_mutex_locker_t</span> <span class="title">lock</span><span class="params">(loadMethodLock)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Discover load methods</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">rwlock_writer_t</span> <span class="title">lock2</span><span class="params">(runtimeLock)</span></span>;</span><br><span class="line">        prepare_load_methods((<span class="keyword">const</span> headerType *)mh);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Call +load methods (without runtimeLock - re-entrant)</span></span><br><span class="line">    call_load_methods();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>里面有两个需要我们注意的</p>
-<ul>
-<li>1、<code>prepare_load_methods((const headerType *)mh)</code>准备加载Load方法，我们也可以看到上面的官方文档解释也是这个意思</li>
-<li>2、<code>call_load_methods()</code> 加载load方法</li>
-</ul>
-<p>我们点击进入<code>prepare_load_methods((const headerType *)mh)</code>准备加载Load方法</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prepare_load_methods</span><span class="params">(<span class="keyword">const</span> headerType *mhdr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">size_t</span> count, i;</span><br><span class="line"></span><br><span class="line">    runtimeLock.assertWriting();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">classref_t</span> *classlist = </span><br><span class="line">    _getObjc2NonlazyClassList(mhdr, &amp;count);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        schedule_class_load(remapClass(classlist[i]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">category_t</span> **categorylist = _getObjc2NonlazyCategoryList(mhdr, &amp;count);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">    <span class="keyword">category_t</span> *cat = categorylist[i];</span><br><span class="line">    Class cls = remapClass(cat-&gt;cls);</span><br><span class="line">    <span class="keyword">if</span> (!cls) <span class="keyword">continue</span>;  <span class="comment">// category for ignored weak-linked class</span></span><br><span class="line">        realizeClass(cls);</span><br><span class="line">        assert(cls-&gt;ISA()-&gt;isRealized());</span><br><span class="line">        add_category_to_loadable_list(cat);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到执行顺序</p>
-<ul>
-<li>1、<code>schedule_class_load(remapClass(classlist[i]));</code>,这个是把类中的<code>Load</code>方法添加到数组中</li>
-<li>2、<code>add_category_to_loadable_list(cat);</code>这个是把分类中的<code>load</code>方法添加到数组中</li>
-</ul>
-<p><strong>查看类的load方法</strong></p>
-<p>我们查看<code>schedule_class_load(remapClass(classlist[i]));</code>方法里面还有哪些实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">schedule_class_load</span><span class="params">(Class cls)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!cls) <span class="keyword">return</span>;</span><br><span class="line">    assert(cls-&gt;isRealized());  <span class="comment">// _read_images should realize</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (cls-&gt;data()-&gt;flags &amp; RW_LOADED) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Ensure superclass-first ordering</span></span><br><span class="line">    schedule_class_load(cls-&gt;superclass);</span><br><span class="line"></span><br><span class="line">    add_class_to_loadable_list(cls);</span><br><span class="line">    cls-&gt;setInfo(RW_LOADED); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>1、<code>schedule_class_load(cls-&gt;superclass);</code> 把父类load先添加到数组中</li>
-<li>2、<code>add_class_to_loadable_list(cls);</code>把自己的load方法添加到数组中</li>
-</ul>
-<p>走到这里我们大概是清楚了类中load方法的加载添加过程，就是先把<code>父类添加到数组中，然后再把自己添加到数组中</code></p>
-<p><strong>查看分类的load方法</strong></p>
-<p>我们点击<code>add_category_to_loadable_list(cat)</code>进入查看方法实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_category_to_loadable_list</span><span class="params">(Category cat)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    IMP method;</span><br><span class="line"></span><br><span class="line">    loadMethodLock.assertLocked();</span><br><span class="line"></span><br><span class="line">    method = _category_getLoadMethod(cat);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Don&#x27;t bother if cat has no +load method</span></span><br><span class="line">    <span class="keyword">if</span> (!method) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (PrintLoading) &#123;</span><br><span class="line">        _objc_inform(<span class="string">&quot;LOAD: category &#x27;%s(%s)&#x27; scheduled for +load&quot;</span>, </span><br><span class="line">        _category_getClassName(cat), _category_getName(cat));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (loadable_categories_used == loadable_categories_allocated) &#123;</span><br><span class="line">        loadable_categories_allocated = loadable_categories_allocated*<span class="number">2</span> + <span class="number">16</span>;</span><br><span class="line">        loadable_categories = (struct loadable_category *)</span><br><span class="line">        <span class="built_in">realloc</span>(loadable_categories,</span><br><span class="line">        loadable_categories_allocated *</span><br><span class="line">        <span class="keyword">sizeof</span>(struct loadable_category));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    loadable_categories[loadable_categories_used].cat = cat;</span><br><span class="line">    loadable_categories[loadable_categories_used].method = method;</span><br><span class="line">    loadable_categories_used++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>loadable_categories_used++;</code>分类没有什么特殊的方法，应该就是按照编译顺序添加到数组的。</p>
-<p><strong>实现</strong></p>
-<p>我们刚才看到了类分类中的添加顺序，我们在来看看加载顺序<br>点击<code>call_load_methods();</code>进入相关实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">call_load_methods</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">bool</span> loading = NO;</span><br><span class="line">    <span class="keyword">bool</span> more_categories;</span><br><span class="line"></span><br><span class="line">    loadMethodLock.assertLocked();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Re-entrant calls do nothing; the outermost call will finish the job.</span></span><br><span class="line">    <span class="keyword">if</span> (loading) <span class="keyword">return</span>;</span><br><span class="line">    loading = YES;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> *pool = objc_autoreleasePoolPush();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="comment">// 1. Repeatedly call class +loads until there aren&#x27;t any more</span></span><br><span class="line">        <span class="keyword">while</span> (loadable_classes_used &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        call_class_loads();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. Call category +loads ONCE</span></span><br><span class="line">    more_categories = call_category_loads();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. Run more +loads if there are classes OR more untried categories</span></span><br><span class="line">    &#125; <span class="keyword">while</span> (loadable_classes_used &gt; <span class="number">0</span>  ||  more_categories);</span><br><span class="line"></span><br><span class="line">    objc_autoreleasePoolPop(pool);</span><br><span class="line"></span><br><span class="line">    loading = NO;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面直接有官方文档给我们的顺序</p>
-<ul>
-<li>1、<code>call_class_loads();</code>加载类中load方法</li>
-<li>2、<code>more_categories = call_category_loads()</code>加载分类中load方法</li>
-</ul>
-<p><strong>Demo</strong><br>我们这里来一个测试demo</p>
-<ul>
-<li>父类<code>Person</code><ul>
-<li>1、分类<code>Person+Run.h</code></li>
-<li>2、分类<code>Person+Eat</code></li>
-</ul>
-</li>
-<li>2、子类<ul>
-<li>1、<code>Student</code></li>
-<li>2、<code>Teacher</code></li>
-</ul>
-</li>
-</ul>
-<p>编译顺序:</p>
-<img src="/Blog/2019/06/27/Load%E5%92%8Cinitialize%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F/Load1.png" class="" title="Load">
-
-<p>打印顺序:</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">44</span>:<span class="number">07.407021</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4819</span>:<span class="number">145771</span>] +[Person load]</span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">44</span>:<span class="number">07.407358</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4819</span>:<span class="number">145771</span>] +[Teacher load]</span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">44</span>:<span class="number">07.407394</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4819</span>:<span class="number">145771</span>] +[Student load]</span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">44</span>:<span class="number">07.407417</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4819</span>:<span class="number">145771</span>] +[Person(Eat) load]</span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">44</span>:<span class="number">07.407453</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4819</span>:<span class="number">145771</span>] +[Person(Run) load]</span><br><span class="line">Program ended with exit code: <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>1、先编译<code>Teacher</code>但是最先打印<code>Person</code></li>
-<li>2、分类<code>Person+Run</code>在子类<code>Student</code>之前编译，但是打印确实先打印<code>Student</code></li>
-</ul>
-<p>所有上面总结是十分准确的</p>
-<ul>
-<li>1、先调用类的+load<ul>
-<li>按照编译先后顺序调用（先编译，先调用）</li>
-<li>调用子类的+load之前会先调用父类的+load</li>
-</ul>
-</li>
-<li>2、再调用分类的+load<ul>
-<li>按照编译先后顺序调用（先编译，先调用）</li>
-</ul>
-</li>
-</ul>
-<p>我们是否注意到了另一个问题，为什么在有分类的时候还加载类的<code>load</code>方法，不应该是分类覆盖类吗？</p>
-<p>我们在查看<code>load</code>的源码实现的时候发现，+load方法是根据方法<code>地址</code>直接调用，并不是经过<code>objc_msgSend</code>函数调用，如果使用<code>objc_msgSend</code>会出现分类覆盖类，但是<code>load</code>直接是根据<code>指针</code>找方法的，所以不会覆盖。</p>
-<h3 id="Initialize实现原理"><a href="#Initialize实现原理" class="headerlink" title="Initialize实现原理"></a>Initialize实现原理</h3><blockquote>
-<p>+initialize方法会在类<code>第一次接收到消息</code>时调用</p>
-</blockquote>
-<p><strong>调用顺序</strong></p>
-<ul>
-<li>先调用父类的+initialize，再调用子类的+initialize(先初始化父类，再初始化子类，每个类只会初始化1次)</li>
-<li>+initialize和+load的很大区别是，+initialize是通过objc_msgSend进行调用的，所以有以下特点<ul>
-<li>如果子类没有实现+initialize，会调用父类的+initialize（所以父类的+initialize可能会被调用多次）</li>
-<li>如果分类实现了+initialize，就覆盖类本身的+initialize调用</li>
-</ul>
-</li>
-</ul>
-<p><strong>objc4源码解读过程</strong></p>
-<p>objc-runtime-new.mm</p>
-<ul>
-<li>class_getInstanceMethod</li>
-<li>lookUpImpOrNil</li>
-<li>lookUpImpOrForward</li>
-<li>_class_initialize</li>
-<li>callInitialize</li>
-<li>objc_msgSend(cls, SEL_initialize)</li>
-</ul>
-<p>我们在<code>objc-runtime-new.mm</code>文件中找到<code>class_getInstanceMethod</code>，里面就有一个主要实现方法<code>lookUpImpOrNil</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Method <span class="title">class_getInstanceMethod</span><span class="params">(Class cls, SEL sel)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!cls  ||  !sel) <span class="keyword">return</span> nil;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">warning</span> fixme build and search caches</span></span><br><span class="line">    lookUpImpOrNil(cls, sel, nil, </span><br><span class="line">    NO<span class="comment">/*initialize*/</span>, NO<span class="comment">/*cache*/</span>, YES<span class="comment">/*resolver*/</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">warning</span> fixme build and search caches</span></span><br><span class="line">    <span class="keyword">return</span> _class_getMethod(cls, sel);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>里面没有什么实现我们继续点击<code>lookUpImpOrNil</code>进入实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">IMP <span class="title">lookUpImpOrNil</span><span class="params">(Class cls, SEL sel, id inst, </span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">bool</span> initialize, <span class="keyword">bool</span> cache, <span class="keyword">bool</span> resolver)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    IMP imp = lookUpImpOrForward(cls, sel, inst, initialize, cache, resolver);</span><br><span class="line">    <span class="keyword">if</span> (imp == _objc_msgForward_impcache) <span class="keyword">return</span> nil;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> imp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>里面好像还是没有我们想要的具体实现，继续点击<code>lookUpImpOrForward</code>查看实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (initialize  &amp;&amp;  !cls-&gt;isInitialized()) &#123;</span><br><span class="line">    runtimeLock.unlockRead();</span><br><span class="line">    _class_initialize (_class_getNonMetaClass(cls, inst));</span><br><span class="line">    runtimeLock.read();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个里面有一个<code>if</code>判断里面有一些东西，就是在没有实现<code>isInitialized</code>的时候，调用<code>_class_initialize</code>方法，我们点击进入查看相关实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (supercls  &amp;&amp;  !supercls-&gt;isInitialized()) &#123;</span><br><span class="line">    _class_initialize(supercls);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">callInitialize(cls);</span><br></pre></td></tr></table></figure>
-<p>里面有这两个主要的函数</p>
-<ul>
-<li>1、第一个是判断是否存在父类，以及父类是否实现<code>initialize</code>方法，如果没有实现就去实现</li>
-<li>2、去实现自己的<code>initialize</code>方法。</li>
-</ul>
-<p>我们在点击<code>callInitialize</code>发现具体是通过<code>objc_msgSend</code>来实现的。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">callInitialize</span><span class="params">(Class cls)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">((<span class="keyword">void</span>(*)(Class, SEL))objc_msgSend)(cls, SEL_initialize);</span><br><span class="line"><span class="keyword">asm</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Demo</strong><br>测试案例1<br>我们创建父类<code>Person</code>，然后创建子类<code>Student</code>&amp;<code>Teacher</code>，子类不实现<code>initialize</code>方法，父类实现该方法</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Teacher alloc];</span><br><span class="line">[Student alloc];</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">51</span>:<span class="number">34.924111</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4965</span>:<span class="number">150760</span>] +[Person initialize]</span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">51</span>:<span class="number">34.924518</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4965</span>:<span class="number">150760</span>] +[Person initialize]</span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">51</span>:<span class="number">34.924562</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4965</span>:<span class="number">150760</span>] +[Person initialize]</span><br><span class="line">Program ended with exit code: <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<p>结果打印三次<code>[Person initialize]</code>方法，打印一次我们是能够想到了，因为实现过程是先看看父类有没有已经实现，如果没有实现就先实现父类的。但是另外两次是怎么来的呢。</p>
-<p><code>[Student alloc]</code>的实现大概是这样的</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">objc_msgSend([Person <span class="keyword">class</span>], <span class="keyword">@selector</span>(initialize));</span><br><span class="line">objc_msgSend([Student <span class="keyword">class</span>], <span class="keyword">@selector</span>(initialize));</span><br></pre></td></tr></table></figure>
-<ul>
-<li>1、第一步就是实现父类的<code>initialize</code>方法</li>
-<li>2、第二步，Student先查找自己元类有没有<code>initialize</code>方法，如果自己元类没有实现，就向上查找父类元类有没有<code>initialize</code>方法，如果有就执行，没有继续向上查找 </li>
-</ul>
-<p>测试案例2</p>
-<p>我们创建父类<code>Person</code>，然后创建分类<code>Person+Eat</code>，都是实现<code>initialize</code>方法</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Person alloc];</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-27</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">07.870498</span>+<span class="number">0800</span> 分类<span class="number">2</span>[<span class="number">4993</span>:<span class="number">151954</span>] +[Person(Eat) initialize]</span><br><span class="line">Program ended with exit code: <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<p>这句代码就是证明了<code>如果分类实现了+initialize，就覆盖类本身的+initialize调用</code></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>load、initialize方法的区别什么？</p>
-<ul>
-<li>1.调用方式</li>
-<li>1&gt; load是根据函数地址直接调用</li>
-<li>2&gt; initialize是通过objc_msgSend调用</li>
-</ul>
-<p>-2.调用时刻<br>    - 1&gt; load是runtime加载类、分类的时候调用（只会调用1次）<br>    - 2&gt; initialize是类第一次接收到消息的时候调用，每一个类只会initialize一次（父类的initialize方法可能会被调用多次）</p>
-<p>load、initialize的调用顺序？</p>
-<p>1.load</p>
-<ul>
-<li><p>1&gt; 先调用类的load</p>
-<ul>
-<li>a) 先编译的类，优先调用load</li>
-<li>b) 调用子类的load之前，会先调用父类的load</li>
-</ul>
-</li>
-<li><p>2&gt; 再调用分类的load</p>
-<ul>
-<li>a) 先编译的分类，优先调用load</li>
-</ul>
-</li>
-</ul>
-<p>2.initialize</p>
-<ul>
-<li>1&gt; 先初始化父类</li>
-<li>2&gt; 再初始化子类（可能最终调用的是父类的initialize方法）</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1835,7 +1607,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1884,12 +1656,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">247k</span>
+    <span title="站点总字数">257k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:45</span>
+    <span title="站点阅读时长">3:53</span>
 </div>
 
         

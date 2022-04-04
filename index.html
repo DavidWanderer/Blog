@@ -186,6 +186,231 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2022/03/27/ERROR-ITMS-90296%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2022/03/27/ERROR-ITMS-90296%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" class="post-title-link" itemprop="url">ERROR ITMS-90296问题修复</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-27 12:11:32" itemprop="dateCreated datePublished" datetime="2022-03-27T12:11:32+08:00">2022-03-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <img src="/Blog/2022/03/27/ERROR-ITMS-90296%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/theme.jpg" class="">
+
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>上传pkg文件到App Store，出现错误提示<code>The following executables must include the &quot;com.apple.security.app-sandbox&quot; entitlement with a Boolean value of true in the entitlements property list</code>.</p>
+<img src="/Blog/2022/03/27/ERROR-ITMS-90296%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/error.jpg" class="" title="错误截图">
+
+<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>pkg文件中包含一个未签名的可执行文件，导致上传App Store时报错。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>假设你的可执行文件是”myexe”<br>1.创建<code>myexe.entitlements</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="line">&lt;!DOCTYPE plist PUBLIC <span class="string">&quot;-//Apple//DTD PLIST 1.0//EN&quot;</span> <span class="string">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;</span>&gt;</span><br><span class="line">&lt;plist version=<span class="string">&quot;1.0&quot;</span>&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">        &lt;key&gt;com.apple.security.app-sandbox&lt;/key&gt;</span><br><span class="line">        &lt;<span class="literal">true</span>/&gt;</span><br><span class="line">        &lt;key&gt;com.apple.security.inherit&lt;/key&gt;</span><br><span class="line">        &lt;<span class="literal">true</span>/&gt;</span><br><span class="line">        &lt;key&gt;com.apple.security.files.user-selected.read-write&lt;/key&gt;</span><br><span class="line">        &lt;<span class="literal">true</span>/&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;/plist&gt;</span><br></pre></td></tr></table></figure>
+<p>2.执行命令行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codesign -f -s <span class="string">&quot;<span class="variable">$YOUR_CERTIFICATE_HERE</span>&quot;</span> --entitlements <span class="string">&quot;<span class="variable">$THE_ENTITLEMENTS_PLIST</span>&quot;</span> <span class="string">&quot;<span class="variable">$THE_EXECUTABLE</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p><code>$YOUR_CERTIFICATE_HERE</code> 使用你电脑上的 3rd Party Mac Developer Application certificate<br><code>$THE_ENTITLEMENTS_PLIST</code> 是<code>myexe.entitlements</code>文件绝对路径<br><code>$THE_EXECUTABLE</code> 是工程中可执行文件的绝对路径<br>以下列一个自己执行的命令行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codesign -f -s <span class="string">&quot;3rd Party Mac Developer Application: xxxx (xxx)&quot;</span> --entitlements <span class="string">&quot;/Users/xxx/Documents/xxx/myexe.entitlements&quot;</span> <span class="string">&quot;/Users/xxx/Documents/xxx/myexe&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/20856864/how-can-i-code-sign-a-bundled-executable-file-in-a-mac-app-using-xcode5">How can I code sign a bundled executable file in a mac app using xcode5</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/15231592/error-when-trying-to-sandbox-with-codesign-command">Error when trying to Sandbox with codesign command</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/forums/thread/99105">对于 Mac 应用程序在使用 3rd 方应用程序开发人员证书进行签名时验证应用程序时出错：未启用应用程序沙箱。以下可执行文件必须包含布尔值为 t 的“com.apple.security.app-sandbox”权利</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="David的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">MAC搭建GLFW3和GLEW、GLAD的OpenGL环境</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-19 21:55:15" itemprop="dateCreated datePublished" datetime="2022-03-19T21:55:15+08:00">2022-03-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <img src="/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/theme.jpg" class="">
+
+<h2 id="GLFW是什么？"><a href="#GLFW是什么？" class="headerlink" title="GLFW是什么？"></a>GLFW是什么？</h2><p>GLFW是一个开源的多平台库，用于桌面上的OpenGL、OpenGL ES和Vulkan开发。它提供了一个简单的API，用于创建窗口、上下文和表面，接收输入和事件。<br>和GLFW类似功能的几个库是GLUT、SDL、SFML和GLFW。我使用的是GLFW，大多数库的配置方法和GLFW差不多。</p>
+<h2 id="GLEW是什么？"><a href="#GLEW是什么？" class="headerlink" title="GLEW是什么？"></a>GLEW是什么？</h2><p>GLEW是一个跨平台C++扩展库，基于OpenGL图形接口。GLEW能自动识别你的平台上所支持的全部OpenGL高级扩展函数。只要包含一个glew.h头文件，你就能使用gl、glu、wgl、glx的全部函数。GLEW支持目前流行的各种操作系统（包括Windows、Linux、Mac OSX、FreeBSD、Irix 和 Solaris）。</p>
+<h2 id="安装GLFW-和-GLEW"><a href="#安装GLFW-和-GLEW" class="headerlink" title="安装GLFW 和 GLEW"></a>安装GLFW 和 GLEW</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install glfw3</span><br><span class="line">brew install glew</span><br></pre></td></tr></table></figure>
+<p>安装完成之后，在<code>/opt/homebrew/Cellar</code>路径下可以看见glew和glfw。</p>
+<img src="/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/1.png" class="" title="GLFW和GLEW安装完成截图">
+
+<h2 id="GLAD是什么？"><a href="#GLAD是什么？" class="headerlink" title="GLAD是什么？"></a>GLAD是什么？</h2><p>GLAD是一个开源库，帮助开发者确定函数位置。</p>
+<h2 id="安装GLAD"><a href="#安装GLAD" class="headerlink" title="安装GLAD"></a>安装GLAD</h2><p>打开GLAD网站<a target="_blank" rel="noopener" href="https://glad.dav1d.de/%EF%BC%8C%E9%80%89%E6%8B%A93.3%E4%BB%A5%E4%B8%8ACore%E9%85%8D%E7%BD%AE%EF%BC%8C%E7%9B%B4%E6%8E%A5Generate%E4%B8%8B%E8%BD%BD%E5%8D%B3%E5%8F%AF%E3%80%82">https://glad.dav1d.de/，选择3.3以上Core配置，直接Generate下载即可。</a></p>
+<img src="/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/2.png" class="" title="GLAD下载截图">
+
+<p>下载完成后解压会得到include和src文件夹，include文件夹中有glad和KRH两个文件夹，src中只有一个glad.c文件。</p>
+<img src="/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/3.png" class="" title="GLAD解压截图">
+
+<p>将include下的文件夹，包括glad和KRH都拷贝到/usr/local/include路径下，方便后期配置。</p>
+<img src="/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/4.png" class="" title="GLAD配置截图">
+
+<h2 id="在Xcode配置glew、glfw和glad的路径"><a href="#在Xcode配置glew、glfw和glad的路径" class="headerlink" title="在Xcode配置glew、glfw和glad的路径"></a>在Xcode配置glew、glfw和glad的路径</h2><p>在Xcode中配置好glew和glfw、glad的路径</p>
+<img src="/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/5.png" class="" title="Xcode路径配置截图">
+
+<h2 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h2><p>新建MAC命令行项目，然后到 build Setting -&gt; Header Search Path 和 Library Search Path 添加相应的配置。<br/><br><b>配置Header Search Path：</b><br/><br><code>$(glew_header) 、$(glfw_header)、$(glad_header) </code></p>
+<img src="/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/6.png" class="" title="配置头文件路径">
+
+<br/>
+<b>配置Library Search Path：</b><br/>
+`$(inherited) $(glew_lib) $(glfw_lib)`
+<img src="/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/7.png" class="" title="配置库文件路径">
+
+<br/>
+<b>增加Build Phases配置：</b><br/>
+添加glfw和glew的库的时候需要对应的路径
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/opt/homebrew/Cellar/glew/2.2.0_1/lib</span><br><span class="line">/opt/homebrew/Cellar/glfw/3.3.6/lib</span><br></pre></td></tr></table></figure>
+<img src="/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/8.png" class="" title="添加库文件">
+
+<br/>
+删除原来的main文件，新建C++的main文件，并创建相应的header文件。<span style="color:red">如果使用到了GLAD，还需要将glad.c源文件拖到项目中。</span>
+测试代码：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"></span><br><span class="line">// GLEW</span><br><span class="line"><span class="comment">#define GLEW_STATIC</span></span><br><span class="line"><span class="comment">#include &lt;GL/glew.h&gt;</span></span><br><span class="line"></span><br><span class="line">// GLFW</span><br><span class="line"><span class="comment">#include &lt;GLFW/glfw3.h&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Function prototypes</span><br><span class="line">void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);</span><br><span class="line"></span><br><span class="line">// Window dimensions</span><br><span class="line">const GLuint WIDTH = 800, HEIGHT = 600;</span><br><span class="line"></span><br><span class="line">// Shaders</span><br><span class="line">const GLchar* vertexShaderSource = <span class="string">&quot;#version 330 core\n&quot;</span></span><br><span class="line"><span class="string">&quot;layout (location = 0) in vec3 position;\n&quot;</span></span><br><span class="line"><span class="string">&quot;void main()\n&quot;</span></span><br><span class="line"><span class="string">&quot;&#123;\n&quot;</span></span><br><span class="line"><span class="string">&quot;gl_Position = vec4(position.x, position.y, position.z, 1.0);\n&quot;</span></span><br><span class="line"><span class="string">&quot;&#125;\0&quot;</span>;</span><br><span class="line">const GLchar* fragmentShaderSource = <span class="string">&quot;#version 330 core\n&quot;</span></span><br><span class="line"><span class="string">&quot;out vec4 color;\n&quot;</span></span><br><span class="line"><span class="string">&quot;void main()\n&quot;</span></span><br><span class="line"><span class="string">&quot;&#123;\n&quot;</span></span><br><span class="line"><span class="string">&quot;color = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n&quot;</span></span><br><span class="line"><span class="string">&quot;&#125;\n\0&quot;</span>;</span><br><span class="line"></span><br><span class="line">// The MAIN <span class="keyword">function</span>, from here we start the application and run the game loop</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Starting GLFW context, OpenGL 3.3&quot;</span> &lt;&lt; <span class="string">std::endl;</span></span><br><span class="line"><span class="string">    // Init GLFW</span></span><br><span class="line"><span class="string">    glfwInit();</span></span><br><span class="line"><span class="string">    // Set all the required options for GLFW</span></span><br><span class="line"><span class="string">    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);</span></span><br><span class="line"><span class="string">    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);</span></span><br><span class="line"><span class="string">    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);</span></span><br><span class="line"><span class="string">    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);</span></span><br><span class="line"><span class="string">    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    // Create a GLFWwindow object that we can use for GLFW&#x27;s functions</span></span><br><span class="line"><span class="string">    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, &quot;LearnOpenGL&quot;, nullptr, nullptr);</span></span><br><span class="line"><span class="string">    glfwMakeContextCurrent(window);</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    // Set the required callback functions</span></span><br><span class="line"><span class="string">    glfwSetKeyCallback(window, key_callback);</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    // Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions</span></span><br><span class="line"><span class="string">    glewExperimental = GL_TRUE;</span></span><br><span class="line"><span class="string">    // Initialize GLEW to setup the OpenGL Function pointers</span></span><br><span class="line"><span class="string">    glewInit();</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    // Define the viewport dimensions</span></span><br><span class="line"><span class="string">    int width, height;</span></span><br><span class="line"><span class="string">    glfwGetFramebufferSize(window, &amp;width, &amp;height);</span></span><br><span class="line"><span class="string">    glViewport(0, 0, width, height);</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    // Build and compile our shader program</span></span><br><span class="line"><span class="string">    // Vertex shader</span></span><br><span class="line"><span class="string">    GLint vertexShader = glCreateShader(GL_VERTEX_SHADER);</span></span><br><span class="line"><span class="string">    glShaderSource(vertexShader, 1, &amp;vertexShaderSource, NULL);</span></span><br><span class="line"><span class="string">    glCompileShader(vertexShader);</span></span><br><span class="line"><span class="string">    // Check for compile time errors</span></span><br><span class="line"><span class="string">    GLint success;</span></span><br><span class="line"><span class="string">    GLchar infoLog[512];</span></span><br><span class="line"><span class="string">    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &amp;success);</span></span><br><span class="line"><span class="string">    if (!success)</span></span><br><span class="line"><span class="string">    &#123;</span></span><br><span class="line"><span class="string">        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);</span></span><br><span class="line"><span class="string">        std</span>::cout &lt;&lt; <span class="string">&quot;ERROR::SHADER::VERTEX::COMPILATION_FAILED\n&quot;</span> &lt;&lt; <span class="string">infoLog &lt;&lt; std::endl;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    // Fragment shader</span></span><br><span class="line"><span class="string">    GLint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);</span></span><br><span class="line"><span class="string">    glShaderSource(fragmentShader, 1, &amp;fragmentShaderSource, NULL);</span></span><br><span class="line"><span class="string">    glCompileShader(fragmentShader);</span></span><br><span class="line"><span class="string">    // Check for compile time errors</span></span><br><span class="line"><span class="string">    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &amp;success);</span></span><br><span class="line"><span class="string">    if (!success)</span></span><br><span class="line"><span class="string">    &#123;</span></span><br><span class="line"><span class="string">        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog</span>);</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n&quot;</span> &lt;&lt; <span class="string">infoLog &lt;&lt; std::endl;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    // Link shaders</span></span><br><span class="line"><span class="string">    GLint shaderProgram = glCreateProgram();</span></span><br><span class="line"><span class="string">    glAttachShader(shaderProgram, vertexShader);</span></span><br><span class="line"><span class="string">    glAttachShader(shaderProgram, fragmentShader);</span></span><br><span class="line"><span class="string">    glLinkProgram(shaderProgram);</span></span><br><span class="line"><span class="string">    // Check for linking errors</span></span><br><span class="line"><span class="string">    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &amp;success);</span></span><br><span class="line"><span class="string">    if (!success) &#123;</span></span><br><span class="line"><span class="string">        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog</span>);</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;ERROR::SHADER::PROGRAM::LINKING_FAILED\n&quot;</span> &lt;&lt; <span class="string">infoLog &lt;&lt; std::endl;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    glDeleteShader(vertexShader);</span></span><br><span class="line"><span class="string">    glDeleteShader(fragmentShader);</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    // Set up vertex data (and buffer(s)) and attribute pointers</span></span><br><span class="line"><span class="string">    //GLfloat vertices[] = &#123;</span></span><br><span class="line"><span class="string">    //  // First triangle</span></span><br><span class="line"><span class="string">    //   0.5f,  0.5f,  // Top Right</span></span><br><span class="line"><span class="string">    //   0.5f, -0.5f,  // Bottom Right</span></span><br><span class="line"><span class="string">    //  -0.5f,  0.5f,  // Top Left</span></span><br><span class="line"><span class="string">    //  // Second triangle</span></span><br><span class="line"><span class="string">    //   0.5f, -0.5f,  // Bottom Right</span></span><br><span class="line"><span class="string">    //  -0.5f, -0.5f,  // Bottom Left</span></span><br><span class="line"><span class="string">    //  -0.5f,  0.5f   // Top Left</span></span><br><span class="line"><span class="string">    //&#125;;</span></span><br><span class="line"><span class="string">    GLfloat vertices[] = &#123;</span></span><br><span class="line"><span class="string">        0.5f,  0.5f, 0.0f,  // Top Right</span></span><br><span class="line"><span class="string">        0.5f, -0.5f, 0.0f,  // Bottom Right</span></span><br><span class="line"><span class="string">        -0.5f, -0.5f, 0.0f,  // Bottom Left</span></span><br><span class="line"><span class="string">        -0.5f,  0.5f, 0.0f   // Top Left</span></span><br><span class="line"><span class="string">    &#125;;</span></span><br><span class="line"><span class="string">    GLuint indices[] = &#123;  // Note that we start from 0!</span></span><br><span class="line"><span class="string">        0, 1, 3,  // First Triangle</span></span><br><span class="line"><span class="string">        1, 2, 3   // Second Triangle</span></span><br><span class="line"><span class="string">    &#125;;</span></span><br><span class="line"><span class="string">    GLuint VBO, VAO, EBO;</span></span><br><span class="line"><span class="string">    glGenVertexArrays(1, &amp;VAO);</span></span><br><span class="line"><span class="string">    glGenBuffers(1, &amp;VBO);</span></span><br><span class="line"><span class="string">    glGenBuffers(1, &amp;EBO);</span></span><br><span class="line"><span class="string">    // Bind the Vertex Array Object first, then bind and set vertex buffer(s) and attribute pointer(s).</span></span><br><span class="line"><span class="string">    glBindVertexArray(VAO);</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    glBindBuffer(GL_ARRAY_BUFFER, VBO);</span></span><br><span class="line"><span class="string">    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);</span></span><br><span class="line"><span class="string">    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);</span></span><br><span class="line"><span class="string">    glEnableVertexAttribArray(0);</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    glBindBuffer(GL_ARRAY_BUFFER, 0); // Note that this is allowed, the call to glVertexAttribPointer registered VBO as the currently bound vertex buffer object so afterwards we can safely unbind</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    glBindVertexArray(0); // Unbind VAO (it&#x27;s always a good thing to unbind any buffer/array to prevent strange bugs), remember: do NOT unbind the EBO, keep it bound to this VAO</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    // Uncommenting this call will result in wireframe polygons.</span></span><br><span class="line"><span class="string">    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    // Game loop</span></span><br><span class="line"><span class="string">    while (!glfwWindowShouldClose(window))</span></span><br><span class="line"><span class="string">    &#123;</span></span><br><span class="line"><span class="string">        // Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions</span></span><br><span class="line"><span class="string">        glfwPollEvents();</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        // Render</span></span><br><span class="line"><span class="string">        // Clear the colorbuffer</span></span><br><span class="line"><span class="string">        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);</span></span><br><span class="line"><span class="string">        glClear(GL_COLOR_BUFFER_BIT);</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        // Draw our first triangle</span></span><br><span class="line"><span class="string">        glUseProgram(shaderProgram);</span></span><br><span class="line"><span class="string">        glBindVertexArray(VAO);</span></span><br><span class="line"><span class="string">        //glDrawArrays(GL_TRIANGLES, 0, 6);</span></span><br><span class="line"><span class="string">        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);</span></span><br><span class="line"><span class="string">        glBindVertexArray(0);</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        // Swap the screen buffers</span></span><br><span class="line"><span class="string">        glfwSwapBuffers(window);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    // Properly de-allocate all resources once they&#x27;ve outlived their purpose</span></span><br><span class="line"><span class="string">    glDeleteVertexArrays(1, &amp;VAO);</span></span><br><span class="line"><span class="string">    glDeleteBuffers(1, &amp;VBO);</span></span><br><span class="line"><span class="string">    glDeleteBuffers(1, &amp;EBO);</span></span><br><span class="line"><span class="string">    // Terminate GLFW, clearing any resources allocated by GLFW.</span></span><br><span class="line"><span class="string">    glfwTerminate();</span></span><br><span class="line"><span class="string">    return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// Is called whenever a key is pressed/released via GLFW</span></span><br><span class="line"><span class="string">void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    if (key == GLFW_KEY_ESCAPE &amp;&amp; action == GLFW_PRESS)</span></span><br><span class="line"><span class="string">        glfwSetWindowShouldClose(window, GL_TRUE);</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果出现下图所示的效果，则环境配置成功</p>
+<img src="/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/success.png" class="" title="环境配置成功截图">
+
+
+
+<h2 id="遇到的错误"><a href="#遇到的错误" class="headerlink" title="遇到的错误"></a>遇到的错误</h2><p>提示dyld: Library not loaded: /opt/homebrew/opt/glfw/lib/libglfw.3.dylib，详细错误信息如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dyld: Library not loaded: /opt/homebrew/opt/glfw/lib/libglfw.3.dylib</span><br><span class="line">  Referenced from: /Users/tingyue/Library/Developer/Xcode/DerivedData/测试opengl-cveeuitmqxwjawbhmdcvrxupnsvp/Build/Products/Debug/测试opengl</span><br><span class="line">  Reason: no suitable image found.  Did find:</span><br><span class="line">	/opt/homebrew/opt/glfw/lib/libglfw.3.dylib: code signature <span class="keyword">in</span> (/opt/homebrew/opt/glfw/lib/libglfw.3.dylib) not valid <span class="keyword">for</span> use <span class="keyword">in</span> process using Library Validation: mapped file has no Team ID and is not a platform binary (signed with custom identity or adhoc?)</span><br><span class="line">	/opt/homebrew/Cellar/glfw/3.3.6/lib/libglfw.3.3.dylib: code signature <span class="keyword">in</span> (/opt/homebrew/Cellar/glfw/3.3.6/lib/libglfw.3.3.dylib) not valid <span class="keyword">for</span> use <span class="keyword">in</span> process using Library Validation: mapped file has no Team ID and is not a platform binary (signed with custom identity or adhoc?)</span><br></pre></td></tr></table></figure>
+<p>解决办法：<br>找到项目的Signing&amp;Capabilities选项，然后勾选Disable Library Validation选项，重新运行起来就可以了。</p>
+<img src="/Blog/2022/03/19/MAC%E6%90%AD%E5%BB%BAGLFW3%E5%92%8CGLEW%E3%80%81GLAD%E7%9A%84OpenGL%E7%8E%AF%E5%A2%83/error1.png" class="" title="解决项目报错截图">
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p> <a href="https://github.com/xcysuccess/LearnOpenGLNote/blob/master/Note/1%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Mac%2BOpenGL%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md">Mac下Xcode+OpenGL环境搭建</a><br> <a target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/01%20Getting%20started/02%20Creating%20a%20window/">创建窗口</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2022/03/18/OpenGL%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1123,211 +1348,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/" class="post-title-link" itemprop="url">iOS 12越狱</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-03 21:25:04" itemprop="dateCreated datePublished" datetime="2021-01-03T21:25:04+08:00">2021-01-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS%E8%B6%8A%E7%8B%B1/" itemprop="url" rel="index"><span itemprop="name">iOS越狱</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>624</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul>
-<li>1.一台iPhone6 Plus设备，系统版本：iOS 12.4.8。</li>
-<li>2.一台MAC电脑，并且已经安装Xcode或者iTools。</li>
-</ul>
-<h1 id="越狱步骤"><a href="#越狱步骤" class="headerlink" title="越狱步骤"></a>越狱步骤</h1><p>第一步，下载uncOver最新版本ipa文件，前往<a target="_blank" rel="noopener" href="https://unc0ver.dev/">官网下载</a>。uncOver是一个越狱工具，首先在手机上安装这个App，然后打开App，进行越狱。</p>
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/1.png" class="" title="uncOver官网截图">
-
-<p>第二步，下载App重签名工具，前往<a target="_blank" rel="noopener" href="https://dantheman827.github.io/ios-app-signer/">Github下载</a>。</p>
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/2.jpeg" class="" title="AppSigner下载截图">
-
-<p>第三步，根据uncOver官网提示，对第一步下载的ipa文件进行重签名，目的是重签名过后可以直接安装到我们自己的手机里。</p>
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/4.jpg" class="" title="官网破解步骤截图">
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/3.jpg" class="" title="重签名截图">
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/5.jpg" class="" title="重签名完成后的ipa截图">
-
-<p>第四步，将重签名过后的ipa文件安装到手机上，官网建议通过Xcode安装，我使用电脑上的iTools Pro安装，最终安装完成截图如下。</p>
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/6.png" class="" title="安装uncOver截图">
-
-<p>第五步，打开uncOver App，点击<code>Jailbreak</code>按钮，开始越狱。在越狱过程中，可能会提示越狱失败，请重新打开App再次尝试越狱。如果一直重启手机无法继续越狱，请尝试在飞行模式下点击<code>Jailbreak</code>按钮。如果中途弹框提示购买手机壳，请不要理会，越狱程序会一直在操作，不会因为你不购买手机壳就停止越狱哦。如果一直越狱失败，请多多尝试几次。</p>
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/11.png" class="" title="开启uncOver的截图">
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/12.png" class="" title="uncOver破解中的截图">
-
-<p>第六步，越狱完成，会弹出重启手机的Alert。在越狱过程中也可能会多次重启手机。最终破解完成后，手机桌面会出现<code>Cydia</code>App。再次打开uncOver App，原本显示<code>Jailbreak</code>的按钮现在显示<code>Re-Jailbreak</code>。</p>
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/13.png" class="" title="越狱完成后弹框提示重启手机的截图">
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/7.png" class="" title="越狱完成重启手机后的截图">
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/8.png" class="" title="Cydia的截图">
-<img src="/Blog/2021/01/03/iOS-12%E8%B6%8A%E7%8B%B1/9.png" class="" title="UncOver显示“Re-Jailbreak”的截图">
-
-
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a target="_blank" rel="noopener" href="https://unc0ver.dev/">unc0ver官网</a><br><a target="_blank" rel="noopener" href="https://dantheman827.github.io/ios-app-signer/">iOS App Signer官网</a><br><a target="_blank" rel="noopener" href="https://mrmad.com.tw/unc0ver-ios12">越獄教學</a><br><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/a948d651b8edaa4b2ccd2e78.html">unc0ver闪退解决方法</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/01/03/%E5%8D%87%E7%BA%A7Big-Sur%E5%90%8E%EF%BC%8Chexo%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="David的博客">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2021/01/03/%E5%8D%87%E7%BA%A7Big-Sur%E5%90%8E%EF%BC%8Chexo%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">升级Big Sur后，hexo无法使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-03 15:35:48" itemprop="dateCreated datePublished" datetime="2021-01-03T15:35:48+08:00">2021-01-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/%E9%80%9A%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">通用</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h1><p>元旦放假期间升级了一下macOS系统，升级到最新的<code>macOS Big Sur 版本11.1</code>之后发现在终端敲<code>hexo clean</code>报错，具体的错误信息如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % hexo clean</span><br><span class="line">zsh: <span class="built_in">command</span> not found: hexo</span><br></pre></td></tr></table></figure>
-<p>网上搜索一下，发现大家也有类似问题，但是具体的情况和我还不太一样。我的电脑上安装了nvm，升级之后发现我电脑上node默认升级到了<code>v11.15.0</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % node -v</span><br><span class="line">v11.15.0</span><br></pre></td></tr></table></figure>
-<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>而每一个node版本都会维护一套自己的<code>bin</code>目录，我发现我自己的电脑上安装了3个不同的node版本，只有<code>v8.11.1</code>这个版本的<code>bin</code>目录下才有<code>hexo</code>的可执行文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % <span class="built_in">cd</span> /Users/poet/.nvm/versions/node/</span><br><span class="line">poet@poetdeMacBook-Pro node % ls</span><br><span class="line">v11.15.0	v7.10.0		v8.11.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在v8.11.1目录下面的bin目录查看到 hexo</span></span><br><span class="line">poet@poetdeMacBook-Pro node % <span class="built_in">cd</span> v8.11.1</span><br><span class="line">poet@poetdeMacBook-Pro v8.11.1 % ls</span><br><span class="line">CHANGELOG.md	README.md	etc		lib</span><br><span class="line">LICENSE		bin		include		share</span><br><span class="line">poet@poetdeMacBook-Pro v8.11.1 % <span class="built_in">cd</span> bin</span><br><span class="line">poet@poetdeMacBook-Pro bin % ls</span><br><span class="line">express	hexo	n	node	npm	npx	nrm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在v7.10.0目录下面的bin目录下没有查看到hexo相关的文件</span></span><br><span class="line">poet@poetdeMacBook-Pro node % <span class="built_in">cd</span> v7.10.0</span><br><span class="line">poet@poetdeMacBook-Pro v7.10.0 % ls</span><br><span class="line">CHANGELOG.md	README.md	etc		lib</span><br><span class="line">LICENSE		bin		include		share</span><br><span class="line">poet@poetdeMacBook-Pro v7.10.0 % <span class="built_in">cd</span> bin</span><br><span class="line">poet@poetdeMacBook-Pro bin % ls</span><br><span class="line">node	npm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在v11.15.0目录下面的bin目录下没有查看到hexo相关的文件</span></span><br><span class="line">poet@poetdeMacBook-Pro node % <span class="built_in">cd</span> v11.15.0</span><br><span class="line">poet@poetdeMacBook-Pro v11.15.0 % ls</span><br><span class="line">bin	include	lib	share</span><br><span class="line">poet@poetdeMacBook-Pro v11.15.0 % <span class="built_in">cd</span> bin</span><br><span class="line">poet@poetdeMacBook-Pro bin % ls</span><br><span class="line">node	npm	npx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>最终我的解决办法是，将<code>v8.11.1/bin/hexo</code>文件连接到<code>/usr/local/bin</code>目录下，在终端输入<code>hexo clean</code>命令时，系统会去<code>/usr/local/bin</code>目录中查找对应的可执行文件，找到<code>hexo</code>后，会连接到<code>v8.11.1/bin/hexo</code>目录下调用hexo可执行文件，最终执行命令。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro % ln -s /Users/poet/.nvm/versions/node/v8.11.1/bin/hexo /usr/<span class="built_in">local</span>/bin/</span><br></pre></td></tr></table></figure>
-
-<p>执行完成之后，验证一下最终的命令是否有效果：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">poet@poetdeMacBook-Pro ~ % hexo</span><br><span class="line">Usage: hexo &lt;<span class="built_in">command</span>&gt;</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  <span class="built_in">help</span>     Get <span class="built_in">help</span> on a <span class="built_in">command</span>.</span><br><span class="line">  init     Create a new Hexo folder.</span><br><span class="line">  version  Display version information.</span><br><span class="line"></span><br><span class="line">Global Options:</span><br><span class="line">  --config  Specify config file instead of using _config.yml</span><br><span class="line">  --cwd     Specify the CWD</span><br><span class="line">  --debug   Display all verbose messages <span class="keyword">in</span> the terminal</span><br><span class="line">  --draft   Display draft posts</span><br><span class="line">  --safe    Disable all plugins and scripts</span><br><span class="line">  --silent  Hide output on console</span><br><span class="line"></span><br><span class="line">For more <span class="built_in">help</span>, you can use <span class="string">&#x27;hexo help [command]&#x27;</span> <span class="keyword">for</span> the detailed information</span><br><span class="line">or you can check the docs: http://hexo.io/docs/</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>ln -s 源文件 目标文件</strong> 这个语法是给源文件建立一个软连接，软连接是一个特殊的文件，它包含源文件的具体位置。类似于Windows系统的快捷方式。</p>
-</blockquote>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://ziyubiti.github.io/2019/07/16/HexoCommandNotFound/">Hexo：command not found的问题解决</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kex1n/p/5193826.html">linux 创建连接命令 ln -s 软链接</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1397,7 +1417,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1446,12 +1466,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">247k</span>
+    <span title="站点总字数">257k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:45</span>
+    <span title="站点阅读时长">3:53</span>
 </div>
 
         
