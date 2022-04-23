@@ -186,6 +186,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="听月的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">Hexo博客添加评论功能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-29 23:54:43" itemprop="dateCreated datePublished" datetime="2020-08-29T23:54:43+08:00">2020-08-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/%E9%80%9A%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">通用</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="为什么添加gitalk评论？"><a href="#为什么添加gitalk评论？" class="headerlink" title="为什么添加gitalk评论？"></a>为什么添加gitalk评论？</h2><p>Next主题支持的评论有<code>disqus</code>、<code>disqusjs</code>、<code>changyan</code>、<code>gitalk</code>、<code>livere</code>、<code>valine</code>。前面两个都需要翻墙才可以使用；畅言需要注册；<code>valine</code>需要注册，并且绑定身份证号后才可以使用；<code>livere</code>是韩国的，注册页面没有国际化，看不懂。综合下来选了<code>gitalk</code>,<code>gitalk</code>是使用github上仓库的issue来存储用户的评论，非常方便。</p>
+<h2 id="如何给自己的博客添加gitalk评论呢？"><a href="#如何给自己的博客添加gitalk评论呢？" class="headerlink" title="如何给自己的博客添加gitalk评论呢？"></a>如何给自己的博客添加gitalk评论呢？</h2><p>参考<a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">gitalk官网</a>和<a target="_blank" rel="noopener" href="https://gitalk.github.io/">gitalk的Demo</a>来尝试在Next中接入gitalk。<br>1.首先需要选择一个公共的github仓库（已存在或创建一个新的github存储库）用于存储评论。<br>2.需要创建<em>GitHub Application</em>, 如果没有<a href="https://github.com/settings/applications/new">点击这里申请</a>，Authorization callback URL填写当前博客的首页地址。</p>
+<img src="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/%E7%94%B3%E8%AF%B7GitApplicationKey%E6%88%AA%E5%9B%BE.png" class="" title="申请GitApplicationKey截图">
+<p>3.修改Next主题的<code>_config.yml</code>，开启gitalk评论。配置内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gitalk</span></span><br><span class="line"><span class="comment"># For more information: https://gitalk.github.io, https://github.com/gitalk/gitalk</span></span><br><span class="line">gitalk:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  github_id: DavidWanderer(从博客地址中获取：https://davidwanderer.github.io/Blog/，自己的依次类推)</span><br><span class="line">  id: location.pathname</span><br><span class="line">  repo: Blog(这里只需要最终的仓库名，不需要全路径，我把评论直接存储在自己的博客仓库里)</span><br><span class="line">  client_id: ce08****8271(此id从第2步申请结果中获取)</span><br><span class="line">  client_secret: 1d47***9a608(此secret从第二步申请结果中获取)</span><br><span class="line">  admin_user: DavidWanderer(此处需要和github_id保持一致)</span><br><span class="line">  distraction_free_mode: <span class="literal">true</span> <span class="comment"># Facebook-like distraction free mode</span></span><br><span class="line">  <span class="comment"># Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span></span><br><span class="line">  <span class="comment"># If you want everyone visiting your site to see a uniform language, you can set a force language value</span></span><br><span class="line">  <span class="comment"># Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span></span><br><span class="line">  language: zh-CN</span><br></pre></td></tr></table></figure>
+
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>1.博客的评论在使用之前需要登录配置的<code>admin_user</code>进行初始化评论，包括github授权等等操作，否则会出现如下问题。</p>
+<img src="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E9%97%AE%E9%A2%98.png" class="" title="博客评论未初始化问题截图">
+
+<p>2.博客的评论有时候会出现<code>Network Error</code>的问题，一般情况下，使用自己的Github账号登录一下，就不会出现问题了。但是如果问题还是没有消除，请检查<code>Next</code>配置文件中的<code>Gitalk</code>配置中的<code>github_id</code>、<code>admin_user</code>、<code>repo</code>填写的是否正确，可以结合Chrome的网页调试工具调试查看是否是认证失败，如果是认证失败，请检查<code>Gitalk</code>配置。<br>评论Network Error截图：</p>
+<img src="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/%E8%AF%84%E8%AE%BANetworkError%E9%97%AE%E9%A2%98.png" class="" title="评论NetworkError问题截图">
+
+<p>评论接入成功后的截图：</p>
+<img src="/Blog/2020/08/29/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/%E8%AF%84%E8%AE%BA%E6%8E%A5%E5%85%A5%E6%88%90%E5%8A%9F.png" class="" title="评论接入成功的截图">
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/08/01/iOS%E5%AE%89%E8%A3%85%E5%8C%85%E7%98%A6%E8%BA%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1875,99 +1970,6 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/05/26/NodeJS%E4%BF%AE%E6%94%B9%E9%95%9C%E5%83%8F%E6%BA%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="听月的博客">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/05/26/NodeJS%E4%BF%AE%E6%94%B9%E9%95%9C%E5%83%8F%E6%BA%90/" class="post-title-link" itemprop="url">NodeJS修改镜像源</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-26 23:21:33" itemprop="dateCreated datePublished" datetime="2020-05-26T23:21:33+08:00">2020-05-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/NodeJS/" itemprop="url" rel="index"><span itemprop="name">NodeJS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>656</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1.查看<code>NodeJS</code>当前使用的镜像源，使用命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 查看当前NodeJS使用的镜像源</span><br><span class="line">$ npm config get registry</span><br></pre></td></tr></table></figure>
-
-<p>使用上述命令查看<code>NodeJS</code>使用的默认镜像源：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">poetmacbook-pro:~ kris$ npm config get registry</span><br><span class="line">https://registry.npmjs.org/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   ╭────────────────────────────────────────────────────────────────╮</span><br><span class="line">   │                                                                │</span><br><span class="line">   │       New minor version of npm available! 6.4.1 → 6.14.5       │</span><br><span class="line">   │   Changelog: https://github.com/npm/cli/releases/tag/v6.14.5   │</span><br><span class="line">   │               Run npm install -g npm to update!                │</span><br><span class="line">   │                                                                │</span><br><span class="line">   ╰────────────────────────────────────────────────────────────────╯</span><br><span class="line"></span><br><span class="line">poetmacbook-pro:~ kris$ </span><br></pre></td></tr></table></figure>
-
-<p>2.将<code>NodeJS</code>的源切换成淘宝的镜像源。<br>首先打开网址<code>https://developer.aliyun.com/mirror/NPM?from=tnpm</code>,根据网站提示在终端执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>切记：如果淘宝镜像源不管用了，及时切回默认的镜像源。</p>
-</blockquote>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/oukele/p/11592638.html">nodeJs修改镜像源</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2037,20 +2039,20 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/Blog/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/Blog/tags/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
