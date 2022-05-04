@@ -186,6 +186,185 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="听月的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/" class="post-title-link" itemprop="url">一个NSObject对象占用多少内存</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-19 12:12:17" itemprop="dateCreated datePublished" datetime="2019-06-19T12:12:17+08:00">2019-06-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一个NSObject对象占用多少内存"><a href="#一个NSObject对象占用多少内存" class="headerlink" title="一个NSObject对象占用多少内存"></a>一个NSObject对象占用多少内存</h2><p>我们平时所编写的Objective-C代码，底层实现都是C/C++代码，</p>
+<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/Object-C%E4%BB%A3%E7%A0%81%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.png" class="" title="Objective-C代码底层实现">
+
+<p>所以OC的面向对象都是基于C/C++的数据结构实现的</p>
+<p><code>思考:OC对象主要是基于C/C++的什么数据结构实现的呢？？？</code></p>
+<p>想要了解OC对象主要是基于C/C++的什么数据结构实现的，我们首先要做的就是将Objective-C代码转化为C/C++代码，这样我们才能清楚的看清是怎么实现的</p>
+<p>然后我们打开终端，在命令行找到cd到文件目录，然后中输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clang -rewrite-objc main.m </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>命令可以将main.m编译成C++的代码，改成不同的文件名，就会生成不同的c++代码<br>这是就生成了main.cpp这个c++文件，打开文件代码<br>查看该main.cpp最底下的main函数， </p>
+<p>但是不同平台支持的代码肯定是不一样的，像平台有<code>Windows</code>、<code>mac</code>、<code>iOS</code>，架构有<code>模拟器(i386)、32bit(armv7)、64bit（arm64）</code>，我们使用<code>iOS</code>，他的架构现在基本上都是<code>64bit（arm64）</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xcrun  -sdk  iphoneos  clang  -arch  arm64  -rewrite-objc OC源文件  -o  输出的CPP文件</span><br><span class="line">如果需要链接其他框架，使用-framework参数。比如-framework UIKit</span><br></pre></td></tr></table></figure>
+<p>在终端输入命令以后，我们会生成一个<code>main.cpp</code>文件，打开<code>main.cpp</code>文件文件，我们把<code>main.cpp</code>文件拉到最下面，我们会看到这样一段代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">&#x2F;* @autoreleasepool *&#x2F; &#123; __AtAutoreleasePool __autoreleasepool; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这一段代码就是我们OC代码中的<code>main</code>函数的实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">	@autoreleasepool &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这时我们在<code>main</code>函数写入这一段代码，然后我们点击进入，查看代码实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSObject *obj &#x3D; [[NSObject alloc] init];</span><br></pre></td></tr></table></figure>
+<p>点击<code>NSObject</code>进入内部，可以看到NSObject底层实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject &#123;</span><br><span class="line">	Class isa;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们用<code>NSObject_IMPL</code>查找在c++文件中具体的实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject_IMPL &#123;</span><br><span class="line">	Class isa;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<p>我们再一次执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcrun  -sdk  iphoneos  clang  -arch  arm64  -rewrite-objc main.m</span><br></pre></td></tr></table></figure>
+<p>生成的C++代码为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">	&#x2F;* @autoreleasepool *&#x2F; &#123; __AtAutoreleasePool __autoreleasepool; </span><br><span class="line">	NSObject *obj &#x3D; ((NSObject *(*)(id, SEL))(void *)objc_msgSend)((id)((NSObject *(*)(id, SEL))(void *)objc_msgSend)((id)objc_getClass(&quot;NSObject&quot;), sel_registerName(&quot;alloc&quot;)), sel_registerName(&quot;init&quot;));</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有两个方法可以打印内存大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获得NSObject实例对象的成员变量所占用的大小  </span><br><span class="line">NSLog(@&quot;%zd&quot;, class_getInstanceSize([NSObject class]));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 获得obj指针所指向内存的大小  </span><br><span class="line">NSLog(@&quot;%zd&quot;, malloc_size((__bridge const void *)obj));</span><br></pre></td></tr></table></figure>
+<p>打印结果</p>
+<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/NSObject%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98.png" class="" title="NSObject对象内存">
+
+<h2 id="一个OC对象在内存中是怎么样布局的呢"><a href="#一个OC对象在内存中是怎么样布局的呢" class="headerlink" title="一个OC对象在内存中是怎么样布局的呢"></a>一个OC对象在内存中是怎么样布局的呢</h2><p>我们在C++文件中找到NSObject的实现<br>OC代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject &#123;</span><br><span class="line">	Class isa;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>c++代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject_IMPL &#123;</span><br><span class="line">	Class isa;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们知道一个指针是<code>8个字节</code>，但是NSObject对象打印<code>16个字节</code>,他们是怎么样布局的呢</p>
+<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/NSObject%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80.png" class="" title="NSObject对象内存地址">
+
+<p>我们可以根据内存地址实时查看内存分配情况<code>Debug -&gt; Debug Workfllow -&gt; View Memory （Shift + Command + M）</code></p>
+<p>菜单选项如何查看内存：</p>
+<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE.png" class="" title="查看内存数据">
+
+<p>输入内存地址：</p>
+<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE1.png" class="" title="查看内存数据1">
+
+<p>通过Xcode查看内存数据:</p>
+<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE2.png" class="" title="查看内存数据2">
+
+<p>通过LLDB命令查看内存数据:</p>
+<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE3.png" class="" title="查看内存数据3">
+
+
+<p>我们也可以直接使用 <code>LLDB命令</code>来查看内存地址<br><strong>常用LLDB命令</strong></p>
+<ul>
+<li><p>print、p：打印</p>
+</li>
+<li><p>po：打印对象</p>
+</li>
+<li><p>读取内存</p>
+<ul>
+<li>memory read/数量格式字节数  内存地址</li>
+<li>x/数量格式字节数  内存地址（格式：x是16进制，f是浮点，d是10进制；字节大小<br>：b：byte 1字节，h：half word 2字节，w：word 4字节，g：giant word 8字节）</li>
+</ul>
+</li>
+<li><p>修改内存中的值（memory  write  内存地址  数值   memory  write  0x0000010  10）</p>
+</li>
+</ul>
+<p><strong>问题1</strong>：假设我创建一个<code>Animal</code>类，里面有<code>age</code>,<code>weight</code>两个属性，那么他的内存是多大呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Animal *animal &#x3D; [[Animal alloc] init];</span><br><span class="line">animal.age &#x3D; 10;</span><br><span class="line">animal.weight &#x3D; 20;</span><br></pre></td></tr></table></figure>
+
+<p>我们先执行命令，查看一下c++源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct Animal_IMPL &#123;</span><br><span class="line">	struct NSObject_IMPL NSObject_IVARS;</span><br><span class="line">	int _age;</span><br><span class="line">	int _weight;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们在知道结果之前大概猜猜内存是多大呢？16，24，32…</p>
+<p>猜16字节的猜对了，我们先看看结果</p>
+<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/Animal%E5%86%85%E5%AD%98%E6%89%93%E5%8D%B0.png" class="" title="Animal内存打印">
+
+<p>我们用<code>LLDB命令</code>打印一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(lldb) po animal</span><br><span class="line">&lt;Animal: 0x1005c23c0&gt;</span><br><span class="line"></span><br><span class="line">(lldb) memory read 0x1005c23c0</span><br><span class="line">0x1005c23c0: 81 13 00 00 01 80 1d 00 0a 00 00 00 14 00 00 00  ................</span><br><span class="line">0x1005c23d0: a0 24 5c 00 01 00 00 00 e0 26 5c 00 01 00 00 00  .$\......&amp;\.....</span><br><span class="line">(lldb) </span><br></pre></td></tr></table></figure>
+
+<p> 为什么会是<code>0a 00 00 00</code>和<code>14 00 00 00</code>呢，而不是<code>00 00 00 0a</code>和<code>00 00 00 14</code>,这个就要考虑<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%A7%E5%B0%8F%E7%AB%AF%E6%A8%A1%E5%BC%8F/6750542?fromtitle=%E5%A4%A7%E7%AB%AF%E5%B0%8F%E7%AB%AF&fromid=15925891&fr=aladdin">大端小端</a>，具体概念自己可以去查。</p>
+<p>但是为什么会是16个字节呢，因为int类型占用4个字节，两个int类型8个字节，一个<code>isa</code>8个字节，因为刚刚占满16个字节，对象就没有在开辟新的空间了</p>
+<p>如果在多一个<code>feetCount</code>会占用几个字节呢</p>
+<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/Cat%E5%86%85%E5%AD%98%E6%89%93%E5%8D%B0.png" class="" title="Cat内存打印">
+
+<p><code>占用32个字节，大家是不是很惊讶，没有猜到</code></p>
+<p>其实这又要提到一个新的知识点了<code>内存对齐</code>,我们知道OC对象就是C++结构体，<code>而结构体的大小必须是最大成员大小的倍数</code>，当在多了一个<code>feetCount</code>以后，内存不够用了，然后就需要扩展了。</p>
+<p><strong>如果是这样呢，占用内存是多少</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@interface Animal : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, assign) int age;</span><br><span class="line">@property (nonatomic, assign) int weight;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation Animal</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@interface Cat : Animal</span><br><span class="line">@property (nonatomic, assign) int feetCount;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation Cat</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p><code>Cat</code>继承自<code>Animal</code></p>
+<img src="/Blog/2019/06/19/%E4%B8%80%E4%B8%AANSObject%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%A4%9A%E5%B0%91%E5%86%85%E5%AD%98/Cat%E5%86%85%E5%AD%98%E6%89%93%E5%8D%B0.png" class="" title="Cat内存打印">
+
+<p>我们生成C++代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">struct Cat_IMPL &#123;</span><br><span class="line">	struct Animal_IMPL Animal_IVARS;</span><br><span class="line">	int _feetCount;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct Animal_IMPL &#123;</span><br><span class="line">	struct NSObject_IMPL NSObject_IVARS;</span><br><span class="line">	int _weight;</span><br><span class="line">	int _age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct NSObject_IMPL &#123;</span><br><span class="line">	Class isa;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>整理一下就是这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct Cat_IMPL &#123;</span><br><span class="line">	Class isa;</span><br><span class="line">	int _weight;</span><br><span class="line">	int _age;</span><br><span class="line">	int _feetCount;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/DavidWanderer/iOS_Examples">参考demo</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/06/15/%E6%9C%89%E8%B6%A3%E7%9A%84%E7%BD%91%E5%9D%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1224,7 +1403,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1273,7 +1452,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">264k</span>
+    <span title="站点总字数">265k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

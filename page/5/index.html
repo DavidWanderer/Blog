@@ -186,6 +186,97 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/18/Vue%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Error-Cannot-find-module-webpack-bin-config-yargs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="听月的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/03/18/Vue%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Error-Cannot-find-module-webpack-bin-config-yargs/" class="post-title-link" itemprop="url">Vue启动报错Error: Cannot find module 'webpack/bin/config-yargs'</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-18 21:27:49" itemprop="dateCreated datePublished" datetime="2020-03-18T21:27:49+08:00">2020-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天执行<code>npm run dev</code>时出现报错，提示<code>Error: Cannot find module &#39;webpack/bin/config-yargs&#39;</code>，查资料发现问题出在，<code>webpack</code>、<code>webpack-cli</code>、<code>webpack-dev-server</code>的版本不匹配。</p>
+<p>打开项目根目录下的<code>package.json</code> 文件，发现我的项目里面的配置信息为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;webpack&quot;</span>: <span class="string">&quot;^4.42.0&quot;</span>,</span><br><span class="line"><span class="string">&quot;webpack-cli&quot;</span>: <span class="string">&quot;^3.3.11&quot;</span>,</span><br><span class="line"><span class="string">&quot;webpack-dev-server&quot;</span>: <span class="string">&quot;^2.11.5&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后我修改了<code>package.json</code>文件，修改<code>webpack-dev-sever</code>的版本为<code>3.1.4</code>，然后在项目根目录执行<code>npm install</code>命令。此命令执行完毕后再执行<code>npm run dev</code>发现可以正常运行。</p>
+<p>最终<code>package.json</code>文件的配置如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;babel-core&quot;: &quot;^6.26.0&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^7.1.2&quot;,</span><br><span class="line">    &quot;babel-polyfill&quot;: &quot;^6.26.0&quot;,</span><br><span class="line">    &quot;babel-preset-env&quot;: &quot;^1.6.0&quot;,</span><br><span class="line">    &quot;babel-preset-stage-3&quot;: &quot;^6.24.1&quot;,</span><br><span class="line">    &quot;babel-preset-vue&quot;: &quot;^2.0.2&quot;,</span><br><span class="line">    &quot;cross-env&quot;: &quot;^5.0.5&quot;,</span><br><span class="line">    &quot;css-loader&quot;: &quot;^3.4.2&quot;,</span><br><span class="line">    &quot;file-loader&quot;: &quot;^1.1.4&quot;,</span><br><span class="line">    &quot;vue-loader&quot;: &quot;^13.0.5&quot;,</span><br><span class="line">    &quot;vue-template-compiler&quot;: &quot;^2.4.4&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^4.42.0&quot;,</span><br><span class="line">    &quot;webpack-cli&quot;: &quot;^3.3.11&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^3.1.4&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013894429/article/details/94393342">已解决 - 问题Cannot find module ‘webpack/bin/config-yargs’</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/03/15/MAC%E7%A0%B4%E8%A7%A3WiFi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1383,92 +1474,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/11/07/iOS%E4%BD%BF%E7%94%A8SVG%E5%92%8CPDF%E5%9B%BE%E7%89%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="听月的博客">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2019/11/07/iOS%E4%BD%BF%E7%94%A8SVG%E5%92%8CPDF%E5%9B%BE%E7%89%87/" class="post-title-link" itemprop="url">iOS使用SVG和PDF图片</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 12:19:50" itemprop="dateCreated datePublished" datetime="2019-11-07T12:19:50+08:00">2019-11-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>856</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="什么是SVG"><a href="#什么是SVG" class="headerlink" title="什么是SVG?"></a>什么是SVG?</h2><p>SVG是一种用XML定义的语言，用来描述二维矢量及矢量/栅格图形。</p>
-<h2 id="SVG有哪些优势？"><a href="#SVG有哪些优势？" class="headerlink" title="SVG有哪些优势？"></a>SVG有哪些优势？</h2><p>参与定义 SVG 的组织有：太阳微系统、Adobe、苹果公司、IBM 以及柯达。<br>与其他图像格式相比，使用 SVG 的优势在于：<br>●SVG 可被非常多的工具读取和修改（比如记事本）<br>●SVG 与 JPEG 和 GIF 图像比起来，尺寸更小，且可压缩性更强。<br>●SVG 是可伸缩的<br>●SVG 图像可在任何的分辨率下被高质量地打印<br>●SVG 可在图像质量不下降的情况下被放大<br>●SVG 图像中的文本是可选的，同时也是可搜索的（很适合制作地图）<br>●SVG 可以与 JavaScript 技术一起运行<br>●SVG 是开放的标准<br>●SVG 文件是纯粹的 XML<br>●SVG 的主要竞争者是 Flash。</p>
-<h2 id="SVG在iOS中有哪些劣势？"><a href="#SVG在iOS中有哪些劣势？" class="headerlink" title="SVG在iOS中有哪些劣势？"></a>SVG在iOS中有哪些劣势？</h2><p>●Xcode 6以后支持矢量图,原生支持pdf格式<br>●原生不支持SVG格式(因为svg本质是xml),如果要加载SVG格式,使用WebView或第三方框架<br>●原生中如果使用SVG格式的图片，不能放在Assets.xcassets中，要像本地文件或者网络文件一样给个地址，存放起来有点麻烦<br>●集成起来麻烦<br>●只支持放大缩小，颜色修改需要另外的分类来支持<br>●不支持带滤镜的SVG<br>●UIButton使用SVG时，需要设置Button的Type为Custom，否则改变颜色的时候，没有效果。</p>
-<h2 id="iOS使用第三方框架加载svg格式"><a href="#iOS使用第三方框架加载svg格式" class="headerlink" title="iOS使用第三方框架加载svg格式"></a>iOS使用第三方框架加载svg格式</h2><p>iOS中使用 SVGKit(Objective-C库)和 Macaw(Swift库)。</p>
-<h2 id="iOS中使用PDF格式的图片"><a href="#iOS中使用PDF格式的图片" class="headerlink" title="iOS中使用PDF格式的图片"></a>iOS中使用PDF格式的图片</h2><p>在Asset.xcassets中添加一张图片，选择Attributes inspector，scales设置成SingleScale，原来3个占位图的位置会变成1个占位图的位置。在这个占位图中拖入一个pdf格式的图片。iOS系统会根据PDF格式的图片自动生成@1x、@2x和@3x图，对应适配不同的屏幕。</p>
-<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a><a target="_blank" rel="noopener" href="https://files-cdn.cnblogs.com/files/wobuyayi/SVG%E5%92%8CPDF%E9%A2%84%E6%BC%94.zip">Demo</a></h2><h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h3><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/SVG%E6%A0%BC%E5%BC%8F/3463453?fr=aladdin">百度百科SVG格式</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e4fe82ca6fd0">Xcode项目中使用矢量图(pdf,svg)</a><br><a target="_blank" rel="noopener" href="http://blog.startry.com/2016/06/15/vector-apply-to-iOS-Project/">矢量图在iOS中的应用细节</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/aca8f6976acf">iOS开发APP瘦身之PDF图片资源加载框架</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1538,7 +1543,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1587,7 +1592,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">264k</span>
+    <span title="站点总字数">265k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
