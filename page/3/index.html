@@ -186,6 +186,372 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/09/23/iOS%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="听月的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/09/23/iOS%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">iOS定时器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-23 23:02:50" itemprop="dateCreated datePublished" datetime="2020-09-23T23:02:50+08:00">2020-09-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="NSTimer如何使用"><a href="#NSTimer如何使用" class="headerlink" title="NSTimer如何使用"></a>NSTimer如何使用</h2><blockquote>
+<p>方法1: Creates a timer and schedules it on the current run loop in the default mode.</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSTimer</span> *)scheduledTimerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)ti </span><br><span class="line">                                     target:(<span class="keyword">id</span>)aTarget </span><br><span class="line">                                   selector:(SEL)aSelector </span><br><span class="line">                                   userInfo:(<span class="keyword">id</span>)userInfo </span><br><span class="line">                                    repeats:(<span class="built_in">BOOL</span>)yesOrNo;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>方法2: Initializes a timer object with the specified object and selector.</p>
+</blockquote>
+<blockquote>
+<p>You must add the new timer to a run loop, using <strong>addTimer:forMode:</strong>. Then, after ti seconds have elapsed, the timer fires, sending the message aSelector to target. (If the timer is configured to repeat, there is no need to subsequently re-add the timer to the run loop.)</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSTimer</span> *)timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)ti </span><br><span class="line">                            target:(<span class="keyword">id</span>)aTarget </span><br><span class="line">                          selector:(SEL)aSelector </span><br><span class="line">                          userInfo:(<span class="keyword">id</span>)userInfo </span><br><span class="line">                           repeats:(<span class="built_in">BOOL</span>)yesOrNo;</span><br><span class="line"></span><br><span class="line">[[<span class="built_in">NSRunLoop</span> mainRunLoop] addTimer:<span class="keyword">self</span>.timer forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</span><br></pre></td></tr></table></figure>
+
+<p>这两个方法是等价的，区别是第一个方法默认创建了一个NSTimer并自动添加到了当前线程的Runloop中去，第二个需要我们手动添加。如果当前线程是主线程的话，某些UI事件，比如UIScrollView的拖拽操作，会将Runloop切换成UITrackingRunLoopMode,这时候，默认的NSDefaultRunLoopMode模式中注册的事件是不会被执行的。所以为了设置一个不会被UI干扰的Timer，我们需要手动将timer的当前RunloopMode设置为NSRunLoopCommonModes，这个模式等效于NSDefaultRunLoopMode和UITrackingRunLoopMode的结合。</p>
+<p>由于NSTimer会强引用Target，RunLoop会强引用NSTimer，若ViewController再强引用NSTimer，NSTimer找不到合适的时机释放的时候，很容易造成内存泄漏，这个问题如何解决？</p>
+<h2 id="如何解决NSTimer找不到释放时机的问题？"><a href="#如何解决NSTimer找不到释放时机的问题？" class="headerlink" title="如何解决NSTimer找不到释放时机的问题？"></a>如何解决NSTimer找不到释放时机的问题？</h2><h2 id="方案1，使用官方API带Block的方式来创建NSTimer"><a href="#方案1，使用官方API带Block的方式来创建NSTimer" class="headerlink" title="方案1，使用官方API带Block的方式来创建NSTimer"></a>方案1，使用官方API带Block的方式来创建NSTimer</h2><p>具体的创建方法如下，但是仅支持iOS 10以上的系统。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSTimer</span> *)timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)interval repeats:(<span class="built_in">BOOL</span>)repeats block:(<span class="keyword">void</span> (^)(<span class="built_in">NSTimer</span> *timer))block API_AVAILABLE(macosx(<span class="number">10.12</span>), ios(<span class="number">10.0</span>), watchos(<span class="number">3.0</span>), tvos(<span class="number">10.0</span>));</span><br></pre></td></tr></table></figure>
+
+<p>在ViewController中的使用方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>)weakSelf = <span class="keyword">self</span>;</span><br><span class="line"><span class="keyword">self</span>.timer = [<span class="built_in">NSTimer</span> timerWithTimeInterval:<span class="number">1.0</span> repeats:<span class="literal">YES</span> block:^(<span class="built_in">NSTimer</span> * _Nonnull timer) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;第%ld次执行&quot;</span>, (<span class="keyword">long</span>)weakSelf.count);</span><br><span class="line">    weakSelf.count ++;</span><br><span class="line">&#125;];</span><br><span class="line">[[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:<span class="keyword">self</span>.timer forMode:<span class="built_in">NSRunLoopCommonModes</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案2，使用Block的方式来创建NSTimer"><a href="#方案2，使用Block的方式来创建NSTimer" class="headerlink" title="方案2，使用Block的方式来创建NSTimer"></a>方案2，使用Block的方式来创建NSTimer</h2><p>具体实现方式是，需要创建一个NSTimer的分类，让外部传入一个Block，NSTimer每次到时间就执行传入进来的Block。新建一个分类：<br>NSTimer+BlockSupport.h </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSTimer</span> (<span class="title">BlockSupport</span>)</span></span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSTimer</span> *)cd_timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)interval</span><br><span class="line">                                       repeats:(<span class="built_in">BOOL</span>)repeats</span><br><span class="line">                                         block:(<span class="keyword">void</span>(^)(<span class="keyword">void</span>))block;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+
+<p>NSTimer+BlockSupport.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;NSTimer+BlockSupport.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSTimer</span> (<span class="title">BlockSupport</span>)</span></span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSTimer</span> *)cd_timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)interval</span><br><span class="line">                              repeats:(<span class="built_in">BOOL</span>)repeats</span><br><span class="line">                                block:(<span class="keyword">void</span>(^)(<span class="keyword">void</span>))block &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> scheduledTimerWithTimeInterval:interval</span><br><span class="line">                                         target:<span class="keyword">self</span></span><br><span class="line">                                       selector:<span class="keyword">@selector</span>(cd_blockInvoke:)</span><br><span class="line">                                       userInfo:[block <span class="keyword">copy</span>]</span><br><span class="line">                                        repeats:repeats];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">void</span>)cd_blockInvoke:(<span class="built_in">NSTimer</span> *)timer &#123;</span><br><span class="line">    <span class="keyword">void</span> (^block)(<span class="keyword">void</span>) = timer.userInfo;</span><br><span class="line">    <span class="keyword">if</span>(block) &#123;</span><br><span class="line">        block();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>在ViewController中使用方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>)weakSelf = <span class="keyword">self</span>;</span><br><span class="line"><span class="keyword">self</span>.timer = [<span class="built_in">NSTimer</span> cd_timerWithTimeInterval:<span class="number">1.0</span> repeats:<span class="literal">YES</span> block:^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;第%ld次执行&quot;</span>, (<span class="keyword">long</span>)weakSelf.count);</span><br><span class="line">    weakSelf.count ++;</span><br><span class="line">&#125;];</span><br><span class="line">[[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:<span class="keyword">self</span>.timer forMode:<span class="built_in">NSRunLoopCommonModes</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案3，自定义NSTimer的Target"><a href="#方案3，自定义NSTimer的Target" class="headerlink" title="方案3，自定义NSTimer的Target"></a>方案3，自定义NSTimer的Target</h2><p>封装自定义NSTimer的Target和NSTimer的工具类，让NSTimer在合适的时机释放。<br>CDTimerTarget.h</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CDTimerTarget</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 目标对象</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">weak</span>) <span class="keyword">id</span> target;</span><br><span class="line"><span class="comment">// 目标方法</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) SEL selector;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+
+<p>CDTimerTarget.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;CDTimerTarget.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">CDTimerTarget</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)fire:(<span class="built_in">NSTimer</span> *)timer &#123;</span><br><span class="line">    <span class="comment">// target为弱引用,所以当target对象销毁时,target 为nil</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.target) &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic push</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic ignored <span class="meta-string">&quot;-Warc-performSelector-leaks&quot;</span></span></span><br><span class="line">        [<span class="keyword">self</span>.target performSelector:<span class="keyword">self</span>.selector withObject:timer.userInfo];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic pop</span></span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        [timer invalidate];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>CDTimer.h</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CDTimer</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSTimer</span> *)scheduleTimerWithTimerInterval:(<span class="built_in">NSTimeInterval</span>)interval</span><br><span class="line">                                     target:(<span class="keyword">id</span>)aTarget</span><br><span class="line">                                   selector:(SEL)aSelector</span><br><span class="line">                                   userInfo:(<span class="keyword">id</span>)userInfo</span><br><span class="line">                                    repeats:(<span class="built_in">BOOL</span>)repeats;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+
+<p>CDTimer.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;CDTimer.h&quot;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&quot;CDTimerTarget.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">CDTimer</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSTimer</span> *)scheduleTimerWithTimerInterval:(<span class="built_in">NSTimeInterval</span>)interval</span><br><span class="line">                                     target:(<span class="keyword">id</span>)aTarget</span><br><span class="line">                                   selector:(SEL)aSelector</span><br><span class="line">                                   userInfo:(<span class="keyword">id</span>)userInfo</span><br><span class="line">                                    repeats:(<span class="built_in">BOOL</span>)repeats &#123;</span><br><span class="line">    </span><br><span class="line">    CDTimerTarget *timerTarget = [[CDTimerTarget alloc]init];</span><br><span class="line">    timerTarget.target = aTarget;</span><br><span class="line">    timerTarget.selector = aSelector;</span><br><span class="line">    <span class="built_in">NSTimer</span> *timer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:interval</span><br><span class="line">                                                      target:timerTarget</span><br><span class="line">                                                    selector:<span class="keyword">@selector</span>(fire:)</span><br><span class="line">                                                    userInfo:userInfo</span><br><span class="line">                                                     repeats:repeats];</span><br><span class="line">    <span class="keyword">return</span> timer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>在ViewController中的用法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.timer = [CDTimer scheduleTimerWithTimerInterval:<span class="number">1.0</span> target:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(repeatAction) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案4，自定义NSProxy子类，作为NSTimer的Target"><a href="#方案4，自定义NSProxy子类，作为NSTimer的Target" class="headerlink" title="方案4，自定义NSProxy子类，作为NSTimer的Target"></a>方案4，自定义NSProxy子类，作为NSTimer的Target</h2><img src="/Blog/2020/09/23/iOS%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9B%B8%E5%85%B3/1.png" class="" title="NSProxy原理图">
+
+<p>TargetProxy.h</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TargetProxy</span> : <span class="title">NSProxy</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)proxyWithTarget:(<span class="keyword">id</span>)target;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+
+<p>TargetProxy.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&quot;TargetProxy.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TargetProxy</span>()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//target, 这里必须要用weak, 因为某个对象会强引TimeProxy对象, TimeProxy对象不能再强引target, 否则会形成循环引用</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>)<span class="keyword">id</span> target;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">TargetProxy</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)proxyWithTarget:(<span class="keyword">id</span>)target &#123;</span><br><span class="line">    TargetProxy *proxy = [[<span class="keyword">self</span> <span class="keyword">class</span>] alloc];</span><br><span class="line">    proxy.target = target;</span><br><span class="line">    <span class="keyword">return</span> proxy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取target类中的sel方法的方法签名</span></span><br><span class="line">- (<span class="built_in">NSMethodSignature</span> *)methodSignatureForSelector:(SEL)sel &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span>.target methodSignatureForSelector:sel];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)forwardInvocation:(<span class="built_in">NSInvocation</span> *)invocation &#123;</span><br><span class="line">    <span class="comment">//判断target是否实现了该方法</span></span><br><span class="line">    <span class="keyword">if</span> ([<span class="keyword">self</span>.target respondsToSelector:invocation.selector]) &#123;</span><br><span class="line">        <span class="comment">//让target调用该方法</span></span><br><span class="line">        [invocation invokeWithTarget:<span class="keyword">self</span>.target];</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//找不到该方法</span></span><br><span class="line">        [invocation doesNotRecognizeSelector:invocation.selector];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>在ViewController中的使用方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.timer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">1.0</span> target:[TargetProxy proxyWithTarget:<span class="keyword">self</span>] selector:<span class="keyword">@selector</span>(repeatAction) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/foundation/nstimer">NSTimer</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/73cd476ec3f0">NSProxy解决NSTimer和CADisplayLink的循环引用</a></p>
+<p>《Effective Objective-C 2.0 编写高质量iOS与OS X代码的52个有效方法》</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/09/05/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="听月的博客">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2020/09/05/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" class="post-title-link" itemprop="url">时间复杂度和空间复杂度</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-05 23:14:11" itemprop="dateCreated datePublished" datetime="2020-09-05T23:14:11+08:00">2020-09-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>算法（Algorithm）是指用来操作数据、解决程序问题的一组方法。对于同一个问题，使用不同的算法，也许最终得到的结果是一样的，但在过程中消耗的资源和时间却会有很大的区别。</p>
+<p>主要还是从算法所占用的「时间」和「空间」两个维度去考量。</p>
+<ul>
+<li>时间维度：是指执行当前算法所消耗的时间，我们通常用「时间复杂度」来描述。</li>
+<li>空间维度：是指执行当前算法需要占用多少内存空间，我们通常用「空间复杂度」来描述。</li>
+</ul>
+<h2 id="什么是时间复杂度，如何表示？"><a href="#什么是时间复杂度，如何表示？" class="headerlink" title="什么是时间复杂度，如何表示？"></a>什么是时间复杂度，如何表示？</h2><p>一般情况下，算法中基本操作重复执行的次数是问题规模n的某个函数，用T(n)表示，若有某个辅助函数f(n),使得当n趋近于无穷大时，T(n)/f(n)的极限值为不等于零的常数，则称f(n)是T(n)的同数量级函数。记作T(n)=Ｏ(f(n)),称Ｏ(f(n)) 为算法的渐进时间复杂度，简称时间复杂度。</p>
+<p>常见时间复杂度：</p>
+<table>
+<thead>
+<tr>
+<th align="center">时间复杂度</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">O(1)</td>
+<td align="center">常数复杂度</td>
+</tr>
+<tr>
+<td align="center">O(logn)</td>
+<td align="center">对数复杂度</td>
+</tr>
+<tr>
+<td align="center">O(n)</td>
+<td align="center">线性时间复杂度</td>
+</tr>
+<tr>
+<td align="center">O(n^2)</td>
+<td align="center">平方复杂度</td>
+</tr>
+<tr>
+<td align="center">O(n^3)</td>
+<td align="center">立方复杂度</td>
+</tr>
+<tr>
+<td align="center">O(2^n)</td>
+<td align="center">指数复杂度</td>
+</tr>
+<tr>
+<td align="center">O(n!)</td>
+<td align="center">阶乘复杂度</td>
+</tr>
+</tbody></table>
+<h2 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h2><blockquote>
+<p>在算法分析中，主定理（Master Theorem）提供了用渐近符号（大O符号）表示许多由分治法得到的递推关系式的方法。<br>——维基百科</p>
+</blockquote>
+<p>主定理可以用来分析递归算法的时间复杂度（也叫渐进复杂度）。</p>
+<h2 id="常见时间复杂度问题分析"><a href="#常见时间复杂度问题分析" class="headerlink" title="常见时间复杂度问题分析"></a>常见时间复杂度问题分析</h2><ul>
+<li>看一段代码根据n的不同情况，运行多少次。</li>
+<li>画出递归状态树，第一层1个节点，第二层2个节点，第三层2^2个节点，第四层2^3个节点，最终根据等比数列求和公式计算所有的节点数，就是它的时间复杂度。</li>
+</ul>
+<h3 id="二叉树遍历，前序、中序、后序：时间复杂度是多少？"><a href="#二叉树遍历，前序、中序、后序：时间复杂度是多少？" class="headerlink" title="二叉树遍历，前序、中序、后序：时间复杂度是多少？"></a>二叉树遍历，前序、中序、后序：时间复杂度是多少？</h3><p>遍历二叉树，每个节点都会访问一次，所以最终时间复杂度都为O(n)，n代表节点总数。<br>也可以通过主定理推算出来。</p>
+<h3 id="图的遍历，时间复杂度是多少？"><a href="#图的遍历，时间复杂度是多少？" class="headerlink" title="图的遍历，时间复杂度是多少？"></a>图的遍历，时间复杂度是多少？</h3><p>遍历图的时候，每个节点都会访问一次，所以时间复杂度都是O(n)，n代表节点总数。</p>
+<h2 id="搜索算法，DFS、BFS时间复杂度是多少？"><a href="#搜索算法，DFS、BFS时间复杂度是多少？" class="headerlink" title="搜索算法，DFS、BFS时间复杂度是多少？"></a>搜索算法，DFS、BFS时间复杂度是多少？</h2><p>无论是深度优先搜索还是广度优先搜索，每个节点都会遍历一次，最终的时间复杂度是O(n)，n代表节点总数。</p>
+<h2 id="二分查找，时间复杂度是多少？"><a href="#二分查找，时间复杂度是多少？" class="headerlink" title="二分查找，时间复杂度是多少？"></a>二分查找，时间复杂度是多少？</h2><p>二分查找，时间复杂度是O(logn)，n代表节点总数。</p>
+<h2 id="数组的时间复杂度？"><a href="#数组的时间复杂度？" class="headerlink" title="数组的时间复杂度？"></a>数组的时间复杂度？</h2><table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th align="center">时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">头部追加</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="center">尾部追加</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">查找元素</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">插入元素</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="center">删除元素</td>
+<td align="center">O(n)</td>
+</tr>
+</tbody></table>
+<h2 id="链表的时间复杂度？"><a href="#链表的时间复杂度？" class="headerlink" title="链表的时间复杂度？"></a>链表的时间复杂度？</h2><table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th align="center">时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">头部追加</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">尾部追加</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">查找元素</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="center">插入元素</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="center">删除元素</td>
+<td align="center">O(1)</td>
+</tr>
+</tbody></table>
+<h2 id="跳表的时间复杂度？"><a href="#跳表的时间复杂度？" class="headerlink" title="跳表的时间复杂度？"></a>跳表的时间复杂度？</h2><p>跳表处理的是有序链表，被称为“跳跃链表”。跳表的空间复杂度为O(n)。</p>
+<table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th align="center">时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">头部追加</td>
+<td align="center">O(logn)</td>
+</tr>
+<tr>
+<td align="center">尾部追加</td>
+<td align="center">O(logn)</td>
+</tr>
+<tr>
+<td align="center">查找元素</td>
+<td align="center">O(logn)</td>
+</tr>
+<tr>
+<td align="center">插入元素</td>
+<td align="center">O(logn)</td>
+</tr>
+<tr>
+<td align="center">删除元素</td>
+<td align="center">O(logn)</td>
+</tr>
+</tbody></table>
+<h2 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h2><ul>
+<li>1.数组的长度</li>
+<li>2.递归的深度</li>
+</ul>
+<p>如果程序里面开辟了数组，空间复杂度就是O(n)，如果开启的是二维数组，空间复杂度是O(n^2)。如果程序用到了递归，则递归的最大深度就是程序的空间复杂度。如果又开辟了数组又有递归，则空间复杂度为数组长度和递归最大深度之中的较大值。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://skywt.cn/posts/master-theorem">主定理与递归程序时间复杂度的计算</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zolalad/article/details/11848739">算法的时间复杂度和空间复杂度-总结</a><br><a target="_blank" rel="noopener" href="https://lotabout.me/2018/skip-list/">跳表──没听过但很犀利的数据结构</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/50479555">算法的时间与空间复杂度（一看就懂）</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/08/30/%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AACocoaPods%E7%A7%81%E6%9C%89%E5%BA%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1434,522 +1800,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/06/29/RunLoop/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="听月的博客">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/06/29/RunLoop/" class="post-title-link" itemprop="url">RunLoop</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-29 22:40:23" itemprop="dateCreated datePublished" datetime="2020-06-29T22:40:23+08:00">2020-06-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>9.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="RunLoop"><a href="#RunLoop" class="headerlink" title="RunLoop"></a>RunLoop</h2><p>RunLoop 运行循环，在程序运行过程中循环做一些事情。<br><strong>应用范畴</strong></p>
-<ul>
-<li>1、定时器（Timer）、PerformSelector</li>
-<li>2、GCD </li>
-<li>3、事件响应、手势识别、界面刷新</li>
-<li>4、网络请求</li>
-<li>5、AutoreleasePool</li>
-</ul>
-<h3 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h3><p>在我们命令行项目的<code>main</code>函数里面</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">  <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;Hello, World!&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行完<code>NSLog(@&quot;Hello, World!&quot;);</code>这个代码以后，程序立即退出，但是在我们的正常项目<code>main</code>函数里面</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">  <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">UIApplicationMain</span>(argc, argv, <span class="literal">nil</span>, <span class="built_in">NSStringFromClass</span>([AppDelegate <span class="keyword">class</span>]));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 如果用一个伪代码来简单的解释一下上面代码的意思，就是<br> <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">  <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">    <span class="keyword">int</span> retVal = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">      <span class="comment">//休眠等待消息</span></span><br><span class="line">      <span class="keyword">int</span> message = sleep_and_wait();</span><br><span class="line">      <span class="comment">//处理消息</span></span><br><span class="line">      retVal = process_message(message)</span><br><span class="line">    &#125; <span class="keyword">while</span> (<span class="number">0</span> == retVal);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br> 程序不会马上退出，而是保持运行状态，RunLoop的基本作用：</p>
-<ul>
-<li>1、保持程序持续的运行</li>
-<li>2、处理app中的各种事件（比如触摸事件，定时器事件）</li>
-<li>3、节省CPU资源，提高程序性能，该做事的时候做事，改休息的时候休息</li>
-</ul>
-<p><strong>RunLoop对象</strong><br>iOS中有2套API来访问和使用RunLoop</p>
-<ul>
-<li>1、Fundataion：NSRunLoop</li>
-<li>2、Core Fundataion：CFRunLoop</li>
-</ul>
-<p><code>NSRunLoop</code>是基于<code>CFRunLoop</code>的一层OC包装，<code>CFRunLoop</code>是开源的，地址:<a target="_blank" rel="noopener" href="https://opensource.apple.com/tarballs/CF/">https://opensource.apple.com/tarballs/CF/</a></p>
-<p><strong>RunLoop与线程</strong></p>
-<ul>
-<li>1、每一条线程都有唯一的一个与之对应的RunLoop对象</li>
-<li>2、RunLoop保存在一个全局的Dictionary里，线程作为Key，RunLoop作为Value</li>
-<li>3、线程刚创建时，并没有RunLoop对象，RunLoop会在第一次获取她时创建</li>
-<li>4、RunLoop会在线程结束的时候销毁</li>
-<li>5、主线程的RunLoop已经自动获取（创建），子线程默认没有开启RunLoop</li>
-</ul>
-<p><strong>获取RunLoop对象</strong></p>
-<ul>
-<li>1、Fundation<ul>
-<li>1、获取当前线程的RunLoop对象<code>[NSRunLoop currentRunLoop]</code></li>
-<li>2、获取主线程的RunLoop对象<code>[NSRunLoop mainRunLoop]</code></li>
-</ul>
-</li>
-<li>2、Core Foundation<ul>
-<li>1、获取当前线程的RunLoop对象<code>CFRunLoopGetCurrent()</code></li>
-<li>2、获取主线程的RunLoop对象<code>CFRunLoopGetMain()</code></li>
-</ul>
-</li>
-</ul>
-<p><strong>RunLoop相关类</strong><br>Core Foundation中关于RunLoop一共有5个类</p>
-<ul>
-<li>1、CFRunLoopRef</li>
-<li>2、CFRunLoopModeRef</li>
-<li>3、CFRunLoopSourceRef</li>
-<li>4、CFRunLoopTimerRef</li>
-<li>5、CFRunLoopObserverRef</li>
-</ul>
-<p>我们下载<code>RunLoop</code>，然后搜索<code>CFRunLoop</code>的组成</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> __CFRunLoop &#123;</span><br><span class="line">  <span class="built_in">CFRuntimeBase</span> _base;</span><br><span class="line">  pthread_mutex_t _lock;            <span class="comment">/* locked for accessing mode list */</span></span><br><span class="line">  __CFPort _wakeUpPort;            <span class="comment">// used for CFRunLoopWakeUp </span></span><br><span class="line">  Boolean _unused;</span><br><span class="line">  <span class="keyword">volatile</span> _per_run_data *_perRunData;              <span class="comment">// reset for runs of the run loop</span></span><br><span class="line">  pthread_t _pthread;</span><br><span class="line">  uint32_t _winthread;</span><br><span class="line">  <span class="built_in">CFMutableSetRef</span> _commonModes;</span><br><span class="line">  <span class="built_in">CFMutableSetRef</span> _commonModeItems;</span><br><span class="line">  <span class="built_in">CFRunLoopModeRef</span> _currentMode;</span><br><span class="line">  <span class="built_in">CFMutableSetRef</span> _modes;</span><br><span class="line">  <span class="keyword">struct</span> _block_item *_blocks_head;</span><br><span class="line">  <span class="keyword">struct</span> _block_item *_blocks_tail;</span><br><span class="line">  <span class="built_in">CFAbsoluteTime</span> _runTime;</span><br><span class="line">  <span class="built_in">CFAbsoluteTime</span> _sleepTime;</span><br><span class="line">  <span class="built_in">CFTypeRef</span> _counterpart;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>我们打印一下<code>NSLog(@&quot;%@&quot;,[NSRunLoop currentRunLoop]);</code></p>
-<p>其中主要的有下面几个:</p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop1.png" class="" title="RunLoop">
-
-<ul>
-<li>1、<code>_pthread</code>记录当前线程</li>
-<li>2、<code>_commonModes</code></li>
-<li>3、<code>_commonModeItems</code></li>
-<li>4、<code>_currentMode</code>,当前mode类型</li>
-<li>5、<code>_modes</code> 存放CFRunLoop里面的所有mode</li>
-</ul>
-<p>我们在RunLoop源码中搜索<code>CFRunLoopMode</code>来查看一下CFRunLoopMode都存放了哪些东西:</p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop2.png" class="" title="RunLoop">
-
-<ul>
-<li>1、Source0：<ul>
-<li>处理触摸事件，</li>
-<li>performSelector:onThread:</li>
-</ul>
-</li>
-<li>2、Source1：<ul>
-<li>基于Port的线程间通信，</li>
-<li>系统事件的捕捉</li>
-</ul>
-</li>
-<li>3、Timer ：<ul>
-<li>NSTimer，</li>
-<li>performSelector:withObject:afterDelay:</li>
-</ul>
-</li>
-<li>4、Observers：<ul>
-<li>用于监听RunLoop的状态</li>
-<li>UI刷新</li>
-<li>Autorelease pool（BeforeWaiting）</li>
-</ul>
-</li>
-</ul>
-<p>我们来简单的证明一下<code>Source0</code>,我们随便写一个<code>touchesBegan</code>触摸事件，然后在里面打一个断点，<code>bt</code>指令就是打印线程执行的所有方法</p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop4.png" class="" title="RunLoop">
-
-<p>我们可以在线程执行方法中可以发现，在调用RunLoop相关方法的时候，第一个是调用的<code>__CFRunLoopDoSources0</code></p>
-<p>RunLoop里面会有多个Mode，但是只有一个<code>_currentMode</code></p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop3.png" class="" title="RunLoop">
-
-
-
-<p><strong>CFRunLoopModeRef</strong></p>
-<ul>
-<li>1、CFRunLoopModeRef代表着RunLoop的运行模式</li>
-<li>2、一个RunLoop包含若干个<code>Mode</code>，每个<code>Mode</code>又包含若干个<code>Source0/Source1/Timer/Observer</code></li>
-<li>3、RunLoop启动的时候只能选择其中一个Mode作为currentMode</li>
-<li>4、如果要切换Mode，只能退出当前Loop，再重新选择一个Mode进入，不同组的<code>Source0/Source1/Timer/Observer</code>互不影响</li>
-<li>5、如果Mode里面没有任何<code>Source0/Source1/Timer/Observer</code>，RunLoop会立刻退出</li>
-</ul>
-<p><strong>CFRunLoopModeRef常见的Mode</strong></p>
-<ul>
-<li>1、KCFRunLoopDefaultMode（NSDefaultRunLoopMode）：App的默认Mode，通常主线程是在这个Mode下运行的</li>
-<li>2、UITrackingRunLoopMode：界面跟踪 Mode，用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其他 Mode 影响</li>
-</ul>
-<p>获取当前Mode</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CFRunLoopMode</span> mode = <span class="built_in">CFRunLoopCopyCurrentMode</span>(<span class="built_in">CFRunLoopGetCurrent</span>());</span><br></pre></td></tr></table></figure>
-
-
-<p><strong>CFRunLoopObserverRef</strong></p>
-<p>RunLoop的几种状态</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Run Loop Observer Activities */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">CF_OPTIONS</span>(<span class="built_in">CFOptionFlags</span>, <span class="built_in">CFRunLoopActivity</span>) &#123;</span><br><span class="line">  kCFRunLoopEntry = (<span class="number">1</span>UL &lt;&lt; <span class="number">0</span>), <span class="comment">//即将进入runloop</span></span><br><span class="line">  kCFRunLoopBeforeTimers = (<span class="number">1</span>UL &lt;&lt; <span class="number">1</span>), <span class="comment">//即将处理timer</span></span><br><span class="line">  kCFRunLoopBeforeSources = (<span class="number">1</span>UL &lt;&lt; <span class="number">2</span>), <span class="comment">//即将处理source</span></span><br><span class="line">  kCFRunLoopBeforeWaiting = (<span class="number">1</span>UL &lt;&lt; <span class="number">5</span>), <span class="comment">//即将进入休眠</span></span><br><span class="line">  kCFRunLoopAfterWaiting = (<span class="number">1</span>UL &lt;&lt; <span class="number">6</span>),  <span class="comment">//刚从休眠中唤醒</span></span><br><span class="line">  kCFRunLoopExit = (<span class="number">1</span>UL &lt;&lt; <span class="number">7</span>),          <span class="comment">//即将退出Loop</span></span><br><span class="line">  kCFRunLoopAllActivities = <span class="number">0x0FFFFFFF</span>U</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>我们可以添加一个Observer监听RunLoop的所有状态，代码如下</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建Observer</span></span><br><span class="line"><span class="built_in">CFRunLoopObserverRef</span> observer = <span class="built_in">CFRunLoopObserverCreateWithHandler</span>(kCFAllocatorDefault,kCFRunLoopAllActivities, <span class="literal">YES</span>, <span class="number">0</span>, ^(<span class="built_in">CFRunLoopObserverRef</span> observer, <span class="built_in">CFRunLoopActivity</span> activity) &#123;</span><br><span class="line">  <span class="keyword">switch</span> (activity) &#123;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopEntry:</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopEntry&quot;</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopBeforeTimers:</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopBeforeTimers&quot;</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopBeforeSources:</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopBeforeSources&quot;</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopBeforeWaiting:</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopBeforeWaiting&quot;</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopAfterWaiting:</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopAfterWaiting&quot;</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopExit:</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopExit&quot;</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 添加Observer到RunLoop中</span></span><br><span class="line"><span class="built_in">CFRunLoopAddObserver</span>(<span class="built_in">CFRunLoopGetMain</span>(), observer, kCFRunLoopCommonModes);</span><br><span class="line"><span class="comment">// 释放</span></span><br><span class="line"><span class="built_in">CFRelease</span>(observer);</span><br></pre></td></tr></table></figure>
-
-<p>我们运行上面代码，然后查看打印结果:</p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop6.png" class="" title="RunLoop">
-
-<p>在没有任何事件处理的情况下，最终RunLoop的活动状态为<code>kCFRunLoopBeforeWaiting</code>即将进入休眠。</p>
-<p>既然我们可以监听到了<code>RunLoop</code>的<code>Mode</code>变化情况，那么我们就可以打印一下<code>KCFRunLoopDefaultMode</code>和<code>UITrackingRunLoopMode</code>的切换情况了。</p>
-<p>我们在view上随便拉一个<code>UITextView</code>,然后滚动<code>UITextView</code><br>监听代码</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建observer</span></span><br><span class="line"><span class="built_in">CFRunLoopObserverRef</span> observer = <span class="built_in">CFRunLoopObserverCreateWithHandler</span>(kCFAllocatorDefault, kCFRunLoopAllActivities, <span class="literal">YES</span>, <span class="number">0</span>, ^(<span class="built_in">CFRunLoopObserverRef</span> observer, <span class="built_in">CFRunLoopActivity</span> activity) &#123;</span><br><span class="line">  <span class="keyword">switch</span> (activity) &#123;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopEntry: &#123;</span><br><span class="line">      <span class="built_in">CFRunLoopMode</span> mode = <span class="built_in">CFRunLoopCopyCurrentMode</span>(<span class="built_in">CFRunLoopGetCurrent</span>());</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopEntry - %@&quot;</span>, mode);</span><br><span class="line">      <span class="built_in">CFRelease</span>(mode);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> kCFRunLoopExit: &#123;</span><br><span class="line">      <span class="built_in">CFRunLoopMode</span> mode = <span class="built_in">CFRunLoopCopyCurrentMode</span>(<span class="built_in">CFRunLoopGetCurrent</span>());</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@&quot;kCFRunLoopExit - %@&quot;</span>, mode);</span><br><span class="line">      <span class="built_in">CFRelease</span>(mode);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加observer到runloop中</span></span><br><span class="line"><span class="built_in">CFRunLoopAddObserver</span>(<span class="built_in">CFRunLoopGetMain</span>(), observer, kCFRunLoopCommonModes);</span><br><span class="line"><span class="comment">// 释放</span></span><br><span class="line"><span class="built_in">CFRelease</span>(observer);</span><br></pre></td></tr></table></figure>
-<p>打印结果为:</p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop5.png" class="" title="RunLoop">
-
-<ul>
-<li>1、在刚开始滚动<code>UITextView</code>的时候，先退出<code>kCFRunLoopDefaultMode</code>，所以默认应该就是<code>kCFRunLoopDefaultMode</code></li>
-<li>2、在滚动中，进入<code>UITrackingRunLoopMode</code></li>
-<li>3、在滚动结束，先退出<code>UITrackingRunLoopMode</code>，然后在进入<code>kCFRunLoopDefaultMode</code></li>
-</ul>
-<h3 id="RunLoop的运行逻辑"><a href="#RunLoop的运行逻辑" class="headerlink" title="RunLoop的运行逻辑:"></a>RunLoop的运行逻辑:</h3><img src="/Blog/2020/06/29/RunLoop/RunLoop7.png" class="" title="RunLoop">
-
-
-<p>每次运行RunLoop，线程的RunLoop会自动处理之前未处理的消息，并通知相关的观察者。具体顺序</p>
-<ul>
-<li>1、通知观察者（observers）RunLoop即将启动</li>
-<li>2、通知观察者（observers）任何即将要开始的定时器</li>
-<li>3、通知观察者（observers）即将处理source0事件</li>
-<li>4、处理source0</li>
-<li>5、如果有source1，跳到第9步</li>
-<li>6、通知观察者（observers）线程即将进入休眠</li>
-<li>7、将线程置于休眠知道任一下面的事件发生<ul>
-<li>1、source0事件触发</li>
-<li>2、定时器启动</li>
-<li>3、外部手动唤醒</li>
-</ul>
-</li>
-<li>8、通知观察者（observers）线程即将唤醒</li>
-<li>9、处理唤醒时收到的时间，之后跳回2<ul>
-<li>1、如果用户定义的定时器启动，处理定时器事件</li>
-<li>2、如果source0启动，传递相应的消息</li>
-</ul>
-</li>
-<li>10、通知观察者RunLoop结束</li>
-</ul>
-<p><strong>RunLoop休眠原理</strong></p>
-<img src="/Blog/2020/06/29/RunLoop/RunLoop8.png" class="" title="RunLoop">
-
-<p>在RunLoop即将休眠的时候，通过<code>mach_msg()</code>方法来让软件和硬件交互</p>
-<ul>
-<li>1、即将休眠的时候，程序调用<code>mach_msg()</code>传递给CPU，告诉CPU停止运行</li>
-<li>2、即将启动RunLoop的时候，程序调用<code>mach_msg()</code>传递给CPU，告诉CPU开始工作</li>
-</ul>
-<h3 id="RunLoop简单应用"><a href="#RunLoop简单应用" class="headerlink" title="RunLoop简单应用"></a>RunLoop简单应用</h3><h4 id="滚动视图上面NSTimer不失效"><a href="#滚动视图上面NSTimer不失效" class="headerlink" title="滚动视图上面NSTimer不失效"></a>滚动视图上面NSTimer不失效</h4><p>我们写一个简单的定时器,然后视图上面创建一个TextView,然后滚动TextView</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">[<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">1</span> repeats:<span class="literal">YES</span> block:^(<span class="built_in">NSTimer</span> * _Nonnull timer) &#123;</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;%d&quot;</span>,count++);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
-
-<img src="/Blog/2020/06/29/RunLoop/RunLoop9.png" class="" title="RunLoop">
-
-<p>我们观察可以发现在打印的第二秒和第三秒之间其实相差了<code>14s</code>，因为一个线程只会有一个RunLoop，默认情况下是<code>kCFRunLoopDefaultMode</code>，在滚动<code>UITextView</code>的时候，RunLoop切换到了<code>UITrackingRunLoopMode</code>,这个时候定时器就会停止，在滚动<code>UITextView</code>结束的时候，RunLoop切换到了<code>kCFRunLoopDefaultMode</code>，定时器继续开始启动了。</p>
-<p>解决这个问题的方法就是把这个<code>NSTimer</code>添加到两种RunLoop中</p>
-<ul>
-<li>1、<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:timer forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</span><br><span class="line">[[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:timer forMode:<span class="built_in">UITrackingRunLoopMode</span>];</span><br></pre></td></tr></table></figure></li>
-<li>2、还有一个NSRunLoopCommonModes，我们用<code>NSRunLoopCommonModes</code>标记的时候，就可以实现上面效果<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:timer forMode:<span class="built_in">NSRunLoopCommonModes</span>];</span><br></pre></td></tr></table></figure>
-NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能在_commonModes数组中存放的模式下工作</li>
-</ul>
-<h4 id="线程保活-常驻线程"><a href="#线程保活-常驻线程" class="headerlink" title="线程保活(常驻线程)"></a>线程保活(常驻线程)</h4><p>开始之前先介绍几个概念</p>
-<ul>
-<li>1、线程刚创建时，并没有RunLoop对象，RunLoop会在第一次获取她时创建<ul>
-<li>1、获取线程：[NSRunLoop currentRunLoop]</li>
-<li>2、获取线程：CFRunLoopGetCurrent()</li>
-</ul>
-</li>
-<li>2、启动RunLoop的三种方法<ul>
-<li>1、<code>- (void)run; </code>,<br>  这种方法runloop会一直运行下去，在此期间会处理来自输入源的数据，并且会在NSDefaultRunLoopMode模式下重复调用runMode:beforeDate:方法；</li>
-<li>2、<code>- (void)runUntilDate:(NSDate *)limitDate；</code><br>  可以设置超时时间，在超时时间到达之前，runloop会一直运行，在此期间runloop会处理来自输入源的数据，并且也会在NSDefaultRunLoopMode模式下重复调用runMode:beforeDate:方法；</li>
-<li>3、<code>- (void)runMode:(NSString *)mode beforeDate:(NSDate *)limitDate;</code><br>  runloop会运行一次，超时时间到达或者第一个input source被处理，则runloop就会退出</li>
-</ul>
-</li>
-<li>3、退出RunLoop的方式<ul>
-<li>1、启动方式的退出方法，如果runloop没有input sources或者附加的timer，runloop就会退出。</li>
-<li>2、启动方式runUntilDate，可以通过设置超时时间来退出runloop。</li>
-<li>3、启动方式runMode:beforeDate，通过这种方式启动，runloop会运行一次，当超时时间到达或者第一个输入源被处理，runloop就会退出。</li>
-</ul>
-</li>
-</ul>
-<p>如果我们想控制runloop的退出时机，而不是在处理完一个输入源事件之后就退出，那么就要重复调用runMode:beforeDate:，<br>具体可以参考苹果文档给出的方案，如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSRunLoop</span> *myLoop  = [<span class="built_in">NSRunLoop</span> currentRunLoop];</span><br><span class="line">myPort = (<span class="built_in">NSMachPort</span> *)[<span class="built_in">NSMachPort</span> port];</span><br><span class="line">[myLoop addPort:_port forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</span><br><span class="line"><span class="built_in">BOOL</span> isLoopRunning = <span class="literal">YES</span>; <span class="comment">// global</span></span><br><span class="line"><span class="keyword">while</span> (isLoopRunning &amp;&amp; [myLoop runMode:<span class="built_in">NSDefaultRunLoopMode</span> beforeDate:[<span class="built_in">NSDate</span> distantFuture]]);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//关闭runloop的地方</span></span><br><span class="line">- (<span class="keyword">void</span>)quitLoop &#123;</span><br><span class="line">  isLoopRunning = <span class="literal">NO</span>;</span><br><span class="line">  <span class="built_in">CFRunLoopStop</span>(<span class="built_in">CFRunLoopGetCurrent</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h3><p>1、讲讲RunLoop项目中有用到吗？</p>
-<ul>
-<li>1、定时器切换的时候，为了保证定时器的准确性，需要添加runLoop</li>
-<li>2、在聊天界面，我们需要持续的把聊天信息存到数据库中，这个时候需要开启一个保活线程，在这个线程中处理</li>
-</ul>
-<p>2、RunLoop内部实现逻辑？</p>
-<ul>
-<li>1、通知观察者（observers）RunLoop即将启动</li>
-<li>2、通知观察者（observers）任何即将要开始的定时器</li>
-<li>3、通知观察者（observers）即将处理source0事件</li>
-<li>4、处理source0</li>
-<li>5、如果有source1，跳到第9步</li>
-<li>6、通知观察者（observers）线程即将进入休眠</li>
-<li>7、将线程置于休眠知道任一下面的事件发生</li>
-<li>1、source0事件触发</li>
-<li>2、定时器启动</li>
-<li>3、外部手动唤醒</li>
-<li>8、通知观察者（observers）线程即将唤醒</li>
-<li>9、处理唤醒时收到的时间，之后跳回2</li>
-<li>1、如果用户定义的定时器启动，处理定时器事件</li>
-<li>2、如果source0启动，传递相应的消息</li>
-<li>10、通知观察者RunLoop结束</li>
-</ul>
-<p>3、RunLoop和线程的关系？</p>
-<ul>
-<li>1、每一条线程都有唯一的一个与之对应的RunLoop对象</li>
-<li>2、RunLoop保存在一个全局的Dictionary里，线程作为Key，RunLoop作为Value</li>
-<li>3、线程刚创建时，并没有RunLoop对象，RunLoop会在第一次获取她时创建</li>
-<li>4、RunLoop会在线程结束的时候销毁</li>
-<li>5、主线程的RunLoop已经自动获取（创建），子线程默认没有开启RunLoop</li>
-</ul>
-<p>4、RunLoop有几种状态</p>
-<p>kCFRunLoopEntry = (1UL &lt;&lt; 0),   //   即将进入RunLoop<br>kCFRunLoopBeforeTimers = (1UL &lt;&lt; 1), // 即将处理Timer<br>kCFRunLoopBeforeSources = (1UL &lt;&lt; 2), // 即将处理Source<br>kCFRunLoopBeforeWaiting = (1UL &lt;&lt; 5), //即将进入休眠<br>kCFRunLoopAfterWaiting = (1UL &lt;&lt; 6),// 刚从休眠中唤醒<br>kCFRunLoopExit = (1UL &lt;&lt; 7),// 即将退出RunLoop</p>
-<p>5、RunLoop的mode的作用<br>系统注册了5中mode</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kCFRunLoopDefaultMode <span class="comment">//App的默认Mode，通常主线程是在这个Mode下运行</span></span><br><span class="line"><span class="built_in">UITrackingRunLoopMode</span> <span class="comment">//界面跟踪 Mode，用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其他 Mode 影响</span></span><br><span class="line"><span class="built_in">UIInitializationRunLoopMode</span> <span class="comment">// 在刚启动 App 时第进入的第一个 Mode，启动完成后就不再使用</span></span><br><span class="line">GSEventReceiveRunLoopMode <span class="comment">// 接受系统事件的内部 Mode，通常用不到</span></span><br><span class="line">kCFRunLoopCommonModes <span class="comment">//这是一个占位用的Mode，不是一种真正的Mode</span></span><br></pre></td></tr></table></figure>
-<p>但是我们只能使用两种mode</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kCFRunLoopDefaultMode <span class="comment">//App的默认Mode，通常主线程是在这个Mode下运行</span></span><br><span class="line"><span class="built_in">UITrackingRunLoopMode</span> <span class="comment">//界面跟踪 Mode，用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其他 Mode 影响</span></span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d260d18dd551">iOS 多线程：『RunLoop』详尽总结</a></p>
-<p><a target="_blank" rel="noopener" href="http://www.cocoachina.com/ios/20180515/23380.html">iOS RunLoop入门小结</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f3079ea36775">iOS-Runloop常驻线程／性能优化</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/06/06/Swift%E5%8F%AF%E9%80%89%E9%A1%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="听月的博客">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/06/06/Swift%E5%8F%AF%E9%80%89%E9%A1%B9/" class="post-title-link" itemprop="url">Swift可选项</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-06 14:51:04" itemprop="dateCreated datePublished" datetime="2020-06-06T14:51:04+08:00">2020-06-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>6.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <img src="/Blog/2020/06/06/Swift%E5%8F%AF%E9%80%89%E9%A1%B9/result.png" class="" title="可选项思维导图">
-
-<h2 id="可选项是什么？"><a href="#可选项是什么？" class="headerlink" title="可选项是什么？"></a>可选项是什么？</h2><blockquote>
-<p>You use optionals in situations where a value may be absent. An optional represents two possibilities: Either there is a value, and you can unwrap the optional to access that value, or there isn’t a value at all.</p>
-</blockquote>
-<p>可选项，一般也叫可选类型，它代表2种可能，一种可能是有值，一种可能是没值。没值代表值缺失的情况，使用<code>nil</code>来表示，有值的时候，可以通过解包获取真正的值。也可以手动将值设置为<code>nil</code>。Swift中的可选项适用于对象类型、结构体类型、枚举类型和基础类型。而Objective-C中只有对象类型的值可以为<code>nil</code>。</p>
-<h2 id="如何定义可选项？"><a href="#如何定义可选项？" class="headerlink" title="如何定义可选项？"></a>如何定义可选项？</h2><p>在类型名称后面加问号<code>？</code>来定义一个可选项。可选项的值默认为<code>nil</code>，非可选项没有默认值，需要初始化给定默认值。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name: <span class="type">String?</span> = <span class="string">&quot;张三&quot;</span> <span class="comment">// 可选项</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">String</span>(describing: name))</span><br><span class="line">name = <span class="literal">nil</span> <span class="comment">// 可选项可以设置成nil</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name1: <span class="type">String</span> = <span class="string">&quot;李四&quot;</span> <span class="comment">// 非可选项</span></span><br><span class="line"><span class="built_in">print</span>(name1)</span><br><span class="line"><span class="comment">// 非可选项设置nil，会报错&quot;&#x27;nil&#x27; cannot be assigned to type &#x27;String&#x27;&quot;</span></span><br><span class="line"><span class="comment">// name1 = nil</span></span><br></pre></td></tr></table></figure>
-<p>最终控制台打印结果：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Optional</span>(<span class="string">&quot;张三&quot;</span>)</span><br><span class="line">李四</span><br></pre></td></tr></table></figure>
-<p>可选项默认值为<code>nil</code>，非可选项没有默认值，并且非可选项在使用前需要赋值。</p>
-<div style="width:711px; margin:0px; padding:0px; align:left;">
-<img src="/Blog/2020/06/06/Swift%E5%8F%AF%E9%80%89%E9%A1%B9/1.png" class="" title="可选项和非可选项默认值截图">
-</div>
-
-<h2 id="强制解包"><a href="#强制解包" class="headerlink" title="强制解包"></a>强制解包</h2><ul>
-<li><p>可选项是对其他类型的一层包装，可以将它理解为一个盒子</p>
-</li>
-<li><p>如果为<code>nil</code>，那么它是一个空盒子</p>
-</li>
-<li><p>如果不为<code>nil</code>，那么盒子里装的是：被包装类型的数据<br>代码示例：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age: <span class="type">Int?</span> <span class="comment">// 默认就是nil</span></span><br><span class="line">age = <span class="number">10</span></span><br><span class="line">age = <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
-<p>图形表示：</p>
-<div style="width:620px; margin:0px; padding:0px; align:left;">
-<img src="/Blog/2020/06/06/Swift%E5%8F%AF%E9%80%89%E9%A1%B9/2.png" class="" title="可选值有值和无值截图">
-</div>
-</li>
-<li><p>如果需要从可选项中取出被包装的数据，需要使用感叹号<code>!</code>进行强制解包</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age: <span class="type">Int?</span> = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">String</span>(describing: age))</span><br><span class="line"><span class="keyword">let</span> ageValue: <span class="type">Int</span> = age!</span><br><span class="line"><span class="built_in">print</span>(ageValue)</span><br><span class="line"><span class="comment">//控制台打印数据</span></span><br><span class="line"><span class="comment">//Optional(10)</span></span><br><span class="line"><span class="comment">//10</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果对值为<code>nil</code>的可选项进行强制解包，将会产生运行时错误</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age: <span class="type">Int?</span></span><br><span class="line"><span class="built_in">print</span>(age!)</span><br></pre></td></tr></table></figure>
-<p>会产生错误：<code>Fatal error: Unexpectedly found nil while unwrapping an Optional value</code>。</p>
-</li>
-</ul>
-<h2 id="判断可选项是否包含值"><a href="#判断可选项是否包含值" class="headerlink" title="判断可选项是否包含值"></a>判断可选项是否包含值</h2><p>可选值可以和<code>nil</code>直接进行比较，用于判断可选项是否包含值。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> number = <span class="type">Int</span>(<span class="string">&quot;aa123&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> number != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;字符串转换成功:\(number!)&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;字符串转换失败&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//控制台打印：</span></span><br><span class="line"><span class="comment">//字符串转换失败</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="可选项绑定-Optional-Binding"><a href="#可选项绑定-Optional-Binding" class="headerlink" title="可选项绑定(Optional Binding)"></a>可选项绑定(Optional Binding)</h2><ul>
-<li>可以使用<code>可选项绑定</code>来判断可选项是否包含值。</li>
-<li>如果包含就自动解包，把值赋值给一个临时的常量(<code>let</code>)或者变量(<code>var</code>)，并返回<code>true</code>，否则返回<code>false</code>。</li>
-</ul>
-<p>示例1:</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> number = <span class="type">Int</span>(<span class="string">&quot;123&quot;</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;字符串转换成功:\(number)&quot;</span>)</span><br><span class="line">    <span class="comment">// number是强制解包之后的Int值</span></span><br><span class="line">    <span class="comment">// number作用域仅限于这个大括号</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;字符串转换失败&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//控制台打印结果：</span></span><br><span class="line"><span class="comment">//字符串转换成功:123</span></span><br></pre></td></tr></table></figure>
-<p>示例2:</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Season</span> : <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> spring = <span class="number">1</span>, summer, autumn, winter</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> season = <span class="type">Season</span>(rawValue: <span class="number">6</span>) &#123;</span><br><span class="line">    <span class="keyword">switch</span> season &#123;</span><br><span class="line">    <span class="keyword">case</span> .spring:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;season is spring&quot;</span>)</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;season is other&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;no such season&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//控制台打印结果：</span></span><br><span class="line"><span class="comment">//no such season</span></span><br></pre></td></tr></table></figure>
-<p>示例3：多条件组合判断</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般写法</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> first = <span class="type">Int</span>(<span class="string">&quot;4&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> second = <span class="type">Int</span>(<span class="string">&quot;42&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> first &lt; second &amp;&amp; second &lt; <span class="number">100</span> &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;\(first) &lt; \(second) &lt; 100&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//控制台打印结果：</span></span><br><span class="line"><span class="comment">//4 &lt; 42 &lt; 100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用组合条件判断的等价写法：</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> first = <span class="type">Int</span>(<span class="string">&quot;4&quot;</span>),</span><br><span class="line">   <span class="keyword">let</span> second = <span class="type">Int</span>(<span class="string">&quot;42&quot;</span>),</span><br><span class="line">   first &lt; second &amp;&amp; second &lt; <span class="number">100</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\(first) &lt; \(second) &lt; 100&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//控制台打印结果：</span></span><br><span class="line"><span class="comment">//4 &lt; 42 &lt; 100</span></span><br></pre></td></tr></table></figure>
-<p>示例4：while循环中使用可选项绑定</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 遍历数组，将遇到的正数都加起来，如果遇到负数或非数字，停止遍历</span></span><br><span class="line"><span class="keyword">var</span> strs = [<span class="string">&quot;10&quot;</span>, <span class="string">&quot;20&quot;</span>, <span class="string">&quot;abc&quot;</span>, <span class="string">&quot;-20&quot;</span>, <span class="string">&quot;30&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> index = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">let</span> num = <span class="type">Int</span>(strs[index]), num &gt; <span class="number">0</span> &#123;</span><br><span class="line">    sum += num</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(sum)</span><br><span class="line"><span class="comment">//控制台打印结果：</span></span><br><span class="line"><span class="comment">//30</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="空合并运算符-Nil-Coalescing-Operator"><a href="#空合并运算符-Nil-Coalescing-Operator" class="headerlink" title="空合并运算符 ?? (Nil-Coalescing Operator)"></a>空合并运算符 ?? (Nil-Coalescing Operator)</h2><p>定义如下：<br><code>public func ?? &lt;T&gt;(optional: T?, defaultValue: @autoclosure () throws -&gt; T) rethrows -&gt; T</code><br><code>public func ?? &lt;T&gt;(optional: T?, defaultValue: @autoclosure () throws -&gt; T?) rethrows -&gt; T?</code></p>
-<ul>
-<li><strong>a</strong> <code>??</code> <strong>b</strong></li>
-<li><strong>a</strong> 是<code>可选项</code></li>
-<li><strong>b</strong> 是<code>可选项</code> 或者 <code>不是可选项</code></li>
-<li><strong>b</strong> 跟 <strong>a</strong>的存储类型必须相同</li>
-<li>如果<strong>a</strong> 不为<code>nil</code>，就返回 <strong>a</strong></li>
-<li>如果<strong>a</strong> 为<code>nil</code>，就返回 <strong>b</strong></li>
-<li>如果<strong>b</strong> <code>不是可选项</code>，返回<strong>a</strong> 时会<code>自动解包</code></li>
-<li>计算结果的类型与 <strong>b</strong>的类型相同</li>
-</ul>
-<p>示例代码：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例1</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="type">Int?</span> = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="type">Int?</span> = <span class="number">2</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">c</span> = a ?? b</span><br><span class="line"><span class="built_in">print</span>(<span class="type">String</span>(describing: <span class="built_in">c</span>)) <span class="comment">// c是Int? , Optional(1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例2</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="type">Int?</span> = <span class="number">2</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">c</span> = a ?? b</span><br><span class="line"><span class="built_in">print</span>(<span class="type">String</span>(describing: <span class="built_in">c</span>)) <span class="comment">// c是Int? , Optional(2)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例3</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">c</span> = a ?? b</span><br><span class="line"><span class="built_in">print</span>(<span class="type">String</span>(describing: <span class="built_in">c</span>)) <span class="comment">// c是Int? , nil</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例4</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="type">Int?</span> = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="type">Int</span> = <span class="number">2</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">c</span> = a ?? b</span><br><span class="line"><span class="built_in">print</span>(<span class="type">String</span>(describing: <span class="built_in">c</span>)) <span class="comment">// c是Int , 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例5</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="type">Int</span> = <span class="number">2</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">c</span> = a ?? b</span><br><span class="line"><span class="built_in">print</span>(<span class="type">String</span>(describing: <span class="built_in">c</span>)) <span class="comment">// c是Int , 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例6，与示例5等价，不使用??运算符的时候</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="type">Int</span> = <span class="number">2</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">c</span>: <span class="type">Int</span></span><br><span class="line"><span class="comment">// 如果不使用??运算符</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> temp = a &#123;</span><br><span class="line">    <span class="built_in">c</span> = temp</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">c</span> = b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="多个-一起使用"><a href="#多个-一起使用" class="headerlink" title="多个??一起使用"></a>多个<code>??</code>一起使用</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例1</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="type">Int?</span> = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="type">Int?</span> = <span class="number">2</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">c</span> = a ?? b ?? <span class="number">3</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">String</span>(describing: <span class="built_in">c</span>)) <span class="comment">// c是Int，1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例2</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="type">Int?</span> = <span class="number">2</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">c</span> = a ?? b ?? <span class="number">3</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">String</span>(describing: <span class="built_in">c</span>)) <span class="comment">// c是Int，2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例3</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">c</span> = a ?? b ?? <span class="number">3</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">String</span>(describing: <span class="built_in">c</span>)) <span class="comment">// c是Int，3</span></span><br></pre></td></tr></table></figure>
-<h3 id="跟if-let配合使用"><a href="#跟if-let配合使用" class="headerlink" title="??跟if let配合使用"></a><code>??</code>跟<code>if let</code>配合使用</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例1</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="type">Int?</span> = <span class="number">2</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> <span class="built_in">c</span> = a ?? b &#123; <span class="comment">// 类似于 if a != nil || b != nil</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">c</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//控制台打印结果：</span></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例2</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="type">Int?</span> = <span class="number">2</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> <span class="built_in">c</span> = a, <span class="keyword">let</span> d = b &#123; <span class="comment">// 类似于 if a != nil &amp;&amp; b != nil</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">c</span>)</span><br><span class="line">    <span class="built_in">print</span>(d)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;123&quot;</span>)</span><br><span class="line"><span class="comment">//控制台打印结果:</span></span><br><span class="line"><span class="comment">//123</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="guard语句"><a href="#guard语句" class="headerlink" title="guard语句"></a>guard语句</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">guard</span> 条件 <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// do something...</span></span><br><span class="line">    退出当前作用域</span><br><span class="line">    <span class="comment">// return、break、continue、throw error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>当<code>guard</code>语句的条件为<code>false</code>时，就会执行大括号里面的代码</li>
-<li>当<code>guard</code>语句的条件为<code>true</code>时，就会跳过<code>guard</code>语句</li>
-<li><code>guard</code>语句特别适合用来”提前退出”</li>
-<li>当使用<code>guard</code>语句进行可选项绑定时，绑定的常量(<code>let</code>)、变量(<code>var</code>)也能在外层作用域中使用</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">login</span><span class="params">(<span class="number">_</span> info: [String : String])</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> username = info[<span class="string">&quot;username&quot;</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;请输入用户名&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> password = info[<span class="string">&quot;password&quot;</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;请输入密码&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// if username ...</span></span><br><span class="line">    <span class="comment">// if password ...</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;用户名:\(username)&quot;</span>, <span class="string">&quot;密码:\(password)&quot;</span>, <span class="string">&quot;登录...&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="隐式解包-Implicitly-Unwrapped-Optional"><a href="#隐式解包-Implicitly-Unwrapped-Optional" class="headerlink" title="隐式解包(Implicitly Unwrapped Optional)"></a>隐式解包(Implicitly Unwrapped Optional)</h2><ul>
-<li>在某些情况下，可选项一旦被设定值后，就会一直拥有值</li>
-<li>在这种情况下，可以去掉检查，也不必每次访问时都进行解包，因为它能确定每次访问的时候都是有值</li>
-<li>可以在类型后面加个<code>!</code>定义一个隐式解包的可选项</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num1: <span class="type">Int!</span> = <span class="number">10</span></span><br><span class="line"><span class="keyword">let</span> num2: <span class="type">Int</span> = num1</span><br><span class="line"><span class="keyword">if</span> num1 != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(num1 + <span class="number">6</span>) <span class="comment">// 16</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> num3 = num1 &#123;</span><br><span class="line">    <span class="built_in">print</span>(num3) <span class="comment">// 10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> num4: <span class="type">Int!</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> num5: <span class="type">Int</span> = num4 <span class="comment">// Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="字符串插值中使用可选项"><a href="#字符串插值中使用可选项" class="headerlink" title="字符串插值中使用可选项"></a>字符串插值中使用可选项</h2><ul>
-<li>可选项在字符串插值或者直接打印时，编译器会发出警告<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age: <span class="type">Int?</span> = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;My age is \(age)&quot;</span>) <span class="comment">// 此处会出现警告</span></span><br></pre></td></tr></table></figure></li>
-<li>至少有3种方法消除警告<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age: <span class="type">Int?</span> = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;My age is \(age!)&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;My age is \(String(describing: age))&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;My age is \(age ?? 0)&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="多重可选项"><a href="#多重可选项" class="headerlink" title="多重可选项"></a>多重可选项</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num1: <span class="type">Int?</span> = <span class="number">10</span></span><br><span class="line"><span class="keyword">var</span> num2: <span class="type">Int?</span>? = num1</span><br><span class="line"><span class="keyword">var</span> num3: <span class="type">Int?</span>? = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(num2 == num3) <span class="comment">// true, 值相同</span></span><br><span class="line"><span class="built_in">print</span>(num1 == num2) <span class="comment">// true, 值相同</span></span><br><span class="line"><span class="built_in">print</span>(num1 == num3) <span class="comment">// true, 值相同</span></span><br></pre></td></tr></table></figure>
-<p>以上代码可以按照下图理解：</p>
-<div style="width:761px; margin:0px; padding:0px; align:left;">
-<img src="/Blog/2020/06/06/Swift%E5%8F%AF%E9%80%89%E9%A1%B9/3.png" class="" title="多重可选项有值截图">
-</div>
-
-<p>可以使用lldb指令<code>frame variable -R</code>或者<code>fr v -R</code>查看区别</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">(lldb) fr v -<span class="type">R</span> num1</span><br><span class="line">(<span class="type">Swift</span>.<span class="type">Optional</span>&lt;<span class="type">Swift</span>.<span class="type">Int</span>&gt;) num1 = some &#123;</span><br><span class="line">  some = &#123;</span><br><span class="line">    _value = <span class="number">10</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">(lldb) fr v -<span class="type">R</span> num2</span><br><span class="line">(<span class="type">Swift</span>.<span class="type">Optional</span>&lt;<span class="type">Swift</span>.<span class="type">Optional</span>&lt;<span class="type">Swift</span>.<span class="type">Int</span>&gt;&gt;) num2 = some &#123;</span><br><span class="line">  some = some &#123;</span><br><span class="line">    some = &#123;</span><br><span class="line">      _value = <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">(lldb) fr v -<span class="type">R</span> num3</span><br><span class="line">(<span class="type">Swift</span>.<span class="type">Optional</span>&lt;<span class="type">Swift</span>.<span class="type">Optional</span>&lt;<span class="type">Swift</span>.<span class="type">Int</span>&gt;&gt;) num3 = some &#123;</span><br><span class="line">  some = some &#123;</span><br><span class="line">    some = &#123;</span><br><span class="line">      _value = <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">(lldb) </span><br></pre></td></tr></table></figure>
-
-<p>空值示例：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num1: <span class="type">Int?</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">var</span> num2: <span class="type">Int?</span>? = num1</span><br><span class="line"><span class="keyword">var</span> num3: <span class="type">Int?</span>? = <span class="literal">nil</span></span><br><span class="line"><span class="built_in">print</span>(num2 == num3) <span class="comment">// false, 值不相同</span></span><br><span class="line"><span class="built_in">print</span>(num1 == num2) <span class="comment">// true, 值相同</span></span><br><span class="line"><span class="built_in">print</span>(num1 == num3) <span class="comment">// false, 值不相同</span></span><br></pre></td></tr></table></figure>
-<p>以上代码可以按照下图理解：</p>
-<div style="width:779px; margin:0px; padding:0px; align:left;">
-<img src="/Blog/2020/06/06/Swift%E5%8F%AF%E9%80%89%E9%A1%B9/4.png" class="" title="多重可选项无值截图">
-</div>
-
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">(lldb) fr v -<span class="type">R</span> num1</span><br><span class="line">(<span class="type">Swift</span>.<span class="type">Optional</span>&lt;<span class="type">Swift</span>.<span class="type">Int</span>&gt;) num1 = <span class="keyword">none</span> &#123;</span><br><span class="line">  some = &#123;</span><br><span class="line">    _value = <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">(lldb) fr v -<span class="type">R</span> num2</span><br><span class="line">(<span class="type">Swift</span>.<span class="type">Optional</span>&lt;<span class="type">Swift</span>.<span class="type">Optional</span>&lt;<span class="type">Swift</span>.<span class="type">Int</span>&gt;&gt;) num2 = some &#123;</span><br><span class="line">  some = <span class="keyword">none</span> &#123;</span><br><span class="line">    some = &#123;</span><br><span class="line">      _value = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">(lldb) fr v -<span class="type">R</span> num3</span><br><span class="line">(<span class="type">Swift</span>.<span class="type">Optional</span>&lt;<span class="type">Swift</span>.<span class="type">Optional</span>&lt;<span class="type">Swift</span>.<span class="type">Int</span>&gt;&gt;) num3 = <span class="keyword">none</span> &#123;</span><br><span class="line">  some = some &#123;</span><br><span class="line">    some = &#123;</span><br><span class="line">      _value = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">(lldb) </span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2019,20 +1869,20 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">69</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/Blog/categories/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/Blog/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -2068,12 +1918,12 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">300k</span>
+    <span title="站点总字数">301k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:33</span>
+    <span title="站点阅读时长">4:34</span>
 </div>
 
         
