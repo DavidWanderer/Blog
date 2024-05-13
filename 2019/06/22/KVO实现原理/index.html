@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/Blog/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"github.com","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="KVO实现原理KVO(key value observing)键值监听是我们在开发中常使用的用于监听特定对象属性值变化的方法，常用于监听数据模型的变化 。KVO是为了监听一个对象的某个属性值是否发生变化。在属性值发生变化的时候，肯定会调用其setter方法。所以KVO的本质就是监听对象有没有调用被监听属性对应的setter方法。在学习实现原理之前我们首先先了解一下KVO常用的有哪些方法。 KVO常">
@@ -27,15 +27,15 @@
 <meta property="og:site_name" content="Stay hungry, Stay foolish.">
 <meta property="og:description" content="KVO实现原理KVO(key value observing)键值监听是我们在开发中常使用的用于监听特定对象属性值变化的方法，常用于监听数据模型的变化 。KVO是为了监听一个对象的某个属性值是否发生变化。在属性值发生变化的时候，肯定会调用其setter方法。所以KVO的本质就是监听对象有没有调用被监听属性对应的setter方法。在学习实现原理之前我们首先先了解一下KVO常用的有哪些方法。 KVO常">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/Blog/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO3.png">
-<meta property="og:image" content="https://github.com/Blog/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO4.png">
-<meta property="og:image" content="https://github.com/Blog/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO6.png">
+<meta property="og:image" content="https://github.com/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO3.png">
+<meta property="og:image" content="https://github.com/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO4.png">
+<meta property="og:image" content="https://github.com/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO6.png">
 <meta property="article:published_time" content="2019-06-22T12:28:49.000Z">
 <meta property="article:modified_time" content="2021-04-15T16:09:02.000Z">
 <meta property="article:author" content="听月的博客">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/Blog/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO3.png">
+<meta name="twitter:image" content="https://github.com/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO3.png">
 
 <link rel="canonical" href="https://github.com/DavidWanderer/Blog/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 
@@ -99,7 +99,7 @@
 
   <div class="site-meta">
 
-    <a href="/Blog/" class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">Stay hungry, Stay foolish.</h1>
       <span class="logo-line-after"><i></i></span>
@@ -120,22 +120,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/Blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/Blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -197,7 +197,7 @@
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="听月的博客">
       <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
@@ -225,7 +225,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
                 </span>
             </span>
 
@@ -295,10 +295,10 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-23</span> <span class="number">12</span>:<span class="number">25</span>:<span class="number">12.925158</span>+<span class="number">0800</span> KVO[<span class="number">28871</span>:<span class="number">5329672</span>] person1添加KVO监听之前 - <span class="number">0x100192338</span> <span class="number">0x100192338</span></span><br><span class="line"><span class="number">2020</span><span class="number">-06</span><span class="number">-23</span> <span class="number">12</span>:<span class="number">25</span>:<span class="number">12.925468</span>+<span class="number">0800</span> KVO[<span class="number">28871</span>:<span class="number">5329672</span>] person1添加KVO监听之后 - <span class="number">0x2269f0a38</span> <span class="number">0x100192338</span></span><br><span class="line">(lldb) p (IMP)<span class="number">0x100192338</span></span><br><span class="line">(IMP) $<span class="number">0</span> = <span class="number">0x0000000100192338</span> (KVO`-[Person setAge:] at Person.h:<span class="number">12</span>)</span><br><span class="line">(lldb) p (IMP)<span class="number">0x2269f0a38</span></span><br><span class="line">(IMP) $<span class="number">1</span> = <span class="number">0x00000002269f0a38</span> (Foundation`_NSSetLongLongValueAndNotify)</span><br><span class="line">(lldb) </span><br></pre></td></tr></table></figure>
 
 <p>根据以上总结，我们大概猜到在使用KVO前后对象的改变了。<br><strong>未使用KVO监听的对象</strong></p>
-<img src="/Blog/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO3.png" class="" title="KVO截图">
+<img src="/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO3.png" class="" title="KVO截图">
 
 <p><strong>使用KVO监听的对象</strong></p>
-<img src="/Blog/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO4.png" class="" title="KVO截图">
+<img src="/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO4.png" class="" title="KVO截图">
 
 
 <ul>
@@ -317,7 +317,7 @@
 <h3 id="NSSetLongLongValueAndNotify"><a href="#NSSetLongLongValueAndNotify" class="headerlink" title="_NSSetLongLongValueAndNotify"></a>_NSSetLongLongValueAndNotify</h3><p>在添加KVO监听方法以后<code>setAge</code>方法变成了<code>_NSSetLongLongValueAndNotify</code>,所以我们可以大概猜测动态监听方法主要就是在这里面实现的。我们可以在终端使用命令来查看<code>NSSet * ValueAndNotify</code>的类型。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nm -a /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation | grep ValueAndNotify</span><br></pre></td></tr></table></figure>
 
-<img src="/Blog/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO6.png" class="" title="KVO截图">
+<img src="/2019/06/22/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/KVO6.png" class="" title="KVO截图">
 
 <p>我们可以在<code>Person</code>类中重写<code>willChangeValueForKey</code>和<code>didChangeValueForKey</code>,来猜测一下<code>_NSSetLongLongValueAndNotify</code>的内部实现。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setAge:(<span class="built_in">NSInteger</span>)age&#123;</span><br><span class="line">    _age = age;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;调用set方法&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)willChangeValueForKey:(<span class="built_in">NSString</span> *)key&#123;</span><br><span class="line">    [<span class="keyword">super</span> willChangeValueForKey:key];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;willChangeValueForKey&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)didChangeValueForKey:(<span class="built_in">NSString</span> *)key&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;didChangeValueForKey - begin&quot;</span>);</span><br><span class="line"></span><br><span class="line">    [<span class="keyword">super</span> didChangeValueForKey:key];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;didChangeValueForKey - end&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -356,7 +356,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/Blog/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
           </div>
 
         
@@ -365,11 +365,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/Blog/2019/06/22/OC%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%86%E7%B1%BB/" rel="prev" title="OC对象的分类">
+    <a href="/2019/06/22/OC%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%86%E7%B1%BB/" rel="prev" title="OC对象的分类">
       <i class="fa fa-chevron-left"></i> OC对象的分类
     </a></div>
       <div class="post-nav-item">
-    <a href="/Blog/2019/06/27/KVC/" rel="next" title="KVC">
+    <a href="/2019/06/27/KVC/" rel="next" title="KVC">
       KVC <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -443,20 +443,20 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/Blog/archives/">
+          <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/Blog/categories/">
+            <a href="/categories/">
           
         <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/Blog/tags/">
+            <a href="/tags/">
           
         <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
@@ -485,7 +485,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -494,12 +494,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">302k</span>
+    <span title="站点总字数">306k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:34</span>
+    <span title="站点阅读时长">4:38</span>
 </div>
 
         
@@ -536,30 +536,30 @@
   </div>
 
   
-  <script src="/Blog/lib/anime.min.js"></script>
-  <script src="/Blog/lib/velocity/velocity.min.js"></script>
-  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/Blog/js/utils.js"></script>
+<script src="/js/utils.js"></script>
 
-<script src="/Blog/js/motion.js"></script>
-
-
-<script src="/Blog/js/schemes/pisces.js"></script>
+<script src="/js/motion.js"></script>
 
 
-<script src="/Blog/js/next-boot.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
-
-
-  
+<script src="/js/next-boot.js"></script>
 
 
 
 
   
-<script src="/Blog/js/local-search.js"></script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
@@ -588,7 +588,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'Blog',
       owner       : 'DavidWanderer',
       admin       : ['DavidWanderer'],
-      id          : '6f723e0759a39b354186d2d09ddbbb53',
+      id          : '66a1742282056fcc24943ebcdb150952',
         language: 'zh-CN',
       distractionFreeMode: true
     });
@@ -600,7 +600,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
 
   
 
-  <script async src="/Blog/js/cursor/love.min.js"></script>
+  <script async src="/js/cursor/love.min.js"></script>
 
 </body>
 </html>
