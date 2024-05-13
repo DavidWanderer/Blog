@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/Blog/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"github.com","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="为什么要将Swift Package编译成XCframework？这是一个困扰我很久的问题，问题产生的背景是多个Swift Package Manager创建的独立package，希望组合成一个SDK，这些package有些是第三方的，比如Alamofire、SwiftyJSON，也有自己写的package，自己写的package是依赖第三方package,现在想把自己写的package打包成XC">
@@ -27,23 +27,23 @@
 <meta property="og:site_name" content="Stay hungry, Stay foolish.">
 <meta property="og:description" content="为什么要将Swift Package编译成XCframework？这是一个困扰我很久的问题，问题产生的背景是多个Swift Package Manager创建的独立package，希望组合成一个SDK，这些package有些是第三方的，比如Alamofire、SwiftyJSON，也有自己写的package，自己写的package是依赖第三方package,现在想把自己写的package打包成XC">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/1.jpeg">
-<meta property="og:image" content="https://github.com/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/2.jpeg">
-<meta property="og:image" content="https://github.com/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/3.jpeg">
-<meta property="og:image" content="https://github.com/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/4.jpeg">
-<meta property="og:image" content="https://github.com/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/5.jpeg">
-<meta property="og:image" content="https://github.com/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/6.jpeg">
-<meta property="og:image" content="https://github.com/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/7.jpeg">
-<meta property="og:image" content="https://github.com/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/8.jpeg">
-<meta property="og:image" content="https://github.com/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/9.png">
-<meta property="og:image" content="https://github.com/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/10.png">
-<meta property="og:image" content="https://github.com/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/11.png">
+<meta property="og:image" content="https://github.com/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/1.jpeg">
+<meta property="og:image" content="https://github.com/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/2.jpeg">
+<meta property="og:image" content="https://github.com/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/3.jpeg">
+<meta property="og:image" content="https://github.com/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/4.jpeg">
+<meta property="og:image" content="https://github.com/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/5.jpeg">
+<meta property="og:image" content="https://github.com/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/6.jpeg">
+<meta property="og:image" content="https://github.com/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/7.jpeg">
+<meta property="og:image" content="https://github.com/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/8.jpeg">
+<meta property="og:image" content="https://github.com/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/9.png">
+<meta property="og:image" content="https://github.com/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/10.png">
+<meta property="og:image" content="https://github.com/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/11.png">
 <meta property="article:published_time" content="2024-05-12T01:05:18.000Z">
 <meta property="article:modified_time" content="2024-05-13T14:23:31.689Z">
-<meta property="article:author" content="听月的博客">
+<meta property="article:author" content="听月">
 <meta property="article:tag" content="Swift">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/1.jpeg">
+<meta name="twitter:image" content="https://github.com/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/1.jpeg">
 
 <link rel="canonical" href="https://github.com/DavidWanderer/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/">
 
@@ -107,11 +107,12 @@
 
   <div class="site-meta">
 
-    <a href="/" class="brand" rel="start">
+    <a href="/Blog/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">Stay hungry, Stay foolish.</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">听月的博客</p>
   </div>
 
   <div class="site-nav-right">
@@ -128,22 +129,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/Blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/Blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -205,8 +206,8 @@
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="听月的博客">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="听月">
       <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
@@ -233,7 +234,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a>
+                  <a href="/Blog/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a>
                 </span>
             </span>
 
@@ -272,30 +273,30 @@
         <h2 id="为什么要将Swift-Package编译成XCframework？"><a href="#为什么要将Swift-Package编译成XCframework？" class="headerlink" title="为什么要将Swift Package编译成XCframework？"></a>为什么要将Swift Package编译成XCframework？</h2><p>这是一个困扰我很久的问题，问题产生的背景是多个<code>Swift Package Manager</code>创建的独立<code>package</code>，希望组合成一个SDK，这些<code>package</code>有些是第三方的，比如<code>Alamofire、SwiftyJSON</code>，也有自己写的<code>package</code>，自己写的<code>package</code>是依赖第三方<code>package</code>,现在想把自己写的<code>package</code>打包成<code>XCFramework</code>提供给别人使用，如何在不改动依赖情况下，将自己写的<code>package</code>和第三方的<code>package</code>都打包成<code>XCframework</code>?</p>
 <p>简单理解一下需求，就是需要将<code>SPM Package</code>及其依赖的第三方<code>SPM Package</code>打包成<code>XCFramework</code>提供给别人使用。</p>
 <h2 id="有哪些解决方案？"><a href="#有哪些解决方案？" class="headerlink" title="有哪些解决方案？"></a>有哪些解决方案？</h2><h3 id="方案1：-swift-create-xcframework"><a href="#方案1：-swift-create-xcframework" class="headerlink" title="方案1： swift-create-xcframework"></a>方案1： <code>swift-create-xcframework</code></h3><p><code>swift-create-xcframework</code>是<code>github</code>上一个包装<code>xcodebuild</code>命令的命令行项目，通过这个命令行项目，你可以将自己写的<code>SPM Package</code>及其依赖的第三方<code>SPM Package</code>都打包成<code>XCFramework</code>。<a href="https://github.com/segment-integrations/swift-create-xcframework">项目地址</a></p>
-<h3 id="方案1示例"><a href="#方案1示例" class="headerlink" title="方案1示例"></a>方案1示例</h3><h4 id="第一步：新建Package，然后编写Package-swift，设置第三方依赖"><a href="#第一步：新建Package，然后编写Package-swift，设置第三方依赖" class="headerlink" title="第一步：新建Package，然后编写Package.swift，设置第三方依赖"></a>第一步：新建<code>Package</code>，然后编写<code>Package.swift</code>，设置第三方依赖</h4><img src="/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/1.jpeg" class="" title="Package.swift的截图">
+<h3 id="方案1示例"><a href="#方案1示例" class="headerlink" title="方案1示例"></a>方案1示例</h3><h4 id="第一步：新建Package，然后编写Package-swift，设置第三方依赖"><a href="#第一步：新建Package，然后编写Package-swift，设置第三方依赖" class="headerlink" title="第一步：新建Package，然后编写Package.swift，设置第三方依赖"></a>第一步：新建<code>Package</code>，然后编写<code>Package.swift</code>，设置第三方依赖</h4><img src="/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/1.jpeg" class="" title="Package.swift的截图">
 
-<h4 id="第二步：编写Package中的代码"><a href="#第二步：编写Package中的代码" class="headerlink" title="第二步：编写Package中的代码"></a>第二步：编写<code>Package</code>中的代码</h4><img src="/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/2.jpeg" class="" title="MyTool.swift的截图">
+<h4 id="第二步：编写Package中的代码"><a href="#第二步：编写Package中的代码" class="headerlink" title="第二步：编写Package中的代码"></a>第二步：编写<code>Package</code>中的代码</h4><img src="/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/2.jpeg" class="" title="MyTool.swift的截图">
 
 <p>编写代码，引用图片资源</p>
-<img src="/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/3.jpeg" class="" title="SwiftUIView.swift的截图">
+<img src="/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/3.jpeg" class="" title="SwiftUIView.swift的截图">
 
 <h4 id="第三步：在Package根目录，安装swift-create-xcframework"><a href="#第三步：在Package根目录，安装swift-create-xcframework" class="headerlink" title="第三步：在Package根目录，安装swift-create-xcframework"></a>第三步：在<code>Package</code>根目录，安装<code>swift-create-xcframework</code></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> MyLibrary</span><br><span class="line">$ brew install segment-integrations/formulae/swift-create-xcframework</span><br></pre></td></tr></table></figure>
 
 <h4 id="第四步：查询Package中的Target"><a href="#第四步：查询Package中的Target" class="headerlink" title="第四步：查询Package中的Target"></a>第四步：查询<code>Package</code>中的<code>Target</code></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ swift create-xcframework --list-products</span><br></pre></td></tr></table></figure>
 
-<img src="/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/4.jpeg" class="" title="查询Package中Target的截图">
+<img src="/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/4.jpeg" class="" title="查询Package中Target的截图">
 
 <h4 id="第五步：编译打包Package中的全部target，多个target以空格分开"><a href="#第五步：编译打包Package中的全部target，多个target以空格分开" class="headerlink" title="第五步：编译打包Package中的全部target，多个target以空格分开"></a>第五步：编译打包<code>Package</code>中的全部<code>target</code>，多个<code>target</code>以空格分开</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ swift create-xcframework MyLibrary Alamofire</span><br></pre></td></tr></table></figure>
 
 <p>编译完成的截图</p>
-<img src="/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/5.jpeg" class="" title="编译完成的截图">
+<img src="/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/5.jpeg" class="" title="编译完成的截图">
 
-<h4 id="第六步：编译完成后会在Package根目录生成对应target的XCFramework文件"><a href="#第六步：编译完成后会在Package根目录生成对应target的XCFramework文件" class="headerlink" title="第六步：编译完成后会在Package根目录生成对应target的XCFramework文件"></a>第六步：编译完成后会在<code>Package</code>根目录生成对应<code>target</code>的<code>XCFramework</code>文件</h4><img src="/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/6.jpeg" class="" title="XCFramework生成后的截图">
+<h4 id="第六步：编译完成后会在Package根目录生成对应target的XCFramework文件"><a href="#第六步：编译完成后会在Package根目录生成对应target的XCFramework文件" class="headerlink" title="第六步：编译完成后会在Package根目录生成对应target的XCFramework文件"></a>第六步：编译完成后会在<code>Package</code>根目录生成对应<code>target</code>的<code>XCFramework</code>文件</h4><img src="/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/6.jpeg" class="" title="XCFramework生成后的截图">
 
-<h4 id="第七步：编写Demo测试生成后的XCFramework文件"><a href="#第七步：编写Demo测试生成后的XCFramework文件" class="headerlink" title="第七步：编写Demo测试生成后的XCFramework文件"></a>第七步：编写Demo测试生成后的<code>XCFramework</code>文件</h4><img src="/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/7.jpeg" class="" title="测试xcframework的demo截图">
+<h4 id="第七步：编写Demo测试生成后的XCFramework文件"><a href="#第七步：编写Demo测试生成后的XCFramework文件" class="headerlink" title="第七步：编写Demo测试生成后的XCFramework文件"></a>第七步：编写Demo测试生成后的<code>XCFramework</code>文件</h4><img src="/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/7.jpeg" class="" title="测试xcframework的demo截图">
 
 <p>编写代码测试xcframework</p>
-<img src="/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/8.jpeg" class="" title="测试xcframework的demo截图">
+<img src="/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/8.jpeg" class="" title="测试xcframework的demo截图">
 
 <p><b>注意：<code>swift-create-xcframework</code>不是万能的，虽然它可以把自己写的SPM Package和Package依赖的第三方包都打包成XCFramework，但是如果自己的包和第三方的包里面引用了图片等资源，这些资源是不会打包进XCFramework的！！所以需要图片资源的可以继续看方案2。</b></p>
 <h3 id="方案2：自己编写脚本"><a href="#方案2：自己编写脚本" class="headerlink" title="方案2：自己编写脚本"></a>方案2：自己编写脚本</h3><h4 id="第一步：编写打包脚本"><a href="#第一步：编写打包脚本" class="headerlink" title="第一步：编写打包脚本"></a>第一步：编写打包脚本</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -x</span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="comment"># Pass scheme name as the first argument to the script</span></span><br><span class="line">NAME=<span class="variable">$1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Build the scheme for all platforms that we plan to support</span></span><br><span class="line"><span class="keyword">for</span> PLATFORM <span class="keyword">in</span> <span class="string">&quot;iOS&quot;</span> <span class="string">&quot;iOS Simulator&quot;</span>; <span class="keyword">do</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="variable">$PLATFORM</span> <span class="keyword">in</span></span><br><span class="line">    <span class="string">&quot;iOS&quot;</span>)</span><br><span class="line">    RELEASE_FOLDER=<span class="string">&quot;Release-iphoneos&quot;</span></span><br><span class="line">    ;;</span><br><span class="line">    <span class="string">&quot;iOS Simulator&quot;</span>)</span><br><span class="line">    RELEASE_FOLDER=<span class="string">&quot;Release-iphonesimulator&quot;</span></span><br><span class="line">    ;;</span><br><span class="line">    <span class="keyword">esac</span></span><br><span class="line"></span><br><span class="line">    ARCHIVE_PATH=<span class="variable">$RELEASE_FOLDER</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Rewrite Package.swift so that it declaras dynamic libraries, since the approach does not work with static libraries</span></span><br><span class="line">    perl -i -p0e <span class="string">&#x27;s/type: .static,//g&#x27;</span> Package.swift</span><br><span class="line">    perl -i -p0e <span class="string">&#x27;s/type: .dynamic,//g&#x27;</span> Package.swift</span><br><span class="line">    perl -i -p0e <span class="string">&#x27;s/(library[^,]*,)/$1 type: .dynamic,/g&#x27;</span> Package.swift</span><br><span class="line"></span><br><span class="line">    xcodebuild archive -workspace . -scheme <span class="variable">$NAME</span> \</span><br><span class="line">            -destination <span class="string">&quot;generic/platform=<span class="variable">$PLATFORM</span>&quot;</span> \</span><br><span class="line">            -archivePath <span class="variable">$ARCHIVE_PATH</span> \</span><br><span class="line">            -derivedDataPath <span class="string">&quot;.build&quot;</span> \</span><br><span class="line">            SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES</span><br><span class="line"></span><br><span class="line">    FRAMEWORK_PATH=<span class="string">&quot;<span class="variable">$ARCHIVE_PATH</span>.xcarchive/Products/usr/local/lib/<span class="variable">$NAME</span>.framework&quot;</span></span><br><span class="line">    MODULES_PATH=<span class="string">&quot;<span class="variable">$FRAMEWORK_PATH</span>/Modules&quot;</span></span><br><span class="line">    mkdir -p <span class="variable">$MODULES_PATH</span></span><br><span class="line"></span><br><span class="line">    BUILD_PRODUCTS_PATH=<span class="string">&quot;.build/Build/Intermediates.noindex/ArchiveIntermediates/<span class="variable">$NAME</span>/BuildProductsPath&quot;</span></span><br><span class="line">    RELEASE_PATH=<span class="string">&quot;<span class="variable">$BUILD_PRODUCTS_PATH</span>/<span class="variable">$RELEASE_FOLDER</span>&quot;</span></span><br><span class="line">    SWIFT_MODULE_PATH=<span class="string">&quot;<span class="variable">$RELEASE_PATH</span>/<span class="variable">$NAME</span>.swiftmodule&quot;</span></span><br><span class="line">    RESOURCES_BUNDLE_PATH=<span class="string">&quot;<span class="variable">$RELEASE_PATH</span>/<span class="variable">$&#123;NAME&#125;</span>_<span class="variable">$&#123;NAME&#125;</span>.bundle&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Copy Swift modules</span></span><br><span class="line">    <span class="keyword">if</span> [ -d <span class="variable">$SWIFT_MODULE_PATH</span> ] </span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        cp -r <span class="variable">$SWIFT_MODULE_PATH</span> <span class="variable">$MODULES_PATH</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="comment"># In case there are no modules, assume C/ObjC library and create module map</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;module <span class="variable">$NAME</span> &#123; export * &#125;&quot;</span> &gt; <span class="variable">$MODULES_PATH</span>/module.modulemap</span><br><span class="line">        <span class="comment"># <span class="doctag">TODO:</span> Copy headers</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Copy resources bundle, if exists </span></span><br><span class="line">    <span class="keyword">if</span> [ -e <span class="variable">$RESOURCES_BUNDLE_PATH</span> ] </span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        cp -r <span class="variable">$RESOURCES_BUNDLE_PATH</span> <span class="variable">$FRAMEWORK_PATH</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">xcodebuild -create-xcframework \</span><br><span class="line">-framework Release-iphoneos.xcarchive/Products/usr/<span class="built_in">local</span>/lib/<span class="variable">$NAME</span>.framework \</span><br><span class="line">-framework Release-iphonesimulator.xcarchive/Products/usr/<span class="built_in">local</span>/lib/<span class="variable">$NAME</span>.framework \</span><br><span class="line">-output <span class="variable">$NAME</span>.xcframework</span><br></pre></td></tr></table></figure>
@@ -303,13 +304,13 @@
 <h4 id="第二步：保存编译脚本，并放到Package根目录中，给脚本加上可执行权限，然后打包"><a href="#第二步：保存编译脚本，并放到Package根目录中，给脚本加上可执行权限，然后打包" class="headerlink" title="第二步：保存编译脚本，并放到Package根目录中，给脚本加上可执行权限，然后打包"></a>第二步：保存编译脚本，并放到Package根目录中，给脚本加上可执行权限，然后打包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ chmod +x build.sh</span><br><span class="line">$ ./build.sh MyLibrary</span><br></pre></td></tr></table></figure>
 
 <p>编译打包截图：</p>
-<img src="/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/9.png" class="" title="编译打包截图">
+<img src="/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/9.png" class="" title="编译打包截图">
 
 <p>编译打包成功截图：</p>
-<img src="/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/10.png" class="" title="编译打包成功截图">
+<img src="/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/10.png" class="" title="编译打包成功截图">
 
 <p>最终生成的<code>XCFramework</code>包含资源文件</p>
-<img src="/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/11.png" class="" title="生成之后的XCFramework截图">
+<img src="/Blog/2024/05/12/%E5%A6%82%E4%BD%95%E5%B0%86Swift-Package%E7%BC%96%E8%AF%91%E6%88%90XCFramework/11.png" class="" title="生成之后的XCFramework截图">
 
 <p><b>注意：自己写脚本打包虽然可以将资源文件打包进XCFramework，但是资源文件被放在了一个单独的Bundle里面，与Xcode生成的XCFramework还是不太一样。并且，脚本无法将依赖的库也打包成XCFramework，所以具体采用哪一个方案还要结合自己的情况选择。目前看来两种解决方案都有缺陷，造成这种缺陷的原因是，Xcode目前没有支持将SPM Package打包成XCFramework的功能，所以才有这么多偏方，如果哪天Xcode支持了这个功能，那这两个方法都可以被抛弃了。</b></p>
 <h2 id="案例Demo"><a href="#案例Demo" class="headerlink" title="案例Demo"></a>案例Demo</h2><p><a href="https://github.com/DavidWanderer/MyLibrary">MyLibrary代码下载</a></p>
@@ -328,7 +329,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Swift/" rel="tag"># Swift</a>
+              <a href="/Blog/tags/Swift/" rel="tag"># Swift</a>
           </div>
 
         
@@ -337,7 +338,7 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/01/06/iOS%E7%BB%9F%E8%AE%A1SDK%E4%BD%93%E7%A7%AF%E5%A4%A7%E5%B0%8F/" rel="prev" title="iOS统计SDK体积大小">
+    <a href="/Blog/2023/01/06/iOS%E7%BB%9F%E8%AE%A1SDK%E4%BD%93%E7%A7%AF%E5%A4%A7%E5%B0%8F/" rel="prev" title="iOS统计SDK体积大小">
       <i class="fa fa-chevron-left"></i> iOS统计SDK体积大小
     </a></div>
       <div class="post-nav-item"></div>
@@ -406,26 +407,26 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">听月的博客</p>
+  <p class="site-author-name" itemprop="name">听月</p>
   <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+          <a href="/Blog/archives/">
         
           <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+            <a href="/Blog/categories/">
           
         <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/Blog/tags/">
           
         <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
@@ -458,7 +459,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">听月的博客</span>
+  <span class="author" itemprop="copyrightHolder">听月</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
@@ -505,30 +506,30 @@
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+<script src="/Blog/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
+<script src="/Blog/js/motion.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/Blog/js/schemes/pisces.js"></script>
 
 
-
-
-  
+<script src="/Blog/js/next-boot.js"></script>
 
 
 
 
   
-<script src="/js/local-search.js"></script>
+
+
+
+
+  
+<script src="/Blog/js/local-search.js"></script>
 
 
 
@@ -557,7 +558,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'Blog',
       owner       : 'DavidWanderer',
       admin       : ['DavidWanderer'],
-      id          : '2d5999bbf54205acc2a44088ff0783f8',
+      id          : 'a77a1382fc0f43427d68298fdb96c04a',
         language: 'zh-CN',
       distractionFreeMode: true
     });

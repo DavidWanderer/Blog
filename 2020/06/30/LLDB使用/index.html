@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/Blog/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"github.com","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="LLDBLLDB 是一个有着 REPL 的特性和 C++ ,Python 插件的开源调试器。LLDB 绑定在 Xcode 内部，存在于主窗口底部的控制台中。调试器允许你在程序运行的特定时暂停它，你可以查看变量的值，执行自定的指令，并且按照你所认为合适的步骤来操作程序的进展。 expression可简写为e，作用为执行一个表达式。  1、查询当前堆栈变量的值 2、动态修改当前线程堆栈变量的值">
@@ -27,29 +27,29 @@
 <meta property="og:site_name" content="Stay hungry, Stay foolish.">
 <meta property="og:description" content="LLDBLLDB 是一个有着 REPL 的特性和 C++ ,Python 插件的开源调试器。LLDB 绑定在 Xcode 内部，存在于主窗口底部的控制台中。调试器允许你在程序运行的特定时暂停它，你可以查看变量的值，执行自定的指令，并且按照你所认为合适的步骤来操作程序的进展。 expression可简写为e，作用为执行一个表达式。  1、查询当前堆栈变量的值 2、动态修改当前线程堆栈变量的值">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB1.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB2.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB3.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB4.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB5.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB7.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB8.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB9.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB10.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB11.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB12.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB13.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB14.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB15.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB16.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB17.png">
-<meta property="og:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB19.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB1.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB2.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB3.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB4.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB5.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB7.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB8.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB9.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB10.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB11.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB12.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB13.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB14.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB15.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB16.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB17.png">
+<meta property="og:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB19.png">
 <meta property="article:published_time" content="2020-06-30T12:12:03.000Z">
 <meta property="article:modified_time" content="2021-04-15T16:09:02.000Z">
-<meta property="article:author" content="听月的博客">
+<meta property="article:author" content="听月">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB1.png">
+<meta name="twitter:image" content="https://github.com/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB1.png">
 
 <link rel="canonical" href="https://github.com/DavidWanderer/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/">
 
@@ -113,11 +113,12 @@
 
   <div class="site-meta">
 
-    <a href="/" class="brand" rel="start">
+    <a href="/Blog/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">Stay hungry, Stay foolish.</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">听月的博客</p>
   </div>
 
   <div class="site-nav-right">
@@ -134,22 +135,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/Blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/Blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -211,8 +212,8 @@
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="听月的博客">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="听月">
       <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
@@ -239,7 +240,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
                 </span>
             </span>
 
@@ -281,11 +282,11 @@
 <li>1、查询当前堆栈变量的值</li>
 <li>2、动态修改当前线程堆栈变量的值</li>
 </ul>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB1.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB1.png" class="" title="LLDB">
 
 <p>我们在调试数据的时候，有的时候需要动态修改变量值，使用<code>expression</code>那是十分方便的调试。</p>
 <h4 id="po-amp-p"><a href="#po-amp-p" class="headerlink" title="po &amp; p"></a><code>po</code> &amp; <code>p</code></h4><p><code>po</code>的作用为打印对象，事实上，我们可以通过<code>help po</code>得知，<code>po</code>是<code>expression -O --</code>的简写，我们可以通过它打印出对象，而不是打印对象的指针。而值得一提的是，在 <code>help expression</code> 返回的帮助信息中，我们可以知道，<code>po</code>命令会尝试调用对象的 <code>description</code> 方法来取得对象信息，因此我们也可以重载某个对象的<code>description方法</code>，使我们调试的时候能获得可读性更强，更全面的信息。</p>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB2.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB2.png" class="" title="LLDB">
 
 <p><code>p</code>即是<code>print</code>，也是<code>expression --</code>的缩写，与<code>po</code>不同，它不会打出对象的详细信息，只会打印出一个$符号，数字，再加上一段地址信息。打印对象的时候我们也可以指定特定格式。</p>
 <ul>
@@ -296,18 +297,18 @@
 <li><code>t</code>:二进制形式打印</li>
 <li><code>f</code>:浮点数</li>
 </ul>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB3.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB3.png" class="" title="LLDB">
 
 
 <h3 id="堆栈"><a href="#堆栈" class="headerlink" title="堆栈"></a>堆栈</h3><p><code>bt</code>即是<code>thread backtrace</code>，作用是打印出当前线程的堆栈信息。</p>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB4.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB4.png" class="" title="LLDB">
 
 <p>我们在打印断点的时候，我们可以在左侧看到一些堆栈信息，但是看不完全，这个时候使用<code>bt</code>指令可以打印出完整的堆栈信息。</p>
 <p>输入<code>frame select</code>指令我们可以任意的去选择一个作用域去查看。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame select <span class="number">2</span></span><br></pre></td></tr></table></figure>
 
 <p><code>thread</code>另一个比较常用的用法是 <code>thread return</code>，调试的时候，我们希望在当前执行的程序堆栈直接返回一个自己想要的值，可以执行该命令直接返回。<br><code>thread return &lt;expr&gt;</code><br>在这个断点中，我们可以执行 <code>thread return NO</code>让该函数调用直接返回<code>NO </code>，在调试中轻松覆盖任何函数的返回路径。</p>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB5.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB5.png" class="" title="LLDB">
 
 <p><code>frame</code>即是帧，其实就是当前的程序堆栈，我们输入<code>bt</code>命令，打印出来的其实是当前线程的<code>frame</code>。</p>
 <ul>
@@ -316,12 +317,12 @@
 <li>展示指定变量var的具体内容<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(lldb)frame variable var</span><br><span class="line">(lldb)fr v var</span><br><span class="line">(lldb)p var</span><br><span class="line">(lldb)po var</span><br></pre></td></tr></table></figure></li>
 <li>展示当前对象的全局变量<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb)target variable</span><br><span class="line">(lldb)ta v</span><br></pre></td></tr></table></figure></li>
 <li>打印某一方法具体的信息<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frame select num（<span class="number">1</span>，<span class="number">2</span>，<span class="number">3.</span>）</span><br></pre></td></tr></table></figure>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB7.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB7.png" class="" title="LLDB">
 
 </li>
 </ul>
 <h3 id="设置断点"><a href="#设置断点" class="headerlink" title="设置断点"></a>设置断点</h3><h4 id="breakpoint"><a href="#breakpoint" class="headerlink" title="breakpoint"></a>breakpoint</h4><p>所有调试都是由断点开始的，我们接触的最多，就是以breakpoint命令为基础的断点。<br>一般我们对breakpoint命令使用得不多，而是在XCode的GUI界面中直接添加断点。除了直接触发程序暂停供调试外，我们可以进行进一步的配置。</p>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB8.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB8.png" class="" title="LLDB">
 
 <ul>
 <li>添加condition，一般用于多次调用的函数或者循坏的代码中，在作用域内达到某个条件，才会触发程序暂停</li>
@@ -337,14 +338,14 @@
 <h2 id="Chisel"><a href="#Chisel" class="headerlink" title="Chisel"></a>Chisel</h2><p><a href="https://github.com/facebook/chisel">Chisel</a>是facebook开源的一个LLDB命令的集合，它里面简化和扩展了LLDB的命令。使用它会更方便的调试我们的程序。在它的GitHub上有详细的安装方式，这里就不赘述了。</p>
 <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p><strong>1. pviews</strong></p>
 <p>这个命令可以按层级递归打印指定view的所有subView，相当于 UIView 的私有辅助方法 [view recursiveDescription]。如果不指定view的话就是默认window：</p>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB9.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB9.png" class="" title="LLDB">
 
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB10.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB10.png" class="" title="LLDB">
 
 
 <p><strong>2. pvc</strong></p>
 <p>这个命令递归打印出viewController的层级，相当于 UIViewController 的一个私有辅助方法 [UIViewController _printHierarchy] ：</p>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB11.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB11.png" class="" title="LLDB">
 
 <p><strong>3. visualize</strong></p>
 <p>它可以使用Mac的预览打开一个 UIImage, CGImageRef, UIView, 或 CALayer。 我们其实可以用这个功能来截图或者查看一个view的具体内容：</p>
@@ -354,7 +355,7 @@
 <p><strong>4. mask/unmask</strong></p>
 <p>mask用来在view或者layer上覆盖一个半透明的矩形， unmask解除。当我们想找一个view的时候可以使用。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb) mask <span class="keyword">self</span>.imageView</span><br><span class="line">(lldb) unmask <span class="number">0x7f8732e037b0</span></span><br></pre></td></tr></table></figure>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB12.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB12.png" class="" title="LLDB">
 
 <p><strong>5. border/unborder</strong></p>
 <p>border可以给view或者layer添加边框，unborder解除。当我们想找一个view的时候可以使用。</p>
@@ -367,27 +368,27 @@
 <p>这个命令用来刷新UI，当我们改变了UI的时候，不用重新启动，使用caflush刷新UI就行。</p>
 <p><strong>8. presponder</strong></p>
 <p>打印响应者链：</p>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB13.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB13.png" class="" title="LLDB">
 
 
 <p><strong>9. pclass</strong></p>
 <p>打印指定对象的class的继承关系：</p>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB14.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB14.png" class="" title="LLDB">
 
 <p><strong>10. pjson</strong></p>
 <p>打印一个字典或者数组的json样式。</p>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB15.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB15.png" class="" title="LLDB">
 
 
 <p><strong>11. slowanim/unslowanim</strong></p>
 <p>减慢动画的效果，检查一个动画哪里有问题时可以使用。</p>
 <p><strong>12. pdocspath</strong></p>
 <p>打印App的Documents路径：</p>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB16.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB16.png" class="" title="LLDB">
 
 <p><strong>13. fv &amp; fvc</strong></p>
 <p>这两个命令是用来搜索当前内存中存在的view和viewController实例的命令，支持正则搜索。</p>
-<img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB17.png" class="" title="LLDB">
+<img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB17.png" class="" title="LLDB">
 
 <p><strong>14. vs</strong><br>这个命令可以移动正在调试的对象，让对象切换到其父视图之前，或切换到其兄弟视图之前。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(lldb) vs <span class="number">0x128430c50</span></span><br><span class="line"></span><br><span class="line">Use the following and (q) to quit.</span><br><span class="line">(w) move to superview</span><br><span class="line">(s) move to first subview</span><br><span class="line">(a) move to previous sibling</span><br><span class="line">(d) move to next sibling</span><br><span class="line">(p) print the hierarchy</span><br></pre></td></tr></table></figure>
@@ -401,7 +402,7 @@
 <p>打开<code>.lldbinit</code>文件后，在这个文件中配置第1步中克隆下来的代码里<code>fbchisellldb.py</code>文件的路径，我这里提供我自己的<code>.lldbinit</code>文件的内容：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ~/.lldbinit</span></span><br><span class="line"><span class="built_in">command</span> script import /Users/kris/Documents/git/chisel/fbchisellldb.py</span><br></pre></td></tr></table></figure>
 
-<h3 id="配置完这些操作后，重新启动Xcode，打个断点，使用新的LLDB命令试下"><a href="#配置完这些操作后，重新启动Xcode，打个断点，使用新的LLDB命令试下" class="headerlink" title="配置完这些操作后，重新启动Xcode，打个断点，使用新的LLDB命令试下"></a>配置完这些操作后，重新启动Xcode，打个断点，使用新的LLDB命令试下</h3><img src="/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB19.png" class="" title="LLDB">
+<h3 id="配置完这些操作后，重新启动Xcode，打个断点，使用新的LLDB命令试下"><a href="#配置完这些操作后，重新启动Xcode，打个断点，使用新的LLDB命令试下" class="headerlink" title="配置完这些操作后，重新启动Xcode，打个断点，使用新的LLDB命令试下"></a>配置完这些操作后，重新启动Xcode，打个断点，使用新的LLDB命令试下</h3><img src="/Blog/2020/06/30/LLDB%E4%BD%BF%E7%94%A8/LLDB19.png" class="" title="LLDB">
 
 
 
@@ -418,7 +419,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/Blog/tags/iOS/" rel="tag"># iOS</a>
           </div>
 
         
@@ -427,11 +428,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/29/RunLoop/" rel="prev" title="RunLoop">
+    <a href="/Blog/2020/06/29/RunLoop/" rel="prev" title="RunLoop">
       <i class="fa fa-chevron-left"></i> RunLoop
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/04/NSThread%E4%BB%8B%E7%BB%8D/" rel="next" title="NSThread介绍">
+    <a href="/Blog/2020/07/04/NSThread%E4%BB%8B%E7%BB%8D/" rel="next" title="NSThread介绍">
       NSThread介绍 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -499,26 +500,26 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">听月的博客</p>
+  <p class="site-author-name" itemprop="name">听月</p>
   <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+          <a href="/Blog/archives/">
         
           <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+            <a href="/Blog/categories/">
           
         <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/Blog/tags/">
           
         <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
@@ -551,7 +552,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">听月的博客</span>
+  <span class="author" itemprop="copyrightHolder">听月</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
@@ -598,30 +599,30 @@
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+<script src="/Blog/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
+<script src="/Blog/js/motion.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/Blog/js/schemes/pisces.js"></script>
 
 
-
-
-  
+<script src="/Blog/js/next-boot.js"></script>
 
 
 
 
   
-<script src="/js/local-search.js"></script>
+
+
+
+
+  
+<script src="/Blog/js/local-search.js"></script>
 
 
 
@@ -650,7 +651,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'Blog',
       owner       : 'DavidWanderer',
       admin       : ['DavidWanderer'],
-      id          : '433043a23c81dc9795485b12466ed587',
+      id          : '84990f3c36b2ea10a31c896cd28d1bd9',
         language: 'zh-CN',
       distractionFreeMode: true
     });

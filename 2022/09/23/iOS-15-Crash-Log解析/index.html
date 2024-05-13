@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/Blog/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"github.com","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="iOS 15以上Crash Log解析iOS 15以前崩溃日志使用symbolicatecrash去解析，升级iOS 15以后，崩溃日志的组织格式有变化，变成JSON格式，需要使用以下的命令行解析崩溃日志： 1python3 &#x2F;Applications&#x2F;Xcode.app&#x2F;Contents&#x2F;SharedFrameworks&#x2F;CoreSymbolicationDT.framework&#x2F;Version">
@@ -27,13 +27,13 @@
 <meta property="og:site_name" content="Stay hungry, Stay foolish.">
 <meta property="og:description" content="iOS 15以上Crash Log解析iOS 15以前崩溃日志使用symbolicatecrash去解析，升级iOS 15以后，崩溃日志的组织格式有变化，变成JSON格式，需要使用以下的命令行解析崩溃日志： 1python3 &#x2F;Applications&#x2F;Xcode.app&#x2F;Contents&#x2F;SharedFrameworks&#x2F;CoreSymbolicationDT.framework&#x2F;Version">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/2022/09/23/iOS-15-Crash-Log%E8%A7%A3%E6%9E%90/1.png">
+<meta property="og:image" content="https://github.com/Blog/2022/09/23/iOS-15-Crash-Log%E8%A7%A3%E6%9E%90/1.png">
 <meta property="article:published_time" content="2022-09-23T08:35:47.000Z">
 <meta property="article:modified_time" content="2023-09-28T08:42:51.000Z">
-<meta property="article:author" content="听月的博客">
+<meta property="article:author" content="听月">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/2022/09/23/iOS-15-Crash-Log%E8%A7%A3%E6%9E%90/1.png">
+<meta name="twitter:image" content="https://github.com/Blog/2022/09/23/iOS-15-Crash-Log%E8%A7%A3%E6%9E%90/1.png">
 
 <link rel="canonical" href="https://github.com/DavidWanderer/Blog/2022/09/23/iOS-15-Crash-Log%E8%A7%A3%E6%9E%90/">
 
@@ -97,11 +97,12 @@
 
   <div class="site-meta">
 
-    <a href="/" class="brand" rel="start">
+    <a href="/Blog/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">Stay hungry, Stay foolish.</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">听月的博客</p>
   </div>
 
   <div class="site-nav-right">
@@ -118,22 +119,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/Blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/Blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -195,8 +196,8 @@
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2022/09/23/iOS-15-Crash-Log%E8%A7%A3%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="听月的博客">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="听月">
       <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
@@ -223,7 +224,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
                 </span>
             </span>
 
@@ -274,7 +275,7 @@
 <p>解析后的Last Exception Backtrace堆栈：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;lastExceptionBacktrace&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 601372,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;__exceptionPreprocess&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 216,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 1</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 85732,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;objc_exception_throw&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 56,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 22</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 502716,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;NSAllocateMemoryPages&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 196,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 8</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 166436,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;-[_NSPlaceholderData initWithBytes:length:copy:deallocator:]&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 148,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 8</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 3258168,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;_UIImageRefFromData&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 232,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 3</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 3261560,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;-[UIImage _initWithData:preserveScale:cache:scale:]&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 64,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 3</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 3749800,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;+[UIImage imageWithData:]&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 56,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 3</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 784672,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 17,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;-[xxSDKEAGLRenderProvider textureWithCGImage:]&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 95</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 738536,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 17,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;-[xxSDKImageLayer draw]&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 187</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 815960,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 17,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;-[xxSDKLayer __visitAtMilliseconds:]&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 463</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 815888,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 17,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;-[xxSDKLayer __visitAtMilliseconds:]&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 391</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 791736,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 17,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;-[xxSDKEAGLRenderer(Context) __drawInRect:necessary:]&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 163</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 821220,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 17,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;-[xxSDKSceneRenderer __drawInRect:necessary:]&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 107</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 772276,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 17,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;-[xxSDKEAGLCanvas(Context) _drawInRect:necessary:]&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 203</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 770540,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 17,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;-[xxSDKEAGLCanvas(Context) _drawIfNecessary:]&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 135</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 768348,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 17,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;__34-[xxSDKEAGLCanvas(Lifecycle) _start]_block_invoke&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 35</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 409748,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;_dispatch_client_callout&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 16,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 6</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 244408,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;_dispatch_continuation_pop<span class="variable">$VARIANT</span><span class="variable">$armv81</span>&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 432,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 6</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 315756,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;_dispatch_source_invoke<span class="variable">$VARIANT</span><span class="variable">$armv81</span>&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 1560,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 6</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 258944,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;_dispatch_lane_serial_drain<span class="variable">$VARIANT</span><span class="variable">$armv81</span>&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 308,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 6</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 261956,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;_dispatch_lane_invoke<span class="variable">$VARIANT</span><span class="variable">$armv81</span>&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 388,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 6</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 301280,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;_dispatch_workloop_worker_thread&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 608,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 6</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 7696,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;_pthread_wqthread&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 284,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 7</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;imageOffset&quot;</span>: 6460,</span><br><span class="line">      <span class="string">&quot;symbol&quot;</span>: <span class="string">&quot;start_wqthread&quot;</span>,</span><br><span class="line">      <span class="string">&quot;symbolLocation&quot;</span>: 8,</span><br><span class="line">      <span class="string">&quot;imageIndex&quot;</span>: 7</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
 <h2 id="Bugly-dsym-文件命令行上传"><a href="#Bugly-dsym-文件命令行上传" class="headerlink" title="Bugly dsym 文件命令行上传"></a>Bugly dsym 文件命令行上传</h2><p>由于本次崩溃线程是<code>Thread 81</code>，查找<code>Thread 81</code>堆栈，发现最终的堆栈是指向了<code>BLYCPPExceptionTerminate()</code>，这个是Bugly里面的函数，可见这个崩溃被Bugly拦截到了。后续可以直接去Bugly网站上看崩溃的堆栈，本次崩溃的堆栈最终和我们解析过后的Last Exception Backtrace堆栈。</p>
-<img src="/2022/09/23/iOS-15-Crash-Log%E8%A7%A3%E6%9E%90/1.png" class="" title="Bugly截图">
+<img src="/Blog/2022/09/23/iOS-15-Crash-Log%E8%A7%A3%E6%9E%90/1.png" class="" title="Bugly截图">
 
 <p>这里附上Bugly上传dsym文件的命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar buglyqq-upload-symbol.jar -appid xxx -appkey xxx -bundleid <span class="string">&quot;com.xxx.xxx.xxx&quot;</span> -version 5520010 -platform IOS -inputSymbol /Users/tingyue/Downloads/buglyqq-upload-symbol-2/xxSDK.framework.dSYM</span><br></pre></td></tr></table></figure>
@@ -289,7 +290,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/Blog/tags/iOS/" rel="tag"># iOS</a>
           </div>
 
         
@@ -298,11 +299,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/04/28/%E4%BD%BF%E7%94%A8Aria2%E4%B8%8B%E8%BD%BD%E5%A4%A7%E6%96%87%E4%BB%B6/" rel="prev" title="使用Aria2下载大文件">
+    <a href="/Blog/2022/04/28/%E4%BD%BF%E7%94%A8Aria2%E4%B8%8B%E8%BD%BD%E5%A4%A7%E6%96%87%E4%BB%B6/" rel="prev" title="使用Aria2下载大文件">
       <i class="fa fa-chevron-left"></i> 使用Aria2下载大文件
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/10/16/Macbook-Pro%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/" rel="next" title="Macbook Pro忘记密码">
+    <a href="/Blog/2022/10/16/Macbook-Pro%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/" rel="next" title="Macbook Pro忘记密码">
       Macbook Pro忘记密码 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -370,26 +371,26 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">听月的博客</p>
+  <p class="site-author-name" itemprop="name">听月</p>
   <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+          <a href="/Blog/archives/">
         
           <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+            <a href="/Blog/categories/">
           
         <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/Blog/tags/">
           
         <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
@@ -422,7 +423,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">听月的博客</span>
+  <span class="author" itemprop="copyrightHolder">听月</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
@@ -469,30 +470,30 @@
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+<script src="/Blog/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
+<script src="/Blog/js/motion.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/Blog/js/schemes/pisces.js"></script>
 
 
-
-
-  
+<script src="/Blog/js/next-boot.js"></script>
 
 
 
 
   
-<script src="/js/local-search.js"></script>
+
+
+
+
+  
+<script src="/Blog/js/local-search.js"></script>
 
 
 
@@ -521,7 +522,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'Blog',
       owner       : 'DavidWanderer',
       admin       : ['DavidWanderer'],
-      id          : '02e7bb8ad49a84bd2e6acd4368df4292',
+      id          : 'a999fd91499aa31de2006d70b77773f0',
         language: 'zh-CN',
       distractionFreeMode: true
     });

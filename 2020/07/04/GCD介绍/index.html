@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/Blog/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"github.com","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="GCD介绍 1、GCD简介 2、GCD任务和队列 3、GCD 的基本使用 4、GCD 线程间的通信 5、GCD 的其他方法（栅栏方法：dispatch_barrier_async、延时执行方法：dispatch_after、一次性代码（只执行一次）：dispatch_once、快速迭代方法：dispatch_apply、队列组：dispatch_group、信号量：dispatch_semapho">
@@ -27,19 +27,19 @@
 <meta property="og:site_name" content="Stay hungry, Stay foolish.">
 <meta property="og:description" content="GCD介绍 1、GCD简介 2、GCD任务和队列 3、GCD 的基本使用 4、GCD 线程间的通信 5、GCD 的其他方法（栅栏方法：dispatch_barrier_async、延时执行方法：dispatch_after、一次性代码（只执行一次）：dispatch_once、快速迭代方法：dispatch_apply、队列组：dispatch_group、信号量：dispatch_semapho">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD.png">
-<meta property="og:image" content="https://github.com/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD4.png">
-<meta property="og:image" content="https://github.com/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD5.png">
-<meta property="og:image" content="https://github.com/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD4_1.png">
-<meta property="og:image" content="https://github.com/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD6.png">
-<meta property="og:image" content="https://github.com/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD7.png">
-<meta property="og:image" content="https://github.com/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD8.png">
+<meta property="og:image" content="https://github.com/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD.png">
+<meta property="og:image" content="https://github.com/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD4.png">
+<meta property="og:image" content="https://github.com/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD5.png">
+<meta property="og:image" content="https://github.com/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD4_1.png">
+<meta property="og:image" content="https://github.com/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD6.png">
+<meta property="og:image" content="https://github.com/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD7.png">
+<meta property="og:image" content="https://github.com/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD8.png">
 <meta property="article:published_time" content="2020-07-04T00:48:44.000Z">
 <meta property="article:modified_time" content="2021-04-15T16:09:02.000Z">
-<meta property="article:author" content="听月的博客">
+<meta property="article:author" content="听月">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD.png">
+<meta name="twitter:image" content="https://github.com/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD.png">
 
 <link rel="canonical" href="https://github.com/DavidWanderer/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/">
 
@@ -103,11 +103,12 @@
 
   <div class="site-meta">
 
-    <a href="/" class="brand" rel="start">
+    <a href="/Blog/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">Stay hungry, Stay foolish.</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">听月的博客</p>
   </div>
 
   <div class="site-nav-right">
@@ -124,22 +125,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/Blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/Blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -201,8 +202,8 @@
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="听月的博客">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="听月">
       <meta itemprop="description" content="Your dreams don't work unless you do.">
     </span>
 
@@ -229,7 +230,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
                 </span>
             </span>
 
@@ -331,7 +332,7 @@
 <p>可以使用<code>dispatch_get_global_queue</code>来获取。需要传入两个参数。第一个参数表示队列优先级，一般用<code>DISPATCH_QUEUE_PRIORITY_DEFAULT</code>。第二个参数暂时没用，用0即可。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全局并发队列的获取方法</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 
-<img src="/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD.png" class="" title="GCD">
+<img src="/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD.png" class="" title="GCD">
 
 <blockquote>
 <p>1.使用sync函数往当前串行队列中添加任务，会卡住当前的串行队列（产生死锁）。<br>2.并发功能只有在异步函数才会生效。</p>
@@ -371,7 +372,7 @@
 <p>【问题1】：以下代码是在主线程执行的，会不会产生死锁？会！</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;执行任务1&quot;</span>);</span><br><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line"><span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;执行任务2&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;执行任务3&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<img src="/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD4.png" class="" title="GCD">
+<img src="/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD4.png" class="" title="GCD">
 
 <p><code>dispatch_sync立马在当前线程同步执行任务</code>。</p>
 <p>分析：</p>
@@ -380,18 +381,18 @@
 <li>2、主队列：<code>viewDidLoad</code>、<code>任务2</code>、</li>
 </ul>
 <p>其中在主队列<code>viewDidLoad</code>里面的<code>任务3</code>执行结束才会执行<code>任务2</code>；而主线程中是执行完<code>sync</code>才会执行<code>任务3</code>。也就是<code>任务2</code>等待<code>任务3</code>执行，<code>任务3</code>再也等待<code>任务2</code>执行，造成死锁。</p>
-<img src="/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD5.png" class="" title="GCD">
+<img src="/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD5.png" class="" title="GCD">
 
 
 <p>【问题2】：以下代码是在主线程执行的，会不会产生死锁？不会！</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)interview02 &#123;</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;执行任务1&quot;</span>);</span><br><span class="line">  <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br><span class="line">  <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;执行任务2&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;执行任务3&quot;</span>);</span><br><span class="line">  <span class="comment">// dispatch_async不要求立马在当前线程同步执行任务</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD4_1.png" class="" title="GCD">
+<img src="/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD4_1.png" class="" title="GCD">
 
 <p>因为<code>dispatch_async</code>不要求立马在当前线程同步执行任务，不会造成线程死锁。</p>
 <p>【问题3】：以下代码是在主线程执行的，会不会产生死锁？会！</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;执行任务1&quot;</span>);</span><br><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">&quot;myqueu&quot;</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123; <span class="comment">// 0</span></span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;执行任务2&quot;</span>);</span><br><span class="line">  <span class="built_in">dispatch_sync</span>(queue, ^&#123; <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;执行任务3&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;执行任务4&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;执行任务5&quot;</span>);</span><br></pre></td></tr></table></figure>
-<img src="/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD6.png" class="" title="GCD">
+<img src="/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD6.png" class="" title="GCD">
 
 <p>其中<code>执行任务3</code>和<code>执行任务4</code>之间造成死锁。</p>
 <p>【问题4】：以下代码是在主线程执行的，会不会产生死锁？不会！</p>
@@ -405,12 +406,12 @@
 <p>运行结果:</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2020</span><span class="number">-07</span><span class="number">-04</span> <span class="number">10</span>:<span class="number">53</span>:<span class="number">50.617918</span>+<span class="number">0800</span> GCD[<span class="number">2798</span>:<span class="number">125429</span>] <span class="number">1</span>---&lt;<span class="built_in">NSThread</span>: <span class="number">0x6000025eb800</span>&gt;&#123;number = <span class="number">5</span>, name = (null)&#125;</span><br><span class="line"><span class="number">2020</span><span class="number">-07</span><span class="number">-04</span> <span class="number">10</span>:<span class="number">53</span>:<span class="number">52.622555</span>+<span class="number">0800</span> GCD[<span class="number">2798</span>:<span class="number">125429</span>] <span class="number">1</span>---&lt;<span class="built_in">NSThread</span>: <span class="number">0x6000025eb800</span>&gt;&#123;number = <span class="number">5</span>, name = (null)&#125;</span><br><span class="line"><span class="number">2020</span><span class="number">-07</span><span class="number">-04</span> <span class="number">10</span>:<span class="number">53</span>:<span class="number">54.624007</span>+<span class="number">0800</span> GCD[<span class="number">2798</span>:<span class="number">125174</span>] <span class="number">2</span>---&lt;<span class="built_in">NSThread</span>: <span class="number">0x6000025e2d40</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="5、GCD-的其他方法"><a href="#5、GCD-的其他方法" class="headerlink" title="5、GCD 的其他方法"></a>5、GCD 的其他方法</h3><h4 id="5-1、GCD-栅栏方法：dispatch-barrier-async"><a href="#5-1、GCD-栅栏方法：dispatch-barrier-async" class="headerlink" title="5.1、GCD 栅栏方法：dispatch_barrier_async"></a>5.1、GCD 栅栏方法：<code>dispatch_barrier_async</code></h4><img src="/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD7.png" class="" title="GCD">
+<h3 id="5、GCD-的其他方法"><a href="#5、GCD-的其他方法" class="headerlink" title="5、GCD 的其他方法"></a>5、GCD 的其他方法</h3><h4 id="5-1、GCD-栅栏方法：dispatch-barrier-async"><a href="#5-1、GCD-栅栏方法：dispatch-barrier-async" class="headerlink" title="5.1、GCD 栅栏方法：dispatch_barrier_async"></a>5.1、GCD 栅栏方法：<code>dispatch_barrier_async</code></h4><img src="/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD7.png" class="" title="GCD">
 
 
 <p>就是我们在异步执行一些操作的时候，我们使用<code>dispatch_barrier_async</code>函数把异步操作暂时性的做成同步操作，就像一个<code>栅栏</code>一样分开。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)barrierTest &#123;</span><br><span class="line">    <span class="keyword">self</span>.queue = dispatch_queue_create(<span class="string">&quot;rw_queue&quot;</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">        [<span class="keyword">self</span> readWithIndex:i];</span><br><span class="line">        [<span class="keyword">self</span> readWithIndex:i];</span><br><span class="line">        [<span class="keyword">self</span> writeWithIndex:i];</span><br><span class="line">        [<span class="keyword">self</span> readWithIndex:i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)readWithIndex:(<span class="built_in">NSInteger</span>)index &#123;</span><br><span class="line">    <span class="built_in">dispatch_async</span>(<span class="keyword">self</span>.queue, ^&#123;</span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;第%ld次循环:read&quot;</span>, (<span class="keyword">long</span>)index);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)writeWithIndex:(<span class="built_in">NSInteger</span>)index &#123;</span><br><span class="line">    dispatch_barrier_async(<span class="keyword">self</span>.queue, ^&#123;</span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;第%ld次循环:write&quot;</span>, (<span class="keyword">long</span>)index);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD8.png" class="" title="GCD">
+<img src="/Blog/2020/07/04/GCD%E4%BB%8B%E7%BB%8D/GCD8.png" class="" title="GCD">
 <p>我们观察时间可以看到在执行<code>dispatch_barrier_async</code>写操作的时候是同步执行的，不会出现异步情况。</p>
 <h4 id="5-2、GCD-延时执行方法：dispatch-after"><a href="#5-2、GCD-延时执行方法：dispatch-after" class="headerlink" title="5.2、GCD 延时执行方法：dispatch_after"></a>5.2、GCD 延时执行方法：dispatch_after</h4><p>我们经常会遇到这样的需求：在指定时间（例如3秒）之后执行某个任务。可以用 GCD 的dispatch_after函数来实现。<br>需要注意的是：dispatch_after函数并不是在指定时间之后才开始执行处理，而是在指定时间之后将任务追加到主队列中。严格来说，这个时间并不是绝对准确的，但想要大致延迟执行任务，dispatch_after函数是很有效的。</p>
  <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 延时执行方法 dispatch_after</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (<span class="keyword">void</span>)after &#123;</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;currentThread---%@&quot;</span>,[<span class="built_in">NSThread</span> currentThread]);  <span class="comment">// 打印当前线</span></span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;asyncMain---begin&quot;</span>);</span><br><span class="line">  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<span class="number">2.0</span> * <span class="built_in">NSEC_PER_SEC</span>)),dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    <span class="comment">// 2.0秒后异步追加任务代码到主队列，并开始执行</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;after---%@&quot;</span>,[<span class="built_in">NSThread</span> currentThread]);  <span class="comment">// 打印当前线程</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -458,7 +459,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/Blog/tags/iOS/" rel="tag"># iOS</a>
           </div>
 
         
@@ -467,11 +468,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/04/NSThread%E4%BB%8B%E7%BB%8D/" rel="prev" title="NSThread介绍">
+    <a href="/Blog/2020/07/04/NSThread%E4%BB%8B%E7%BB%8D/" rel="prev" title="NSThread介绍">
       <i class="fa fa-chevron-left"></i> NSThread介绍
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/04/NSOperation%E4%BB%8B%E7%BB%8D/" rel="next" title="NSOperation介绍">
+    <a href="/Blog/2020/07/04/NSOperation%E4%BB%8B%E7%BB%8D/" rel="next" title="NSOperation介绍">
       NSOperation介绍 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -539,26 +540,26 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">听月的博客</p>
+  <p class="site-author-name" itemprop="name">听月</p>
   <div class="site-description" itemprop="description">Your dreams don't work unless you do.</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+          <a href="/Blog/archives/">
         
           <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+            <a href="/Blog/categories/">
           
         <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/Blog/tags/">
           
         <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
@@ -591,7 +592,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">听月的博客</span>
+  <span class="author" itemprop="copyrightHolder">听月</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
@@ -638,30 +639,30 @@
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+<script src="/Blog/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
+<script src="/Blog/js/motion.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/Blog/js/schemes/pisces.js"></script>
 
 
-
-
-  
+<script src="/Blog/js/next-boot.js"></script>
 
 
 
 
   
-<script src="/js/local-search.js"></script>
+
+
+
+
+  
+<script src="/Blog/js/local-search.js"></script>
 
 
 
@@ -690,7 +691,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'Blog',
       owner       : 'DavidWanderer',
       admin       : ['DavidWanderer'],
-      id          : 'f7fdc15a5b471ea684416834a638c5ea',
+      id          : '37ca6047fab1a95d551de625eb222290',
         language: 'zh-CN',
       distractionFreeMode: true
     });
