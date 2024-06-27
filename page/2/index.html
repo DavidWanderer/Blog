@@ -188,6 +188,121 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="听月">
+      <meta itemprop="description" content="Your dreams don't work unless you do.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry, Stay foolish.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/" class="post-title-link" itemprop="url">如何添加CloudFlare免费CDN加速</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-14 15:40:10" itemprop="dateCreated datePublished" datetime="2021-12-14T15:40:10+08:00">2021-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Cloudflare 是一家国外的 CDN 加速服务商，还是很有名气的。提供免费和付费的加速和网站保护服务。百度云加速的国外节点就是和 Cloudflare 合作使用的 Cloudflare 的节点。Cloudflare 提供了不同类型的套餐，即使是免费用户，Cloudflare 提供的功能也是很全面的。对于访客来自于国外的网站很不错；对于访客来自于国内的网站加速效果有限，有些甚至会变慢，不过其安全防护功能也很不错。</p>
+<h1 id="为什么需要使用Cloudflare？"><a href="#为什么需要使用Cloudflare？" class="headerlink" title="为什么需要使用Cloudflare？"></a>为什么需要使用Cloudflare？</h1><ul>
+<li>保护VPS的真实IP，避免IP被封，或者提高IP查询的难度。使用Cloudflare后，ping域名，返回的是Cloudflare的CDN服务器IP，真实的IP会被保护起来。</li>
+<li>加速国外网站的访问速度。</li>
+</ul>
+<h1 id="如何配置？"><a href="#如何配置？" class="headerlink" title="如何配置？"></a>如何配置？</h1><p>官网： <a target="_blank" rel="noopener" href="http://www.cloudflare.com/">www.cloudflare.com</a><br>使用邮箱注册，注册完后自动进入添加网站界面。添加网站分为四步：添加网站域名、选择方案、添加DNS记录、更新域名服务器。</p>
+<div style="width:600px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/1.jpeg" class="" title="配置的整体逻辑截图"> </div>
+
+<h2 id="添加网站域名"><a href="#添加网站域名" class="headerlink" title="添加网站域名"></a>添加网站域名</h2><p>进入后台首页，点击“Add a site”，输入要解析的域名</p>
+<div style="width:600px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/2.png" class="" title="添加网站域名截图"> </div>
+
+<h2 id="选择方案"><a href="#选择方案" class="headerlink" title="选择方案"></a>选择方案</h2><p>一般来说我们选择免费方案即可（Free），如果觉得不差钱也可以选择付费，但是付费方案和免费方案的 DNS 解析功能是一样的，可用的 CDN 节点也是一样的。</p>
+<div style="width:600px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/3.png" class="" title="选择方案截图"> </div>
+
+<h2 id="添加DNS记录"><a href="#添加DNS记录" class="headerlink" title="添加DNS记录"></a>添加DNS记录</h2><ul>
+<li>1.选择记录类型，一般默认 A 记录即可，如图所示。</li>
+<li>2.输入要解析的域名，比如 example.com（此时只需要输入 @ 即可），或者 <a target="_blank" rel="noopener" href="http://www.example.com(此时只需要输入/">www.example.com（此时只需要输入</a> www 即可）。</li>
+<li>3.填写 IP 地址，也就是你 VPS 的 IP 地址。</li>
+<li>4.TTL 默认即可，不用改。</li>
+<li>5.黄色云朵表示该解析通过 CDN 访问，灰色云朵表示不通过 CDN 访问，点击云朵可以切换状态。这里如果选择不走 CDN 的话，相当于只使用 Cloudflare 的 DNS 功能。这里建议全部调为黄色云朵走 CDN 访问，隐藏网站真实 IP 地址。全站通过 CDN 访问可以有效防止网站真实IP泄漏，保护原站安全。</li>
+<li>6.点击 Add Record 添加记录。</li>
+<li>7.所有要添加的记录都添加完之后，点击 Continue 进入下一个页面。<div style="width:600px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/4.png" class="" title="添加DNS记录截图"> </div>
+
+</li>
+</ul>
+<h2 id="更新域名服务器"><a href="#更新域名服务器" class="headerlink" title="更新域名服务器"></a>更新域名服务器</h2><p>域名解析添加完成后，此时会显示你分配到的 Cloudflare 的 DNS 服务器，每个人都不一样，大家看一下自己的，然后去域名注册商处修改 Name Server，即可完成解析。</p>
+<div style="width:600px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/5.png" class="" title="更新域名服务器截图"> </div>
+
+<p>登录域名注册商后台，然后进入对应的域名管理，找到“DNS 服务器”、“Name Server” 或者类似的字眼，然后把默认的 DNS 服务器修改成 Cloudflare 提供的 DNS 服务器即可。</p>
+<div style="width:600px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/6.png" class="" title="更新域名服务器截图"> </div>
+
+<p>等待大概1个多小时，ping一下域名，发现DNS解析返回的是Cloudflare的IP，这样就成功配置完成了。</p>
+<div style="width:800px; margin:0px; padding:0px; align:left;"> <img src="/Blog/2021/12/14/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0CloudFlare%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9F/7.png" class="" title="查询服务器IP截图"> </div>
+
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a target="_blank" rel="noopener" href="https://www.bandwagonhost.net/5986.html">使用 Cloudflare 免费 DNS 服务器解析域名到搬瓦工 VPS 主机建站教程</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29891330">CloudFlare免费CDN加速使用方法</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2021/10/29/%E7%BA%A6%E6%9D%9F%E7%9B%B8%E5%85%B3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1169,96 +1284,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/DavidWanderer/Blog/2020/12/03/Transporter%E5%8D%A1%E4%BD%8F%E6%97%A0%E6%B3%95%E4%B8%8A%E4%BC%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-      <meta itemprop="name" content="听月">
-      <meta itemprop="description" content="Your dreams don't work unless you do.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stay hungry, Stay foolish.">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Blog/2020/12/03/Transporter%E5%8D%A1%E4%BD%8F%E6%97%A0%E6%B3%95%E4%B8%8A%E4%BC%A0/" class="post-title-link" itemprop="url">Transporter卡住无法上传</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-03 12:16:09" itemprop="dateCreated datePublished" datetime="2020-12-03T12:16:09+08:00">2020-12-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近遇到Transporter上传ipa文件到AppStore Connect的时候一直卡在<strong>正在验证APP - 正在通过App Store进行认证</strong>状态。</p>
-<img src="/Blog/2020/12/03/Transporter%E5%8D%A1%E4%BD%8F%E6%97%A0%E6%B3%95%E4%B8%8A%E4%BC%A0/%E6%AD%A3%E5%9C%A8%E9%AA%8C%E8%AF%81APP.jpg" class="" title="正在验证App截图">
-
-<p>解决办法：<br>1.删除Transporter的缓存目录，具体的目录路径在：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Users/kris/Library/Caches/com.apple.amp.itmstransporter</span><br></pre></td></tr></table></figure>
-
-<p>2.使用命令行进入Transporter目录，执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /Applications/Transporter.app/Contents/itms/bin</span><br><span class="line">$ ./iTMSTransporter</span><br></pre></td></tr></table></figure>
-
-<p>3.当命令行出现以下内容，重新再打开Transporter交付App就可以了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[2020-12-03 12:55:39 CST] &lt;main&gt; DEBUG: Saving configuration to <span class="built_in">local</span> path: /Users/kris/Library/Caches/com.apple.amp.itmstransporter/Defaults.properties</span><br><span class="line">usage: iTMSTransporter [-<span class="built_in">help</span> &lt;arg&gt; | -info | -m &lt;arg&gt; | -version]   [-o &lt;arg&gt;] [-v</span><br><span class="line">       &lt;arg&gt;]  [-WONoPause &lt;arg&gt;] [-Xmx4096m]</span><br><span class="line">iTMSTransporter : iTunes Store Transporter 2.1.0</span><br><span class="line"> -<span class="built_in">help</span> &lt;arg&gt;        Show this <span class="built_in">help</span>.  If a mode value is specified, show <span class="built_in">help</span> specific</span><br><span class="line">                    to that mode.</span><br><span class="line"> -info              The -info option should be used by itself and returns the</span><br><span class="line">                    copyright notice and acknowledgements.</span><br><span class="line"> -m &lt;arg&gt;           The -m option specifies the tool<span class="string">&#x27;s mode.  The valid values are:</span></span><br><span class="line"><span class="string">                    verify, upload, provider, diagnostic, lookupMetadata,</span></span><br><span class="line"><span class="string">                    createArtist, lookupArtist, status, statusAll,</span></span><br><span class="line"><span class="string">                    createMetadataTicket, queryTickets, generateSchema, transferTest,</span></span><br><span class="line"><span class="string">                    downloadMetadataGuides, listReports, requestReport</span></span><br><span class="line"><span class="string"> -o &lt;arg&gt;           The -o option specifies the directory and filename you want to use</span></span><br><span class="line"><span class="string">                    to log output information.  By default, Transporter logs output</span></span><br><span class="line"><span class="string">                    information to standard out. If you specify a filename,</span></span><br><span class="line"><span class="string">                    Transporter logs the output to the specified file, as well as to</span></span><br><span class="line"><span class="string">                    standard out.</span></span><br><span class="line"><span class="string"> -v &lt;arg&gt;           The -v option specifies the level of logging.  The five values</span></span><br><span class="line"><span class="string">                    are: off, detailed, informational, critical, eXtreme.</span></span><br><span class="line"><span class="string"> -version           The -version option should be used by itself and returns the</span></span><br><span class="line"><span class="string">                    version of the tool.</span></span><br><span class="line"><span class="string"> -WONoPause &lt;arg&gt;   The -WONoPause option is only valid on Windows and its value can</span></span><br><span class="line"><span class="string">                    be &#x27;</span><span class="literal">true</span><span class="string">&#x27; or &#x27;</span><span class="literal">false</span><span class="string">&#x27;.  If an error occurs during script execution,</span></span><br><span class="line"><span class="string">                    the process idles because the message &#x27;</span>Press any key...<span class="string">&#x27; is</span></span><br><span class="line"><span class="string">                    displayed on the console and the system awaits a keypress. To</span></span><br><span class="line"><span class="string">                    avoid this behavior, set this property to true</span></span><br><span class="line"><span class="string"> -Xmx4096m          Specifies that you want to change the Java Virtual Machine&#x27;</span>s (JVM)</span><br><span class="line">                    allocated memory by increasing the JVM heap size.  By default,</span><br><span class="line">                    Transporter uses a 2048MB heap size. You can use the -Xmx4096m</span><br><span class="line">                    option to specify a 4-gigabyte (GB) heap size. Apple recommends,</span><br><span class="line">                    <span class="keyword">if</span> needed, increasing the heap size to 4096MB by specifying the</span><br><span class="line">                    -Xmx4096m (or -Xmx4g) option and adjusting as needed.</span><br><span class="line">[2020-12-03 12:55:39 CST] &lt;main&gt; DBG-X: Returning 0</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1328,20 +1353,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/Blog/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/Blog/tags/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1377,12 +1402,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">306k</span>
+    <span title="站点总字数">310k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:38</span>
+    <span title="站点阅读时长">4:42</span>
 </div>
 
         

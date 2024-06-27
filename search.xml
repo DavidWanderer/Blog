@@ -4734,4 +4734,196 @@ NSRunLoopCommonModes并不是一个真的模式，它只是一个标记,timer能
         <tag>iOS越狱</tag>
       </tags>
   </entry>
+  <entry>
+    <title>英语语法综述</title>
+    <url>/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/</url>
+    <content><![CDATA[<h2 id="为什么学语法？"><a href="#为什么学语法？" class="headerlink" title="为什么学语法？"></a>为什么学语法？</h2><p>造句。说话写文章用短句子，长句子，不同短句又可以组合成新的长句。我们只有把长句子拆开来，直到拆到不能再继续拆了，否则句意会不完整的“基本句”，才好研究语法。如果基本句研究透了，长句子就是他们的组合。</p>
+<h2 id="什么是简单句（Simple-Sentences）"><a href="#什么是简单句（Simple-Sentences）" class="headerlink" title="什么是简单句（Simple Sentences）"></a>什么是简单句（Simple Sentences）</h2><p>把不能再拆的“基本句”称为简单句。除去“嗯!”，“哦”，“啊!”这样的感叹句，或者省略句或者向整句提问的问句，全部都是在说什么怎么样。绝大多数的句子粗略的分，就是“什么”+“怎么样”，而这个“什么”和“怎么样”分别对应了两个最基本的“句子成分”。两个最基本的句子成分是“主语(subject)”+“谓语(predicate)”。换句话说，几乎所有的英语句子结构都是主语+谓语。</p>
+<p>主语（人/物）+谓语（动作(动词)/发生了什么事）</p>
+<p>主语一般指“人/物”，不管抽象还是具体。谓语指的是“动作/发生了什么事”，这个动作并不是我们平时狭义说的要“动起来”的“动作”，这个广义的“动作”也就是我们所说的“动词”。</p>
+<h2 id="动词"><a href="#动词" class="headerlink" title="动词"></a>动词</h2><h3 id="1-可以独立完成的动作（主语-不及物动词）"><a href="#1-可以独立完成的动作（主语-不及物动词）" class="headerlink" title="1.可以独立完成的动作（主语+不及物动词）"></a>1.可以独立完成的动作（主语+不及物动词）</h3><p>这种没有承受者的动作，叫不及物动词。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Papa Rabbit sleeps.</span><br><span class="line">兔老爹睡觉.</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-有1个动作的承受者（主语-单及物动词-宾语）"><a href="#2-有1个动作的承受者（主语-单及物动词-宾语）" class="headerlink" title="2.有1个动作的承受者（主语+单及物动词+宾语）"></a>2.有1个动作的承受者（主语+单及物动词+宾语）</h3><p>这种没有承受者就没有实际意义的动词属于“及物动词”。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Papa Rabbit likes you.</span><br><span class="line">兔老爹喜欢你.</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-有2个动作承受者（主语-双及物动词-间接宾语-直接宾语）"><a href="#3-有2个动作承受者（主语-双及物动词-间接宾语-直接宾语）" class="headerlink" title="3.有2个动作承受者（主语+双及物动词+间接宾语+直接宾语）"></a>3.有2个动作承受者（主语+双及物动词+间接宾语+直接宾语）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Papa Rabbit teaches you English.</span><br><span class="line">兔老爹教你英语。</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-只有1个动作承受者（主语-复杂及物动词-宾语-宾语补语）"><a href="#4-只有1个动作承受者（主语-复杂及物动词-宾语-宾语补语）" class="headerlink" title="4.只有1个动作承受者（主语+复杂及物动词+宾语+宾语补语）"></a>4.只有1个动作承受者（主语+复杂及物动词+宾语+宾语补语）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Papa Rabbit considers you smart.</span><br><span class="line">兔老爹认为你聪明。</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-非“动作”（主语-系动词-主语补语-表语）"><a href="#5-非“动作”（主语-系动词-主语补语-表语）" class="headerlink" title="5.非“动作”（主语+系动词+主语补语/表语）"></a>5.非“动作”（主语+系动词+主语补语/表语）</h3><p>把后者信息赋予前者，等同于赋值；把后者的状态赋予前者。赋予主语某种性质状态的“划等号”的动词被称为连系动词，连系动词也被称为系动词。系动词后面跟上主语补语，主语补语也叫表语。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Papa Rabbit is tall.</span><br><span class="line">兔老爹是高的。</span><br><span class="line"></span><br><span class="line">Papa Rabbit is in the room.</span><br><span class="line">兔老爹在房间里。</span><br><span class="line"></span><br><span class="line">Papa Rabbit looks tall.</span><br><span class="line">兔老爹看起来高。</span><br><span class="line"></span><br><span class="line">Papa Rabbit smells nice.</span><br><span class="line">兔老爹闻上去香。</span><br></pre></td></tr></table></figure>
+
+<h2 id="英语五种基本句型"><a href="#英语五种基本句型" class="headerlink" title="英语五种基本句型"></a>英语五种基本句型</h2><h3 id="五种基本句型"><a href="#五种基本句型" class="headerlink" title="五种基本句型"></a>五种基本句型</h3><p>基本句型是不能再分的句子，缺少任何一种成分，句子的意义都不完整。五种基本句型其实就是在说动词，以及动词需要几个对象才能完整表达意思。</p>
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/simple_sentence.jpg" class="" title="英语五种基本句型截图">
+
+<h3 id="句子小结"><a href="#句子小结" class="headerlink" title="句子小结"></a>句子小结</h3><p>英语中所有句子，当拆到不能再拆后，都是在说什么怎么样。<code>什么</code>是语法上的<code>主语</code>,<code>怎么样</code>是语法上的<code>谓语</code>，谓语都有一个核心动词叫<code>谓语动词</code>。</p>
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/subject_predicate.jpg" class="" title="主语+谓语截图">
+
+<p>谓语动词有五个基本类别，谓语动词的五个基本类别分别对应英语中的五种基本句型。</p>
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/predicate.jpg" class="" title="谓语动词分类截图">
+
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/predicate_simple_sentence.jpg" class="" title="五种谓语动词对应五种基本句型截图">
+
+<p>日常所说的主谓宾，其实只是以上五种基本句型中的一个类别，<code>主语+谓语动词+宾语</code>，也就是所谓的<code>主谓宾结构</code></p>
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/zhu_wei_bin.jpg" class="" title="主谓宾句型截图">
+
+<h2 id="句子成分"><a href="#句子成分" class="headerlink" title="句子成分"></a>句子成分</h2><h3 id="1-主语"><a href="#1-主语" class="headerlink" title="1.主语"></a>1.主语</h3><h3 id="2-谓语动词"><a href="#2-谓语动词" class="headerlink" title="2.谓语动词"></a>2.谓语动词</h3><h3 id="3-宾语"><a href="#3-宾语" class="headerlink" title="3.宾语"></a>3.宾语</h3><h3 id="4-宾语补足语"><a href="#4-宾语补足语" class="headerlink" title="4.宾语补足语"></a>4.宾语补足语</h3><h3 id="5-主语补语（也叫表语）"><a href="#5-主语补语（也叫表语）" class="headerlink" title="5.主语补语（也叫表语）"></a>5.主语补语（也叫表语）</h3><h3 id="6-定语"><a href="#6-定语" class="headerlink" title="6. 定语"></a>6. 定语</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">The little white rabbit ate a large carrot.</span><br><span class="line">这只小白兔吃了一根大胡萝卜。</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>The little white</code>就是<code>rabbit</code>的定语; <code>a large</code>就是<code>carrot</code>的定语。</p>
+<h3 id="7-状语"><a href="#7-状语" class="headerlink" title="7.状语"></a>7.状语</h3><p>主要用来修饰谓语动词</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">The rabbit ate quickly.</span><br><span class="line">兔子快速的吃。</span><br></pre></td></tr></table></figure>
+
+<p><code>quickly</code>就是<code>ate</code>的状语</p>
+<h3 id="8-同位语"><a href="#8-同位语" class="headerlink" title="8.同位语"></a>8.同位语</h3><p>主要用来把主语或宾语再说一遍</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Papa Rabbit, an English teacher,eats carrot.</span><br><span class="line">兔老爹，一个英语老师，吃胡萝卜。</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>an English teacher</code>其实就是把<code>Papa Rabbit</code>用不同的方式再说一遍，在这里和主语算是同等地位。</p>
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/sentence_clouce.jpg" class="" title="句子成分截图">
+
+<h2 id="简单句、复合句-并列句-、复杂句"><a href="#简单句、复合句-并列句-、复杂句" class="headerlink" title="简单句、复合句(并列句)、复杂句"></a>简单句、复合句(并列句)、复杂句</h2><p>到目前为止所说的都是简单句，简单句就是没法再拆成更多句子了。说话写文章可不全是简单句。我们会把简单句进行组合，形成<code>复合句(compound sentences)</code>和<code>复杂句(complex sentences)</code>。<code>compound sentences</code>是简单句的叠加，句子和句子是并列的关系，直接翻译为“复合句”，但是有的语法书上的术语是“并列句”。<code>complex sentence</code>说白了就是把一个句子套在另一个句子里，甚至一个句子套的一个句子还能再套一个句子，一直套下去。这是一种从属关系。<code>complex sentence</code>直接翻译是复杂句。在这里，一个句子套另一个句子，在英语语法上分别叫做主句（main clause）和从句（subordinate clause）。从句说白了就是把简单句修改一下来充当另一个句子的句子成分。比如，我们修改一个简单句，它可以作为另外一个句子的主语，这就是主语从句，依此内推，可以得到补语从句、宾语从句、表语从句、同位语从句，这几种从句都有名次性质，所以又被称为名词性从句，其他的还有定语从句和状语从句。</p>
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/simple_sentences_subordinate_clause.jpg" class="" title="简单句和各种从句关系截图">
+
+<h2 id="词性（词类）"><a href="#词性（词类）" class="headerlink" title="词性（词类）"></a>词性（词类）</h2><p>同一类句子成分里可能有不同的词类</p>
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/subject_verb_obj.jpg" class="" title="同一类句子成分可能有不同的词类截图">
+
+<h3 id="1-名词（nouns，表人和物）"><a href="#1-名词（nouns，表人和物）" class="headerlink" title="1.名词（nouns，表人和物）"></a>1.名词（nouns，表人和物）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Papa Rabbit is a rabbit.</span><br><span class="line">兔老爹是只兔子。</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>rabbit</code>就是名词</p>
+<h3 id="2-冠词（articles，英语中说明人和事物）"><a href="#2-冠词（articles，英语中说明人和事物）" class="headerlink" title="2.冠词（articles，英语中说明人和事物）"></a>2.冠词（articles，英语中说明人和事物）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Papa Rabbit is a rabbit.</span><br><span class="line">兔老爹是只兔子。</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>a</code>就是冠词</p>
+<h3 id="3-代词（pronouns，替代人和物）"><a href="#3-代词（pronouns，替代人和物）" class="headerlink" title="3.代词（pronouns，替代人和物）"></a>3.代词（pronouns，替代人和物）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">I am a rabbit.</span><br><span class="line">我是只兔子。</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>I</code>就是代词</p>
+<h3 id="4-形容词（adjectives，形容人和物）"><a href="#4-形容词（adjectives，形容人和物）" class="headerlink" title="4.形容词（adjectives，形容人和物）"></a>4.形容词（adjectives，形容人和物）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">I am a smart rabbit.</span><br><span class="line">我是只聪明的兔子。</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>smart</code>就是形容词</p>
+<h3 id="5-数词（numerals，表数量）"><a href="#5-数词（numerals，表数量）" class="headerlink" title="5.数词（numerals，表数量）"></a>5.数词（numerals，表数量）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">I ate two carrots.</span><br><span class="line">我吃了两根胡萝卜。</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>two</code>就是数词</p>
+<h3 id="6-副词（adverbs，修饰动词或形容词）"><a href="#6-副词（adverbs，修饰动词或形容词）" class="headerlink" title="6.副词（adverbs，修饰动词或形容词）"></a>6.副词（adverbs，修饰动词或形容词）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">I ate two carrots quickly.</span><br><span class="line">我很快地吃了两根胡萝卜。</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>quickly</code>就是副词</p>
+<h3 id="7-介词（prepositions，表示和其他词关系的词）"><a href="#7-介词（prepositions，表示和其他词关系的词）" class="headerlink" title="7.介词（prepositions，表示和其他词关系的词）"></a>7.介词（prepositions，表示和其他词关系的词）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">I ate two carrots with chopsticks.</span><br><span class="line">我用筷子吃了两根胡萝卜。</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>with</code>就是介词</p>
+<h3 id="8-叹词（interjections，表感叹）"><a href="#8-叹词（interjections，表感叹）" class="headerlink" title="8.叹词（interjections，表感叹）"></a>8.叹词（interjections，表感叹）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ah,the carrot is tasty!</span><br><span class="line">啊，胡萝卜好美味！</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>Ah</code>就是叹词</p>
+<h3 id="9-连词（conjunctions，连接词和句）"><a href="#9-连词（conjunctions，连接词和句）" class="headerlink" title="9.连词（conjunctions，连接词和句）"></a>9.连词（conjunctions，连接词和句）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">I ate two carrots and a potato, because I was hungry.</span><br><span class="line">我吃了两根胡萝卜和一个马铃薯，因为我饿了。</span><br></pre></td></tr></table></figure>
+
+<p>以上词类和动词一起，便是英语的十大词类</p>
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/ten_category.jpg" class="" title="英语十大词类截图">
+
+<h2 id="谓语动词的“三大本领”"><a href="#谓语动词的“三大本领”" class="headerlink" title="谓语动词的“三大本领”"></a>谓语动词的“三大本领”</h2><h3 id="1-动作时间（Tense）"><a href="#1-动作时间（Tense）" class="headerlink" title="1.动作时间（Tense）"></a>1.动作时间（Tense）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">现在</span><br><span class="line">过去</span><br><span class="line">将来</span><br><span class="line">过去将来</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-动作状态（Aspect）"><a href="#2-动作状态（Aspect）" class="headerlink" title="2.动作状态（Aspect）"></a>2.动作状态（Aspect）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">一般</span><br><span class="line">完成</span><br><span class="line">进行</span><br><span class="line">完成进行</span><br></pre></td></tr></table></figure>
+
+<p>将动作时间和动作状态排列组合，理论上就有16种可能的时态</p>
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/16_tense.jpg" class="" title="英语理论16种动词时态截图">
+
+<h3 id="3-动作假设，情感（Mood，语法语气，并非说话语气）"><a href="#3-动作假设，情感（Mood，语法语气，并非说话语气）" class="headerlink" title="3.动作假设，情感（Mood，语法语气，并非说话语气）"></a>3.动作假设，情感（Mood，语法语气，并非说话语气）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">If I were a rabbit...</span><br><span class="line">(虚拟语气，用来表示意愿，和事实相反的假设等)</span><br><span class="line"></span><br><span class="line">I ate a carrot and...</span><br><span class="line">(陈述语气，)</span><br><span class="line"></span><br><span class="line">Eat this carrot and...</span><br><span class="line">(祈使语气)</span><br></pre></td></tr></table></figure>
+
+<p>以上三个特点分别称为动词的Tense、Aspect、Mood，合称TAM。英语的谓动词本身往往不能独立完成刚才说的那些本领，而且谓语动词独自也无法完成比如表示否定，可能性，必须性等意思。想让谓语动词充分发挥，我们必须用到另一类经常和动词一起用的词，帮助“完成任务”。它们就是“助动词”，auxiliary verbs。</p>
+<h3 id="助动词（auxiliary-verbs）"><a href="#助动词（auxiliary-verbs）" class="headerlink" title="助动词（auxiliary verbs）"></a>助动词（auxiliary verbs）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">（协助）表示“吃过了（完成）”  -&gt;  have -&gt; have eaten</span><br><span class="line">（协助）表示“正在吃（进行）”  -&gt;  be  -&gt; is eating</span><br><span class="line">（协助）表示“被吃”  -&gt; be -&gt; is eaten</span><br><span class="line">（协助）表示“有能力吃”  -&gt; can -&gt; can eat</span><br><span class="line">（协助）表示“有可能吃”  -&gt; might -&gt; might eat</span><br><span class="line">（协助）表示“有义务吃”  -&gt; must  -&gt; must eat</span><br><span class="line">（协助）表示“不吃（否定）” -&gt; do  -&gt; do not eat</span><br></pre></td></tr></table></figure>
+
+<p>以上的can，might， must也被称为“情态动词”，可归类在“助动词”里–但是也有语法体系把情态动词单独归类–这是分类的不同，并不影响理解。但是还有个麻烦的事，就是很多助动词特别喜欢伪装，它们除了做助动词（没有实义，只是帮助谓语动词而已），还可以做实义动词，甚至还有其他词性。比如can还可以是易拉罐，might可以是力量，musty可以是发霉的，do可以是做某事，have可以是拥有，be可以是存在。这些也恰恰是容易让人混乱的地方。所以千万不要把助动词和它的其他身份（作实义动词时）弄混淆。</p>
+<h3 id="非谓语动词"><a href="#非谓语动词" class="headerlink" title="非谓语动词"></a>非谓语动词</h3><p>动词除了可以在句子中充当谓语，还可以充当主语、宾语、宾语补语、主语补语、定语等，只不过需要把谓语动词修改成非谓语动词，非谓语动词可以充当除谓语动词以外的所有句子成分。不仅如此，非谓语动词几乎可以取代所有的从句，从而简化句子。只不过非谓语动词不再具有表示动作时间、状态、语态、语气的功能，也就是非谓语动词丧失了时态、语气、语态这些本领了。</p>
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/Xnip2024-06-23_11-17-16.jpg" class="" title="非谓语动词作其他句子成分截图">
+
+<p>非谓语动词有哪些：动词不定式、现在分词、动名词、过去分词</p>
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/Xnip2024-06-23_11-23-18.jpg" class="" title="非谓语动词分类截图">
+
+<h2 id="英语语法概述"><a href="#英语语法概述" class="headerlink" title="英语语法概述"></a>英语语法概述</h2><p>英语的核心是动词，分为谓语动词和非谓语动词，谓语动词分为5种，分别决定了简单句（不能再拆）的5种基本句型，同时也囊括以下句子成分：主语、谓语动词、宾语、宾语补语、主语补语（表语）。除此之外，句子成分还有：定语、状语、同位语。简单句可以组合成并列关系的“复合句”以及从属关系的“复杂句”，后者包括主句和从句，从句可以充当所有除谓语动词以外的句子成分。句子成分可以由不同词类充当，分别是：名词、代词、冠词、形容词、数词、副词、介词、叹词、连词。谓语动词可以表达动作的时间，状态，语气等，但是需要用到助动词（包含情态动词）。助动词还能帮助否定动词，表达动词的被动，可能性，义务性… 非谓语动词可以视作“改动后”的谓语动词，可以充当除谓语动词外的所有句子成分，取代几乎所有从句，简化句子。</p>
+<img src="/Blog/2024/06/18/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%BB%BC%E8%BF%B0/English_global_framework.jpg" class="" title="英语语法体系主体框架截图">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>英语</category>
+      </categories>
+      <tags>
+        <tag>英语</tag>
+      </tags>
+  </entry>
 </search>
